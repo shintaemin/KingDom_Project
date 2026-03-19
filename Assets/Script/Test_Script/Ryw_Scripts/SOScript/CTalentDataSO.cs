@@ -1,9 +1,8 @@
 using UnityEngine;
 
-#region 플레이어 데이터 SO
+#region CTalentDataSO
 /*
- ▶ 할일
-  - 플레이어 데이터를 관리
+ ▶ 작성자 류연우
 */
 #endregion
 

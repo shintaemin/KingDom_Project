@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e43ba671413fc504b8898a3ac816f3d4, type: 3}
-  m_Name: TalentDataSO_Energy
+  m_Name: TalentDataSO_Recovery
   m_EditorClassIdentifier: 
-  _name: "\uBC29\uC5B4\uB825"
-  _information: "\uBC29\uC5B4\uB825 {}\uC0C1\uC2B9"
-  _basic: 30
-  _increase: 10
+  _name: "\uD68C\uBCF5"
+  _information: "\uCD08\uB2F9 \uCCB4\uB825 {}\uD68C\uBCF5"
+  _basic: 50
+  _volume: 15
