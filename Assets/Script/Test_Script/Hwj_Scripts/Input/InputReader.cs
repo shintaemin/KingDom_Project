@@ -7,10 +7,9 @@ using UnityEngine;
 
     ㆍ 작성자 : 황원준
 
-    ㆍ 기능 : 마우스 <-> 터치 조작 방식 전환, 상태 정보 제공
+    ㆍ 기능 : 마우스 <-> 터치 조작 방식 전환, 인풋 상태 정보 제공
 */
 
-[RequireComponent(typeof(InputState))]
 public class InputReader : MonoBehaviour
 {
     #region 인스펙터

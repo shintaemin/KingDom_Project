@@ -10,6 +10,7 @@ using UnityEngine;
     ㆍ 기능 : 매 프레임 인풋을 감지하여 상태 결정
 */
 
+[RequireComponent(typeof(InputReader))]
 public class InputState : MonoBehaviour
 {
     public enum EState
@@ -23,22 +24,17 @@ public class InputState : MonoBehaviour
     #region 내부 변수
     public event System.Action<EState> OnInputStateChanged;
     private EState _state = EState.Idle;
-    private InputReader _input;
+    private InputReader _inputReader;
     #endregion
 
     private void Awake()
     {
-        _input = GetComponent<InputReader>();
+        _inputReader = GetComponent<InputReader>();
 
-        if (_input == null)
+        if (_inputReader == null)
         {
-            _input = GetComponentInChildren<InputReader>();
-
-            if (_input == null)
-            {
-                Debug.LogError("InputState _input 참조 실패");
-                return;
-            }
+            Debug.LogError("InputState _inputReader 참조 실패");
+            return;
         }
     }
 
@@ -85,21 +81,21 @@ public class InputState : MonoBehaviour
     // 상태 결정
     private EState DecideInputState()
     {
-        if(_input.GetIsDown())
+        if (_inputReader.GetIsDown())
         {
             return EState.Start;
         }
 
-        if(_input.GetIsUp())
+        if (_inputReader.GetIsUp())
         {
             return EState.End;
         }
 
-        if(_input.GetIsHold())
+        if (_inputReader.GetIsHold())
         {
             return EState.Drawing;
         }
-        
+
         return EState.Idle;
     }
 
