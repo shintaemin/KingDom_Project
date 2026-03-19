@@ -2,7 +2,7 @@ using UnityEngine;
 
 #region CTalentDataSO
 /*
- ▶ 작성자 류연우
+▶ 작성자 류연우
 */
 #endregion
 

@@ -3,7 +3,7 @@ using UnityEngine;
 
 #region CAbilityDataSO
 /*
- ▶ 작성자 류연우
+▶ 작성자 류연우
 */
 #endregion
 
@@ -18,6 +18,7 @@ public class CAbilityDataSO : ScriptableObject
     #endregion
 
     #region 프로퍼티
+    public int ID => _ID;
     public int Val => _val;
     public int[] PriceArr => _priceArr;
     public int MaxPriceLevel => _priceArr.Length;
