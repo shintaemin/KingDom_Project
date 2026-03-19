@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29a7ce5dfc1c62b43966f99f87441867, type: 3}
   m_Name: MissionDataSO_500
   m_EditorClassIdentifier: 
-  _ID: 400
-  _type: 4
-  _name: "\uBBF8\uC158 \uD074\uB9AC\uC5B4"
-  _condition: 3
+  _ID: 500
+  _type: 5
+  _name: "\uAD11\uACE0 \uC2DC\uCCAD \uD6C4 \uBB34\uB8CC \uBCF4\uC11D \uD68D\uB4DD"
+  _condition: 1
   _reward: 250
