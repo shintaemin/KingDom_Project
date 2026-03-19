@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 927707c8c8415d841bee8d2b39d6a22c, type: 3}
+  m_Name: AbilityDataSO_Speed
+  m_EditorClassIdentifier: 
+  _ID: 2
+  _val: 1
+  _priceArr: c2010000bc020000e80300001405000040060000d007000060090000b80b0000480d0000d80e0000
+  _iconArr:
+  - {fileID: 2800000, guid: c116bc0bdb78e69499e280ba5c1c534a, type: 3}
+  - {fileID: 2800000, guid: 98746f0b277c8684f8a1f68d2f9ff069, type: 3}
+  - {fileID: 2800000, guid: e6699e2f42595db45a2700784ed46967, type: 3}
+  - {fileID: 2800000, guid: 459ec11bd5576a44f99bcdc615975be9, type: 3}
+  - {fileID: 2800000, guid: c273e94fd8eb4a1428c9e1d60334d362, type: 3}
