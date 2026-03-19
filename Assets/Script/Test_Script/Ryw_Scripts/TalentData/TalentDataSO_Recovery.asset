@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e43ba671413fc504b8898a3ac816f3d4, type: 3}
   m_Name: TalentDataSO_Recovery
   m_EditorClassIdentifier: 
+  _ID: 1
   _name: "\uD68C\uBCF5"
   _information: "\uCD08\uB2F9 \uCCB4\uB825 {}\uD68C\uBCF5"
   _basic: 50

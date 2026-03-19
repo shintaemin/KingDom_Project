@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e43ba671413fc504b8898a3ac816f3d4, type: 3}
   m_Name: TalentDataSO_CriticalDamage
   m_EditorClassIdentifier: 
+  _ID: 6
   _name: "\uCE58\uBA85\uD0C0 \uD53C\uD574\uB7C9"
   _information: "\uCE58\uBA85\uD0C0 \uD53C\uD574\uB7C9 {}\uC0C1\uC2B9"
   _basic: 100

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e43ba671413fc504b8898a3ac816f3d4, type: 3}
   m_Name: TalentDataSO_Speed
   m_EditorClassIdentifier: 
+  _ID: 7
   _name: "\uC774\uB3D9 \uC18D\uB3C4"
   _information: "\uC774\uB3D9 \uC18D\uB3C4 {}\uC0C1\uC2B9"
   _basic: 3

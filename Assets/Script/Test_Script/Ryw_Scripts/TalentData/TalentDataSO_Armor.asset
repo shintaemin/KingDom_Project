@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e43ba671413fc504b8898a3ac816f3d4, type: 3}
   m_Name: TalentDataSO_Armor
   m_EditorClassIdentifier: 
+  _ID: 0
   _name: "\uBC29\uC5B4\uB825"
-  _information: "\uBC29\uC5B4\uB825 0\uC0C1\uC2B9"
+  _information: "\uBC29\uC5B4\uB825 {}\uC0C1\uC2B9"
   _basic: 30
-  _increase: 10
+  _volume: 10

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e43ba671413fc504b8898a3ac816f3d4, type: 3}
   m_Name: TalentDataSO_BackattackDamage
   m_EditorClassIdentifier: 
+  _ID: 3
   _name: "\uBC31\uC5B4\uD0DD \uACF5\uACA9\uB825"
   _information: "\uBC31\uC5B4\uD0DD \uACF5\uACA9\uB825 {}\uC0C1\uC2B9"
   _basic: 100
