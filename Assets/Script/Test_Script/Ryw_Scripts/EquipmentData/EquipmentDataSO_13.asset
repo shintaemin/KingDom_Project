@@ -9,11 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29a7ce5dfc1c62b43966f99f87441867, type: 3}
-  m_Name: MissionDataSO_300
+  m_Script: {fileID: 11500000, guid: 91356ccf71c59fa48ace756408c5a2ba, type: 3}
+  m_Name: EquipmentDataSO_13
   m_EditorClassIdentifier: 
-  _ID: 300
-  _type: 3
-  _name: "\uD53C\uD574 \uC5C6\uC774 \uB808\uBCA8 \uD074\uB9AC\uC5B4"
-  _condition: 1
-  _reward: 750
+  _ID: 13
+  _type: 0
+  _additionalAtt: 10
+  _additionalAttackRatio: 0
+  _additionalHealthRatio: 0
+  _additionalSpeedRatio: 5
+  _image: {fileID: 0}

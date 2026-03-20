@@ -4,7 +4,8 @@ using UnityEngine;
 #region CMissionDataSO
 /*
 ▶ 작성자 류연우
-// 피해 없이 레벨 클리어의 경우 보상의 값을 모른다. 일단 999 입력함.
+관련 정보로 많은 제보 바랍니다.
+https://www.notion.so/328d50353449801784e7c58b2ac68d38?v=328d50353449807699de000cc25c7fb1&p=328d5035344980e78625c4d567cd7ee9&pm=s
 */
 #endregion
 
