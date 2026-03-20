@@ -23,7 +23,10 @@ public class EnemyState : MonoBehaviour
 
     #region 내부 변수
     public event System.Action<EState> OnEnemyStateChanged;
+    public event System.Action<bool> OnDead;
+    
     private EState _state = EState.None;
+    private bool _isDead = true;
     #endregion
 
     void Update()
@@ -60,7 +63,8 @@ public class EnemyState : MonoBehaviour
                 break;
 
             case EState.Dead:
-
+                _isDead = true;
+                OnDead?.Invoke(_isDead);
                 break;
         }
 
