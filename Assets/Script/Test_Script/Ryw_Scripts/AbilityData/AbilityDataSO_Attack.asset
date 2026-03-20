@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 927707c8c8415d841bee8d2b39d6a22c, type: 3}
+  m_Name: AbilityDataSO_Attack
+  m_EditorClassIdentifier: 
+  _ID: 0
+  _val: 20
+  _priceArr: 2c010000580200002003000066030000a2030000de0300001a0400005604000092040000d80400001e05000064050000aa050000f005000054060000b80600001c07000080070000e407000052080000c00800002e0900009c0900000a0a0000
+  _iconArr:
+  - {fileID: 2800000, guid: d6f9e55b02d257b41bc80f7e33459dcb, type: 3}
+  - {fileID: 2800000, guid: 70b4be2b959bb004b9934eaab25708f2, type: 3}
+  - {fileID: 2800000, guid: b5ae3fd6530125541a5ffe04776981ad, type: 3}
+  - {fileID: 2800000, guid: 989dea5354b089c4bbb6fb02f4b5eac1, type: 3}
+  - {fileID: 2800000, guid: 43094bf9f1bd9774782a9bd2163c1f04, type: 3}
