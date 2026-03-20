@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - EnemySpawnPos
   layers:
   - Default
   - TransparentFX
@@ -33,10 +34,10 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Terrain
+  - NotTerrain
+  - PlayerSpawn
+  - EnemySpawn
   m_SortingLayers:
   - name: Default
     uniqueID: 0
