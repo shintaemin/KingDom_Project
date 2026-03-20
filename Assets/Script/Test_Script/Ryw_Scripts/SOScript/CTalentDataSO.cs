@@ -1,0 +1,32 @@
+using UnityEngine;
+
+#region CTalentDataSO
+/*
+▶ 작성자 류연우
+*/
+#endregion
+
+
+[CreateAssetMenu(menuName = "Create SO/Data/Talent Data (SO)", fileName = "TalentDataSO_")]
+public class CTalentDataSO : ScriptableObject
+{
+    // 방어력을 예시로
+    #region 인스펙터
+    [SerializeField] private int _ID = 0;
+    [SerializeField] private string _name = "방어력";
+    [SerializeField] private string _information = "방어력 {}상승";
+    [SerializeField] private int _basic = 30;
+    [SerializeField] private int _volume = 10;
+    //[SerializeField] private 그림? _icon;
+    #endregion
+
+    #region 프로퍼티
+    public int ID => _ID;
+    public string Name => _name;
+    public string Information => _information;
+    public int Basic => _basic;
+    public int Volume => _volume;
+    #endregion
+
+
+}
