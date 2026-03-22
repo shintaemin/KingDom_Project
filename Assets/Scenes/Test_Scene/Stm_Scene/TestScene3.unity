@@ -317,12 +317,24 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 591544322991575358, guid: 35587355e5b0e0444818a83a3e9a08bb, type: 3}
+      propertyPath: m_Layer
+      value: 31
+      objectReference: {fileID: 0}
+    - target: {fileID: 591544322991575358, guid: 35587355e5b0e0444818a83a3e9a08bb, type: 3}
       propertyPath: m_TagString
       value: EnemySpawnPos
       objectReference: {fileID: 0}
     - target: {fileID: 1118341520427635389, guid: 35587355e5b0e0444818a83a3e9a08bb, type: 3}
+      propertyPath: m_Layer
+      value: 31
+      objectReference: {fileID: 0}
+    - target: {fileID: 1118341520427635389, guid: 35587355e5b0e0444818a83a3e9a08bb, type: 3}
       propertyPath: m_TagString
       value: EnemySpawnPos
+      objectReference: {fileID: 0}
+    - target: {fileID: 1128891354323462703, guid: 35587355e5b0e0444818a83a3e9a08bb, type: 3}
+      propertyPath: m_Layer
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2193200058163655959, guid: 35587355e5b0e0444818a83a3e9a08bb, type: 3}
       propertyPath: m_Name
@@ -369,12 +381,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6978063278658950153, guid: 35587355e5b0e0444818a83a3e9a08bb, type: 3}
+      propertyPath: m_Layer
+      value: 31
+      objectReference: {fileID: 0}
+    - target: {fileID: 6978063278658950153, guid: 35587355e5b0e0444818a83a3e9a08bb, type: 3}
       propertyPath: m_TagString
       value: EnemySpawnPos
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6401021548313901606, guid: 35587355e5b0e0444818a83a3e9a08bb, type: 3}
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 4432077095824676668, guid: 35587355e5b0e0444818a83a3e9a08bb, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2193200058163655959, guid: 35587355e5b0e0444818a83a3e9a08bb, type: 3}
@@ -398,7 +415,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abf2f31d8e4c2af478c12dbc9b329d7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _index: 0
+  _stageNum: 1
+  _subStageNum: 1
+  _missionType: 1
+  _enemySpawnPos:
+  - {fileID: 1175435996}
+  - {fileID: 1175435995}
+  - {fileID: 1175435994}
+  _bossSpawnPos: {fileID: 0}
+--- !u!4 &1175435994 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4385498623903531246, guid: 35587355e5b0e0444818a83a3e9a08bb, type: 3}
+  m_PrefabInstance: {fileID: 1175435991}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1175435995 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6792363401986607182, guid: 35587355e5b0e0444818a83a3e9a08bb, type: 3}
+  m_PrefabInstance: {fileID: 1175435991}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1175435996 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1692576516520090186, guid: 35587355e5b0e0444818a83a3e9a08bb, type: 3}
+  m_PrefabInstance: {fileID: 1175435991}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

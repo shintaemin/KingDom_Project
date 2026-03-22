@@ -6,7 +6,8 @@ using UnityEngine;
 #region 미션 베이스
 /*
  ▶ 할일
-  - 상속 기반으로 진행
+  - 상속을 활용한 Mission 들의 베이스 스크립트
+  - 클리어시 자식에서 ClearMission() 을 호출하여 이벤트 발행
 */
 #endregion
 
@@ -18,7 +19,7 @@ public enum EMissionType
     Goal
 }
 
-public abstract class MissionBase : MonoBehaviour
+public abstract class MissionBase
 {
     public event Action OnClearMission;
 
