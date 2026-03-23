@@ -19,7 +19,7 @@ public class MissionManager : MonoBehaviour
     [SerializeField] private MissionBase _currentMission;
     #endregion
 
-    private void SuSubscription()
+    private void Subscription()
     {
         if (_currentMission == null)
         {
@@ -53,7 +53,7 @@ public class MissionManager : MonoBehaviour
                 int killCount = map.GetEnemyPos;
                 _currentMission = new Kill_Mission(killCount);
                 _currentMission.StartMission();
-                SuSubscription();
+                Subscription();
 
                 break;
             case EMissionType.Rescue:

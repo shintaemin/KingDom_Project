@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4385498623903531246}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: EnemyPos (2)
-  m_TagString: Untagged
+  m_TagString: EnemySpawnPos
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -75,9 +75,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1692576516520090186}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: EnemyPos
-  m_TagString: Untagged
+  m_TagString: EnemySpawnPos
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -106,7 +106,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5987618841565368506}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: Player_Spawn
   m_TagString: Untagged
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
@@ -137,6 +137,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5653016878942378656}
+  - component: {fileID: 3132381152148594737}
   m_Layer: 0
   m_Name: Map_Stage01
   m_TagString: Untagged
@@ -162,9 +163,29 @@ Transform:
   - {fileID: 7010037723031039867}
   - {fileID: 4427332667653085272}
   - {fileID: 8097752857883799546}
-  - {fileID: 3845266503914277753}
+  - {fileID: 213125697185871734}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3132381152148594737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2193200058163655959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abf2f31d8e4c2af478c12dbc9b329d7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stageNum: 1
+  _subStageNum: 1
+  _missionType: 1
+  _enemySpawnPos:
+  - {fileID: 1692576516520090186}
+  - {fileID: 6792363401986607182}
+  - {fileID: 4385498623903531246}
+  _bossSpawnPos: {fileID: 0}
 --- !u!1 &2808885041014418878
 GameObject:
   m_ObjectHideFlags: 0
@@ -319,7 +340,7 @@ Transform:
   - {fileID: 6103372638433944022}
   m_Father: {fileID: 5653016878942378656}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &4432077095824676668
+--- !u!1 &3068755565519656228
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -327,28 +348,92 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3845266503914277753}
+  - component: {fileID: 6379412979968073735}
   m_Layer: 0
-  m_Name: StageMission
+  m_Name: RightPin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3845266503914277753
+--- !u!4 &6379412979968073735
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4432077095824676668}
+  m_GameObject: {fileID: 3068755565519656228}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 11.53, y: 0, z: 29.62}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
+  m_Father: {fileID: 213125697185871734}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3353955861059200490
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 213125697185871734}
+  m_Layer: 0
+  m_Name: CameraPin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &213125697185871734
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3353955861059200490}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6665787771125600392}
+  - {fileID: 6379412979968073735}
   m_Father: {fileID: 5653016878942378656}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3645049576160397387
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6665787771125600392}
+  m_Layer: 0
+  m_Name: LeftPin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6665787771125600392
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3645049576160397387}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.78, y: 0, z: -1.15}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 213125697185871734}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6978063278658950153
 GameObject:
@@ -359,9 +444,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6792363401986607182}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: EnemyPos (1)
-  m_TagString: Untagged
+  m_TagString: EnemySpawnPos
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

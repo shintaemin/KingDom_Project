@@ -32,3 +32,4 @@ public abstract class MissionBase
         OnClearMission?.Invoke();
     }
 }
+

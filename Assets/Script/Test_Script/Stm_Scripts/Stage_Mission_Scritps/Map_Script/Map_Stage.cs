@@ -1,18 +1,18 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-#region ¸Ê ½ºÅ©¸³Æ®
+#region ë§µ ìŠ¤í¬ë¦½íŠ¸
 /*
- ¢º ÇÒÀÏ
-  - ¸Êº° ÀÎµ¦½º, ¹Ì¼Ç Å¸ÀÔ Àû½ºÆùÀ§Ä¡µîÀ» °®°íÀÖÀ½
+ â–¶ í• ì¼
+  - ë§µë³„ ì¸ë±ìŠ¤, ë¯¸ì…˜ íƒ€ìž… ì ìŠ¤í°ìœ„ì¹˜ë“±ì„ ê°–ê³ ìžˆìŒ
 */
 #endregion
 
 
 public class Map_Stage : MonoBehaviour
 {
-    #region ÀÎ½ºÆåÅÍ
+    #region ì¸ìŠ¤íŽ™í„°
     [SerializeField] private int _stageNum;
     [SerializeField] private int _subStageNum;
     [SerializeField] private EMissionType _missionType;
@@ -20,8 +20,8 @@ public class Map_Stage : MonoBehaviour
     [SerializeField] private Transform _bossSpawnPos;
     #endregion
 
-    #region ¿ÜºÎ È£Ãâ ÇÔ¼ö
-    // ¹Ì¼Ç ¸Å´ÏÀú°¡ ÇÃ·¹ÀÌ¾îÀÇ ·¹º§(½ºÅ×ÀÌÁö) µ¥ÀÌÅÍ¿¡ µû¸¥ ³»º¸³¾ ¸ÊÀ» Ã£±âÀ§ÇÔ
+    #region ì™¸ë¶€ í˜¸ì¶œ í•¨ìˆ˜
+    // ë¯¸ì…˜ ë§¤ë‹ˆì €ê°€ í”Œë ˆì´ì–´ì˜ ë ˆë²¨(ìŠ¤í…Œì´ì§€) ë°ì´í„°ì— ë”°ë¥¸ ë‚´ë³´ë‚¼ ë§µì„ ì°¾ê¸°ìœ„í•¨
     public int GetStageNum => _stageNum;
     public int GetSubStageNum => _subStageNum;
     public int GetEnemyPos => _bossSpawnPos != null ? _enemySpawnPos.Length + 1 : _enemySpawnPos.Length;

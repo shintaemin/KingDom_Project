@@ -15,9 +15,9 @@ public class Map_Registry_SO : ScriptableObject
 {
     #region 인스펙터
     [SerializeField] private List<Map_Stage> _maps = new List<Map_Stage>(); 
-#endregion
+    #endregion
 
-#region 외부 호출 함수
+    #region 외부 호출 함수
     public Map_Stage GetMap(int stageNum, int subStageNum)
     {
         if (_maps.Count == 0)
@@ -51,7 +51,5 @@ public class Map_Registry_SO : ScriptableObject
 
         return null;
     }
-#endregion
-
-    
+    #endregion
 }
