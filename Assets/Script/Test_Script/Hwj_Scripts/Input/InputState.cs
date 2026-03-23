@@ -40,7 +40,6 @@ public class InputState : MonoBehaviour
 
     void Update()
     {
-        // 매 프레임 터치 감지
         SetState(DecideState());
     }
 
@@ -62,7 +61,7 @@ public class InputState : MonoBehaviour
 
             case EState.Start:
                 Time.timeScale = 0.2f;
-                // 물리 연산이 필요하다면 처리 fixedDeltaTime
+                // Time.fixedDeltaTime = 0.02f * Time.timeScale; 물리 연산 조절이 필요하다면
                 break;
 
             case EState.Drawing:
@@ -71,7 +70,7 @@ public class InputState : MonoBehaviour
 
             case EState.End:
                 Time.timeScale = 1.0f;
-                // 물리 연산이 필요하다면 처리 fixedDeltaTime
+                // Time.fixedDeltaTime = 0.02f; 물리 연산 조절이 필요하다면
                 break;
         }
 

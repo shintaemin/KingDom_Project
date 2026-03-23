@@ -10,7 +10,7 @@ using UnityEngine;
     ㆍ 기능 : PlayerState의 OnStateChanged 이벤트를 구독하여 플레이어 애니메이션 제어
 */
 
-public class PlayerAnimatior : MonoBehaviour
+public class PlayerAnimatior : MonoBehaviour // IK 쓰기
 {
     #region 인스펙터
     [SerializeField] private string _paramMove = "bMove";
@@ -41,12 +41,18 @@ public class PlayerAnimatior : MonoBehaviour
 
     private void OnEnable()
     {
-        _state.OnStateChanged += StateChanged;
+        if (_state != null)
+        {
+            _state.OnStateChanged += StateChanged;
+        }
     }
 
     private void OnDisable()
     {
-        _state.OnStateChanged -= StateChanged;
+        if (_state != null)
+        {
+            _state.OnStateChanged -= StateChanged;
+        }
     }
 
     private void StateChanged(PlayerState.EState state)

@@ -26,8 +26,11 @@ public class EnemyState : MonoBehaviour
     #region 내부 변수
     public event System.Action<EState> OnStateChanged;
     public event System.Action OnDead;
-    
+
     private EState _state = EState.None;
+
+    public bool IsNearDead = false;
+    public bool IsDetected = false;
     #endregion
 
     void Update()
@@ -56,7 +59,7 @@ public class EnemyState : MonoBehaviour
                 break;
 
             case EState.Detect:
-
+                // 1초뒤에 Chase상태로 변경
                 break;
 
             case EState.Chase:
@@ -97,15 +100,17 @@ public class EnemyState : MonoBehaviour
         //    return EState.ChaseFail;
         //}
         //
-        //if () 
+        //if () 공격받았을때
         //{
         //    return EState.Chase;
         //}
         //
-        //if () 시야 범위안에 들어올 경우 1초 이후에 Chase로 전환
-        //{
-        //    return EState.Detect;
-        //}
+        if (IsNearDead || IsDetected) 
+        {
+            IsNearDead = false;
+
+            return EState.Detect;
+        }
 
         return EState.Patrol;
     }

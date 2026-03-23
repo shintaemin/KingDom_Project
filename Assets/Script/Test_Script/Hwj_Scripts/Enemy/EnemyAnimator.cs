@@ -47,12 +47,18 @@ public class EnemyAnimator : MonoBehaviour
 
     private void OnEnable()
     {
-        _state.OnStateChanged += StateChanged;
+        if (_state != null)
+        {
+            _state.OnStateChanged += StateChanged;
+        }
     }
 
     private void OnDisable()
     {
-        _state.OnStateChanged -= StateChanged;
+        if (_state != null)
+        {
+            _state.OnStateChanged -= StateChanged;
+        }
     }
 
     private void StateChanged(EnemyState.EState state) // 기본Patrol -> 적감시 Detect 1초후 -> Chase 5초경과 -> ChaseFail -> Patrol
@@ -68,7 +74,7 @@ public class EnemyAnimator : MonoBehaviour
                 break;
 
             case EnemyState.EState.Detect:
-                // 딱히 감지 애니메이션은 없는듯 (! 이미지 띄우고 적을 처다보는 정도?)
+                // 딱히 감지 애니메이션은 없는듯 (! 이미지 띄우고 플레이어를 처다보는 정도?)
                 _anim.SetBool(_hashWalk, false);
                 break;
 
