@@ -18,24 +18,25 @@ public class EnemyState : MonoBehaviour
         Patrol,
         Detect,
         Chase,
+        ChaseFail,
+        Attack,
         Dead,
     }
 
     #region 내부 변수
-    public event System.Action<EState> OnEnemyStateChanged;
-    public event System.Action<bool> OnDead;
+    public event System.Action<EState> OnStateChanged;
+    public event System.Action OnDead;
     
     private EState _state = EState.None;
-    private bool _isDead = true;
     #endregion
 
     void Update()
     {
-        SetEnemyState(DecideEnemyState());
+        SetState(DecideState());
     }
 
     // 단일 상태 진입점
-    private void SetEnemyState(EState next)
+    private void SetState(EState next)
     {
         if (_state == next)
         {
@@ -62,21 +63,38 @@ public class EnemyState : MonoBehaviour
 
                 break;
 
+            case EState.ChaseFail:
+
+                break;
+
+            case EState.Attack:
+
+                break;
+
             case EState.Dead:
-                _isDead = true;
-                OnDead?.Invoke(_isDead);
+                OnDead?.Invoke();
                 break;
         }
 
-        OnEnemyStateChanged?.Invoke(_state);
+        OnStateChanged?.Invoke(_state);
     }
 
     // 상태 결정
-    private EState DecideEnemyState()
+    private EState DecideState()
     {
         //if () Status 에서 HP = 0 일경우 IsDead를 받아와서 조건문에 넣으면 될 듯???
         //{
         //    return EState.Dead;
+        //}
+        //
+        //if () 플레이어가 공격 사거리 안에 들어왔나?
+        //{
+        //    return EState.Attack;
+        //}
+        //
+        //if () 추격 중에 5초동안 플레이어를 못찾았으면?
+        //{
+        //    return EState.ChaseFail;
         //}
         //
         //if () 
@@ -93,7 +111,7 @@ public class EnemyState : MonoBehaviour
     }
 
     #region 외부 호출 함수
-    public EState GetEnemyState()
+    public EState GetState()
     {
         return _state;
     }

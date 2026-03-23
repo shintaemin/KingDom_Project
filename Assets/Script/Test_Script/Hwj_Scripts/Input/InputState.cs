@@ -22,7 +22,7 @@ public class InputState : MonoBehaviour
     }
 
     #region 내부 변수
-    public event System.Action<EState> OnInputStateChanged;
+    public event System.Action<EState> OnStateChanged;
     private EState _state = EState.Idle;
     private InputReader _inputReader;
     #endregion
@@ -41,11 +41,11 @@ public class InputState : MonoBehaviour
     void Update()
     {
         // 매 프레임 터치 감지
-        SetInputState(DecideInputState());
+        SetState(DecideState());
     }
 
     // 단일 상태 진입점
-    private void SetInputState(EState next)
+    private void SetState(EState next)
     {
         if (_state == next)
         {
@@ -75,11 +75,11 @@ public class InputState : MonoBehaviour
                 break;
         }
 
-        OnInputStateChanged?.Invoke(_state);
+        OnStateChanged?.Invoke(_state);
     }
 
     // 상태 결정
-    private EState DecideInputState()
+    private EState DecideState()
     {
         if (_inputReader.GetIsDown())
         {
@@ -100,7 +100,7 @@ public class InputState : MonoBehaviour
     }
 
     #region 외부 호출 함수
-    public EState GetInputState()
+    public EState GetState()
     {
         return _state;
     }

@@ -21,7 +21,7 @@ public class PlayerState : MonoBehaviour
     }
 
     #region 내부 변수
-    public event System.Action<EState> OnPlayerStateChanged;
+    public event System.Action<EState> OnStateChanged;
     private EState _state = EState.Idle;
     private InputState _inputState;
     #endregion
@@ -39,11 +39,11 @@ public class PlayerState : MonoBehaviour
 
     void Update()
     {
-        SetPlayerState(DecidePlayerState());
+        SetState(DecideState());
     }
 
     // 단일 상태 진입점
-    private void SetPlayerState(EState next)
+    private void SetState(EState next)
     {
         if (_state == next)
         {
@@ -67,18 +67,18 @@ public class PlayerState : MonoBehaviour
                 break;
         }
 
-        OnPlayerStateChanged?.Invoke(_state);
+        OnStateChanged?.Invoke(_state);
     }
 
     // 상태 결정
-    private EState DecidePlayerState()
+    private EState DecideState()
     {
         //if () Status 에서 HP = 0 일경우 IsDead를 받아와서 조건문에 넣으면 될 듯???
         //{
         //    return EState.Dead;
         //}
 
-        if (_inputState.GetInputState() != InputState.EState.Idle) // 플레이어무버 쪽에서 isMoving 조건문 추가해야함
+        if (_inputState.GetState() != InputState.EState.Idle) // 플레이어무버 쪽에서 isMoving 조건문 추가해야함
         {
             return EState.Moving;
         }
@@ -87,7 +87,7 @@ public class PlayerState : MonoBehaviour
     }
 
     #region 외부 호출 함수
-    public EState GetPlayerState()
+    public EState GetState()
     {
         return _state;
     }
