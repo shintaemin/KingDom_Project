@@ -8,6 +8,8 @@ using UnityEngine;
   - 킬 미션을 정의
   - 생성자 매개변수를 통해 처치해야할 대상의 갯수를 지정
   - 목표 킬 갯수와 현재 킬 갯수가 같아지면 ClearMission() 을 호출 하여 MissionBase 에 이벤트 발행
+
+    - 작업자 신태민
 */
 #endregion
 

@@ -8,6 +8,8 @@ using UnityEngine;
  ▶ 할일
   - 상속을 활용한 Mission 들의 베이스 스크립트
   - 클리어시 자식에서 ClearMission() 을 호출하여 이벤트 발행
+
+    - 작업자 신태민
 */
 #endregion
 

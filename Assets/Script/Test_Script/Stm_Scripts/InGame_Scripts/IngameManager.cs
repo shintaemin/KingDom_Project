@@ -8,6 +8,8 @@ using UnityEngine;
   - 플레이어 레벨(stage)데이터 확인하고 해당되는 맵 배치
   - 미션매니저의 SetMiision(맵); 함수 호출하여 맵 던져주기
   - 스포너에게 생성할 맵과 데이터 던져주기
+
+    - 작업자 신태민
 */
 #endregion
 

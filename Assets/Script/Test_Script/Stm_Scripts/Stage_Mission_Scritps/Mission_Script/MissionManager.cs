@@ -9,6 +9,8 @@ using UnityEngine;
   - 인게임매니저를 통해 맵을 지정받고 해당 맵의 타입 데이터에따른 미션지정
   - 외부에서 이벤트 받을 수 있도록 활성화된 미션 지정
   - MissionManager.GetMission.OnClearMission += , -= 으로 구독진행
+
+    - 작업자 신태민
 */
 #endregion
 

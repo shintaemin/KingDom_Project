@@ -7,6 +7,8 @@ using UnityEngine;
  ▶ 할일
   - 모든 맵을 관리할 Registry
   - 인덱스값으로 꺼내쓸수 잇음 (플레이어 레벨(스테이지))
+
+    - 작업자 신태민
 */
 #endregion
 
