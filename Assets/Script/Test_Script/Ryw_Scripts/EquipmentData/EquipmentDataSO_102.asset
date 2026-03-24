@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 91356ccf71c59fa48ace756408c5a2ba, type: 3}
-  m_Name: EquipmentDataSO_13
+  m_Name: EquipmentDataSO_102
   m_EditorClassIdentifier: 
-  _ID: 13
-  _type: 0
-  _additionalAtt: 40
-  _additionalAttackRatio: 0
+  _ID: 102
+  _type: 1
+  _additionalAtt: 25
+  _additionalAttackRatio: 10
   _additionalHealthRatio: 0
-  _additionalSpeedRatio: 7
-  _image: {fileID: 0}
+  _additionalSpeedRatio: 0
+  _image: {fileID: 2800000, guid: 9fba8ef862a92064db8997449a2bf589, type: 3}

@@ -27,6 +27,8 @@ public class CEquipmentDataSO : ScriptableObject
     [SerializeField] private float _additionalHealthRatio = 0;
     [SerializeField] private float _additionalSpeedRatio = 3;
     [SerializeField] private Texture2D _image;
+    // mesh
+    // pre...
     #endregion
 
     #region 프로퍼티

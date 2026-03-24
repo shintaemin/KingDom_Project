@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ID: 7
   _type: 0
-  _additionalAtt: 45
+  _additionalAtt: 20
   _additionalAttackRatio: 0
   _additionalHealthRatio: 10
   _additionalSpeedRatio: 0

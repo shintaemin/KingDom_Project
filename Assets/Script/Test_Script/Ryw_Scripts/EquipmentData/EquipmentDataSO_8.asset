@@ -17,5 +17,5 @@ MonoBehaviour:
   _additionalAtt: 0
   _additionalAttackRatio: 0
   _additionalHealthRatio: 0
-  _additionalSpeedRatio: 5
+  _additionalSpeedRatio: 3
   _image: {fileID: 0}
