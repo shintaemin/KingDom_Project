@@ -18,6 +18,7 @@ public class IngameManager : MonoBehaviour
     [SerializeField] private MissionManager _msManager;
     [SerializeField] private Map_Registry_SO _mapSO;
     [SerializeField] private Map_Stage _currentMap;
+    [SerializeField] private SpawnManager _sm;
     //[SerializeField] private Player_Data_SO _playerData;
     [SerializeField] private int _mapIndex = 1;
     #endregion
@@ -64,7 +65,7 @@ public class IngameManager : MonoBehaviour
 
     private void SetMap(int stageData, int mapIndex)
     {
-        if (_msManager == null || _mapSO == null)
+        if (_msManager == null || _mapSO == null || _sm == null)
         {
             return;
         }
@@ -84,8 +85,8 @@ public class IngameManager : MonoBehaviour
         }
 
         _msManager.SetMission(_currentMap);
+        _sm.SetMap(map);
         Subscription();
-        // 여기서 스포너를 통해 맵 생성 완료후 적 생성 함수 호출
     }
 
     private void AddIndex()
