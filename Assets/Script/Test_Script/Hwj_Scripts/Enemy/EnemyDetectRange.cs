@@ -47,7 +47,7 @@ public class EnemyDetectRange : MonoBehaviour
 
             if (_playerTr == null)
             {
-                Debug.LogError("EnemyDetectRange _playerTr 참조 실패");
+                Debug.LogError("EnemyDetectRange _playerTr 참조 실패 (태그 설정 필요)");
                 return;
             }
         }

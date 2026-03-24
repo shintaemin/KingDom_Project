@@ -10,7 +10,7 @@ using UnityEngine;
     ㆍ 기능 : EnemyState의 OnStateChanged 이벤트를 구독하여 플레이어 애니메이션 제어
 */
 
-public class EnemyAnimator : MonoBehaviour
+public class EnemyAnimator : MonoBehaviour // 속도값 받아올 수 있을때 bool move -> float move 로 변경
 {
     #region 인스펙터
     [SerializeField] private string _paramWalk = "bWalk";

@@ -15,12 +15,15 @@ public class PlayerMover : MonoBehaviour
 {
     #region 인스펙터
     [Header("레이어 설정")]
-    [SerializeField] private LayerMask _terrainLayer;
     [SerializeField] private LayerMask _enemyLayer;
+    [SerializeField] private LayerMask _terrainLayer;
 
     [Header("거리 설정")]
-    [SerializeField] private float _arrivedDistance = 0.5f;
+    [SerializeField] private float _arrivedEnemyDistance = 0.5f;
     [SerializeField] private float _pathDistanceOffset = 0.1f;
+
+    [Header("기본 이동속도 설정")]
+    [SerializeField] private float _baseSpeed = 5f;
     #endregion
 
     #region 내부 변수
@@ -77,7 +80,6 @@ public class PlayerMover : MonoBehaviour
         {
             case InputState.EState.Start:
                 ResetPath();
-                CheckTouchEnemy();
                 break;
 
             case InputState.EState.End:
@@ -98,23 +100,20 @@ public class PlayerMover : MonoBehaviour
         _enemyTr = null;
     }
 
-    private void CheckTouchEnemy()
-    {
-        Ray ray = _camera.ScreenPointToRay(_inputReader.GetMousePosition());
-
-        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, _enemyLayer))
-        {
-            _enemyTr = hit.transform;
-        }
-    }
-
     private void RecordPath()
     {
         Ray ray = _camera.ScreenPointToRay(_inputReader.GetMousePosition());
 
-        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, _terrainLayer))
+        if (Physics.Raycast(ray, out RaycastHit hitEnemy, Mathf.Infinity, _enemyLayer))
         {
-            Vector3 center = hit.transform.position;
+            _enemyTr = hitEnemy.transform;
+        }
+
+        else if (Physics.Raycast(ray, out RaycastHit hitTerrain, Mathf.Infinity, _terrainLayer))
+        { 
+            Vector3 center = hitTerrain.transform.position;
+
+            center.y = transform.position.y;
 
             if (_wayPoints.Count == 0 || _wayPoints[_wayPoints.Count - 1] !=  center)
             {
@@ -140,7 +139,9 @@ public class PlayerMover : MonoBehaviour
             {
                 _nav.SetDestination(_enemyTr.position);
 
-                if (Vector3.Distance(transform.position, _enemyTr.position) < _arrivedDistance)
+                float distance = Vector3.Distance(transform.position, _enemyTr.position);
+
+                if (distance < _arrivedEnemyDistance)
                 {
                     _nav.ResetPath();
                     break;
@@ -154,18 +155,34 @@ public class PlayerMover : MonoBehaviour
         {
             while (_wayPoints.Count > 0)
             {
-                Vector3 position = _wayPoints[0];
-                _nav.SetDestination(position);
+                Vector3 targetPoint = _wayPoints[0];
+                _nav.SetDestination(targetPoint);
 
-                while (_nav.pathPending || _nav.remainingDistance > _pathDistanceOffset)
+                float distance = Vector3.Distance(transform.position, targetPoint);
+
+                if (distance <= _pathDistanceOffset)
                 {
-                    yield return null;
+                    _wayPoints.RemoveAt(0);
                 }
 
-                _wayPoints.RemoveAt(0);
+                yield return null;
             }
         }
 
         _moveRoutine = null;
     }
+
+    #region 외부 호출 함수
+    public void SetMoveSpeed(float speed)
+    {
+        if (_nav == null)
+        {
+            _nav = GetComponent<NavMeshAgent>();
+        }
+
+        _nav.speed = _baseSpeed * (speed / 100f);
+
+        _nav.acceleration = _baseSpeed * 10f * (speed / 100f);
+    }
+    #endregion
 }

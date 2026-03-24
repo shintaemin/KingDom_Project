@@ -29,8 +29,10 @@ public class EnemyState : MonoBehaviour
 
     private EState _state = EState.None;
 
-    public bool IsNearDead = false;
-    public bool IsDetected = false;
+    [HideInInspector] public bool IsNearDead = false;
+    [HideInInspector] public bool IsDetected = false;
+    private float _chaseTimer = 0f;
+    private Coroutine _stateRoutine;
     #endregion
 
     void Update()
@@ -46,6 +48,12 @@ public class EnemyState : MonoBehaviour
             return;
         }
 
+        if (_stateRoutine != null)
+        {
+            StopCoroutine(_stateRoutine);
+            _stateRoutine = null;
+        }
+
         _state = next;
 
         switch (_state)
@@ -59,7 +67,7 @@ public class EnemyState : MonoBehaviour
                 break;
 
             case EState.Detect:
-                // 1초뒤에 Chase상태로 변경
+                _stateRoutine = StartCoroutine(CoDetectToChase());
                 break;
 
             case EState.Chase:
@@ -67,7 +75,7 @@ public class EnemyState : MonoBehaviour
                 break;
 
             case EState.ChaseFail:
-
+                _stateRoutine = StartCoroutine(CoChaseFailToPatrol());
                 break;
 
             case EState.Attack:
@@ -95,16 +103,34 @@ public class EnemyState : MonoBehaviour
         //    return EState.Attack;
         //}
         //
-        //if () 추격 중에 5초동안 플레이어를 못찾았으면?
-        //{
-        //    return EState.ChaseFail;
-        //}
-        //
-        //if () 공격받았을때
-        //{
-        //    return EState.Chase;
-        //}
-        //
+
+        if (_state == EState.Detect || _state == EState.ChaseFail)
+        {
+            return _state;
+        }
+
+        if (_state == EState.Chase)
+        {
+            if (IsDetected)
+            {
+                _chaseTimer = 0f;
+                return EState.Chase;
+            }
+
+            else
+            {
+                _chaseTimer += Time.deltaTime;
+
+                if (_chaseTimer >= 5f)
+                {
+                    _chaseTimer = 0f;
+                    return EState.ChaseFail;
+                }
+
+                return EState.Chase;
+            }
+        }
+
         if (IsNearDead || IsDetected) 
         {
             IsNearDead = false;
@@ -113,6 +139,20 @@ public class EnemyState : MonoBehaviour
         }
 
         return EState.Patrol;
+    }
+
+    private IEnumerator CoDetectToChase()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        SetState(EState.Chase);
+    }
+
+    private IEnumerator CoChaseFailToPatrol()
+    {
+        yield return new WaitForSeconds(2f);
+
+        SetState(EState.Patrol);
     }
 
     #region 외부 호출 함수
