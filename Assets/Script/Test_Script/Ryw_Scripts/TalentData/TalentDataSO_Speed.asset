@@ -17,3 +17,4 @@ MonoBehaviour:
   _information: "\uC774\uB3D9 \uC18D\uB3C4 {}\uC0C1\uC2B9"
   _basic: 3
   _volume: 1
+  _icon: {fileID: 2800000, guid: 390b0d7445fc5d548a9f8ae88ca0a76a, type: 3}

@@ -17,7 +17,7 @@ public class CTalentDataSO : ScriptableObject
     [SerializeField] private string _information = "방어력 {}상승";
     [SerializeField] private int _basic = 30;
     [SerializeField] private int _volume = 10;
-    //[SerializeField] private 그림? _icon;
+    [SerializeField] private Texture2D _icon;
     #endregion
 
     #region 프로퍼티
@@ -26,6 +26,7 @@ public class CTalentDataSO : ScriptableObject
     public string Information => _information;
     public int Basic => _basic;
     public int Volume => _volume;
+    public Texture2D Icon => _icon;
     #endregion
 
 
