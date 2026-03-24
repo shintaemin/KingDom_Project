@@ -12,6 +12,29 @@ using UnityEngine;
 
 public class Map_Stage : MonoBehaviour
 {
+    #region 인스펙터
+    [SerializeField] private int _stageNum;
+    [SerializeField] private int _subStageNum;
+    [SerializeField] private EMissionType _missionType;
+    [SerializeField] private Transform[] _enemySpawnPos = new Transform[0];
+    [SerializeField] private Transform[] _bossSpawnPos = new Transform[0];
+    [SerializeField] private Transform[] _boxSpawnPos = new Transform[0];
+    [SerializeField] private Transform[] _keySpawnPos = new Transform[0];
+    [SerializeField] private Transform[] _citizenSpawnPos = new Transform[0];
+    #endregion
+
+    #region 외부 호출 함수
+    // 미션 매니저가 플레이어의 레벨(스테이지) 데이터에 따른 반환할 맵을 찾기위함
+    public int GetStageNum => _stageNum;
+    public int GetSubStageNum => _subStageNum;
+
+    // 스폰위치를 검사해 총 적 수를 반환
+    public int GetEnemyCount => _enemySpawnPos.Length + _bossSpawnPos.Length;
+
+    // 미션 타입 확인용
+    public EMissionType GetMissionType => _missionType;
+
+    // 맵 위치 를 타입별로 반환 하기 위함
     public enum ESpawnPosType
     {
         Enemy,
@@ -21,23 +44,7 @@ public class Map_Stage : MonoBehaviour
         Citizen
     }
 
-    #region 인스펙터
-    [SerializeField] private int _stageNum;
-    [SerializeField] private int _subStageNum;
-    [SerializeField] private EMissionType _missionType;
-    [SerializeField] private Transform[] _enemySpawnPos;
-    [SerializeField] private Transform[] _bossSpawnPos;
-    [SerializeField] private Transform[] _boxSpawnPos;
-    [SerializeField] private Transform[] _keySpawnPos;
-    [SerializeField] private Transform[] _citizenSpawnPos;
-    #endregion
-
-    #region 외부 호출 함수
-    // 미션 매니저가 플레이어의 레벨(스테이지) 데이터에 따른 내보낼 맵을 찾기위함
-    public int GetStageNum => _stageNum;
-    public int GetSubStageNum => _subStageNum;
-    public int GetEnemyPos => _bossSpawnPos != null ? _enemySpawnPos.Length + 1 : _enemySpawnPos.Length;
-    public EMissionType GetMissionType => _missionType;
+    // 들어오는 상태에따른 Spawn 위치 반환
     public Transform[] GetSpawnPos(ESpawnPosType type)
     {
         switch (type)

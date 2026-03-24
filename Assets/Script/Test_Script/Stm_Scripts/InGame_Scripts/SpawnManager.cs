@@ -33,12 +33,14 @@ public class SpawnManager : MonoBehaviour
         }
 
         // 가독성을 위해.. 하나씩 생성
+        // 각 위치정보를 맵에서 가져온다.
         Transform[] enemy = _currentMap.GetSpawnPos(Map_Stage.ESpawnPosType.Enemy);
         Transform[] boss = _currentMap.GetSpawnPos(Map_Stage.ESpawnPosType.Boss);
         Transform[] key = _currentMap.GetSpawnPos(Map_Stage.ESpawnPosType.Key);
         Transform[] box = _currentMap.GetSpawnPos(Map_Stage.ESpawnPosType.Box);
         Transform[] citizen = _currentMap.GetSpawnPos(Map_Stage.ESpawnPosType.Citizen);
 
+        // 각 프리펩을 생성할수있도록 태그와 위치를 체크
         PosCheck(_enemyPrefab, _zombiePrefab, enemy, "EnemySpawnPos", "ZombieSpawnPos");
         PosCheck(_eBossPrefab, _zBossPrefab, boss, "eBossSpawnPos", "zBossSpawnPos");
         PosCheck(_keyPrefab, key);
@@ -46,6 +48,7 @@ public class SpawnManager : MonoBehaviour
         PosCheck(_citizenPrefab, citizen);
     }
 
+    // Transform 체크 함수
     private void PosCheck(GameObject prefab, Transform[] pos)
     {
         if (prefab == null)
@@ -53,7 +56,7 @@ public class SpawnManager : MonoBehaviour
             return;
         }
 
-        if (pos.Length == 0)
+        if (pos == null || pos.Length == 0)
         {
             return;
         }
@@ -80,7 +83,7 @@ public class SpawnManager : MonoBehaviour
         {
             return;
         }
-        if (pos.Length == 0)
+        if (pos == null || pos.Length == 0)
         {
             return;
         }
@@ -94,6 +97,7 @@ public class SpawnManager : MonoBehaviour
 
             Transform tr = pos[i];
 
+            // 지정한 번호 태그가 맞다면 해당 프리펩 전달
             if (tr.CompareTag(tag_1))
             {
                 if (prefab_1 != null)
@@ -113,6 +117,7 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
+    // 프리펩과 Transform 전달받아 생성
     private void Spawn(GameObject prefab, Transform pos)
     {
         GameObject go = Instantiate(prefab);

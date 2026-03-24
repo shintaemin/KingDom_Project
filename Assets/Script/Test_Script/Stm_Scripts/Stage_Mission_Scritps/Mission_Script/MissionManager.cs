@@ -19,6 +19,7 @@ public class MissionManager : MonoBehaviour
     [SerializeField] private MissionBase _currentMission;
     #endregion
 
+    #region 미션 클리어 구독
     private void Subscription()
     {
         if (_currentMission == null)
@@ -29,12 +30,19 @@ public class MissionManager : MonoBehaviour
         _currentMission.OnClearMission += MissionClear;
     }
 
+    // 미션 클리어시 호출 함수
     private void MissionClear()
     {
 
-
-        _currentMission.OnClearMission -= MissionClear;
+        // 미션 클리어시 바로 해당 미션 클리어 구독 취소
+        if (_currentMission != null)
+        {
+            _currentMission.OnClearMission -= MissionClear;
+            ResetMission();
+        }
     }
+    #endregion
+
 
     #region 외부 호출 함수
     public void SetMission(Map_Stage map)
@@ -50,9 +58,12 @@ public class MissionManager : MonoBehaviour
         {
             case EMissionType.Kill:
 
-                int killCount = map.GetEnemyPos;
+                // 맵에 적 스폰 위치 가져와서 킬미션 생성자로 던져주기
+                int killCount = map.GetEnemyCount;
                 _currentMission = new Kill_Mission(killCount);
+                // 지정한 미션 시작
                 _currentMission.StartMission();
+                // 구독진행
                 Subscription();
 
                 break;
@@ -65,6 +76,7 @@ public class MissionManager : MonoBehaviour
         }
     }
 
+    // 혹시모를 외부 사용을 위해
     public void ResetMission()
     {
         if (_currentMission == null)
@@ -75,6 +87,7 @@ public class MissionManager : MonoBehaviour
         _currentMission = null;
     }
 
+    // 외부에서 지정된 미션구독을 진행하기위해
     public MissionBase GetMission => _currentMission;
     #endregion
 

@@ -185,7 +185,10 @@ MonoBehaviour:
   - {fileID: 1692576516520090186}
   - {fileID: 6792363401986607182}
   - {fileID: 4385498623903531246}
-  _bossSpawnPos: {fileID: 0}
+  _bossSpawnPos: []
+  _boxSpawnPos: []
+  _keySpawnPos: []
+  _citizenSpawnPos: []
 --- !u!1 &2808885041014418878
 GameObject:
   m_ObjectHideFlags: 0

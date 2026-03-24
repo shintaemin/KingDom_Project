@@ -40,6 +40,7 @@ public class Kill_Mission : MissionBase
         Debug.Log($"[Kill_Mission] : 타겟갯수 : {_targetKillCount}");
     }
 
+    // 적 OnDead 이벤트를 구독하여 실행
     public override void CheckClear()
     {
         _remainKillCount++;
