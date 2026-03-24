@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -32,6 +33,16 @@ public static partial class Function
             }
         }
 
+        return false;
+    }
+    public static bool NullCheck<T>(this ICollection<T> objArr, string varName, Action body = null) where T : class
+    {
+        if (objArr == null || objArr.Count == 0)
+        {
+            Debug.Log($"{varName} == null || obj.Length == 0");
+            body?.Invoke();
+            return true;
+        }
         return false;
     }
 }
