@@ -216,6 +216,58 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 79.566, y: -58.926, z: -33.662}
+--- !u!1 &462014771
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 462014773}
+  - component: {fileID: 462014772}
+  m_Layer: 0
+  m_Name: SpawnManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &462014772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 462014771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 962bf07a486ea234297b05762a805fa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _currentMap: {fileID: 0}
+  _enemyPrefab: {fileID: 0}
+  _zombiePrefab: {fileID: 0}
+  _eBossPrefab: {fileID: 0}
+  _zBossPrefab: {fileID: 0}
+  _keyPrefab: {fileID: 0}
+  _boxPrefab: {fileID: 0}
+  _citizenPrefab: {fileID: 0}
+--- !u!4 &462014773
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 462014771}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -23.98134, y: -22.857447, z: 8.631527}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &698922251
 GameObject:
   m_ObjectHideFlags: 0
@@ -384,6 +436,7 @@ MonoBehaviour:
   _msManager: {fileID: 1545061507}
   _mapSO: {fileID: 11400000, guid: 874313b248c588e45988cb6ad34c98b7, type: 2}
   _currentMap: {fileID: 0}
+  _sm: {fileID: 462014772}
   _mapIndex: 1
 --- !u!4 &1607220122
 Transform:
@@ -408,3 +461,4 @@ SceneRoots:
   - {fileID: 249752779}
   - {fileID: 1607220122}
   - {fileID: 1545061508}
+  - {fileID: 462014773}

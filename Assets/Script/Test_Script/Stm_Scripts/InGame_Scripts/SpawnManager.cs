@@ -42,12 +42,27 @@ public class SpawnManager : MonoBehaviour
         Transform[] box = _currentMap.GetSpawnPos(Map_Stage.ESpawnPosType.Box);
         Transform[] citizen = _currentMap.GetSpawnPos(Map_Stage.ESpawnPosType.Citizen);
 
-        // 각 프리펩을 생성할수있도록 태그와 위치를 체크
-        PosCheck(_enemyPrefab, _zombiePrefab, enemy, "EnemySpawnPos", "ZombieSpawnPos");
-        PosCheck(_eBossPrefab, _zBossPrefab, boss, "eBossSpawnPos", "zBossSpawnPos");
-        PosCheck(_keyPrefab, key);
-        PosCheck(_boxPrefab, box);
-        PosCheck(_citizenPrefab, citizen);
+        // 각 프리펩을 생성할수있도록 태그와 위치를 체크 -- 테스트용 널체크
+        if (_enemyPrefab != null && _zombiePrefab != null)
+        {
+            PosCheck(_enemyPrefab, _zombiePrefab, enemy, "EnemySpawnPos", "ZombieSpawnPos");
+        }
+        if (_eBossPrefab != null && _zBossPrefab != null)
+        {
+            PosCheck(_eBossPrefab, _zBossPrefab, boss, "eBossSpawnPos", "zBossSpawnPos");
+        }
+        if (_keyPrefab != null)
+        {
+            PosCheck(_keyPrefab, key);
+        }
+        if (_keyPrefab != null)
+        {
+            PosCheck(_boxPrefab, box);
+        }
+        if (_citizenPrefab != null)
+        {
+            PosCheck(_citizenPrefab, citizen);
+        }
     }
 
     // Transform 체크 함수
