@@ -18,32 +18,50 @@ using UnityEngine;
 public class MissionManager : MonoBehaviour
 {
     #region 인스펙터
+    [SerializeField] private List<GameObject> _enemys = new List<GameObject>();
     [SerializeField] private MissionBase _currentMission;
+    [SerializeField] private SpawnManager _sm;
     #endregion
+
+    private void Awake()
+    {
+        // 널체크
+    }
 
     #region 미션 클리어 구독
     private void Subscription()
     {
-        if (_currentMission == null)
+        if (_currentMission == null || _sm == null)
         {
             return;
         }
 
         _currentMission.OnClearMission += MissionClear;
+        _sm.OnSpawn += CheckMission;
     }
 
     // 미션 클리어시 호출 함수
     private void MissionClear()
     {
-
         // 미션 클리어시 바로 해당 미션 클리어 구독 취소
-        if (_currentMission != null)
+        ResetMission();
+    }
+
+    private void CheckMission(GameObject go)
+    {
+        if (go == null)
         {
-            _currentMission.OnClearMission -= MissionClear;
-            ResetMission();
+            return;
         }
+
+        //if (go.TryGetComponent<EnemyState>(out EnemyState eState))
+        //{
+        //    _enemys.Add(go);
+        //    eState.OnDead += _currentMission.CheckClear;
+        //}
     }
     #endregion
+
 
 
     #region 외부 호출 함수
@@ -81,12 +99,32 @@ public class MissionManager : MonoBehaviour
     // 혹시모를 외부 사용을 위해
     public void ResetMission()
     {
-        if (_currentMission == null)
+        if (_currentMission == null || _sm == null)
         {
             return;
         }
 
+        _currentMission.OnClearMission -= MissionClear;
+        _sm.OnSpawn -= CheckMission;
+
+        for (int i = _enemys.Count - 1; i >= 0; i--)
+        {
+            if (_enemys[i] == null)
+            {
+                continue;
+            }
+
+            GameObject go = _enemys[i];
+
+            //if (go != null && go.TryGetComponent<EnemyState>(out EnemyState eState))
+            //{
+            //    eState.OnDead -= _currentMission.CheckClear;
+            //    _enemys.RemoveAt(i);
+            //}
+        }
+
         _currentMission = null;
+        _enemys.Clear();
     }
 
     // 외부에서 지정된 미션구독을 진행하기위해

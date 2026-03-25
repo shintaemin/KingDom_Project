@@ -31,7 +31,7 @@ public class IngameManager : MonoBehaviour
 
     private void Awake()
     {
-        
+        // 널체크
     }
 
     #region 미션 클리어 구독
@@ -107,10 +107,10 @@ public class IngameManager : MonoBehaviour
             _currentMap = map;
         }
 
-        // 미션에 맵전달
-        _msManager.SetMission(_currentMap);
         // 스포너에 맵전달
         _sm.SetMap(map);
+        // 미션에 맵전달
+        _msManager.SetMission(_currentMap);
         // 구독 진행
         Subscription();
     }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,6 +26,10 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private GameObject _keyPrefab;
     [SerializeField] private GameObject _boxPrefab;
     [SerializeField] private GameObject _citizenPrefab;
+    #endregion
+
+    #region 이벤트
+    public event Action<GameObject> OnSpawn;
     #endregion
 
     private void CheckSpawn()
@@ -143,6 +148,7 @@ public class SpawnManager : MonoBehaviour
         go.transform.rotation = Quaternion.identity;
         // 필요하다면 스케일까지
 
+        OnSpawn?.Invoke(go);
         Debug.Log($"[SpawnManager] : {go.name} 생성 완료");
     }
 

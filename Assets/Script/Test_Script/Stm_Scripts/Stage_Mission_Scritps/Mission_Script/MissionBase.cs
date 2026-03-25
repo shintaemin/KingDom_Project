@@ -15,7 +15,6 @@ using UnityEngine;
 
 public enum EMissionType
 {
-    None,
     Kill,
     Rescue,
     Goal
