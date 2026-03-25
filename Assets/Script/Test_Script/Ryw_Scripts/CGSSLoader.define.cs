@@ -22,5 +22,6 @@ public partial class CGSSLoader : MonoBehaviour
 
     #region 파일 경로
     public static readonly string SO_PATH = "Assets/Script/Test_Script/Ryw_Scripts";
+    public static readonly string Texture2D_PATH = "";
     #endregion
 }

@@ -59,7 +59,7 @@ public class CEquipmentDataSO : ScriptableObject, ICVSData
         _additionalAttackRatio = float.Parse(dataArr[3]);
         _additionalHealthRatio = float.Parse(dataArr[4]);
         _additionalSpeedRatio = float.Parse(dataArr[5]);
-        //_image = Resources.Load<Texture2D>(dataArr[6]);
+        _image = _image.ParseData(dataArr[6]);
 
 
         string path = CGSSLoader.SOSavePath(NAME) + $"/{NAME}SO_{_ID}.asset";

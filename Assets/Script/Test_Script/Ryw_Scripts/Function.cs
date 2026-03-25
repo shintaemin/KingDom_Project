@@ -115,6 +115,27 @@ public static partial class Function
                 result = Enum.Parse(e.GetType(), data, true);
                 break;
 
+            case Texture2D:
+                string iconPath = null;
+                iconPath = iconPath.ParseData(data);
+                Texture2D _icon = Resources.Load<Texture2D>(CGSSLoader.Texture2D_PATH + "/" + iconPath);
+
+                result = _icon;
+                break;
+
+            case Texture2D[]:
+                string[] iconPaths = null;
+                iconPaths = iconPaths.ParseData(data);
+                Texture2D[] _iconArr = new Texture2D[iconPaths.Length];
+
+                for (int i = 0; i < iconPaths.Length; i++)
+                {
+                    _iconArr[i] = Resources.Load<Texture2D>(CGSSLoader.Texture2D_PATH + "/" + iconPaths[i]);
+                }
+
+                result = _iconArr;
+                break;
+
             default:
                 result = null;
                 break;

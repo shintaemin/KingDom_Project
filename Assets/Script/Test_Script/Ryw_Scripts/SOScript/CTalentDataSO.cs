@@ -41,7 +41,7 @@ public class CTalentDataSO : ScriptableObject, ICVSData
         _information = dataArr[2];
         _basic = int.Parse(dataArr[3]);
         _volume = int.Parse(dataArr[4]);
-        //_icon = Resources.Load<Texture2D>(dataArr[5]);
+        _icon = _icon.ParseData(dataArr[5]);
 
 
         string path = CGSSLoader.SOSavePath(NAME) + $"/{NAME}SO_{_ID}.asset";
