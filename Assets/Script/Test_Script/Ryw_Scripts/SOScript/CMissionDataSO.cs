@@ -12,7 +12,7 @@ https://www.notion.so/328d50353449801784e7c58b2ac68d38?v=328d50353449807699de000
 #endregion
 
 [CreateAssetMenu(menuName = "Create SO/Data/Mission Data (SO)", fileName = "MissionDataSO_")]
-public class CMissionDataSO : ScriptableObject, ICVSData
+public class CMissionDataSO : ScriptableObject, ICSVData
 {
     static readonly string NAME = "MissionData";
 

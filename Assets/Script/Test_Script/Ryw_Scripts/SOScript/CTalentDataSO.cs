@@ -10,7 +10,7 @@ using UnityEngine;
 
 
 [CreateAssetMenu(menuName = "Create SO/Data/Talent Data (SO)", fileName = "TalentDataSO_")]
-public class CTalentDataSO : ScriptableObject, ICVSData
+public class CTalentDataSO : ScriptableObject, ICSVData
 {
     static readonly string NAME = "TalentData";
 

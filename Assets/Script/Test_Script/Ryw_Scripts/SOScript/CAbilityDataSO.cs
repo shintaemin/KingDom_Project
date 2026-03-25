@@ -9,7 +9,7 @@ using UnityEngine;
 #endregion
 
 [CreateAssetMenu(menuName = "Create SO/Data/Ability Data (SO)", fileName = "AbilityDataSO_")]
-public class CAbilityDataSO : ScriptableObject, ICVSData
+public class CAbilityDataSO : ScriptableObject, ICSVData
 {
     static readonly string NAME = "AbilityData";
 

@@ -15,7 +15,7 @@ ID,타입,추가 공격력,공격력 배율,체력 배율,이동 속도 배율,�
 #endregion
 
 [CreateAssetMenu(menuName = "Create SO/Data/Equipment Data (SO)", fileName = "EquipmentDataSO_")]
-public class CEquipmentDataSO : ScriptableObject, ICVSData
+public class CEquipmentDataSO : ScriptableObject, ICSVData
 {
     static readonly string NAME = "EquipmentData";
 

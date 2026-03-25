@@ -102,7 +102,7 @@ public partial class CGSSLoader : MonoBehaviour
         }
     }
 
-    private void ParseData<T>(string data) where T : ScriptableObject, ICVSData
+    private void ParseData<T>(string data) where T : ScriptableObject, ICSVData
     {
         T ed = ScriptableObject.CreateInstance<T>();
         ed.ParseData(data);
