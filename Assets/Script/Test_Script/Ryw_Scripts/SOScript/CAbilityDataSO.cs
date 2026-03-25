@@ -1,4 +1,3 @@
-using System;
 using UnityEditor;
 using UnityEngine;
 
@@ -12,6 +11,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Create SO/Data/Ability Data (SO)", fileName = "AbilityDataSO_")]
 public class CAbilityDataSO : ScriptableObject, ICVSData
 {
+    static readonly string NAME = "AbilityData";
+
     #region 인스펙터
     [SerializeField] private int _ID = 0;
     [SerializeField] private int _val = 20;
@@ -35,7 +36,7 @@ public class CAbilityDataSO : ScriptableObject, ICVSData
         _priceArr = _priceArr.ParseData(dataArr[2]);
         //_iconArr = new Texture2D[dataArr.Length];
 
-        string path = $"Assets/Script/Test_Script/Ryw_Scripts/AbilityData/AbilityDataSO_{_ID}.asset";
+        string path = CGSSLoader.SOSavePath(NAME) + $"/{NAME}SO_{_ID}.asset";
 
         AssetDatabase.CreateAsset(this, path);
         AssetDatabase.SaveAssets();

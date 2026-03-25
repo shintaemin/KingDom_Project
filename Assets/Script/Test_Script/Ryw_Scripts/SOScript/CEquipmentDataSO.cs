@@ -17,6 +17,8 @@ ID,타입,추가 공격력,공격력 배율,체력 배율,이동 속도 배율,�
 [CreateAssetMenu(menuName = "Create SO/Data/Equipment Data (SO)", fileName = "EquipmentDataSO_")]
 public class CEquipmentDataSO : ScriptableObject, ICVSData
 {
+    static readonly string NAME = "EquipmentData";
+
     public enum EEquipmentType
     {
         Dagger,
@@ -60,7 +62,7 @@ public class CEquipmentDataSO : ScriptableObject, ICVSData
         //_image = Resources.Load<Texture2D>(dataArr[6]);
 
 
-        string path = $"Assets/Script/Test_Script/Ryw_Scripts/EquipmentData/EquipmentDataSO_{_ID}.asset";
+        string path = CGSSLoader.SOSavePath(NAME) + $"/{NAME}SO_{_ID}.asset";
 
         AssetDatabase.CreateAsset(this, path);
         AssetDatabase.SaveAssets();

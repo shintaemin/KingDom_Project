@@ -1,7 +1,6 @@
 using System;
 using UnityEditor;
 using UnityEngine;
-using static CEquipmentDataSO;
 
 
 #region CMissionDataSO
@@ -15,6 +14,8 @@ https://www.notion.so/328d50353449801784e7c58b2ac68d38?v=328d50353449807699de000
 [CreateAssetMenu(menuName = "Create SO/Data/Mission Data (SO)", fileName = "MissionDataSO_")]
 public class CMissionDataSO : ScriptableObject, ICVSData
 {
+    static readonly string NAME = "MissionData";
+
     public enum EMissionType
     {
         LevelClear,
@@ -49,7 +50,7 @@ public class CMissionDataSO : ScriptableObject, ICVSData
         _condition = int.Parse(dataArr[3]);
         _reward = int.Parse(dataArr[4]);
 
-        string path = $"Assets/Script/Test_Script/Ryw_Scripts/MissionData/MissionDataSO_{_ID}.asset";
+        string path = CGSSLoader.SOSavePath(NAME) + $"/{NAME}SO_{_ID}.asset";
 
         AssetDatabase.CreateAsset(this, path);
         AssetDatabase.SaveAssets();

@@ -26,7 +26,7 @@ https://data-pandora.tistory.com/entry/Unity-%EA%B5%AC%EA%B8%80-%EC%8A%A4%ED%94%
 */
 #endregion
 
-public class CGSSLoader : MonoBehaviour
+public partial class CGSSLoader : MonoBehaviour
 {
     private enum ESheetType
     {
@@ -51,13 +51,7 @@ public class CGSSLoader : MonoBehaviour
     public ECreateFlag CreateFlag = 0;
     #endregion
 
-    #region 내부 변수
-    const string URL = "https://docs.google.com/spreadsheets/d/1wx7tsBCYFjxJkCGeNdoklLhEJamttKUGMLcJNghr1wc";
-    const string EXTRA_URL = "/export?format=";
-    const string LOAD_TYPE = "csv";
-    // sheet 페이지별 gid의 배열.
-    static readonly string[] EXTRA_LOAD = new string[] { "", "&gid=214534590#gid=214534590", "&gid=299399325#gid=299399325", "&gid=2096374625#gid=2096374625" };
-    #endregion
+    
 
     void Awake()
     {
@@ -74,7 +68,7 @@ public class CGSSLoader : MonoBehaviour
 
     IEnumerator LoadFromURL(ESheetType type)
     {
-        UnityWebRequest www = UnityWebRequest.Get(URL + EXTRA_URL + LOAD_TYPE + EXTRA_LOAD[(int)type]);
+        UnityWebRequest www = UnityWebRequest.Get(URL + EXTRA_URL + LOAD_TYPE + SHEET_NUMBER[(int)type]);
         yield return www.SendWebRequest();
 
         string data = www.downloadHandler.text;
@@ -112,6 +106,12 @@ public class CGSSLoader : MonoBehaviour
     {
         T ed = ScriptableObject.CreateInstance<T>();
         ed.ParseData(data);
+    }
+
+    public static string SOSavePath(string name)
+    {
+        // 폴더가 있는지 검사하고 없으면 만드는 기능 필요.
+        return SO_PATH + "/" + name;
     }
 
 }

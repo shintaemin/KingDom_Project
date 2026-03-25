@@ -1,7 +1,6 @@
 using System;
 using UnityEditor;
 using UnityEngine;
-using static CEquipmentDataSO;
 
 #region CTalentDataSO
 /*
@@ -13,6 +12,8 @@ using static CEquipmentDataSO;
 [CreateAssetMenu(menuName = "Create SO/Data/Talent Data (SO)", fileName = "TalentDataSO_")]
 public class CTalentDataSO : ScriptableObject, ICVSData
 {
+    static readonly string NAME = "TalentData";
+
     // 방어력을 예시로
     #region 인스펙터
     [SerializeField] private int _ID = 0;
@@ -43,7 +44,7 @@ public class CTalentDataSO : ScriptableObject, ICVSData
         //_icon = Resources.Load<Texture2D>(dataArr[5]);
 
 
-        string path = $"Assets/Script/Test_Script/Ryw_Scripts/TalentData/TalentDataSO_{_ID}.asset";
+        string path = CGSSLoader.SOSavePath(NAME) + $"/{NAME}SO_{_ID}.asset";
 
         AssetDatabase.CreateAsset(this, path);
         AssetDatabase.SaveAssets();
