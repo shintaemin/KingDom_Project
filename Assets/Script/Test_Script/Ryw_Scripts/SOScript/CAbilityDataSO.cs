@@ -1,3 +1,5 @@
+using System;
+using UnityEditor;
 using UnityEngine;
 
 
@@ -8,7 +10,7 @@ using UnityEngine;
 #endregion
 
 [CreateAssetMenu(menuName = "Create SO/Data/Ability Data (SO)", fileName = "AbilityDataSO_")]
-public class CAbilityDataSO : ScriptableObject
+public class CAbilityDataSO : ScriptableObject, ICVSData
 {
     #region 인스펙터
     [SerializeField] private int _ID = 0;
@@ -23,5 +25,20 @@ public class CAbilityDataSO : ScriptableObject
     public int[] PriceArr => _priceArr;
     public int MaxPriceLevel => _priceArr.Length;
     public Texture2D[] IconArr => _iconArr;
+
+    public void ParseData(string data)
+    {
+        string[] dataArr = data.Split(",");
+
+        _ID = int.Parse(dataArr[0]);
+        _val = int.Parse(dataArr[1]);
+        //_priceArr = new int[dataArr.Length];
+        //_iconArr = new Texture2D[dataArr.Length];
+
+        string path = $"Assets/Script/Test_Script/Ryw_Scripts/AbilityData/AbilityDataSO_{_ID}.asset";
+
+        AssetDatabase.CreateAsset(this, path);
+        AssetDatabase.SaveAssets();
+    }
     #endregion
 }

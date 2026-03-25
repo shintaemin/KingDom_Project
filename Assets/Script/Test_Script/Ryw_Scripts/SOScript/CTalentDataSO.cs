@@ -1,4 +1,7 @@
+using System;
+using UnityEditor;
 using UnityEngine;
+using static CEquipmentDataSO;
 
 #region CTalentDataSO
 /*
@@ -8,7 +11,7 @@ using UnityEngine;
 
 
 [CreateAssetMenu(menuName = "Create SO/Data/Talent Data (SO)", fileName = "TalentDataSO_")]
-public class CTalentDataSO : ScriptableObject
+public class CTalentDataSO : ScriptableObject, ICVSData
 {
     // 방어력을 예시로
     #region 인스펙터
@@ -27,6 +30,24 @@ public class CTalentDataSO : ScriptableObject
     public int Basic => _basic;
     public int Volume => _volume;
     public Texture2D Icon => _icon;
+
+    public void ParseData(string data)
+    {
+        string[] dataArr = data.Split(",");
+
+        _ID = int.Parse(dataArr[0]);
+        _name = dataArr[1];
+        _information = dataArr[2];
+        _basic = int.Parse(dataArr[3]);
+        _volume = int.Parse(dataArr[4]);
+        //_icon = Resources.Load<Texture2D>(dataArr[5]);
+
+
+        string path = $"Assets/Script/Test_Script/Ryw_Scripts/TalentData/TalentDataSO_{_ID}.asset";
+
+        AssetDatabase.CreateAsset(this, path);
+        AssetDatabase.SaveAssets();
+    }
     #endregion
 
 

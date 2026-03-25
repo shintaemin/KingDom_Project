@@ -1,4 +1,7 @@
+using System;
+using UnityEditor;
 using UnityEngine;
+using static CEquipmentDataSO;
 
 
 #region CMissionDataSO
@@ -10,7 +13,7 @@ https://www.notion.so/328d50353449801784e7c58b2ac68d38?v=328d50353449807699de000
 #endregion
 
 [CreateAssetMenu(menuName = "Create SO/Data/Mission Data (SO)", fileName = "MissionDataSO_")]
-public class CMissionDataSO : ScriptableObject
+public class CMissionDataSO : ScriptableObject, ICVSData
 {
     public enum EMissionType
     {
@@ -35,6 +38,22 @@ public class CMissionDataSO : ScriptableObject
     public string Name => _name;
     public int Condition => _condition;
     public int Reward => _reward;
+
+    public void ParseData(string data)
+    {
+        string[] dataArr = data.Split(",");
+
+        _ID = int.Parse(dataArr[0]);
+        _type = (EMissionType)Enum.Parse(typeof(EMissionType), dataArr[1]);
+        _name = dataArr[2];
+        _condition = int.Parse(dataArr[3]);
+        _reward = int.Parse(dataArr[4]);
+
+        string path = $"Assets/Script/Test_Script/Ryw_Scripts/MissionData/MissionDataSO_{_ID}.asset";
+
+        AssetDatabase.CreateAsset(this, path);
+        AssetDatabase.SaveAssets();
+    }
     #endregion
 
 }

@@ -47,17 +47,23 @@ public class CEquipmentDataSO : ScriptableObject, ICVSData
     #endregion
 
 
-    public void ParsingData(string data)
+    public void ParseData(string data)
     {
         string[] dataArr = data.Split(",");
-        // ID,타입,추가 공격력,공격력 배율,체력 배율,이동 속도 배율,이미지
 
-        _ID = int.Parse(dataArr[0]);
-        _type = (EEquipmentType)Enum.Parse(typeof(EEquipmentType), dataArr[1]);
-        _additionalAtt = int.Parse(dataArr[2]);
-        _additionalAttackRatio = float.Parse(dataArr[3]);
-        _additionalHealthRatio = float.Parse(dataArr[4]);
-        _additionalSpeedRatio = float.Parse(dataArr[5]);
+        _ID.ParseData(dataArr[0]);
+        _type.ParseData(dataArr[1]);
+        _additionalAtt.ParseData(dataArr[2]);
+        _additionalAttackRatio.ParseData(dataArr[3]);
+        _additionalHealthRatio.ParseData(dataArr[4]);
+        _additionalSpeedRatio.ParseData(dataArr[5]);
+        //_image.ParseData(dataArr[6]);
+        //_ID = int.Parse(dataArr[0]);
+        //_type = (EEquipmentType)Enum.Parse(typeof(EEquipmentType), dataArr[1]);
+        //_additionalAtt = int.Parse(dataArr[2]);
+        //_additionalAttackRatio = float.Parse(dataArr[3]);
+        //_additionalHealthRatio = float.Parse(dataArr[4]);
+        //_additionalSpeedRatio = float.Parse(dataArr[5]);
         //_image = Resources.Load<Texture2D>(dataArr[6]);
 
 
