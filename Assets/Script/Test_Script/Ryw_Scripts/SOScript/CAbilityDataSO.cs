@@ -32,7 +32,7 @@ public class CAbilityDataSO : ScriptableObject, ICVSData
 
         _ID = int.Parse(dataArr[0]);
         _val = int.Parse(dataArr[1]);
-        //_priceArr = new int[dataArr.Length];
+        _priceArr = _priceArr.ParseData(dataArr[2]);
         //_iconArr = new Texture2D[dataArr.Length];
 
         string path = $"Assets/Script/Test_Script/Ryw_Scripts/AbilityData/AbilityDataSO_{_ID}.asset";

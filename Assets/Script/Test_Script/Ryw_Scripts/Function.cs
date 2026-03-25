@@ -55,15 +55,70 @@ public static partial class Function
     // 더 효율적인 방법을 찾아보자..
     public static T ParseData<T>(this T obj, string data)
     {
-        object result = obj switch
+        object result;
+
+        string[] strings;
+
+        switch (obj)
         {
-            int _ => int.Parse(data),
-            float _ => float.Parse(data),
-            double _ => double.Parse(data),
-            string _ => data,
-            Enum e => Enum.Parse(e.GetType(), data, true),
-            _ => null
-        };
+            case int _:
+                result = int.Parse(data);
+                break;
+
+            case int[] _:
+                strings = data.Split(';');
+                int[] iArr = new int[strings.Length];
+                for (int i = 0; i< iArr.Length;i++)
+                {
+                    iArr[i] = int.Parse(strings[i]);
+                }
+                result = iArr;
+                break;
+
+            case float _:
+                result = float.Parse(data);
+                break;
+
+            case float[] _:
+                strings = data.Split(';');
+                float[] fArr = new float[strings.Length];
+                for (int i = 0; i < fArr.Length; i++)
+                {
+                    fArr[i] = float.Parse(strings[i]);
+                }
+                result = fArr;
+                break;
+
+            case double _:
+                result = double.Parse(data);
+                break;
+
+            case double[] _:
+                strings = data.Split(';');
+                double[] dArr = new double[strings.Length];
+                for (int i = 0; i < dArr.Length; i++)
+                {
+                    dArr[i] = double.Parse(strings[i]);
+                }
+                result = dArr;
+                break;
+
+            case string _:
+                result = data;
+                break;
+
+            case string[] _:
+                result = data.Split(';');
+                break;
+
+            case Enum e:
+                result = Enum.Parse(e.GetType(), data, true);
+                break;
+
+            default:
+                result = null;
+                break;
+        }
 
         return (T)result;
     }
