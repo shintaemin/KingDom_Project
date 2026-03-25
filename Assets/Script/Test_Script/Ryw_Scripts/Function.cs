@@ -59,6 +59,9 @@ public static partial class Function
 
         string[] strings;
 
+        string path = null;
+        string[] paths = null;
+
         switch (obj)
         {
             case int _:
@@ -116,21 +119,19 @@ public static partial class Function
                 break;
 
             case Texture2D:
-                string iconPath = null;
-                iconPath = iconPath.ParseData(data);
-                Texture2D _icon = Resources.Load<Texture2D>(CGSSLoader.Texture2D_PATH + "/" + iconPath);
+                path = path.ParseData(data);
+                Texture2D _icon = Resources.Load<Texture2D>(CGSSLoader.Texture2D_PATH + "/" + path);
 
                 result = _icon;
                 break;
 
             case Texture2D[]:
-                string[] iconPaths = null;
-                iconPaths = iconPaths.ParseData(data);
-                Texture2D[] _iconArr = new Texture2D[iconPaths.Length];
+                paths = paths.ParseData(data);
+                Texture2D[] _iconArr = new Texture2D[paths.Length];
 
-                for (int i = 0; i < iconPaths.Length; i++)
+                for (int i = 0; i < paths.Length; i++)
                 {
-                    _iconArr[i] = Resources.Load<Texture2D>(CGSSLoader.Texture2D_PATH + "/" + iconPaths[i]);
+                    _iconArr[i] = Resources.Load<Texture2D>(CGSSLoader.Texture2D_PATH + "/" + paths[i]);
                 }
 
                 result = _iconArr;
