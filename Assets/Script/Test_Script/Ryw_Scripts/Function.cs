@@ -59,7 +59,6 @@ public static partial class Function
 
         string[] strings;
 
-        string path = null;
         string[] paths = null;
 
         switch (obj)
@@ -119,8 +118,7 @@ public static partial class Function
                 break;
 
             case Texture2D:
-                path = path.ParseData(data);
-                Texture2D _icon = Resources.Load<Texture2D>(CGSSLoader.Texture2D_PATH + "/" + path);
+                Texture2D _icon = Resources.Load<Texture2D>(CGSSLoader.Texture2D_PATH + "/" + data);
 
                 result = _icon;
                 break;
