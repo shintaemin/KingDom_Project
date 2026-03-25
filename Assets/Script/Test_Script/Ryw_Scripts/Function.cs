@@ -52,6 +52,7 @@ public static partial class Function
 
     // 확인만 하고 값은 사용하지 않을 때 _를 붙인다. 아니라면 enum처럼 변수 이름 을 지어 붙인다.
     // 박싱, 언박싱을 하므로 속도가 느리다.
+    // 더 효율적인 방법을 찾아보자..
     public static T ParseData<T>(this T obj, string data)
     {
         object result = obj switch
