@@ -6,6 +6,10 @@ using UnityEngine;
 #region Function
 /*
 
+
+대문자 변환 ctrl + shift + U
+소문자 변환 ctrl + U
+
 */
 #endregion
 

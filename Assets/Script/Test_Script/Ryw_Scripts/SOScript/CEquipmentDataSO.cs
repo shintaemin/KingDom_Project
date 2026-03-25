@@ -1,3 +1,5 @@
+using System;
+using UnityEditor;
 using UnityEngine;
 
 
@@ -6,11 +8,14 @@ using UnityEngine;
 ▶ 작성자 류연우
 // 3가지 스탯을 하나로 묶는걸 고려.
 // 그냥 따로 더하지 말고 + 연산자를 오버리이딩해 클래스를 더해버리도록..
+
+
+ID,타입,추가 공격력,공격력 배율,체력 배율,이동 속도 배율,이미지
 */
 #endregion
 
 [CreateAssetMenu(menuName = "Create SO/Data/Equipment Data (SO)", fileName = "EquipmentDataSO_")]
-public class CEquipmentDataSO : ScriptableObject
+public class CEquipmentDataSO : ScriptableObject, ICVSData
 {
     public enum EEquipmentType
     {
@@ -40,4 +45,25 @@ public class CEquipmentDataSO : ScriptableObject
     public float AdditionalSpeedRatio => _additionalSpeedRatio;
     public Texture2D Image => _image;
     #endregion
+
+
+    public void ParsingData(string data)
+    {
+        string[] dataArr = data.Split(",");
+        // ID,타입,추가 공격력,공격력 배율,체력 배율,이동 속도 배율,이미지
+
+        _ID = int.Parse(dataArr[0]);
+        _type = (EEquipmentType)Enum.Parse(typeof(EEquipmentType), dataArr[1]);
+        _additionalAtt = int.Parse(dataArr[2]);
+        _additionalAttackRatio = float.Parse(dataArr[3]);
+        _additionalHealthRatio = float.Parse(dataArr[4]);
+        _additionalSpeedRatio = float.Parse(dataArr[5]);
+        //_image = Resources.Load<Texture2D>(dataArr[6]);
+
+
+        string path = $"Assets/Script/Test_Script/Ryw_Scripts/EquipmentData/EquipmentDataSO_{_ID}.asset";
+
+        AssetDatabase.CreateAsset(this, path);
+        AssetDatabase.SaveAssets();
+    }
 }
