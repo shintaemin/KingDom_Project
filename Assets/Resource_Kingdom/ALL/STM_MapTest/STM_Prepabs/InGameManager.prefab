@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c989420f067de045b29c2030052428a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _msManager: {fileID: 0}
+  _msManager: {fileID: 5295100792941380084, guid: 5c0d75cb21bbb3f40b3f5407d0f110bf, type: 3}
   _sm: {fileID: 1709218921332708418, guid: 640a58ce4a26bdf4a91d299b9be7ba3d, type: 3}
   _mapSO: {fileID: 11400000, guid: 874313b248c588e45988cb6ad34c98b7, type: 2}
   _currentMap: {fileID: 0}
