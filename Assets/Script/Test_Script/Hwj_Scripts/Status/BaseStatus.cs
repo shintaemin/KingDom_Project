@@ -2,6 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+    ㆍ BaseStatus
+
+    ㆍ 작성자 : 황원준
+
+    ㆍ 기능 : 플레이어와 적이 공통으로 갖고있는 능력치 정의
+*/
+
 public abstract class BaseStatus : MonoBehaviour
 {
     #region 인스펙터
