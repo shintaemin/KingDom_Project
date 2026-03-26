@@ -126,7 +126,7 @@ public static partial class Function
                     path = CGSSLoader.Texture2D_PATH + "/" + data.Trim().Replace("\r", "");
                     Texture2D _texture2D = Resources.Load<Texture2D>(path);
                     if (_texture2D == null)
-                        Debug.Log("_texture2D == null");
+                        Debug.Log($"_texture2D == null. {path}");
                     result = _texture2D;
                 }
                 else if (type == typeof(Texture2D[]))

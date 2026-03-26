@@ -18,4 +18,4 @@ MonoBehaviour:
   _additionalAttackRatio: 3
   _additionalHealthRatio: 0
   _additionalSpeedRatio: 0
-  _image: {fileID: 2800000, guid: 5b127c73688356643a58082ee4706bd7, type: 3}
+  _image: {fileID: 2800000, guid: 68a1dbac80776f74e88ff9c688c3b6bd, type: 3}

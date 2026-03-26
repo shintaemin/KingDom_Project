@@ -31,6 +31,7 @@ public class CTalentDataSO : ScriptableObject, ICSVData
     public int Basic => _basic;
     public int Volume => _volume;
     public Texture2D Icon => _icon;
+    #endregion
 
     public void ParseData(string data)
     {
@@ -49,7 +50,6 @@ public class CTalentDataSO : ScriptableObject, ICSVData
         AssetDatabase.CreateAsset(this, path);
         AssetDatabase.SaveAssets();
     }
-    #endregion
 
 
 }

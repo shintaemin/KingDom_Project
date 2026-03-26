@@ -39,6 +39,7 @@ public class CMissionDataSO : ScriptableObject, ICSVData
     public string Name => _name;
     public int Condition => _condition;
     public int Reward => _reward;
+    #endregion
 
     public void ParseData(string data)
     {
@@ -55,6 +56,5 @@ public class CMissionDataSO : ScriptableObject, ICSVData
         AssetDatabase.CreateAsset(this, path);
         AssetDatabase.SaveAssets();
     }
-    #endregion
 
 }

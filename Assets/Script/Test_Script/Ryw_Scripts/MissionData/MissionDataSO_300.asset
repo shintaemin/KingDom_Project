@@ -15,5 +15,5 @@ MonoBehaviour:
   _ID: 300
   _type: 3
   _name: "\uD53C\uD574 \uC5C6\uC774 \uB808\uBCA8 \uD074\uB9AC\uC5B4"
-  _condition: 1
-  _reward: 750
+  _condition: 0
+  _reward: 0
