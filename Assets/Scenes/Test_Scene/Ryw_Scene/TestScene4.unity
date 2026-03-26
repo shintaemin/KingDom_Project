@@ -338,6 +338,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PrintData: 1
+  CreateFlag: 1
 --- !u!4 &1568817805
 Transform:
   m_ObjectHideFlags: 0

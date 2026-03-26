@@ -26,6 +26,7 @@ public class CAbilityDataSO : ScriptableObject, ICSVData
     public int[] PriceArr => _priceArr;
     public int MaxPriceLevel => _priceArr.Length;
     public Texture2D[] IconArr => _iconArr;
+    #endregion
 
     public void ParseData(string data)
     {
@@ -41,5 +42,4 @@ public class CAbilityDataSO : ScriptableObject, ICSVData
         AssetDatabase.CreateAsset(this, path);
         AssetDatabase.SaveAssets();
     }
-    #endregion
 }

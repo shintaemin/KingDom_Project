@@ -59,7 +59,9 @@ public static partial class Function
 
         string[] strings;
 
-        string[] paths = null;
+        string path;
+
+        string[] paths = { };
 
         switch (obj)
         {
@@ -70,7 +72,7 @@ public static partial class Function
             case int[] _:
                 strings = data.Split(';');
                 int[] iArr = new int[strings.Length];
-                for (int i = 0; i< iArr.Length;i++)
+                for (int i = 0; i < iArr.Length; i++)
                 {
                     iArr[i] = int.Parse(strings[i]);
                 }
@@ -117,32 +119,37 @@ public static partial class Function
                 result = Enum.Parse(e.GetType(), data, true);
                 break;
 
-            case Texture2D:
-                Texture2D _icon = Resources.Load<Texture2D>(CGSSLoader.Texture2D_PATH + "/" + data);
-
-                result = _icon;
-                break;
-
-            case Texture2D[]:
-                paths = paths.ParseData(data);
-                Texture2D[] _iconArr = new Texture2D[paths.Length];
-
-                for (int i = 0; i < paths.Length; i++)
-                {
-                    _iconArr[i] = Resources.Load<Texture2D>(CGSSLoader.Texture2D_PATH + "/" + paths[i]);
-                }
-
-                result = _iconArr;
-                break;
-
             default:
-                result = null;
+                Type type = typeof(T);
+                if (type == typeof(Texture2D))
+                {
+                    path = CGSSLoader.Texture2D_PATH + "/" + data.Trim().Replace("\r", "");
+                    Texture2D _texture2D = Resources.Load<Texture2D>(path);
+                    if (_texture2D == null)
+                        Debug.Log("_texture2D == null");
+                    result = _texture2D;
+                }
+                else if (type == typeof(Texture2D[]))
+                {
+                    paths = paths.ParseData(data);
+                    Texture2D[] _texture2DArr = new Texture2D[paths.Length];
+
+                    for (int i = 0; i < paths.Length; i++)
+                    {
+                        paths[i] = CGSSLoader.Texture2D_PATH + "/" + paths[i].Trim().Replace("\r", "");
+
+                        _texture2DArr[i] = Resources.Load<Texture2D>(paths[i]);
+                        if (_texture2DArr[i] == null)
+                            Debug.Log($"_texture2DArr[{i}] == null. {paths[i]}");
+                    }
+
+                    result = _texture2DArr;
+                }
+                else
+                    result = null;
                 break;
         }
 
         return (T)result;
     }
 }
-
-
-
