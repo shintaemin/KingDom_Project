@@ -3,6 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+/*
+    ㆍ PlayerPathRenderer
+
+    ㆍ 작성자 : 황원준
+
+    ㆍ 기능 : NavMeshAgent의 경로 데이터를 시각화
+*/
+
 public class PlayerPathRenderer : MonoBehaviour
 {
     #region 인스펙터
@@ -32,11 +40,6 @@ public class PlayerPathRenderer : MonoBehaviour
         if (_nav.hasPath)
         {
             DrawPath();
-        }
-
-        else
-        {
-            _lineRenderer.positionCount = 0;
         }
     }
 

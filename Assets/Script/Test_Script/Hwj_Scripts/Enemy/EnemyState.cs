@@ -29,11 +29,24 @@ public class EnemyState : MonoBehaviour
 
     private EState _state = EState.None;
 
+    private HpSystem _hpSystem;
+
     [HideInInspector] public bool IsNearDead = false;
     [HideInInspector] public bool IsDetected = false;
     private float _chaseTimer = 0f;
     private Coroutine _stateRoutine;
     #endregion
+
+    private void Awake()
+    {
+        _hpSystem = GetComponent<HpSystem>();
+
+        if (_hpSystem == null)
+        {
+            Debug.LogError("EnemyState _hpSystem 참조 실패");
+            return;
+        }
+    }
 
     void Update()
     {
@@ -43,6 +56,11 @@ public class EnemyState : MonoBehaviour
     // 단일 상태 진입점
     private void SetState(EState next)
     {
+        if (_state == EState.Dead)
+        {
+            return;
+        }
+
         if (_state == next)
         {
             return;
@@ -93,16 +111,15 @@ public class EnemyState : MonoBehaviour
     // 상태 결정
     private EState DecideState()
     {
-        //if () Status 에서 HP = 0 일경우 IsDead를 받아와서 조건문에 넣으면 될 듯???
-        //{
-        //    return EState.Dead;
-        //}
-        //
+        if (_hpSystem.IsDead)
+        {
+            return EState.Dead;
+        }
+        
         //if () 플레이어가 공격 사거리 안에 들어왔나?
         //{
         //    return EState.Attack;
         //}
-        //
 
         if (_state == EState.Detect || _state == EState.ChaseFail)
         {
