@@ -6,7 +6,15 @@ using UnityEngine;
 /*
  ▶ 할일
   - 킬 미션을 정의
-  - 단순하게 맵에 있는
+  - 생성자 매개변수를 통해 처치해야할 대상의 갯수를 지정
+  - 목표 킬 갯수와 현재 킬 갯수가 같아지면 ClearMission() 을 호출 하여 MissionBase 에 이벤트 발행
+
+    - 03 - 25 17 : 07 
+   결합도 때문에 깊게 고민하고있었는데 여기서 적 OnDead 를 구독하는건 결합도가 올라가고 SRP 를 지키기 어려워 지게하는것 같음
+   결합도 측면에서 구독을 미션매니저가 진행하고  
+   _currentMission.체크 함수 호출로 Kill_Mission 의 CheckClear()를 호출 하는것이 가장 이상적으로 보임
+
+    - 작업자 신태민
 */
 #endregion
 
@@ -14,14 +22,19 @@ using UnityEngine;
 public class Kill_Mission : MissionBase
 {
     #region 인스펙터
-    [SerializeField] private EMissionType _type = EMissionType.Kill;
-    [SerializeField] private string _enemySpawnPosTag;
     [SerializeField] private int _targetKillCount;
     [SerializeField] private int _remainKillCount;
     #endregion
 
+    public Kill_Mission(int count)
+    {
+        ResetData();
+        _targetKillCount = count;
+    }
+
     private void ResetData()
     {
+        // 구독 해제
         _targetKillCount = 0;
         _remainKillCount = 0;
     }
@@ -29,33 +42,17 @@ public class Kill_Mission : MissionBase
     #region 외부 호출 함수
     public override void StartMission()
     {
-        ResetData();
-
-        Transform[] children = GetComponentsInChildren<Transform>();
-
-        for (int i = 0; i < children.Length; i++)
-        {
-            if (children[i] == null)
-            {
-                continue;
-            }
-
-            Transform pos = children[i];
-
-            if (pos.CompareTag(_enemySpawnPosTag))
-            {
-                // 스포너 자리 딱인데
-                // 캐싱자리
-                _targetKillCount++;
-            }
-        }
+        // 구독 진행
 
         Debug.Log($"[Kill_Mission] : 타겟갯수 : {_targetKillCount}");
     }
 
+    // 적 OnDead 이벤트를 구독하여 실행
     public override void CheckClear()
     {
         _remainKillCount++;
+
+        Debug.Log($"[Kill_Mission] : 처치 횟수 : {_remainKillCount}");
 
         if (_remainKillCount == _targetKillCount)
         {
