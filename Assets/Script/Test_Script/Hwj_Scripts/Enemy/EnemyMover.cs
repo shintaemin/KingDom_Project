@@ -1,0 +1,146 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.AI;
+
+/*
+    ㆍ EnemyMover
+
+    ㆍ 작성자 : 황원준
+
+    ㆍ 기능 : EnemyState의 상태에 따라 NavMesh로 이동
+*/
+
+public class EnemyMover : MonoBehaviour
+{
+    #region 인스펙터
+    [Header("플레이어 태그")]
+    [SerializeField] private string _playerTag = "Player";
+
+    [Header("정찰 설정")]
+    [SerializeField] private float _detectRange = 5f;
+    [SerializeField] private float _detectDelay = 1f;
+    [SerializeField] private float _remainDistance = 0.3f;
+
+    [Header("추격 설정")]
+    [SerializeField] private float _chaseDelay = 0.1f;
+    #endregion
+
+    #region 내부 변수
+    private EnemyState _state;
+    private NavMeshAgent _nav;
+    private Transform _playerTr;
+    private Coroutine _moveRoutine;
+    #endregion
+
+    private void Awake()
+    {
+        _state = GetComponent<EnemyState>();
+        _nav = GetComponent<NavMeshAgent>();
+
+        if (_state == null || _nav == null)
+        {
+            Debug.LogError("EnemyMover _state _nav 참조 실패");
+            return;
+        }
+
+        var player = GameObject.FindWithTag(_playerTag);
+
+        if (player != null)
+        {
+            _playerTr = player.transform;
+
+            if (_playerTr == null)
+            {
+                Debug.LogError("EnemyMover _playerTr 참조 실패 (태그 설정 필요)");
+                return;
+            }
+        }
+    }
+
+    private void OnEnable()
+    {
+        if (_state != null)
+        {
+            _state.OnStateChanged += StateChanged;
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (_state != null)
+        {
+            _state.OnStateChanged -= StateChanged;
+        }
+    }
+
+    private void StateChanged(EnemyState.EState state)
+    {
+        if (_moveRoutine != null)
+        {
+            StopCoroutine(_moveRoutine);
+            _moveRoutine = null;
+        }
+
+        switch (state)
+        {
+            case EnemyState.EState.Patrol:
+                _nav.isStopped = false;
+                _moveRoutine = StartCoroutine(CoPatrol());
+                break;
+
+            case EnemyState.EState.Detect:
+                _nav.isStopped = true;
+                break;
+
+            case EnemyState.EState.Chase:
+                _nav.isStopped = false;
+                _moveRoutine = StartCoroutine(CoChase());
+                break;
+
+            case EnemyState.EState.ChaseFail:
+                _nav.isStopped = true;
+                _nav.ResetPath();
+                break;
+        }
+    }
+
+    private IEnumerator CoPatrol()
+    {
+        while (true)
+        {
+            Vector3 randomPos = transform.position + Random.insideUnitSphere * _detectRange;
+
+            if (NavMesh.SamplePosition(randomPos, out NavMeshHit hit, Mathf.Infinity, NavMesh.AllAreas))
+            {
+                Vector3 center = hit.position;
+
+                center.y = transform.position.y;
+
+                _nav.SetDestination(center);
+
+                while (Vector3.Distance(transform.position, center) > _remainDistance)
+                {
+                    yield return null;
+                }
+
+                yield return new WaitForSeconds(_detectDelay);
+            }
+
+            else
+            {
+                yield return null;
+            }
+        }
+    }
+
+    private IEnumerator CoChase()
+    {
+        while (_playerTr != null)
+        {
+            _nav.SetDestination(_playerTr.position);
+
+            yield return new WaitForSeconds(_chaseDelay);
+        }
+    }
+}
