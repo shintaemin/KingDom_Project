@@ -77,10 +77,10 @@ public class CInGameCamera : MonoBehaviour
     void Awake()
     {
         if (
-        ! _camera.NullCheck("_camera") ||
-        ! _player.NullCheck("_player") ||
-        ! _leftDownPos.NullCheck("_leftDownPos") ||
-        ! _rightUpPos.NullCheck("_rightUpPos")
+        ! _camera.IsNull("_camera") ||
+        ! _player.IsNull("_player") ||
+        ! _leftDownPos.IsNull("_leftDownPos") ||
+        ! _rightUpPos.IsNull("_rightUpPos")
         ) return;
     }
 

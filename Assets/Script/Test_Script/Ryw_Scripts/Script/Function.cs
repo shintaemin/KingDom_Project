@@ -16,7 +16,7 @@ using UnityEngine;
 
 public static partial class Function
 {
-    public static bool NullCheck<T>(this T obj, string varName, Action body = null) where T : class
+    public static bool IsNull<T>(this T obj, string varName, Action body = null) where T : class
     {
         if (obj is UnityEngine.Object unityObj)
         {
@@ -39,7 +39,7 @@ public static partial class Function
 
         return false;
     }
-    public static bool NullCheck<T>(this ICollection<T> objArr, string varName, Action body = null) where T : class
+    public static bool IsNull<T>(this ICollection<T> objArr, string varName, Action body = null) where T : class
     {
         if (objArr == null || objArr.Count == 0)
         {
