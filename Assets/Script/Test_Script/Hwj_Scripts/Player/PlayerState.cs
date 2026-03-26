@@ -22,6 +22,7 @@ public class PlayerState : MonoBehaviour
 
     #region 내부 변수
     public event System.Action<EState> OnStateChanged;
+    public event System.Action OnDead;
     private EState _state = EState.Idle;
     private InputState _inputState;
     private HpSystem _hpSystem;
@@ -77,7 +78,7 @@ public class PlayerState : MonoBehaviour
                 break;
 
             case EState.Dead:
-
+                OnDead?.Invoke();
                 break;
         }
 

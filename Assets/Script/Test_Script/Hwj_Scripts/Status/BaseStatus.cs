@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseStatus : MonoBehaviour
+public abstract class BaseStatus : MonoBehaviour
 {
     #region 인스펙터
     [Header("능력치 설정")]

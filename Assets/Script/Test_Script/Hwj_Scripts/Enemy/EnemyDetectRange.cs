@@ -22,11 +22,15 @@ public class EnemyDetectRange : MonoBehaviour
 
     [Header("플레이어 태그")]
     [SerializeField] private string _playerTag = "Player";
+
+    [Header("감지 주기")]
+    [SerializeField] private float _findInterval = 0.2f;
     #endregion
 
     #region 내부 변수
     private EnemyState _state;
     private Transform _playerTr;
+    private float _nextFindTime = 0.0f;
     #endregion
 
     private void Awake()
@@ -55,6 +59,18 @@ public class EnemyDetectRange : MonoBehaviour
 
     void Update()
     {
+        if (_playerTr == null)
+        {
+            _state.IsDetected = false;
+        }
+
+        if (Time.time < _nextFindTime)
+        {
+            return;
+        }
+
+        _nextFindTime = Time.time + _findInterval;
+
         CheckDetect();
     }
 

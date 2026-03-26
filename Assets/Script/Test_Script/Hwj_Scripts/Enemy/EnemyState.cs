@@ -33,6 +33,7 @@ public class EnemyState : MonoBehaviour
 
     [HideInInspector] public bool IsNearDead = false;
     [HideInInspector] public bool IsDetected = false;
+    [HideInInspector] public bool IsAtkRange = false;
     private float _chaseTimer = 0f;
     private Coroutine _stateRoutine;
     #endregion
@@ -115,11 +116,11 @@ public class EnemyState : MonoBehaviour
         {
             return EState.Dead;
         }
-        
-        //if () 플레이어가 공격 사거리 안에 들어왔나?
-        //{
-        //    return EState.Attack;
-        //}
+
+        if (IsAtkRange)
+        {
+            return EState.Attack;
+        }
 
         if (_state == EState.Detect || _state == EState.ChaseFail)
         {
