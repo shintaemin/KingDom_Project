@@ -19,6 +19,7 @@ public class SpawnManager : MonoBehaviour
 {
     #region ¿ŒΩ∫∆Â≈Õ
     [SerializeField] private Map_Stage _currentMap;
+    [SerializeField] private GameObject _playerPrefab;
     [SerializeField] private GameObject _enemyPrefab;
     [SerializeField] private GameObject _zombiePrefab;
     [SerializeField] private GameObject _eBossPrefab;
@@ -67,6 +68,13 @@ public class SpawnManager : MonoBehaviour
         if (_citizenPrefab != null)
         {
             PosCheck(_citizenPrefab, citizen);
+        }
+
+        Transform player = _currentMap.GetPlayerSpawnPos;
+
+        if (_playerPrefab != null)
+        {
+            Spawn(_playerPrefab, player);
         }
     }
 
@@ -157,13 +165,24 @@ public class SpawnManager : MonoBehaviour
     {
         if (_currentMap != null)
         {
-            return;
+            MapClear();
         }
 
         GameObject go = Instantiate(map.gameObject, Vector3.zero, Quaternion.identity);
 
         _currentMap = go.GetComponent<Map_Stage>();
         CheckSpawn();
+    }
+
+    public void MapClear()
+    {
+        if (_currentMap == null)
+        {
+            return;
+        }
+
+        Destroy(_currentMap.gameObject);
+        _currentMap = null;
     }
     #endregion
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,12 +9,18 @@ using UnityEngine;
   - 인게임에서 미션에만 사용할 매니저
   - 인게임매니저를 통해 맵을 지정받고 해당 맵의 타입 데이터에따른 미션지정
   - 외부에서 이벤트 받을 수 있도록 활성화된 미션 지정
-  - MissionManager.GetMission.OnClearMission += , -= 으로 구독진행
+  - MissionManager.OnMissionClearAnswer += , -= 으로 구독진행
 
     - 작업자 신태민
 */
 #endregion
 
+public enum EMissionAnswer
+{
+    None,
+    Fail,
+    Success
+}
 
 public class MissionManager : MonoBehaviour
 {
@@ -23,46 +30,24 @@ public class MissionManager : MonoBehaviour
     [SerializeField] private SpawnManager _sm;
     #endregion
 
-    private void Awake()
-    {
-        // 널체크
-    }
-
-    #region 미션 클리어 구독
-    private void Subscription()
-    {
-        if (_currentMission == null || _sm == null)
-        {
-            return;
-        }
-
-        _currentMission.OnClearMission += MissionClear;
-        _sm.OnSpawn += CheckMission;
-    }
-
-    // 미션 클리어시 호출 함수
-    private void MissionClear()
-    {
-        // 미션 클리어시 바로 해당 미션 클리어 구독 취소
-        ResetMission();
-    }
-
-    private void CheckMission(GameObject go)
-    {
-        if (go == null)
-        {
-            return;
-        }
-
-        //if (go.TryGetComponent<EnemyState>(out EnemyState eState))
-        //{
-        //    _enemys.Add(go);
-        //    eState.OnDead += _currentMission.CheckClear;
-        //}
-    }
+    #region 내부 변수
+    public event Action<EMissionAnswer> OnMissionClearAnswer;
+    //[SerializeField] private PlayerState _pState;  사망 처리를 위해 참조
     #endregion
 
+    private void Awake()
+    {
+        _enemys.Clear();
+        if (_sm == null)
+        {
+            _sm = FindAnyObjectByType<SpawnManager>();
+        }
+    }
 
+    private void OnDestroy()
+    {
+        ResetMission();
+    }
 
     #region 외부 호출 함수
     public void SetMission(Map_Stage map)
@@ -104,8 +89,16 @@ public class MissionManager : MonoBehaviour
             return;
         }
 
+        // 미션 구독 해제
         _currentMission.OnClearMission -= MissionClear;
-        _sm.OnSpawn -= CheckMission;
+        // 스폰 구독 해제
+        _sm.OnSpawn -= SpawnCheck;
+        // 플레이어 사망 구독 해제
+        //if (_pState != null)
+        //{
+        //    _pState.OnDead -= MissionFail;
+        //    _pState = null;
+        //}
 
         for (int i = _enemys.Count - 1; i >= 0; i--)
         {
@@ -119,6 +112,7 @@ public class MissionManager : MonoBehaviour
             //if (go != null && go.TryGetComponent<EnemyState>(out EnemyState eState))
             //{
             //    eState.OnDead -= _currentMission.CheckClear;
+            //    Destroy(go); <- 혹시몰라 남겨둠 만약 적 로직에서 파괴처리를 한다면 지워도 무방함
             //    _enemys.RemoveAt(i);
             //}
         }
@@ -131,5 +125,50 @@ public class MissionManager : MonoBehaviour
     public MissionBase GetMission => _currentMission;
     #endregion
 
+    #region 미션 클리어 구독
+    private void Subscription()
+    {
+        if (_currentMission == null || _sm == null)
+        {
+            return;
+        }
+
+        _currentMission.OnClearMission += MissionClear;
+        _sm.OnSpawn += SpawnCheck;
+    }
+
+    // 미션 클리어시 호출 함수
+    private void MissionClear()
+    {
+        // 미션 클리어시 바로 해당 미션 클리어 구독 취소
+        OnMissionClearAnswer?.Invoke(EMissionAnswer.Success);
+        ResetMission();
+    }
+
+    private void MissionFail()
+    {
+        OnMissionClearAnswer?.Invoke(EMissionAnswer.Fail);
+        ResetMission();
+    }
+
+    private void SpawnCheck(GameObject go)
+    {
+        if (go == null)
+        {
+            return;
+        }
+
+        //if (go.TryGetComponent<EnemyState>(out EnemyState eState))
+        //{
+        //    _enemys.Add(go);
+        //    eState.OnDead += _currentMission.CheckClear;
+        //}
+
+        //if (go.TryGetComponent<PlayerState>(out _pState))
+        //{
+        //    _player.OnDead += MissionFail;
+        //}
+    }
+    #endregion
 
 }

@@ -18,10 +18,10 @@ public class IngameManager : MonoBehaviour
 {
     #region 인스펙터
     [SerializeField] private MissionManager _msManager;
-    [SerializeField] private Map_Registry_SO _mapSO;
-    [SerializeField] private Map_Stage _currentMap;
     [SerializeField] private SpawnManager _sm;
+    [SerializeField] private Map_Registry_SO _mapSO;
     //[SerializeField] private Player_Data_SO _playerData;
+    [SerializeField] private Map_Stage _currentMap;
     [SerializeField] private int _mapIndex = 1;
     #endregion
 
@@ -31,48 +31,20 @@ public class IngameManager : MonoBehaviour
 
     private void Awake()
     {
-        // 널체크
-    }
-
-    #region 미션 클리어 구독
-    private void Subscription()
-    {
         if (_msManager == null)
         {
+            _msManager = FindAnyObjectByType<MissionManager>();
+        }
+        if (_mapSO == null)
+        {
+            Debug.Log($"[] : Map_Registry_SO 없음 맵 지정 불가");
             return;
         }
-
-        if (_msManager.GetMission != null)
+        if (_sm == null)
         {
-            _msManager.GetMission.OnClearMission += AddIndex;
-            Debug.Log("[IngameManager] : 클리어 미션 구독완료!");
+            _sm = FindAnyObjectByType<SpawnManager>();
         }
     }
-
-    private void MissionClear()
-    {
-        if (_msManager != null)
-        {
-            _msManager.GetMission.OnClearMission -= AddIndex;
-            _currentMap = null;
-        }
-    }
-
-    // 미션 클리어시 호출함수
-    private void AddIndex()
-    {
-        // 다음 맵으로 이동 하기위해 인덱스 변경
-        _mapIndex++;
-        // 미션 클리어하여 해당 미션 구독 취소
-        MissionClear();
-
-        // 데이터 다시확인하고 맵 재지정
-        //int stateData = _playerData.GetStageData;
-
-        SetMap(1/*stateData*/, _mapIndex);
-    }
-    #endregion
-
 
     // 게임 시작시 맵 데이터값 받아와서 맵지정
     private void Start()
@@ -81,6 +53,11 @@ public class IngameManager : MonoBehaviour
 
         _mapIndex = 1;
         SetMap(1/*stateData*/, _mapIndex);
+    }
+
+    private void OnDestroy()
+    {
+        MissionClear();
     }
 
     private void SetMap(int stageData, int mapIndex)
@@ -97,21 +74,60 @@ public class IngameManager : MonoBehaviour
         {
 
             // 여기서 씬종료로 연결
+            // 여기서 플레이어 스테이지 레벨 ++
             _currentMap = null;
             return;
         }
 
-        // 같은 맵이 아닐떄 맵 할당
-        if (_currentMap != map)
-        {
-            _currentMap = map;
-        }
+        _currentMap = map;
 
-        // 스포너에 맵전달
-        _sm.SetMap(map);
-        // 미션에 맵전달
-        _msManager.SetMission(_currentMap);
         // 구독 진행
         Subscription();
+        // 미션에 맵전달
+        _msManager.SetMission(_currentMap);
+        // 스포너에 맵전달
+        _sm.SetMap(map);
     }
+    
+    #region 미션 클리어 구독
+    private void Subscription()
+    {
+        if (_msManager == null)
+        {
+            return;
+        }
+
+        _msManager.OnMissionClearAnswer += AddIndex;
+        Debug.Log("[IngameManager] : 클리어 미션 구독완료!");
+    }
+
+    private void MissionClear()
+    {
+        // 미션 클리어시 바로 구독 취소 및 지정된 맵 비우기
+        if (_msManager != null)
+        {
+            _msManager.OnMissionClearAnswer -= AddIndex;
+            _currentMap = null;
+        }
+    }
+
+    // 미션 클리어시 호출함수
+    private void AddIndex(EMissionAnswer answer)
+    {
+        if (answer == EMissionAnswer.Success)
+        {
+            // 다음 맵으로 이동 하기위해 인덱스 변경
+            _mapIndex++;
+            // 미션 클리어하여 해당 미션 구독 취소
+            MissionClear();
+
+            // 데이터 다시확인하고 맵 재지정
+            //int stateData = _playerData.GetStageData;
+
+            SetMap(1/*stateData*/, _mapIndex);
+        }
+
+        // 여기서도 씬전환
+    }
+    #endregion
 }

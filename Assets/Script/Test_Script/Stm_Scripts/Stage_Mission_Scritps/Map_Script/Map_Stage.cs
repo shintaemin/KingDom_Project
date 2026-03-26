@@ -18,6 +18,7 @@ public class Map_Stage : MonoBehaviour
     [SerializeField] private int _stageNum;
     [SerializeField] private int _subStageNum;
     [SerializeField] private EMissionType _missionType;
+    [SerializeField] private Transform _playerSpawnPos;
     [SerializeField] private Transform[] _enemySpawnPos = new Transform[0];
     [SerializeField] private Transform[] _bossSpawnPos = new Transform[0];
     [SerializeField] private Transform[] _boxSpawnPos = new Transform[0];
@@ -32,6 +33,8 @@ public class Map_Stage : MonoBehaviour
 
     // 스폰위치를 검사해 총 적 수를 반환
     public int GetEnemyCount => _enemySpawnPos.Length + _bossSpawnPos.Length;
+
+    public Transform GetPlayerSpawnPos => _playerSpawnPos;
 
     // 미션 타입 확인용
     public EMissionType GetMissionType => _missionType;

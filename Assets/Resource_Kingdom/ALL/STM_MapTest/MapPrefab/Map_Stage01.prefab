@@ -181,6 +181,7 @@ MonoBehaviour:
   _stageNum: 1
   _subStageNum: 1
   _missionType: 1
+  _playerSpawnPos: {fileID: 5987618841565368506}
   _enemySpawnPos:
   - {fileID: 1692576516520090186}
   - {fileID: 6792363401986607182}
@@ -3590,6 +3591,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5653016878942378656}
     m_Modifications:
+    - target: {fileID: 663412442259119753, guid: 1cf99dba385a0984e98f931b89955ae3, type: 3}
+      propertyPath: m_Layer
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 4316873578558892522, guid: 1cf99dba385a0984e98f931b89955ae3, type: 3}
+      propertyPath: m_Layer
+      value: 28
+      objectReference: {fileID: 0}
     - target: {fileID: 4546289660170205550, guid: 1cf99dba385a0984e98f931b89955ae3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
