@@ -61,8 +61,6 @@ public static partial class Function
 
         string path;
 
-        string[] paths = { };
-
         switch (obj)
         {
             case int _:
@@ -120,7 +118,9 @@ public static partial class Function
                 break;
 
             default:
+                // 이 분기로 들어오는 대부분은 파일 이름의 배열일것.
                 Type type = typeof(T);
+
                 if (type == typeof(Texture2D))
                 {
                     path = CGSSLoader.Texture2D_PATH + "/" + data.Trim().Replace("\r", "");
@@ -131,16 +131,17 @@ public static partial class Function
                 }
                 else if (type == typeof(Texture2D[]))
                 {
-                    paths = paths.ParseData(data);
-                    Texture2D[] _texture2DArr = new Texture2D[paths.Length];
+                    strings = data.Split(';');
 
-                    for (int i = 0; i < paths.Length; i++)
+                    Texture2D[] _texture2DArr = new Texture2D[strings.Length];
+
+                    for (int i = 0; i < strings.Length; i++)
                     {
-                        paths[i] = CGSSLoader.Texture2D_PATH + "/" + paths[i].Trim().Replace("\r", "");
+                        path = CGSSLoader.Texture2D_PATH + "/" + strings[i].Trim().Replace("\r", "");
 
-                        _texture2DArr[i] = Resources.Load<Texture2D>(paths[i]);
+                        _texture2DArr[i] = Resources.Load<Texture2D>(path);
                         if (_texture2DArr[i] == null)
-                            Debug.Log($"_texture2DArr[{i}] == null. {paths[i]}");
+                            Debug.Log($"_texture2DArr[{i}] == null. {path}");
                     }
 
                     result = _texture2DArr;
