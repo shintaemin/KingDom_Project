@@ -32,6 +32,7 @@ public class PlayerMover : MonoBehaviour
     private Camera _camera;
     private InputReader _inputReader;
     private InputState _inputState;
+    private PlayerState _state;
     private Coroutine _moveRoutine;
     private Transform _enemyTr;
     #endregion
@@ -41,11 +42,12 @@ public class PlayerMover : MonoBehaviour
         _nav = GetComponent<NavMeshAgent>();
         _inputReader = GetComponent<InputReader>();
         _inputState = GetComponent<InputState>();
+        _state = GetComponent<PlayerState>();
         _camera = Camera.main;
 
-        if (_nav == null || _inputReader == null || _inputState == null)
+        if (_nav == null || _inputReader == null || _inputState == null || _state == null)
         {
-            Debug.LogError("PlayerMover _nav _inputReader _inputState 참조 실패");
+            Debug.LogError("PlayerMover _nav _inputReader _inputState _state 참조 실패");
             return;
         }
     }
@@ -95,6 +97,7 @@ public class PlayerMover : MonoBehaviour
             StopCoroutine(_moveRoutine);
         }
 
+        _state.IsMoving = false;
         _wayPoints.Clear();
         _nav.ResetPath();
         _enemyTr = null;
@@ -127,6 +130,7 @@ public class PlayerMover : MonoBehaviour
     {
         if (_enemyTr != null || _wayPoints.Count > 0)
         {
+            _state.IsMoving = true;
             _moveRoutine = StartCoroutine(CoPathRoutine());
         }
     }
@@ -169,6 +173,7 @@ public class PlayerMover : MonoBehaviour
             }
         }
 
+        _state.IsMoving = false;
         _moveRoutine = null;
     }
 
