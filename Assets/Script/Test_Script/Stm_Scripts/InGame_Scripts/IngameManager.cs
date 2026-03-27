@@ -86,7 +86,7 @@ public class IngameManager : MonoBehaviour
         // 미션에 맵전달
         _msManager.SetMission(_currentMap);
         // 스포너에 맵전달
-        _sm.SetMap(map);
+        _sm.SetMap(_currentMap);
     }
     
     #region 미션 클리어 구독
