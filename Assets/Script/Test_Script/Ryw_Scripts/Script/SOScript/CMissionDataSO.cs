@@ -1,5 +1,5 @@
 using System;
-using UnityEditor;
+//using UnityEditor;
 using UnityEngine;
 
 
@@ -53,8 +53,8 @@ public class CMissionDataSO : ScriptableObject, ICSVData
 
         string path = CGSSLoader.SOSavePath(NAME) + $"/{NAME}SO_{_ID}.asset";
 
-        AssetDatabase.CreateAsset(this, path);
-        AssetDatabase.SaveAssets();
+        //AssetDatabase.CreateAsset(this, path);
+        //AssetDatabase.SaveAssets();
     }
 
 }
