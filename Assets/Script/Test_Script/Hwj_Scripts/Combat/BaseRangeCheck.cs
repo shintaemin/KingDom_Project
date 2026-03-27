@@ -2,6 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+    ㆍ BaseRangeCheck
+
+    ㆍ 작성자 : 황원준
+
+    ㆍ 기능 : 공격 사거리를 체크하는 기본 기반 클래스 → 타겟과 거리를 계산하여 공격 사거리 판단
+*/
+
 public abstract class BaseRangeCheck : MonoBehaviour
 {
     #region 내부 변수
@@ -11,7 +19,8 @@ public abstract class BaseRangeCheck : MonoBehaviour
     #endregion
 
     #region 프로퍼티
-    [HideInInspector] public bool IsAtkRange => _isAtkRange;
+    public bool IsAtkRange => _isAtkRange;
+    public Transform TargetTr => _targetTr;
     #endregion
 
     protected virtual void Awake()

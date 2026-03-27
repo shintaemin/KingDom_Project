@@ -2,6 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+    ㆍ EnemyRangeCheck
+
+    ㆍ 작성자 : 황원준
+
+    ㆍ 기능 : 태그를 기반으로 플레이어를 타겟으로 설정하고 사거리 진입 시 적의 상태 갱신
+*/
+
 public class EnemyRangeCheck : BaseRangeCheck
 {
     #region 인스펙터

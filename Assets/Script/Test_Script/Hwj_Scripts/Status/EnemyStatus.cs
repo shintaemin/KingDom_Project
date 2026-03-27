@@ -2,6 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+    ㆍ EnemyStatus
+
+    ㆍ 작성자 : 황원준
+
+    ㆍ 기능 : 스테이지가 진행됨에 따라 적의 체력과 공격력, 보상이 일정 비율로 자동 상승하는 시스템
+*/
+
 public class EnemyStatus : BaseStatus
 {
 	#region 인스펙터
