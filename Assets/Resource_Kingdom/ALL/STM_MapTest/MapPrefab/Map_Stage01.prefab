@@ -191,6 +191,8 @@ MonoBehaviour:
   _boxSpawnPos: []
   _keySpawnPos: []
   _citizenSpawnPos: []
+  _leftDownPos: {fileID: 6665787771125600392}
+  _rightUpPos: {fileID: 6379412979968073735}
 --- !u!114 &366484571049228849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -432,7 +434,7 @@ Transform:
   m_GameObject: {fileID: 3353955861059200490}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalPosition: {x: 0, y: 3.17, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -465,7 +467,7 @@ Transform:
   m_GameObject: {fileID: 3645049576160397387}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.78, y: 0, z: -1.15}
+  m_LocalPosition: {x: -1.73, y: 0, z: -1.78}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

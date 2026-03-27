@@ -170,10 +170,7 @@ public class SpawnManager : MonoBehaviour
 
         GameObject go = Instantiate(map.gameObject, Vector3.zero, Quaternion.identity);
 
-        if (go.TryGetComponent<Map_Stage>(out _currentMap))
-        {
-            CheckSpawn();
-        }
+        _currentMap = go.GetComponent<Map_Stage>();
     }
 
     public void MapClear()
@@ -185,6 +182,18 @@ public class SpawnManager : MonoBehaviour
 
         Destroy(_currentMap.gameObject);
         _currentMap = null;
+    }
+
+    public Map_Stage GetCurrentMap => _currentMap;
+
+    public void SpawnStart()
+    {
+        if (_currentMap == null)
+        {
+            return;
+        }
+
+        CheckSpawn();
     }
     #endregion
 }

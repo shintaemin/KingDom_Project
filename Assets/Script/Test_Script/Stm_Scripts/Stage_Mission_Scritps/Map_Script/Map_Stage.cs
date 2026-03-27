@@ -24,6 +24,8 @@ public class Map_Stage : MonoBehaviour
     [SerializeField] private Transform[] _boxSpawnPos = new Transform[0];
     [SerializeField] private Transform[] _keySpawnPos = new Transform[0];
     [SerializeField] private Transform[] _citizenSpawnPos = new Transform[0];
+    [SerializeField] private Transform _leftDownPos;
+    [SerializeField] private Transform _rightUpPos;
     #endregion
 
     #region 외부 호출 함수
@@ -63,5 +65,8 @@ public class Map_Stage : MonoBehaviour
 
         return null;
     }
+
+    public Transform GetLeftPin => _leftDownPos;
+    public Transform GetRightPin => _rightUpPos;
     #endregion
 }
