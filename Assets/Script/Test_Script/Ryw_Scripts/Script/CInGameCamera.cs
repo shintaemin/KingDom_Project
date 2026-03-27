@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -31,18 +32,20 @@ public class CInGameCamera : MonoBehaviour
     public enum ECameraMoveType
     {
         Fix,
-        MoveTowards,    // 원작 게임은 이걸로 추청. 그래서 ㅈㄴ 답답함.
+        MoveTowards,    // 원작 게임은 이걸로 추청. 그래서 정말 답답함.
         Lerp,
         SmoothDamp
     }
 
-    #region 인스펙터
-    [SerializeField] private Transform _player;
-    [SerializeField] private Transform[] _enemy;
+    public enum ECameraPhase
+    {
+        Init,
+        Ready,
+        Run
+    }
 
-    [SerializeField] private Camera _camera;
-    [SerializeField] private Transform _leftDownPos;
-    [SerializeField] private Transform _rightUpPos;
+    #region 인스펙터
+    [SerializeField] private float _cameraUpdateInterval = 0.5f;
 
     [SerializeField, Range(10f, 20f)] private float _height = 15;
 
@@ -62,9 +65,19 @@ public class CInGameCamera : MonoBehaviour
 
     [Header("디버그용 필드")]
     [SerializeField] private bool _CheckEnemy = true;
+
+    [SerializeField] private Transform _player;
+    [SerializeField] private List<EnemyState> _enemyState;
+
+    [SerializeField] private Camera _camera;
+    [SerializeField] private Transform _leftDownPos;
+    [SerializeField] private Transform _rightUpPos;
+
     #endregion
 
     #region 내부 변수
+    private ECameraPhase cameraPhase = ECameraPhase.Init;
+
     private float _cameraMinX;
     private float _cameraMaxX;
     private float _cameraMinZ;
@@ -72,21 +85,58 @@ public class CInGameCamera : MonoBehaviour
 
     private float _hX;
     private float _hZ;
+
+    private float _nextEnemyUpdateTime;
+
+    Transform _nearestEnemyTransform = null;
     #endregion
+
+    public void InitSetting(Camera camera, Transform leftDownPos, Transform rightUpPos, Transform player, List<EnemyState> enemy)
+    {
+        _camera = camera;
+        _leftDownPos = leftDownPos;
+        _rightUpPos = rightUpPos;
+        _player = player;
+        _enemyState = enemy;
+
+        cameraPhase = ECameraPhase.Ready;
+    }
 
     void Awake()
     {
-        if (
-        ! _camera.IsNull("_camera") ||
-        ! _player.IsNull("_player") ||
-        ! _leftDownPos.IsNull("_leftDownPos") ||
-        ! _rightUpPos.IsNull("_rightUpPos")
-        ) return;
+        //if (
+        //! _camera.IsNull("_camera") ||
+        //! _player.IsNull("_player") ||
+        //! _leftDownPos.IsNull("_leftDownPos") ||
+        //! _rightUpPos.IsNull("_rightUpPos")
+        //) return;
     }
 
     void Start()
     {
-        InitCameraSetting();
+
+    }
+
+    void Update()
+    {
+        switch (cameraPhase)
+        {
+            case ECameraPhase.Ready:
+                InitCameraSetting();
+                break;
+            case ECameraPhase.Run:
+                UpdateCameraTransform();
+                break;
+        }
+    }
+
+    private void InitCameraSetting()
+    {
+        _camera.fieldOfView = _fov;
+        // 추후 맵 아래에 무언가 추가된다면 이 상수도 필드로 만든다.
+        // 깊이에 따라서 그림자가 달라지는데?
+        _camera.farClipPlane = _height + 5f;
+
 
         // 카메라 해상도와 높이값 을 통한 clamp용 값 계산
         float halfRadian = (_fov * 0.5f) * Mathf.Deg2Rad;
@@ -101,22 +151,11 @@ public class CInGameCamera : MonoBehaviour
         _cameraMinZ = _leftDownPos.position.z + _hZ;
         _cameraMaxX = _rightUpPos.position.x - _hX;
         _cameraMaxZ = _rightUpPos.position.z - _hZ;
-    }
 
-    void Update()
-    {
+        cameraPhase = ECameraPhase.Run;
+
+        _nextEnemyUpdateTime = Time.time + _cameraUpdateInterval;
         UpdateCameraTransform();
-    }
-
-    private void InitCameraSetting()
-    {
-        _camera.fieldOfView = _fov;
-        // 추후 맵 아래에 무언가 추가된다면 이 상수도 필드로 만든다.
-        // 깊이에 따라서 그림자가 달라지는데?
-        _camera.farClipPlane = _height + 5f;
-
-        UpdateCameraTransform();
-
     }
 
     private void UpdateCameraTransform()
@@ -126,11 +165,15 @@ public class CInGameCamera : MonoBehaviour
         // x,z값 계산
         // 적의 유무 파악
 
-
-        if (GetNearestEnemy(out Transform nearestEnemy))
+        if (Time.time >= _nextEnemyUpdateTime)
         {
-            pos = (pos + nearestEnemy.position) * 0.5f;
+            GetNearestEnemyTransform(out _nearestEnemyTransform);
+            _nextEnemyUpdateTime += Time.time + _cameraUpdateInterval;
         }
+
+        if(_nearestEnemyTransform)
+            pos = (pos + _nearestEnemyTransform.position) * 0.5f;
+
 
         // 높이는 고정
         pos.y = _height;
@@ -155,21 +198,25 @@ public class CInGameCamera : MonoBehaviour
         }
     }
 
-    private bool GetNearestEnemy( out Transform nearestEnemy)
+    // 지금 구조라면 적이 존재하지만 전부 죽은 경우 nearestEnemy == null 이면서 함수의 반환값은 true가 된다.
+    private bool GetNearestEnemyTransform(out Transform nearestEnemy)
     {
-        if (_CheckEnemy && _enemy != null && _enemy.Length != 0)
+        if (_CheckEnemy && _enemyState != null && _enemyState.Count != 0)
         {
-            // 가장 가까운 적을 가져온다.
-            nearestEnemy = _enemy[0];
-            float nearestDist = Vector3.SqrMagnitude(_player.transform.position - nearestEnemy.position);
+            nearestEnemy = null;
+            float nearestDist = float.MaxValue;
 
-            for (int i = 1; i < _enemy.Length; i++)
+            for (int i = 0; i < _enemyState.Count; i++)
             {
-                float dist = Vector3.SqrMagnitude(_player.transform.position - _enemy[i].position);
+                if (_enemyState[i].GetState() == EnemyState.EState.Dead)
+                {
+                    continue;
+                }
+                float dist = Vector3.SqrMagnitude(_player.transform.position - _enemyState[i].transform.position);
                 if (dist < nearestDist)
                 {
                     nearestDist = dist;
-                    nearestEnemy = _enemy[i];
+                    nearestEnemy = _enemyState[i].transform;
                 }
             }
             return true;
