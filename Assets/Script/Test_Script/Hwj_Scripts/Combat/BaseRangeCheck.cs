@@ -19,7 +19,8 @@ public abstract class BaseRangeCheck : MonoBehaviour
     #endregion
 
     #region 프로퍼티
-    [HideInInspector] public bool IsAtkRange => _isAtkRange;
+    public bool IsAtkRange => _isAtkRange;
+    public Transform TargetTr => _targetTr;
     #endregion
 
     protected virtual void Awake()
