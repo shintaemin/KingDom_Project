@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 #region Å³ ¹Ì¼Ç
 /*
@@ -56,6 +57,7 @@ public class Kill_Mission : MissionBase
 
         if (_remainKillCount == _targetKillCount)
         {
+            SceneManager.LoadScene(0);
             ClearMission();
         }
     }

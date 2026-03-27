@@ -103,6 +103,7 @@ public class EnemyState : MonoBehaviour
 
             case EState.Dead:
                 OnDead?.Invoke();
+                gameObject.SetActive(false);
                 break;
         }
 

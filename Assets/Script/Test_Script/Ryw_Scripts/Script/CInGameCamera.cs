@@ -165,11 +165,7 @@ public class CInGameCamera : MonoBehaviour
         // x,z값 계산
         // 적의 유무 파악
 
-        if (Time.time >= _nextEnemyUpdateTime)
-        {
-            GetNearestEnemyTransform(out _nearestEnemyTransform);
-            _nextEnemyUpdateTime += Time.time + _cameraUpdateInterval;
-        }
+        GetNearestEnemyTransform(out _nearestEnemyTransform);
 
         if(_nearestEnemyTransform)
             pos = (pos + _nearestEnemyTransform.position) * 0.5f;

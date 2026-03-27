@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 #region 인게임 매니저
 /*
@@ -115,6 +116,7 @@ public class IngameManager : MonoBehaviour
 
     private void MissionClear()
     {
+
         // 미션 클리어시 바로 구독 취소 및 지정된 맵 비우기
         if (_msManager != null)
         {
@@ -174,6 +176,7 @@ public class IngameManager : MonoBehaviour
         {
             _enemys.Add(eState);
             eState.OnDead += _msManager.GetMission.CheckClear;
+            Debug.Log($"[IngameManager] : {_enemys.Count} 구독 완료");
         }
 
         if (go.TryGetComponent<PlayerState>(out _pState))

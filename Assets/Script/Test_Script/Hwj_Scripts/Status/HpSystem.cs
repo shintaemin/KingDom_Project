@@ -51,7 +51,6 @@ public class HpSystem : MonoBehaviour, IDamageable
         {
             _currentHP = 0;
             _isDead = true;
-            gameObject.SetActive(false);
         }
     }
 }
