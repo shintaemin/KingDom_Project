@@ -171,7 +171,7 @@ public class CInGameCamera : MonoBehaviour
             _nextEnemyUpdateTime += Time.time + _cameraUpdateInterval;
         }
 
-        if (_nearestEnemyTransform)
+        if(_nearestEnemyTransform)
             pos = (pos + _nearestEnemyTransform.position) * 0.5f;
 
 

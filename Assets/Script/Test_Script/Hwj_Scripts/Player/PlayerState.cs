@@ -26,6 +26,8 @@ public class PlayerState : MonoBehaviour
     private EState _state = EState.Idle;
     private InputState _inputState;
     private HpSystem _hpSystem;
+
+    [HideInInspector] public bool IsMoving = false;
     #endregion
 
     private void Awake()
@@ -93,7 +95,7 @@ public class PlayerState : MonoBehaviour
             return EState.Dead;
         }
 
-        if (_inputState.GetState() != InputState.EState.Idle) // 플레이어무버 쪽에서 isMoving 조건문 추가?
+        if (_inputState.GetState() != InputState.EState.Idle || IsMoving)
         {
             return EState.Moving;
         }
