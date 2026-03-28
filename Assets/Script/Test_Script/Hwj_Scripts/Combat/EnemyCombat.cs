@@ -7,7 +7,7 @@ using UnityEngine;
 
     ㆍ 작성자 : 황원준
 
-    ㆍ 기능 : 
+    ㆍ 기능 : 적의 상태 기반 자동 공격 및 OnHitTarget 애니메이션 이벤트 함수로 플레이어에게 데미지 전달
 */
 
 public class EnemyCombat : BaseCombat

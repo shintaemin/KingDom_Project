@@ -7,7 +7,7 @@ using UnityEngine;
 
     ㆍ 작성자 : 황원준
 
-    ㆍ 기능 : 
+    ㆍ 기능 : 플레이어, 적 공통 공격 로직 (사거리 체크, 공격 쿨타임 체크 등)
 */
 
 public abstract class BaseCombat : MonoBehaviour
