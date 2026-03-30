@@ -2,6 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+    ㆍ HpSystem
+
+    ㆍ 작성자 : 황원준
+
+    ㆍ 기능 : IDamageable 인터페이스를 구현하여, 방어력이 적용된 최종 데미지 계산 및 객체의 사망 상태 관리
+*/
+
 public class HpSystem : MonoBehaviour, IDamageable
 {
     #region 내부 변수
@@ -44,8 +52,6 @@ public class HpSystem : MonoBehaviour, IDamageable
             _currentHP = 0;
             _isDead = true;
             gameObject.SetActive(false);
-
-            // 여기서 보상처리??
         }
     }
 }

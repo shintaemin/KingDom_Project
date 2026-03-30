@@ -17,7 +17,7 @@ public class BottomMenuPanel_Controller : MonoBehaviour
     [SerializeField] private GameObject _shopPanel;
     [SerializeField] private GameObject _equipmentShopPanel;
     [SerializeField] private GameObject _lobbyPanel;
-    [SerializeField] private GameObject _updatePanel;
+    [SerializeField] private GameObject _upgradePanel;
     [SerializeField] private GameObject _talentPanel;
     #endregion
 
@@ -33,7 +33,7 @@ public class BottomMenuPanel_Controller : MonoBehaviour
         if (_shopPanel != null) _shopPanel.SetActive(false);
         if (_equipmentShopPanel != null) _equipmentShopPanel.SetActive(false);
         if (_lobbyPanel != null) _lobbyPanel.SetActive(false);
-        if (_updatePanel != null) _updatePanel.SetActive(false);
+        if (_upgradePanel != null) _upgradePanel.SetActive(false);
         if (_talentPanel != null) _talentPanel.SetActive(false);
     }
 
@@ -59,10 +59,10 @@ public class BottomMenuPanel_Controller : MonoBehaviour
     }
 
     // 업데이트 활성화
-    public void ShowUpdatePanel()
+    public void ShowUpgradePanel()
     {
         HideAllPanels();
-        _updatePanel.SetActive(true);
+        _upgradePanel.SetActive(true);
     }
 
     // 재능 활성화
