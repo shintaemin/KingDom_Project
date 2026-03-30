@@ -1,13 +1,13 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-#region »ç¿îµå ¸Å´ÏÀú
+#region ì‚¬ìš´ë“œ ë§¤ë‹ˆì €
 /*
- ¢º ÇÒÀÏ
-  - ½Ì±ÛÅæÀ¸·Î ¿ÜºÎ¿¡¼­ ClipData Å¸ÀÔÀ» ÅëÇØ »ç¿ë
-  - Å¬¸³ µ¥ÀÌÅÍ¸¦ ¸®½ºÆ®¿¡ µî·ÏÇÏ°í
-  - µñ¼Å³Ê¸®¸¦ »ç¿ëÇØ Å¸ÀÔÀ» ÅëÇØ ²¨³»¾²´Â ¹æ½Ä
+ â–¶ í• ì¼
+  - ì‹±ê¸€í†¤ìœ¼ë¡œ ì™¸ë¶€ì—ì„œ ClipData íƒ€ì…ì„ í†µí•´ ì‚¬ìš©
+  - í´ë¦½ ë°ì´í„°ë¥¼ ë¦¬ìŠ¤íŠ¸ì— ë“±ë¡í•˜ê³ 
+  - ë”•ì…”ë„ˆë¦¬ë¥¼ ì‚¬ìš©í•´ íƒ€ì…ì„ í†µí•´ êº¼ë‚´ì“°ëŠ” ë°©ì‹
 */
 #endregion
 
@@ -16,13 +16,15 @@ public class SoundManager : MonoBehaviour
 {
     public static SoundManager Instance { get; private set; }
 
-    #region ÀÎ½ºÆåÅÍ
+    #region ì¸ìŠ¤í™í„°
     [SerializeField] private AudioSource _bgmAudio;
     [SerializeField] private AudioSource _sfxAudio;
+    [SerializeField, Range(0,1)] private float _sfxVolum;
+    [SerializeField, Range(0,1)] private float _bgmVolum;
     [SerializeField] private List<ClipData> _sfxRegistry = new List<ClipData>();
     #endregion
 
-    #region ³»ºÎº¯¼ö
+    #region ë‚´ë¶€ë³€ìˆ˜
     private readonly Dictionary<ESfxType, List<AudioClip>> _sfxClips = new Dictionary<ESfxType, List<AudioClip>>();
     #endregion
 
@@ -43,7 +45,7 @@ public class SoundManager : MonoBehaviour
         {
             if (sources[0] != null && !sources[0].TryGetComponent<AudioSource>(out _bgmAudio))
             {
-                Debug.LogWarning($"[SoundManager] : Bgm ¼Ò½º ¾øÀ½ ºñÁö¿¥ Àç»ı ºÒ°¡");
+                Debug.LogWarning($"[SoundManager] : Bgm ì†ŒìŠ¤ ì—†ìŒ ë¹„ì§€ì—  ì¬ìƒ ë¶ˆê°€");
                 return;
             }
         }
@@ -52,7 +54,7 @@ public class SoundManager : MonoBehaviour
         {
             if (sources[1] != null && !sources[1].TryGetComponent<AudioSource>(out _sfxAudio))
             {
-                Debug.LogWarning($"[SoundManager] : Sfx ¼Ò½º ¾øÀ½ È¿°úÀ½ Àç»ı ºÒ°¡");
+                Debug.LogWarning($"[SoundManager] : Sfx ì†ŒìŠ¤ ì—†ìŒ íš¨ê³¼ìŒ ì¬ìƒ ë¶ˆê°€");
                 return;
             }
         }
@@ -95,9 +97,18 @@ public class SoundManager : MonoBehaviour
 
             _sfxClips[type].Add(clip);
         }
+
+        _sfxAudio.volume = _sfxVolum;
+        _sfxAudio.playOnAwake = false;
     }
 
-    #region ¿ÜºÎ È£Ãâ ÇÔ¼ö
+    #region ì™¸ë¶€ í˜¸ì¶œ í•¨ìˆ˜
+    #region íš¨ê³¼ìŒ ì¬ìƒ ë°©ë²•
+    /*
+     ì—´ê±°í˜•ë€ì— Audio í´ë¦½ì˜ ì´ë¦„ì„ ë„£ì–´ë³¸ë‹¤.
+     ì¢…ë¥˜ê°€ ë§ì€ í´ë¦½ì´ë¼ë©´ random = true ë¡œ í–ˆì„ë–„ ëœë¤ì¬ìƒëœë‹¤.
+    */
+    #endregion
     public void SFXPlay(ESfxType type, bool random = false)
     {
         if (_sfxAudio == null)
@@ -107,7 +118,7 @@ public class SoundManager : MonoBehaviour
 
         if (!_sfxClips.TryGetValue(type , out List<AudioClip> clips))
         {
-            Debug.LogWarning($"[SoundManager] : {type} ÀÌ ¹Ìµî·Ï ÀÌ°Å³ª Å¬¸³ÀÌ ¾øÀ½");
+            Debug.LogWarning($"[SoundManager] : {type} ì´ ë¯¸ë“±ë¡ ì´ê±°ë‚˜ í´ë¦½ì´ ì—†ìŒ");
             return;
         }
 

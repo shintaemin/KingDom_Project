@@ -1,15 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-#region
-
-#endregion
-
-public enum ESfxType
-{
-    None,
-}
+[System.Serializable]
 public class ClipData
 {
     [SerializeField] private AudioClip _clip;
