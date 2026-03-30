@@ -24,7 +24,6 @@ public class PlayerState : MonoBehaviour
     public event System.Action<EState> OnStateChanged;
     public event System.Action OnDead;
     private EState _state = EState.Idle;
-    private InputState _inputState;
     private HpSystem _hpSystem;
 
     [HideInInspector] public bool IsMoving = false;
@@ -32,14 +31,6 @@ public class PlayerState : MonoBehaviour
 
     private void Awake()
     {
-        _inputState = GetComponent<InputState>();
-
-        if (_inputState == null)
-        {
-            Debug.LogError("PlayerState _inputState 참조 실패");
-            return;
-        }
-
         _hpSystem = GetComponent<HpSystem>();
 
         if (_hpSystem == null)
@@ -95,7 +86,7 @@ public class PlayerState : MonoBehaviour
             return EState.Dead;
         }
 
-        if (_inputState.GetState() != InputState.EState.Idle || IsMoving)
+        if (IsMoving)
         {
             return EState.Moving;
         }

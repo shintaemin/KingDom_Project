@@ -51,7 +51,7 @@ public class HpSystem : MonoBehaviour, IDamageable
         {
             _currentHP = 0;
             _isDead = true;
-            gameObject.SetActive(false);
+            gameObject.SetActive(false); // 레그돌 추가 및 비활성화 제거
         }
     }
 }

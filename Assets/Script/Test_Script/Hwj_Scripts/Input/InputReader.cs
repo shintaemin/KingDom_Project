@@ -48,7 +48,7 @@ public class InputReader : MonoBehaviour
         return Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended;
     }
 
-    public Vector3 GetMousePosition()
+    public Vector3 GetInputPosition()
     {
         if (_useMouseControl)
         {

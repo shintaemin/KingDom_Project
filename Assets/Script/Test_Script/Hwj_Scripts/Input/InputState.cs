@@ -25,6 +25,8 @@ public class InputState : MonoBehaviour
     public event System.Action<EState> OnStateChanged;
     private EState _state = EState.Idle;
     private InputReader _inputReader;
+    private float _holdStartTime;
+    private float _holdTime = 0.5f;
     #endregion
 
     private void Awake()
@@ -60,12 +62,12 @@ public class InputState : MonoBehaviour
                 break;
 
             case EState.Start:
-                Time.timeScale = 0.2f;
-                // Time.fixedDeltaTime = 0.02f * Time.timeScale; 물리 연산 조절이 필요하다면
+                
                 break;
 
             case EState.Drawing:
-
+                Time.timeScale = 0.2f;
+                // Time.fixedDeltaTime = 0.02f * Time.timeScale; 물리 연산 조절이 필요하다면
                 break;
 
             case EState.End:
@@ -82,6 +84,7 @@ public class InputState : MonoBehaviour
     {
         if (_inputReader.GetIsDown())
         {
+            _holdStartTime = Time.unscaledTime;
             return EState.Start;
         }
 
@@ -92,7 +95,10 @@ public class InputState : MonoBehaviour
 
         if (_inputReader.GetIsHold())
         {
-            return EState.Drawing;
+            if (Time.unscaledTime - _holdStartTime >= _holdTime)
+            {
+                return EState.Drawing;
+            }
         }
 
         return EState.Idle;

@@ -3,7 +3,22 @@ guid: d0d8ef7da9c67aa4da91a832cbe1517c
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Player_colormap
+    second: {fileID: 2100000, guid: d6538417a2c10a148b2623620d654899, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Player_colormap_face
+    second: {fileID: 2100000, guid: 47cc1d7cc64f816469ce63c1b955ba4d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Weapon_colormap
+    second: {fileID: 2100000, guid: 200954256f5628c42af026050bd17b43, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

@@ -8,7 +8,7 @@ using UnityEngine.AI;
 
     ㆍ 작성자 : 황원준
 
-    ㆍ 기능 : NavMeshAgent의 경로 데이터를 시각화
+    ㆍ 기능 : 
 */
 
 public class PlayerPathRenderer : MonoBehaviour
@@ -20,49 +20,28 @@ public class PlayerPathRenderer : MonoBehaviour
 
     #region 내부 변수
     private LineRenderer _lineRenderer;
-    private NavMeshAgent _nav;
+    private PlayerMover _mover;
     #endregion
 
     private void Awake()
     {
         _lineRenderer = GetComponent<LineRenderer>();
-        _nav = GetComponent<NavMeshAgent>();
+        _mover = GetComponent<PlayerMover>();
 
-        if (_lineRenderer == null || _nav == null)
+        if (_lineRenderer == null || _mover == null)
         {
-            Debug.LogError("PlayerPathRenderer _lineRenderer _nav 참조 실패");
+            Debug.LogError("PlayerPathRenderer _lineRenderer _mover 참조 실패");
             return;
         }
     }
 
     void Update()
     {
-        if (_nav.hasPath)
-        {
-            DrawPath();
-        }
+        DrawPath();
     }
 
     private void DrawPath()
     {
-        Vector3[] points = _nav.path.corners;
 
-        if (points.Length < 2)
-        {
-            return;
-        }
-
-        _lineRenderer.positionCount = points.Length;
-
-        for (int i = 0; i < points.Length; i++)
-        {
-            Vector3 position = points[i];
-
-            position.y += _yOffset;
-
-            _lineRenderer.SetPosition(i, position);
-        }
-
-        _lineRenderer.alignment = LineAlignment.View;
     }
 }
