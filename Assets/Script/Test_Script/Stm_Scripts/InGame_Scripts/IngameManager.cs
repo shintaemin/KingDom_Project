@@ -10,8 +10,6 @@ using UnityEngine;
   - 스포너에게 생성할 맵과 데이터 던져주기
 
     - 작업자 신태민
-업적 시스템 있다면 미션을 어떻게 구분할지.
-
 */
 #endregion
 
@@ -22,13 +20,25 @@ public class IngameManager : MonoBehaviour
     [SerializeField] private MissionManager _msManager;
     [SerializeField] private SpawnManager _sm;
     [SerializeField] private Map_Registry_SO _mapSO;
+    [SerializeField] private FadeSystem _fadeSystem;
     //[SerializeField] private Player_Data_SO _playerData;
     [SerializeField] private Map_Stage _currentMap;
     [SerializeField] private int _mapIndex = 1;
     #endregion
 
-    #region 외부 호출 함수
+    #region 내부 변수
+    private Coroutine _mapChanegeCo;
+    #endregion
 
+    #region 외부 호출 함수
+    // 게임 시작시 맵 데이터값 받아와서 맵지정
+    public void GameStart()
+    {
+        //int stateData = _playerData.GetStageData;
+
+        _mapIndex = 1;
+        SetMap(1/*stateData*/, _mapIndex);
+    }
     #endregion
 
     private void Awake()
@@ -46,15 +56,10 @@ public class IngameManager : MonoBehaviour
         {
             _sm = FindAnyObjectByType<SpawnManager>();
         }
-    }
-
-    // 게임 시작시 맵 데이터값 받아와서 맵지정
-    private void Start()
-    {
-        //int stateData = _playerData.GetStageData;
-
-        _mapIndex = 1;
-        SetMap(1/*stateData*/, _mapIndex);
+        if (_fadeSystem == null)
+        {
+            Debug.LogWarning($"[IngameManager] : 맵 전환 Fade 불가");
+        }
     }
 
     private void OnDestroy()
@@ -91,6 +96,31 @@ public class IngameManager : MonoBehaviour
         _sm.SetMap(map);
     }
     
+    private IEnumerator CoChangeMap(int stageData, int mapIndex)
+    {
+        float time = 0.5f;
+        if (_fadeSystem != null)
+        {
+            _fadeSystem.SetActiveFade(true);
+            _fadeSystem.Fade(0, 1, time);
+            yield return new WaitForSeconds(time);
+        }
+
+        _sm.MapClear();
+        SetMap(stageData, mapIndex);
+
+        yield return new WaitForSeconds(2.5f);
+
+        if (_fadeSystem != null)
+        {
+            _fadeSystem.Fade(1, 0, time);
+            yield return new WaitForSeconds(time);
+            _fadeSystem.SetActiveFade(false);
+        }
+
+        _mapChanegeCo = null;
+    }
+
     #region 미션 클리어 구독
     private void Subscription()
     {
@@ -99,7 +129,7 @@ public class IngameManager : MonoBehaviour
             return;
         }
 
-        _msManager.OnMissionClearAnswer += AddIndex;
+        _msManager.OnMissionClearAnswer += ClearCheck;
         Debug.Log("[IngameManager] : 클리어 미션 구독완료!");
     }
 
@@ -108,14 +138,19 @@ public class IngameManager : MonoBehaviour
         // 미션 클리어시 바로 구독 취소 및 지정된 맵 비우기
         if (_msManager != null)
         {
-            _msManager.OnMissionClearAnswer -= AddIndex;
+            _msManager.OnMissionClearAnswer -= ClearCheck;
             _currentMap = null;
         }
     }
 
     // 미션 클리어시 호출함수
-    private void AddIndex(EMissionAnswer answer)
+    private void ClearCheck(EMissionAnswer answer)
     {
+        if (_mapChanegeCo != null)
+        {
+            StopCoroutine(_mapChanegeCo);
+            _mapChanegeCo = null;
+        }
         if (answer == EMissionAnswer.Success)
         {
             // 다음 맵으로 이동 하기위해 인덱스 변경
@@ -126,10 +161,14 @@ public class IngameManager : MonoBehaviour
             // 데이터 다시확인하고 맵 재지정
             //int stateData = _playerData.GetStageData;
 
-            SetMap(1/*stateData*/, _mapIndex);
+            _mapChanegeCo = StartCoroutine(CoChangeMap(1/*stateData*/, _mapIndex));
+            return;
         }
 
-        // 여기서도 씬전환
+        if (answer == EMissionAnswer.Fail)
+        {
+            // 여기서 씬전환
+        }
     }
     #endregion
 }

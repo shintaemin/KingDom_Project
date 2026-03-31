@@ -4,8 +4,10 @@ using UnityEngine;
 public class ClipData
 {
     [SerializeField] private AudioClip _clip;
-    [SerializeField] private ESfxType _type;
+    [SerializeField] private ESfxType _sfxType;
+    [SerializeField] private EBgmType _bgmType;
 
-    public AudioClip GetSfxClip => _clip;
-    public ESfxType GetSfxType => _type;
+    public AudioClip GetClip => _clip;
+    public ESfxType GetSfxType => _sfxType;
+    public EBgmType GetBgmType => _bgmType;
 }

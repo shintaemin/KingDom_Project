@@ -46,3 +46,11 @@
     Whoosh,
     Zombie_Attack,
 }
+
+public enum EBgmType
+{
+    None,
+    Lobby_1,
+    Lobby_2,
+    Ingame_1,
+}

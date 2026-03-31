@@ -8,6 +8,8 @@ using UnityEngine;
   - 싱글톤으로 외부에서 ClipData 타입을 통해 사용
   - 클립 데이터를 리스트에 등록하고
   - 딕셔너리를 사용해 타입을 통해 꺼내쓰는 방식
+
+    - 작업자 : 신태민 - 
 */
 #endregion
 
@@ -21,6 +23,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioSource _sfxAudio;
     [SerializeField, Range(0,1)] private float _sfxVolum;
     [SerializeField, Range(0,1)] private float _bgmVolum;
+    [SerializeField] private List<ClipData> _bgmRegistry = new List<ClipData>();
     [SerializeField] private List<ClipData> _sfxRegistry = new List<ClipData>();
     #endregion
 
@@ -84,7 +87,7 @@ public class SoundManager : MonoBehaviour
 
         foreach (var data in _sfxRegistry)
         {
-            if (data == null || data.GetSfxClip == null) continue;
+            if (data == null || data.GetClip == null) continue;
 
             ESfxType type = data.GetSfxType;
 
@@ -93,7 +96,7 @@ public class SoundManager : MonoBehaviour
                 _sfxClips[type] = new List<AudioClip>();
             }
 
-            AudioClip clip = data.GetSfxClip;
+            AudioClip clip = data.GetClip;
 
             _sfxClips[type].Add(clip);
         }
@@ -125,5 +128,61 @@ public class SoundManager : MonoBehaviour
         int index = random ? Random.Range(0, clips.Count) : 0; 
         _sfxAudio.PlayOneShot(clips[index]);
     }
+
+    public void StopSfx()
+    {
+        if (_sfxAudio == null)
+        {
+            return;
+        }
+
+        _sfxAudio.Stop();
+    }
+
+    public void BgmPlay(EBgmType type)
+    {
+        if(_bgmAudio == null)
+        {
+            return;
+        }
+
+        for(int i = 0; i < _bgmRegistry.Count; i++)
+        {
+            if (_bgmRegistry[i] == null)
+            {
+                continue;
+            }
+
+            ClipData data = _bgmRegistry[i];
+            EBgmType clipType = data.GetBgmType;
+
+            if(clipType == type)
+            {
+                AudioClip clip = data.GetClip;
+                _bgmAudio.clip = clip;
+                break;
+            }
+        }
+
+        _bgmAudio.playOnAwake = false;
+        _bgmAudio.loop = true;
+        _bgmAudio.volume = _bgmVolum;
+        _bgmAudio.Play();
+    }
+
+    public void StopBgm()
+    {
+        if (_bgmAudio == null)
+        {
+            return;
+        }
+
+        _bgmAudio.Stop();
+    }
+
+    public float GetSfxVolume => _sfxVolum;
+    public float GetBgmVolume => _bgmVolum;
+    public void SetBgmVolume(float volume) => _bgmVolum = Mathf.Clamp(volume, 0, 1);
+    public void SetSfxVolume(float volume) => _sfxVolum = Mathf.Clamp(volume, 0, 1);
     #endregion
 }
