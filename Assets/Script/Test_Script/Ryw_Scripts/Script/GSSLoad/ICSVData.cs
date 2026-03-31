@@ -11,4 +11,6 @@ CGSSLoader에서 읽어온 데이터를 파싱할 수 있는 객체를 위한 �
 public interface ICSVData
 {
     public void ParseData(string data);
+
+    public int ID { get; }
 }
