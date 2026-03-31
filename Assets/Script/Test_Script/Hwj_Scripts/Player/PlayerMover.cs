@@ -16,7 +16,6 @@ public class PlayerMover : MonoBehaviour
     #region 인스펙터
     [Header("거리 설정")]
     [SerializeField] private float _arrivedEnemyDistance = 0.5f;
-    [SerializeField] private float _pathDistanceOffset = 0.1f;
 
     [Header("기본 이동속도 설정")]
     [SerializeField] private float _baseSpeed = 5f;
@@ -26,6 +25,7 @@ public class PlayerMover : MonoBehaviour
     private NavMeshAgent _nav;
     private InputState _inputState;
     private PlayerState _playerState;
+    private PlayerPathRecorder _pathRecorder;
     private Coroutine _moveRoutine;
     #endregion
 
@@ -34,10 +34,11 @@ public class PlayerMover : MonoBehaviour
         _nav = GetComponent<NavMeshAgent>();
         _inputState = GetComponent<InputState>();
         _playerState = GetComponent<PlayerState>();
+        _pathRecorder = GetComponent<PlayerPathRecorder>();
 
-        if (_nav == null || _inputState == null || _playerState == null)
+        if (_nav == null || _inputState == null || _playerState == null || _pathRecorder == null)
         {
-            Debug.LogError("PlayerMover _nav _inputState _playerState 참조 실패");
+            Debug.LogError("PlayerMover _nav _inputState _playerState _pathRecorder 참조 실패");
             return;
         }
     }
@@ -58,26 +59,97 @@ public class PlayerMover : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        if (_inputState.GetState() == InputState.EState.Drawing)
-        {
-            
-        }
-    }
-
     private void StateChanged(InputState.EState state)
     {
         switch (state)
         {
             case InputState.EState.Start:
+                _pathRecorder.ResetPath();
+                StopMove();
+                _pathRecorder.ClickRecordPath();
+                break;
 
+            case InputState.EState.Drawing:
+                _nav.ResetPath();
+                _playerState.IsMoving = true;
                 break;
 
             case InputState.EState.End:
-
+                StartMove();
                 break;
         }
+    }
+
+    private void StartMove()
+    {
+        Transform enemy = _pathRecorder.GetEnemy();
+
+        if (enemy != null)
+        {
+            if (_moveRoutine != null)
+            {
+                StopCoroutine(_moveRoutine);
+            }
+
+            _moveRoutine = StartCoroutine(MoveToEnemy(enemy));
+            _playerState.IsMoving = true;
+        }
+
+        else if (_pathRecorder.GetPath().Count > 0)
+        {
+            if (_moveRoutine != null)
+            {
+                StopCoroutine(_moveRoutine);
+            }
+
+            _moveRoutine = StartCoroutine(MoveToPath());
+            _playerState.IsMoving = true;
+        }
+    }
+
+    private void StopMove()
+    {
+        if (_moveRoutine != null)
+        {
+            StopCoroutine(_moveRoutine);
+        }
+    }
+
+    private IEnumerator MoveToEnemy(Transform enemy)
+    {
+        while (enemy != null)
+        {
+            _nav.SetDestination(enemy.position);
+
+            if (Vector3.Distance(transform.position, enemy.position) <= _arrivedEnemyDistance)
+            {
+                _playerState.IsMoving = false;
+                break;
+            }
+
+            yield return null;
+        }
+
+        _playerState.IsMoving = false;
+    }
+
+    private IEnumerator MoveToPath()
+    {
+        List<Vector3> path = _pathRecorder.GetPath();
+
+        while (path.Count > 0)
+        {
+            _nav.SetDestination(path[0]);
+
+            if (Vector3.Distance(transform.position, path[0]) <= _nav.stoppingDistance)
+            {
+                path.RemoveAt(0);
+            }
+
+            yield return null;
+        }
+
+        _playerState.IsMoving = false;
     }
 
     #region 외부 호출 함수

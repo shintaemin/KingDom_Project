@@ -26,7 +26,7 @@ public class InputState : MonoBehaviour
     private EState _state = EState.Idle;
     private InputReader _inputReader;
     private float _holdStartTime;
-    private float _holdTime = 0.5f;
+    private float _holdTime = 0.25f;
     #endregion
 
     private void Awake()

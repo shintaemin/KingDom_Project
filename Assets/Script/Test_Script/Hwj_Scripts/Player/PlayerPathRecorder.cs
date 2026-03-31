@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 /*
     ㆍ PlayerPathRecorder
@@ -16,12 +17,17 @@ public class PlayerPathRecorder : MonoBehaviour
     [Header("레이어 설정")]
     [SerializeField] private LayerMask _enemyLayer;
     [SerializeField] private LayerMask _terrainLayer;
+    [SerializeField] private LayerMask _notTerrainLayer;
+    [SerializeField] private LayerMask _playerLayer;
     #endregion
 
     #region 내부 변수
     private List<Vector3> _wayPoints = new List<Vector3>();
     private InputReader _inputReader;
+    private InputState _inputState;
+    private PlayerState _playerState;
     private Camera _camera;
+    private NavMeshAgent _nav;
     private Transform _enemyTr;
     #endregion
 
@@ -29,30 +35,40 @@ public class PlayerPathRecorder : MonoBehaviour
     {
         _camera = Camera.main;
         _inputReader = GetComponent<InputReader>();
+        _inputState = GetComponent<InputState>();
+        _playerState = GetComponent<PlayerState>();
+        _nav = GetComponent<NavMeshAgent>();
 
         if (_inputReader == null)
         {
-            Debug.LogError("PlayerPathRecorder _inputReader 참조 실패");
+            Debug.LogError("PlayerPathRecorder _inputReader _inputState _playerState _nav 참조 실패");
             return;
         }
     }
 
-    #region 외부 호출 함수
-    public void RecordPath()
+    void Update()
+    {
+        if (_inputState.GetState() == InputState.EState.Drawing)
+        {
+            DrawingRecordPath();
+        }
+    }
+
+    private void DrawingRecordPath()
     {
         Ray ray = _camera.ScreenPointToRay(_inputReader.GetInputPosition());
 
-        if (Physics.Raycast(ray, out RaycastHit hitEnemy, Mathf.Infinity, _enemyLayer))
-        {
-            _enemyTr = hitEnemy.transform;
-            _wayPoints.Clear();
-        }
-
-        else if (Physics.Raycast(ray, out RaycastHit hitTerrain, Mathf.Infinity, _terrainLayer))
+        if (Physics.Raycast(ray, out RaycastHit hitTerrain, Mathf.Infinity, _terrainLayer))
         {
             Vector3 center = hitTerrain.transform.position;
 
             center.y = transform.position.y;
+
+            if (Vector3.Distance(transform.position, center) < 0.5f)
+            {
+                ResetPath();
+                return;
+            }
 
             // 이미 웨이포인트에 존재하는 위치일 경우 해당 위치 웨이포인트 제거
             if (_wayPoints.Contains(center))
@@ -69,8 +85,41 @@ public class PlayerPathRecorder : MonoBehaviour
             else
             {
                 _wayPoints.Add(center);
-                _enemyTr = null;
             }
+        }
+    }
+
+    #region 외부 호출 함수
+    public void ClickRecordPath()
+    {
+        Ray ray = _camera.ScreenPointToRay(_inputReader.GetInputPosition());
+
+        if (Physics.Raycast(ray, out RaycastHit hitPlayer, Mathf.Infinity, _playerLayer) ||
+            Physics.Raycast(ray, out RaycastHit hitNotTerrain, Mathf.Infinity, _notTerrainLayer))
+        {
+            _playerState.IsMoving = false;
+            _nav.ResetPath();
+            return;
+        }
+
+        if (Physics.Raycast(ray, out RaycastHit hitEnemy, Mathf.Infinity, _enemyLayer))
+        {
+            _enemyTr = hitEnemy.transform;
+
+            Vector3 enemy = hitEnemy.transform.position;
+
+            enemy.y = transform.position.y;
+
+            _wayPoints.Add(enemy);
+        }
+
+        else if (Physics.Raycast(ray, out RaycastHit hitTerrain, Mathf.Infinity, _terrainLayer))
+        {
+            Vector3 center = hitTerrain.transform.position;
+
+            center.y = transform.position.y;
+
+            _wayPoints.Add(center);
         }
     }
 
