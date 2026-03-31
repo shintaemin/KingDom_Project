@@ -19,7 +19,7 @@ public class SceneLoadManager : MonoBehaviour
 
     #region 인스펙터
     [SerializeField] private FadeSystem _fadeSystme;
-    [SerializeField] private ESceneLoadType _remainScene;
+    [SerializeField] private ESceneLoadType _remainSceneType;
     [SerializeField] private float _waitTime = 2.5f;
     [SerializeField] private float _fadeTime = 0.5f;
     #endregion
@@ -139,12 +139,12 @@ public class SceneLoadManager : MonoBehaviour
             _loadSceneCo = null;
         }
 
-        _remainScene = loadType;
-        _loadSceneCo = StartCoroutine(CoLoadScene(_remainScene));
+        _remainSceneType = loadType;
+        _loadSceneCo = StartCoroutine(CoLoadScene(_remainSceneType));
     }
 
     // 외부에서 현재씬에따른 작업을 위해
     // 액션을 사용해도 좋지만 어떤 작업을 어떻게할지 어느정도로 이벤트를 사용할지 현재는 알수없어 일단은 확인이 가능하도록
-    public ESceneLoadType GetRemainScene => _remainScene;
+    public ESceneLoadType GetRemainScene => _remainSceneType;
     #endregion
 }
