@@ -90,7 +90,7 @@ public class CJsonManager : MonoBehaviour
         }
     }
 
-    private void SaveData<T>(T data, string pileName) where T : IJsonData
+    private void SaveData(IJsonData data, string pileName)
     {
         data.MakeSaveData();
         string json = JsonUtility.ToJson(data.SaveData, true);
@@ -111,8 +111,8 @@ public class CJsonManager : MonoBehaviour
             var key = data.Key;
             var value = data.Value;
             System.Type type = value.Item2;
+
             LoadData(key, value.Item1, type);
-            //LoadData(out value.Item1, key);
         }
     }
 
