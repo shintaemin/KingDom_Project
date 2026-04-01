@@ -16,7 +16,10 @@ using UnityEngine;
 public class CJsonManager : MonoBehaviour
 {
     #region 인스펙터
-
+    [Header("디버그용")]
+    [SerializeField] private bool _useDebugKey = false;
+    [SerializeField] private KeyCode _saveKey = KeyCode.S;
+    [SerializeField] private KeyCode _loadKey = KeyCode.L;
     #endregion
 
     #region 내부 변수
@@ -45,13 +48,16 @@ public class CJsonManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.S))
+        if(_useDebugKey)
         {
-            SaveAll();
-        }
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            LoadAll();
+            if (Input.GetKeyDown(_saveKey))
+            {
+                SaveAll();
+            }
+            if (Input.GetKeyDown(_loadKey))
+            {
+                LoadAll();
+            }
         }
     }
 
