@@ -85,8 +85,13 @@ public class CJsonManager : MonoBehaviour
 
     public void SaveAll()
     {
-        if (SavaDataDictionary == null)
+        if (SavaDataDictionary.IsNull("SavaDataDictionary"))
+        {
+            print("이게 없다는건 매니저에 등록된 객체가 없다는 뜻임.");
             return;
+        }
+
+        Debug.Log("Save all");
 
         foreach (var data in SavaDataDictionary)
         {
@@ -109,8 +114,13 @@ public class CJsonManager : MonoBehaviour
 
     public void LoadAll()
     {
-        if (SavaDataDictionary == null)
+        if (SavaDataDictionary.IsNull("SavaDataDictionary"))
+        {
+            print("이게 없다는건 매니저에 등록된 객체가 없다는 뜻임.");
             return;
+        }
+
+        Debug.Log("Load all");
 
         foreach (var data in SavaDataDictionary)
         {
