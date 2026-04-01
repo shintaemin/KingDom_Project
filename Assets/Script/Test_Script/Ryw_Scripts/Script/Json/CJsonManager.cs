@@ -7,8 +7,9 @@ using UnityEngine;
 /*
 ▶작성자 류연우
 
-직렬화가 가능한 정보만 가능하다.
-    인스펙터에 노출되는 정보만 가능하다.
+데이터를 저장하고 싶은 클래스에 IJsonData를 상속받고 해당 멤버들을 구현해주면 된다.
+그 후 CJsonManager.Instance.Add("test1", this, typeof(MyData)); 와 같은 코드를 start()에 넣어주면 된다.
+
 */
 #endregion
 
@@ -60,19 +61,19 @@ public class CJsonManager : MonoBehaviour
             Instance = null;
     }
 
-    public void Add(string key, IJsonData data, System.Type type)
+    public void Add(string fileName, IJsonData data, System.Type type)
     {
         if (SavaDataDictionary == null)
             SavaDataDictionary = new Dictionary<string, (IJsonData, System.Type)>();
 
-        if (!SavaDataDictionary.ContainsKey(key))
+        if (!SavaDataDictionary.ContainsKey(fileName))
         {
             //TryAdd
-            SavaDataDictionary.Add(key, (data, type));
+            SavaDataDictionary.Add(fileName, (data, type));
         }
         else
         {
-            Debug.LogWarning($"{key}는 이미 있는 키. 같은 오브젝트를 넣고 있거나, 같은 key를 사용중인듯.");
+            Debug.LogWarning($"{fileName}는 이미 있는 키. 같은 오브젝트를 넣고 있거나, 같은 key를 사용중인듯.");
         }
     }
 
@@ -91,7 +92,8 @@ public class CJsonManager : MonoBehaviour
 
     private void SaveData<T>(T data, string pileName) where T : IJsonData
     {
-        string json = JsonUtility.ToJson(data, true);
+        data.MakeSaveData();
+        string json = JsonUtility.ToJson(data.SaveData, true);
         string path = Path.Combine(Application.persistentDataPath, $"{pileName}.json");
 
         File.WriteAllText(path, json);
@@ -109,21 +111,29 @@ public class CJsonManager : MonoBehaviour
             var key = data.Key;
             var value = data.Value;
             System.Type type = value.Item2;
-            LoadData(out value.Item1, key);
-
-            //switch (type)
-            //{
-                //case :
-                    //LoadData<>(out value.Item1, key);
-
-            //}
-
-
-            if (value.Item1 != null)
-            {
-                SavaDataDictionary[key] = value;
-            }
+            LoadData(key, value.Item1, type);
+            //LoadData(out value.Item1, key);
         }
+    }
+
+    private void LoadData (string pileName, IJsonData data, System.Type type)
+    {
+        string path = Path.Combine(Application.persistentDataPath, $"{pileName}.json");
+
+        if (File.Exists(path))
+        {
+            string json = File.ReadAllText(path);
+            data.SaveData = JsonUtility.FromJson(json, type);
+
+            data.LoadSaveData();
+
+            Debug.Log($"불러오기 경로 : {path} \n 불러온 내용 : {json}");
+        }
+        else
+        {
+            Debug.Log("없음");
+        }
+
     }
 
     private void LoadData<T>(out T data, string pileName) where T : class, IJsonData
@@ -133,8 +143,7 @@ public class CJsonManager : MonoBehaviour
         if (File.Exists(path))
         {
             string json = File.ReadAllText(path);
-            data = null;
-            //data = JsonUtility.FromJson<T>(json);
+            data = JsonUtility.FromJson<T>(json);
 
             Debug.Log($"불러오기 경로 : {path} \n 불러온 내용 : {json}");
         }
