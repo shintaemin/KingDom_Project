@@ -45,6 +45,8 @@ public class IngameManager : MonoBehaviour
         _mapIndex = 1;
         SetMap(1/*stateData*/, _mapIndex);
     }
+
+    public MissionBase GetMission => _msManager.GetMission;
     #endregion
 
     private void Awake()
