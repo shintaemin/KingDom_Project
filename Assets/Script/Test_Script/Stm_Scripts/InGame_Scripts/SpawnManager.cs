@@ -109,7 +109,7 @@ public class SpawnManager : MonoBehaviour
 
     private void PosCheck(GameObject prefab_1, GameObject prefab_2, Transform[] pos, string tag_1, string tag_2)
     {
-        if (prefab_1 == null ||  prefab_2 == null)
+        if (prefab_1 == null || prefab_2 == null)
         {
             return;
         }
@@ -171,7 +171,6 @@ public class SpawnManager : MonoBehaviour
         GameObject go = Instantiate(map.gameObject, Vector3.zero, Quaternion.identity);
 
         _currentMap = go.GetComponent<Map_Stage>();
-        CheckSpawn();
     }
 
     public void MapClear()
@@ -183,6 +182,18 @@ public class SpawnManager : MonoBehaviour
 
         Destroy(_currentMap.gameObject);
         _currentMap = null;
+    }
+
+    public Map_Stage GetCurrentMap => _currentMap;
+
+    public void SpawnStart()
+    {
+        if (_currentMap == null)
+        {
+            return;
+        }
+
+        CheckSpawn();
     }
     #endregion
 }
