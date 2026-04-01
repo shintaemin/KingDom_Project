@@ -146,5 +146,8 @@ public class SceneLoadManager : MonoBehaviour
     // 외부에서 현재씬에따른 작업을 위해
     // 액션을 사용해도 좋지만 어떤 작업을 어떻게할지 어느정도로 이벤트를 사용할지 현재는 알수없어 일단은 확인이 가능하도록
     public ESceneLoadType GetRemainScene => _remainSceneType;
+
+    // 페이드를 사용하려면 인게임매니저를 통해서 받아서 사용하도록
+    public FadeSystem GetFadeSystem => _fadeSystme;
     #endregion
 }

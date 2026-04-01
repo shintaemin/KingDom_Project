@@ -17,5 +17,6 @@ public enum ESceneLoadType
     TestScene3,
     TestLobby,
     TestGame,
+    TestTitle,
     #endregion
 }

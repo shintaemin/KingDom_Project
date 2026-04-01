@@ -55,7 +55,7 @@ public class IngameManager : MonoBehaviour
         }
         if (_mapSO == null)
         {
-            Debug.Log($"[] : Map_Registry_SO 없음 맵 지정 불가");
+            Debug.Log($"[IngameManager] : Map_Registry_SO 없음 맵 지정 불가");
             return;
         }
         if (_sm == null)
@@ -64,7 +64,14 @@ public class IngameManager : MonoBehaviour
         }
         if (_fadeSystem == null)
         {
-            Debug.LogWarning($"[IngameManager] : 맵 전환 Fade 불가");
+            if (SceneLoadManager.Instance != null)
+            {
+                _fadeSystem = SceneLoadManager.Instance.GetFadeSystem;
+                if (_fadeSystem == null)
+                {
+                    Debug.Log("[IngameManager] : 맵전환 페이드 적용 불가 참조오류");
+                }
+            }
         }
 
         _enemys.Clear();
@@ -188,6 +195,7 @@ public class IngameManager : MonoBehaviour
             StopCoroutine(_mapChanegeCo);
             _mapChanegeCo = null;
         }
+
         if (answer == EMissionAnswer.Success)
         {
             // 다음 맵으로 이동 하기위해 인덱스 변경
