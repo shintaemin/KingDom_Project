@@ -30,14 +30,14 @@ if(CDataManager.Instance.SuchData(out CTalentDataSO tmp3, 0))
 */
 #endregion
 
-public class CDataManager : MonoBehaviour
+public class CSOManager : MonoBehaviour
 {
     #region 인스펙터
     [SerializeField] private CDataArraySO _dataArraySO;
     #endregion
 
     #region 내부 변수
-    public static CDataManager Instance;
+    public static CSOManager Instance;
 
     // 비추
     public CDataArraySO DataArraySO => _dataArraySO;
