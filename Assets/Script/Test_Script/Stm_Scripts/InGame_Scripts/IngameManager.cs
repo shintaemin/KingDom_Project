@@ -96,9 +96,6 @@ public class IngameManager : MonoBehaviour
         // 맵이 없다면
         if (map == null)
         {
-
-            // 여기서 씬종료로 연결
-            // 여기서 플레이어 스테이지 레벨 ++
             _currentMap = null;
             return;
         }
@@ -153,7 +150,7 @@ public class IngameManager : MonoBehaviour
             return;
         }
 
-        _msManager.OnMissionClearAnswer += ClearCheck;
+        _msManager.OnMissionClearAnswer += MissionClearCheck;
         _sm.OnSpawn += SpawnCheck;
         Debug.Log("[IngameManager] : 클리어 미션 구독완료!");
     }
@@ -163,7 +160,7 @@ public class IngameManager : MonoBehaviour
         // 미션 클리어시 바로 미션 구독 취소 및 지정된 맵 비우기
         if (_msManager != null)
         {
-            _msManager.OnMissionClearAnswer -= ClearCheck;
+            _msManager.OnMissionClearAnswer -= MissionClearCheck;
             _currentMap = null;
         }
 
@@ -190,7 +187,7 @@ public class IngameManager : MonoBehaviour
     }
 
     // 미션 클리어시 호출함수
-    private void ClearCheck(EMissionAnswer answer)
+    private void MissionClearCheck(EMissionAnswer answer)
     {
         if (_mapChanegeCo != null)
         {
@@ -200,21 +197,31 @@ public class IngameManager : MonoBehaviour
 
         if (answer == EMissionAnswer.Success)
         {
-            // 다음 맵으로 이동 하기위해 인덱스 변경
-            _mapIndex++;
-            // 미션 클리어하여 해당 미션 구독 취소
-            MissionClear();
+            // 여기서 문을 연다
+            if (_currentMap.TryGetComponent<DoorOpenAnim>(out DoorOpenAnim doorOpen))
+            {
+                doorOpen.PlayOpenAnim();
+            }
 
-            // 데이터 다시확인하고 맵 재지정
-            //int stateData = _playerData.GetStageData;
+            // 스테이지 종료 충돌 시점 구독
+            if (_currentMap.TryGetComponent<Door_StageEnd_Col>(out Door_StageEnd_Col endCol))
+            {
+                endCol.OnStageEnd += ChaingedNextMap;
+            }
+            else
+            {
+                // 여기서 성공 UI 를 띄우고 씬전환 입력대기
+                // 여기서 플레이어 스테이지 레벨 ++
 
-            _mapChanegeCo = StartCoroutine(CoChangeMap(1/*stateData*/, _mapIndex));
+                MissionClear();
+            }
+            
             return;
         }
 
         if (answer == EMissionAnswer.Fail)
         {
-            // 여기서 씬전환
+            // 여기서 실패 UI 를 띄우고 씬전환 입력대기
         }
     }
 
@@ -234,8 +241,23 @@ public class IngameManager : MonoBehaviour
 
         if (go.TryGetComponent<PlayerState>(out _pState))
         {
-
+            Debug.Log($"[IngameManager] : {_pState.gameObject.name} 구독 완료");
         }
+    }
+
+    private void ChaingedNextMap(Door_StageEnd_Col endCol)
+    {
+        endCol.OnStageEnd -= ChaingedNextMap;
+
+        // 다음 맵으로 이동 하기위해 인덱스 변경
+        _mapIndex++;
+        // 미션 클리어하여 해당 미션 구독 취소
+        MissionClear();
+
+        // 데이터 다시확인하고 맵 재지정
+        //int stateData = _playerData.GetStageData;
+
+        _mapChanegeCo = StartCoroutine(CoChangeMap(1/*stateData*/, _mapIndex));
     }
     #endregion
 }

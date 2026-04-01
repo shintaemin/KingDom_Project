@@ -49,6 +49,46 @@ public class MissionManager : MonoBehaviour
         ResetMission();
     }
 
+    #region 미션 클리어 구독
+    private void Subscription()
+    {
+        if (_currentMission == null || _sm == null)
+        {
+            return;
+        }
+
+        _currentMission.OnClearMission += MissionClear;
+    }
+
+    // 미션 클리어시 호출 함수
+    private void MissionClear()
+    {
+        // 미션 클리어시 바로 해당 미션 클리어 구독 취소
+        OnMissionClearAnswer?.Invoke(EMissionAnswer.Success);
+        ResetMission();
+    }
+
+    private void MissionFail()
+    {
+        OnMissionClearAnswer?.Invoke(EMissionAnswer.Fail);
+        ResetMission();
+    }
+
+    private void SpawnCheck(GameObject go)
+    {
+        if (go == null)
+        {
+            return;
+        }
+
+        if (go.TryGetComponent<PlayerState>(out _pState))
+        {
+            _pState.OnDead += MissionFail;
+        }
+    }
+    #endregion
+
+
     #region 외부 호출 함수
     public void SetMission(Map_Stage map)
     {
@@ -105,44 +145,4 @@ public class MissionManager : MonoBehaviour
     // 외부에서 지정된 미션구독을 진행하기위해
     public MissionBase GetMission => _currentMission;
     #endregion
-
-    #region 미션 클리어 구독
-    private void Subscription()
-    {
-        if (_currentMission == null || _sm == null)
-        {
-            return;
-        }
-
-        _currentMission.OnClearMission += MissionClear;
-    }
-
-    // 미션 클리어시 호출 함수
-    private void MissionClear()
-    {
-        // 미션 클리어시 바로 해당 미션 클리어 구독 취소
-        OnMissionClearAnswer?.Invoke(EMissionAnswer.Success);
-        ResetMission();
-    }
-
-    private void MissionFail()
-    {
-        OnMissionClearAnswer?.Invoke(EMissionAnswer.Fail);
-        ResetMission();
-    }
-
-    private void SpawnCheck(GameObject go)
-    {
-        if (go == null)
-        {
-            return;
-        }
-
-        if (go.TryGetComponent<PlayerState>(out _pState))
-        {
-            _pState.OnDead += MissionFail;
-        }
-    }
-    #endregion
-
 }
