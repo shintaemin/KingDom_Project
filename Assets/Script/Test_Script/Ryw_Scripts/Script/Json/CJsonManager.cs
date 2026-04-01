@@ -9,33 +9,8 @@ using UnityEngine;
 
 직렬화가 가능한 정보만 가능하다.
     인스펙터에 노출되는 정보만 가능하다.
-
-
-이를 위해 따로 클래스를 구현하거나, 자기 자신에 [System.Serializable]를 붙여야 할 것.
 */
 #endregion
-
-// public 만 json이 읽어올 수 있다.
-[System.Serializable]
-public class JsonDataTest : IJsonData
-{
-    public string stringData;
-    public int intData;
-    public float floatData;
-    public bool boolData;
-    public List<string> inventory = new List<string>();
-
-    [SerializeField] private int ID;
-
-    public JsonDataTest()
-    {
-        // 이 랜덤은 유니티의 랜덤인데, 이 경우 직렬화나 생성자에서 사용하면 오류가 생길 수 있다고.ㅇ ㅓㅈ
-        // 그러니까 system의 랜덤을 사용하로
-        //ID = Random.Range(0, 10000);
-        System.Random _rand = new System.Random();
-        ID = new System.Random().Next(0, 10001);
-    }
-}
 
 public class CJsonManager : MonoBehaviour
 {
@@ -46,8 +21,8 @@ public class CJsonManager : MonoBehaviour
     #region 내부 변수
     public static CJsonManager Instance;
 
-    [Header("디버그용 클래스")]
-    public JsonDataTest TestData;
+    public Dictionary<string, (IJsonData, System.Type)> SavaDataDictionary;
+    //public Dictionary<string, IJsonData> SavaDataDictionary;
     #endregion
 
     void Awake()
@@ -71,11 +46,11 @@ public class CJsonManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.S))
         {
-            SaveData(TestData, "saveData");
+            SaveAll();
         }
         if (Input.GetKeyDown(KeyCode.L))
         {
-            LoadData(out TestData, "saveData");
+            LoadAll();
         }
     }
 
@@ -83,6 +58,35 @@ public class CJsonManager : MonoBehaviour
     {
         if (Instance == this)
             Instance = null;
+    }
+
+    public void Add(string key, IJsonData data, System.Type type)
+    {
+        if (SavaDataDictionary == null)
+            SavaDataDictionary = new Dictionary<string, (IJsonData, System.Type)>();
+
+        if (!SavaDataDictionary.ContainsKey(key))
+        {
+            //TryAdd
+            SavaDataDictionary.Add(key, (data, type));
+        }
+        else
+        {
+            Debug.LogWarning($"{key}는 이미 있는 키. 같은 오브젝트를 넣고 있거나, 같은 key를 사용중인듯.");
+        }
+    }
+
+    public void SaveAll()
+    {
+        if (SavaDataDictionary == null)
+            return;
+
+        foreach (var data in SavaDataDictionary)
+        {
+            var value = data.Value;
+            var key = data.Key;
+            SaveData(value.Item1, key);
+        }
     }
 
     private void SaveData<T>(T data, string pileName) where T : IJsonData
@@ -95,6 +99,33 @@ public class CJsonManager : MonoBehaviour
         Debug.Log($"저장된 경로 : {path} \n 저장된 내용 : {json}");
     }
 
+    public void LoadAll()
+    {
+        if (SavaDataDictionary == null)
+            return;
+
+        foreach (var data in SavaDataDictionary)
+        {
+            var key = data.Key;
+            var value = data.Value;
+            System.Type type = value.Item2;
+            LoadData(out value.Item1, key);
+
+            //switch (type)
+            //{
+                //case :
+                    //LoadData<>(out value.Item1, key);
+
+            //}
+
+
+            if (value.Item1 != null)
+            {
+                SavaDataDictionary[key] = value;
+            }
+        }
+    }
+
     private void LoadData<T>(out T data, string pileName) where T : class, IJsonData
     {
         string path = Path.Combine(Application.persistentDataPath, $"{pileName}.json");
@@ -102,7 +133,8 @@ public class CJsonManager : MonoBehaviour
         if (File.Exists(path))
         {
             string json = File.ReadAllText(path);
-            data = JsonUtility.FromJson<T>(json);
+            data = null;
+            //data = JsonUtility.FromJson<T>(json);
 
             Debug.Log($"불러오기 경로 : {path} \n 불러온 내용 : {json}");
         }
