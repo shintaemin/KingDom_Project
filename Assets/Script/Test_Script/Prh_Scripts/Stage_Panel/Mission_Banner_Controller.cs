@@ -1,98 +1,150 @@
-using System.Collections;
-using System.Collections.Generic;
+ï»¿using System.Collections;
 using UnityEngine;
 
-#region ¹Ì¼Ç ¹è³Ê ¿¬Ãâ
+#region ë¯¸ì…˜ ë°°ë„ˆ ì—°ì¶œ
 /*
- ¢º ÇÒÀÏ
-  - ÁÂ / ¿ì UI ±×·ìÀÌ ¼­·Î Áß¾ÓÀ¸·Î ÀÌµ¿ÇÏ¿© ¸¸³ª´Â ¿¬Ãâ
-  - Àá±ñ Á¤Áö ÈÄ °°Àº ¹æÇâÀ¸·Î °è¼Ó ÀÌµ¿ÇÏ¸ç È­¸é ¹ÛÀ¸·Î »ç¶óÁü
-  - À§Ä¡ º¸°£(Lerp)À» »ç¿ëÇÏ¿© ÀÚ¿¬½º·´°Ô ÀÌµ¿ Ã³¸®
+ â–¶ í• ì¼
+  - ì¢Œ / ìš° UI ê·¸ë£¹ì´ ì¤‘ì•™ìœ¼ë¡œ ì´ë™í•˜ì—¬ ë§Œë‚˜ëŠ” ì—°ì¶œ
+  - ì¤‘ì•™ì—ì„œ ë©ˆì¶”ì§€ ì•Šê³  ì†ë„ë§Œ ëŠë ¤ì¡Œë‹¤ê°€ ë‹¤ì‹œ ë¹¨ë¼ì§€ë©° ì´ë™
+  - ì‹œì‘ë¶€í„° ëê¹Œì§€ í•œ ë²ˆì˜ íë¦„ìœ¼ë¡œ ìì—°ìŠ¤ëŸ½ê²Œ ì²˜ë¦¬
 
-  - ¹Ú¶óÈñ
+  - ë°•ë¼í¬
  */
 #endregion
 
-
 public class Mission_Banner_Controller : MonoBehaviour
 {
-    #region ÀÎ½ºÆåÅÍ
-    [SerializeField] private RectTransform _leftGroup;
-    [SerializeField] private RectTransform _rightGroup;
+    #region ì¸ìŠ¤í™í„°
 
-    [Header("½ÃÀÛ / Áß¾Ó À§Ä¡")]
+    [Header("ì°¸ì¡°")]
+    [SerializeField] private RectTransform _leftRect;
+    [SerializeField] private RectTransform _rightRect;
+
+    [Header("ìœ„ì¹˜")]
     [SerializeField] private Vector2 _leftStart;
-    [SerializeField] private Vector2 _leftEnd;
+    [SerializeField] private Vector2 _leftMeet;
 
     [SerializeField] private Vector2 _rightStart;
-    [SerializeField] private Vector2 _rightEnd;
+    [SerializeField] private Vector2 _rightMeet;
 
-    [Header("½Ã°£ ¼³Á¤")]
-    // Áß¾Ó±îÁö ÀÌµ¿ ½Ã°£
-    [SerializeField] private float _moveToMeetTime = 0.35f;
-    // Áß¾Ó¿¡¼­ À¯Áö ½Ã°£
-    [SerializeField] private float _holdTime = 0.08f;
-    // È­¸é ¹ÛÀ¸·Î ÀÌµ¿ ½Ã°£
-    [SerializeField] private float _moveOutTime = 0.35f;
+    [Header("ë ì´ë™ ê±°ë¦¬")]
+    [SerializeField] private float _outDistance = 1400f;
 
-    [Header("ÀÌµ¿ °Å¸®")]
-    [SerializeField] private float _continueDistance = 1400f;
+    [Header("ì‹œê°„ ì„¤ì •")]
+    [SerializeField] private float _approachTime = 0.35f;
+    [SerializeField] private float _slowTime = 3.0f;
+    [SerializeField] private float _exitTime = 0.45f;
+
+    [Header("ìŠ¬ë¡œìš° ì´ë™ ê±°ë¦¬")]
+    [SerializeField] private float _slowMoveDistance = 80f;
+    #endregion
+
+    #region ë‚´ë¶€ ë³€ìˆ˜
+    // í˜„ì¬ ì‹¤í–‰ ì¤‘ì¸ ì½”ë£¨í‹´ ì €ì¥
+    private Coroutine _playCoroutine;
     #endregion
 
     private void OnEnable()
     {
-        // È°¼ºÈ­µÇ¸é ½ÃÀÛ
-        StartCoroutine(CoPlay());
-    }
-
-    private IEnumerator CoPlay()
-    {
-        // ½ÃÀÛ À§Ä¡·Î ¼¼ÆÃ
-        _leftGroup.anchoredPosition = _leftStart;
-        _rightGroup.anchoredPosition = _rightStart;
-
-        // 1. ½ÃÀÛ À§Ä¡ -> Áß¾Ó À§Ä¡·Î ¸¸³ª´Â À§Ä¡
-        yield return CoMovePair(_leftStart, _leftEnd, _rightStart, _rightEnd, _moveToMeetTime);
-
-        // 2. Áß¾Ó¿¡¼­ Àá±ñ À¯Áö
-        yield return new WaitForSeconds(_holdTime);
-
-        // 3. °°Àº ¹æÇâÀ¸·Î °è¼Ó ÁøÇàÇÒ ¸ñÇ¥ °è»ê
-        Vector2 leftDir = (_leftEnd - _leftStart).normalized;
-        Vector2 rightDir = (_rightEnd - _rightStart).normalized;
-
-        // 4. Áß¾Ó ÀÌÈÄ °è¼Ó ÀÌµ¿ÇÒ À§Ä¡ °è»ê
-        Vector2 leftOut = _leftEnd + leftDir * _continueDistance;
-        Vector2 rightOut = _rightEnd + rightDir * _continueDistance;
-
-        // 5. °°Àº ¹æÇâÀ¸·Î °è¼Ó ÀÌµ¿ÇÏ¿© È­¸é ¹ÛÀ¸·Î »ç¶óÁü
-        yield return CoMovePair(_leftEnd, leftOut, _rightEnd, rightOut, _moveOutTime);
-    }
-
-    // ÁÂ¿ì ¹è³Ê¸¦ µ¿½Ã¿¡ ÀÌµ¿ ÇÔ¼ö
-    private IEnumerator CoMovePair(Vector2 leftFrom, Vector2 leftTo, Vector2 rightFrom, Vector2 rightTo, float duration)
-    {
-        // °æ°ú ½Ã°£
-        float time = 0f;
-
-        // duration µ¿¾È ¹İº¹
-        while (time < duration)
+        // ê¸°ì¡´ ì½”ë£¨í‹´ì´ ìˆìœ¼ë©´ ì¤‘ì§€
+        if (_playCoroutine != null)
         {
-            // ½Ã°£ Áõ°¡
-            time += Time.deltaTime;
-            // ÁøÇà·ü 0~1
-            float t = Mathf.Clamp01(time / duration);
+            StopCoroutine(_playCoroutine);
+        }
 
-            // À§Ä¡ º¸°£ (½ÃÀÛ -> ¸ñÇ¥)
-            _leftGroup.anchoredPosition = Vector2.Lerp(leftFrom, leftTo, t);
-            _rightGroup.anchoredPosition = Vector2.Lerp(rightFrom, rightTo, t);
+        // ë°°ë„ˆ ì—°ì¶œ ì‹œì‘
+        _playCoroutine = StartCoroutine(CoPlayBanner());
+    }
 
-            // ´ÙÀ½ ÇÁ·¹ÀÓ±îÁö ´ë±â
+    #region ì½”ë£¨í‹´
+    // ì „ì²´ ë°°ë„ˆ ì—°ì¶œ íë¦„
+    private IEnumerator CoPlayBanner()
+    {
+        // ì‹œì‘ ìœ„ì¹˜ ì„¸íŒ…
+        _leftRect.anchoredPosition = _leftStart;
+        _rightRect.anchoredPosition = _rightStart;
+
+        // ì´ë™ ë°©í–¥ ê³„ì‚°
+        Vector2 leftDir = (_leftMeet - _leftStart).normalized;
+        Vector2 rightDir = (_rightMeet - _rightStart).normalized;
+
+        // ì¤‘ì•™ ì´í›„ ì²œì²œíˆ ì´ë™í•  ìœ„ì¹˜ ê³„ì‚°
+        Vector2 leftSlowEnd = _leftMeet + leftDir * _slowMoveDistance;
+        Vector2 rightSlowEnd = _rightMeet + rightDir * _slowMoveDistance;
+
+        // ìµœì¢… í™”ë©´ ë°– ìœ„ì¹˜ ê³„ì‚°
+        Vector2 leftEnd = leftSlowEnd + leftDir * _outDistance;
+        Vector2 rightEnd = rightSlowEnd + rightDir * _outDistance;
+
+        // 1. ì‹œì‘ â†’ ì¤‘ì•™ ë¹ ë¥´ê²Œ ì´ë™
+        yield return CoMove(
+            _leftRect,
+            _rightRect,
+            _leftStart,
+            _rightStart,
+            _leftMeet,
+            _rightMeet,
+            _approachTime);
+
+        // 2. ì¤‘ì•™ â†’ ìŠ¬ë¡œìš° ì´ë™
+        yield return CoMove(
+            _leftRect,
+            _rightRect,
+            _leftMeet,
+            _rightMeet,
+            leftSlowEnd,
+            rightSlowEnd,
+            _slowTime);
+
+        // 3. ìŠ¬ë¡œìš° â†’ í™”ë©´ ë°– ë¹ ë¥´ê²Œ ì´ë™
+        yield return CoMove(
+            _leftRect,
+            _rightRect,
+            leftSlowEnd,
+            rightSlowEnd,
+            leftEnd,
+            rightEnd,
+            _exitTime);
+
+        // ì½”ë£¨í‹´ ì¢…ë£Œ í‘œì‹œ
+        _playCoroutine = null;
+    }
+
+    // ì¢Œ / ìš° ë°°ë„ˆ ë™ì‹œì— ì´ë™
+    private IEnumerator CoMove(
+        RectTransform leftRect,
+        RectTransform rightRect,
+        Vector2 leftFrom,
+        Vector2 rightFrom,
+        Vector2 leftTo,
+        Vector2 rightTo,
+        float moveTime)
+    {
+        // ê²½ê³¼ ì‹œê°„
+        float elapsed = 0f;
+
+        while (elapsed < moveTime)
+        {
+            // ì‹œê°„ ì¦ê°€
+            elapsed += Time.deltaTime;
+
+            // ì§„í–‰ë¥  ê³„ì‚° (0 ~ 1)
+            float t = Mathf.Clamp01(elapsed / moveTime);
+
+            // ë¶€ë“œëŸ¬ìš´ ë³´ê°„
+            float easedT = t * t * (3f - 2f * t);
+
+            // ìœ„ì¹˜ ë³´ê°„ ì ìš©
+            leftRect.anchoredPosition = Vector2.Lerp(leftFrom, leftTo, easedT);
+            rightRect.anchoredPosition = Vector2.Lerp(rightFrom, rightTo, easedT);
+
+            // ë‹¤ìŒ í”„ë ˆì„ ëŒ€ê¸°
             yield return null;
         }
 
-        // ¸¶Áö¸· Á¤È®ÇÑ À§Ä¡ Àû¿ë 
-        _leftGroup.anchoredPosition = leftTo;
-        _rightGroup.anchoredPosition = rightTo;
+        // ë§ˆì§€ë§‰ ì •í™•í•œ ìœ„ì¹˜ ë³´ì •
+        leftRect.anchoredPosition = leftTo;
+        rightRect.anchoredPosition = rightTo;
     }
+    #endregion
 }
