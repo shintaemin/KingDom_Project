@@ -6,12 +6,23 @@ using UnityEngine;
 /*
 ▶ 작성자 류연우
 
+가능하면 매니저를 통해 사용할것.
+아마도, 인스턴스를 생성하지 않고 직접 사용했을때, 메모리 문제가 생기지 않을 것이다. 아마도.
+
 */
 #endregion
 
 [CreateAssetMenu(menuName = "Create SO/Data/Data Array (SO)", fileName = "DataArraySO_")]
 public class CDataArraySO : ScriptableObject
 {
+    public enum EDataType
+    {
+        EquipmentData,
+        TalentData,
+        MissionData,
+        AbilityData
+    }
+
     #region 인스펙터
     [SerializeField] private List<CTalentDataSO> _talentDataArr;
     [SerializeField] private List<CMissionDataSO> _missionDataArr;
@@ -19,10 +30,53 @@ public class CDataArraySO : ScriptableObject
     [SerializeField] private List<CEquipmentDataSO> _equipmentDataArr;
     #endregion
 
+    public ICSVData FUnc()
+    {
+        return _talentDataArr[0];
+    }
+
     #region 내부 변수
-    public IReadOnlyList<CTalentDataSO> TalentDataArr => _talentDataArr;
-    public IReadOnlyList<CMissionDataSO>MissionDataArr => _missionDataArr;
-    public IReadOnlyList<CAbilityDataSO> AbilityDataArr => _abilityDataArr;
-    public IReadOnlyList<CEquipmentDataSO> EquipmentDataSOs => _equipmentDataArr;
+    private Dictionary<int, ICSVData> _talentDataDic;
+    private Dictionary<int, ICSVData> _missionDataDic;
+    private Dictionary<int, ICSVData> _abilityDataDic;
+    private Dictionary<int, ICSVData> _equipmentDataDic;
+
+    //public IReadOnlyDictionary<int, CTalentDataSO> TalentDataDic => _talentDataArr.ToDictionary(data => data.ID);
+    public IReadOnlyDictionary<int, ICSVData> TalentDataDic => _talentDataDic ??= InitDataDic(_talentDataArr);
+    public IReadOnlyDictionary<int, ICSVData> MissionDataDic => _missionDataDic ??= InitDataDic(_missionDataArr);
+    public IReadOnlyDictionary<int, ICSVData> AbilityDataDic => _abilityDataDic ??= InitDataDic(_abilityDataArr);
+    public IReadOnlyDictionary<int, ICSVData> EquipmentDataDic => _equipmentDataDic ??= InitDataDic(_equipmentDataArr);
+
+    //public IReadOnlyDictionary<EDataType, IReadOnlyDictionary<int, ICSVData>> DataDic => _dataDic ??= InitDataDic();
+
+    //private object InitDataDic()
+    //{
+        
+    //}
     #endregion
+
+
+    public IReadOnlyDictionary<int, ICSVData> this[EDataType dataType] => dataType switch
+    {
+        EDataType.TalentData => TalentDataDic,
+        EDataType.AbilityData => AbilityDataDic,
+        EDataType.MissionData => MissionDataDic,
+        EDataType.EquipmentData => EquipmentDataDic,
+        _ => null
+    };
+
+    private Dictionary<int, ICSVData> InitDataDic<T>(List<T> list) where T : ICSVData
+    {
+        var dic = new Dictionary<int, ICSVData>();
+        foreach (var item in list)
+        {
+            if (item == null) continue;
+
+            if (!dic.TryAdd(item.ID, item))
+            {
+                Debug.LogError($"중복된 ID 발견: {item.ID} (타입: {typeof(T).Name})");
+            }
+        }
+        return dic;
+    }
 }

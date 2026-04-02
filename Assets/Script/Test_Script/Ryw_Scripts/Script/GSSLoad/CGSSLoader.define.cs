@@ -12,7 +12,7 @@ using UnityEngine;
 
 public partial class CGSSLoader : MonoBehaviour
 {
-    #region 스프레드시트
+    #region 스프레드시트 URL
     static readonly string URL = "https://docs.google.com/spreadsheets/d/1wx7tsBCYFjxJkCGeNdoklLhEJamttKUGMLcJNghr1wc";
     static readonly string EXTRA_URL = "/export?format=";
     static readonly string LOAD_TYPE = "csv";
