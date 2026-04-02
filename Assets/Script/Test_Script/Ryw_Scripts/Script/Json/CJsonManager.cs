@@ -83,6 +83,21 @@ public class CJsonManager : MonoBehaviour
         }
     }
 
+    public void Remove(string fileName)
+    {
+        if (SavaDataDictionary.IsNull("SavaDataDictionary")) return;
+
+        if (SavaDataDictionary.ContainsKey(fileName))
+        {
+            SavaDataDictionary.Remove(fileName);
+            //Debug.Log($"{fileName} 제거.");
+        }
+        else
+        {
+            Debug.LogWarning($"{fileName}가 없는듯?");
+        }
+    }
+
     public void SaveAll()
     {
         if (SavaDataDictionary.IsNull("SavaDataDictionary"))

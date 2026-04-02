@@ -66,7 +66,7 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
         {
             int sum = 0;
 
-            for(int i = 0; i< 9; i++)
+            for (int i = 0; i < 9; i++)
             {
                 sum += _currentUpgradeLevel[i];
             }

@@ -12,6 +12,10 @@ CJsonManager에서 정보를 저장하기 전에 SaveData의 값을 만들어주는 함수. 직접 구현
 LoadSaveData
 SaveData의 값을 역직렬화 후 해당 클래스의 정보를 자신에게 적용해주는 함수. 직접 구현해야한다.
 
+
+※ 데이터 클래스의 경우 세이브 파일 초기화 기능을 위해 기본 값을 초기값이라고 생각하고 할당해주길 바람.
+아니라면 이것도 스프레드 시트를 만든다.
+
 예시
 [System.Serializable]
 public class MyData
