@@ -2,6 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+    ㆍ PlayerRangeCheck
+
+    ㆍ 작성자 : 황원준
+
+    ㆍ 기능 : OverlapSphere를 활용하여 주기적으로 주변 적을 탐색, 그중에 가장 가까운 대상을 공격 타겟으로 자동 설정
+*/
+
 public class PlayerRangeCheck : BaseRangeCheck
 {
     #region 인스펙터
