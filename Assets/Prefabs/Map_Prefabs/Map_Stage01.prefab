@@ -364,7 +364,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stageNum: 1
   _subStageNum: 1
-  _missionType: 1
+  _missionType: 0
   _playerSpawnPos: {fileID: 6271290790308822406}
   _enemySpawnPos:
   - {fileID: 3609222817830533070}

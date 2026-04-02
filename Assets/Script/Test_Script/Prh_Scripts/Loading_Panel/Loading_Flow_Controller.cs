@@ -44,6 +44,9 @@ public class Loading_Flow_Controller : MonoBehaviour
         yield return new WaitForSeconds(_time03);
 
         // 게임씬으로 이동 (씬 이름은 인스펙터에서 설정 가능)
-        // SceneManager.LoadScene(_nextSceneName);
+        if (SceneLoadManager.Instance != null)
+        {
+            SceneLoadManager.Instance.LoadScene(ESceneLoadType.TestLobby);
+        }
     }
 }

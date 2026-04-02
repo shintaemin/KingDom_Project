@@ -6,7 +6,6 @@ public class StartButton_Controller : MonoBehaviour
 {
     public void OnClickStart()
     {
-        /*
         if (SceneLoadManager.Instance != null)
         {
             SceneLoadManager.Instance.LoadScene(ESceneLoadType.TestGame);
@@ -15,6 +14,5 @@ public class StartButton_Controller : MonoBehaviour
         {
             Debug.LogWarning("SceneLoadManager°¡ ¾øÀ½");
         }
-        */
     }
 }

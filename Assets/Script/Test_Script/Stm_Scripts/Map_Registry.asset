@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Map_Registry
   m_EditorClassIdentifier: 
   _maps:
-  - {fileID: 3132381152148594737, guid: 35587355e5b0e0444818a83a3e9a08bb, type: 3}
+  - {fileID: 151081552220077305, guid: e477ecb1cd0dcb04e9926a80ff73bd1f, type: 3}

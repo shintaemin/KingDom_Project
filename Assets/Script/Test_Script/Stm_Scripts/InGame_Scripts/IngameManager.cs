@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -33,6 +34,7 @@ public class IngameManager : MonoBehaviour
     #endregion
 
     #region 내부 변수
+    public event Action<EMissionAnswer> OnGameEnd;
     private Coroutine _mapChanegeCo;
     #endregion
 
@@ -82,6 +84,11 @@ public class IngameManager : MonoBehaviour
     private void OnDestroy()
     {
         MissionClear();
+    }
+
+    private void Start()
+    {
+        GameStart();
     }
 
     private void SetMap(int stageData, int mapIndex)
@@ -178,7 +185,7 @@ public class IngameManager : MonoBehaviour
 
             if (go != null && _msManager.GetMission != null)
             {
-                go.OnDead -= _msManager.GetMission.CheckClear;
+                go.OnDead -= _msManager.KillEvent;
                 _enemys.RemoveAt(i);
             }
         }
@@ -216,7 +223,7 @@ public class IngameManager : MonoBehaviour
             {
                 // 여기서 성공 UI 를 띄우고 씬전환 입력대기
                 // 여기서 플레이어 스테이지 레벨 ++
-
+                OnGameEnd?.Invoke(answer);
                 MissionClear();
             }
             
@@ -239,13 +246,13 @@ public class IngameManager : MonoBehaviour
         if (go.TryGetComponent<EnemyState>(out EnemyState eState))
         {
             _enemys.Add(eState);
-            eState.OnDead += _msManager.GetMission.CheckClear;
-            Debug.Log($"[IngameManager] : {_enemys.Count} 구독 완료");
+            eState.OnDead += _msManager.KillEvent;
+            Debug.Log($"[IngameManager] : 적 사망 {_enemys.Count} 구독 완료");
         }
 
         if (go.TryGetComponent<PlayerState>(out _pState))
         {
-            Debug.Log($"[IngameManager] : {_pState.gameObject.name} 구독 완료");
+            Debug.Log($"[IngameManager] : {_pState.gameObject.name} 전달 완료");
         }
     }
 

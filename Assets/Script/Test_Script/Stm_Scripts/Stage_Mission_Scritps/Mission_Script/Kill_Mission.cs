@@ -66,7 +66,14 @@ public class Kill_Mission : MissionBase
         ResetData();
     }
 
-    public int GetTargetCount => _targetKillCount;
-    public int GetRemaincount => _remainKillCount;
+    public override int GetTargetCount()
+    {
+        return _targetKillCount;
+    }
+
+    public override int GetRemainCount()
+    {
+        return _remainKillCount;
+    }
     #endregion
 }

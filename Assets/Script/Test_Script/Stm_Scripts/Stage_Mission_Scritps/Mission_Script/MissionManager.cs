@@ -28,6 +28,9 @@ public class MissionManager : MonoBehaviour
     [SerializeField] private MissionBase _currentMission;
     [SerializeField] private SpawnManager _sm;
     [SerializeField] private PlayerState _pState;
+
+
+    [SerializeField] private IngameUIManager _gameUIManger;
     #endregion
 
     #region 내부 변수
@@ -41,6 +44,14 @@ public class MissionManager : MonoBehaviour
             _sm = FindAnyObjectByType<SpawnManager>();
         }
 
+        if (_gameUIManger == null)
+        {
+            _gameUIManger = FindAnyObjectByType<IngameUIManager>();
+            if (_gameUIManger == null)
+            {
+                Debug.LogWarning("[MissionManager] : 인게임 UI 매니저 캐싱 실패");
+            }
+        }
         _sm.OnSpawn += SpawnCheck;
     }
 
@@ -140,6 +151,24 @@ public class MissionManager : MonoBehaviour
         _currentMission.OnClearMission -= MissionClear;
         // 스폰 구독 해제
         _sm.OnSpawn -= SpawnCheck;
+    }
+
+    public void KillEvent()
+    {
+        if (_gameUIManger == null)
+        {
+            _gameUIManger = FindAnyObjectByType<IngameUIManager>();
+            if (_gameUIManger == null)
+            {
+                Debug.LogWarning("[MissionManager] : 인게임 UI 매니저 캐싱 실패");
+                return;
+            }
+        }
+
+        _currentMission.CheckClear();
+        int target = _currentMission.GetTargetCount();
+        int remain = _currentMission.GetRemainCount();
+        _gameUIManger.GetKillCountUI(remain, target);
     }
 
     // 외부에서 지정된 미션구독을 진행하기위해

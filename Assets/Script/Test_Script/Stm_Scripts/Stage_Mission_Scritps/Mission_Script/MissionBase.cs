@@ -32,5 +32,9 @@ public abstract class MissionBase
     {
         OnClearMission?.Invoke();
     }
+
+    public abstract int GetTargetCount();
+
+    public abstract int GetRemainCount();
 }
 

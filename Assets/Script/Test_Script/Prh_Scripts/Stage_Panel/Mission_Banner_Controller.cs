@@ -44,7 +44,7 @@ public class Mission_Banner_Controller : MonoBehaviour
     private Coroutine _playCoroutine;
     #endregion
 
-    private void OnEnable()
+    private void Start()
     {
         // 기존 코루틴이 있으면 중지
         if (_playCoroutine != null)
@@ -60,6 +60,8 @@ public class Mission_Banner_Controller : MonoBehaviour
     // 전체 배너 연출 흐름
     private IEnumerator CoPlayBanner()
     {
+        yield return new WaitForSeconds(3f);
+
         // 시작 위치 세팅
         _leftRect.anchoredPosition = _leftStart;
         _rightRect.anchoredPosition = _rightStart;
