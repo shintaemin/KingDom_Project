@@ -39,6 +39,18 @@ public class PlayerCombat : BaseCombat
         OnAttacked?.Invoke();
     }
 
+    private void LookTarget(Transform target)
+    {
+        Vector3 direction = (target.position - transform.position).normalized;
+        direction.y = 0;
+
+        if (direction != Vector3.zero)
+        {
+            transform.rotation = Quaternion.LookRotation(direction);
+        }
+    }
+
+    #region 애니메이션 이벤트 함수
     public override void OnHitTarget()
     {
         if (_rangeCheck.TargetTr == null)
@@ -54,15 +66,5 @@ public class PlayerCombat : BaseCombat
             // 데미지 로그
         }
     }
-
-    private void LookTarget(Transform target)
-    {
-        Vector3 direction = (target.position - transform.position).normalized;
-        direction.y = 0;
-
-        if (direction != Vector3.zero)
-        {
-            transform.rotation = Quaternion.LookRotation(direction);
-        }
-    }
+    #endregion
 }
