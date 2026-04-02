@@ -65,5 +65,8 @@ public class Kill_Mission : MissionBase
         base.ClearMission();
         ResetData();
     }
+
+    public int GetTargetCount => _targetKillCount;
+    public int GetRemaincount => _remainKillCount;
     #endregion
 }
