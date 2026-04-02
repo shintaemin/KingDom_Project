@@ -153,4 +153,54 @@ public static partial class Function
 
         return (T)result;
     }
+
+    /// <summary>
+    /// MakeSaveData 에서 사용
+    /// </summary>
+    /// <typeparam name="T"> 딕셔너리 키의 타입</typeparam>
+    /// <typeparam name="T2"> 딕셔너리 값의 타입</typeparam>
+    /// <param name="obj"> 딕셔너리</param>
+    /// <param name="keys"> 키의 배열</param>
+    /// <param name="values"> 값의 배열</param>
+    public static void DicToArray<T, T2>(this Dictionary<T, T2> obj, T[] keys, T2[]values)
+    {
+        obj.IsNull("obj");
+        keys.IsNull("keys");
+        values.IsNull("values");
+
+        // 순서 정렬은 필요 없고 같은 인덱스의 값이 연결만 되면 된다.
+        int index = 0;
+        foreach (var (key, value) in obj)
+        {
+            keys[index] = key;
+            values[index] = value;
+            ++index;
+        }
+    }
+
+    /// <summary>
+    /// LoadSaveData 에서 사용
+    /// </summary>
+    /// <typeparam name="T">딕셔너리 키의 타입</typeparam>
+    /// <typeparam name="T2">딕셔너리 값의 타입</typeparam>
+    /// <param name="obj">딕셔너리</param>
+    /// <param name="keys">키의 배열</param>
+    /// <param name="values">값의 배열</param>
+    /// <param name="clearFlag">딕셔너리 clear 여부</param>
+    public static void ArrayToDic<T, T2>(this Dictionary<T, T2> obj, T[] keys, T2[] values, bool clearFlag = false)
+    {
+        obj.IsNull("obj");
+        keys.IsNull("keys");
+        values.IsNull("values");
+
+        if(clearFlag)
+            obj.Clear();
+
+        for (int i = 0; i < keys.Length; i++)
+        {
+            T id = keys[i];
+            T2 value = values[i];
+            obj[id] = value;
+        }
+    }
 }

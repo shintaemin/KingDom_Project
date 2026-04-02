@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 
@@ -24,6 +26,11 @@ public class PlayerSaveData
 
     public int[] CurrentUpgradeLevel = new int[3];
     public int[] CurrentTalentLevel = new int[9];
+
+    // 딕셔너리
+    // 2026-04-02 기준 장비의 총 개수는 64개임. 데이터 시트 참고.
+    public int[] EquipmentDicID = new int[64];
+    public bool[] EquipmentDicValue = new bool[64];
 }
 
 public class CPlayerDataManager : MonoBehaviour, IJsonData
@@ -38,17 +45,16 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
     [SerializeField] private int[] _currentUpgradeLevel = new int[3];
     [SerializeField] private int[] _currentTalentLevel = new int[9];
 
-    // 이 부분은 고민이 필요하다.
-    // 딕셔너리로 저장하면 편하겠지만, 직렬화를 위한 추가 처리가 필요하다.
-    // UI를 기준으로 정한다면 그냥 배열로 하면 되지만, UI와의 지속적인 연동이 필요한데... 이러면 책임 역전 아닌가?
-    //[SerializeField] private bool[] _weaponUnLock;
-    //[SerializeField] private bool[] _ClothesUnLock;
+    [Header("디버그용. 추후 [SerializeField]를 제거하고 내부변수쪽으로 옮긴다.")]
+    [SerializeField] private PlayerSaveData _data;
     #endregion
 
     #region 내부 변수
+    private readonly Dictionary<int, bool> _equipmentUnLockDic = new Dictionary<int, bool>();
+
     // 저장 직전 자신의 데이터를 덮어씌우는 부분이 있긴 하지만
     // 실제 저장 / 불러오기는 이 객체를 기준으로 이루어 진다.
-    private PlayerSaveData _data;
+    //private PlayerSaveData _data;
     #endregion
 
     #region 프로퍼티
@@ -88,6 +94,8 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
             return sum;
         }
     }
+    public Dictionary<int, bool> EquipmentUnLockDic => _equipmentUnLockDic;
+
     public object SaveData { get => _data; set => _data = (PlayerSaveData)value; }
     #endregion
 
@@ -140,6 +148,8 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
 
         _data.CurrentUpgradeLevel = _currentUpgradeLevel;
         _data.CurrentTalentLevel = _currentTalentLevel;
+
+        _equipmentUnLockDic.DicToArray(_data.EquipmentDicID, _data.EquipmentDicValue);
     }
 
     public void LoadSaveData()
@@ -155,5 +165,7 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
 
         _currentUpgradeLevel = _data.CurrentUpgradeLevel;
         _currentTalentLevel = _data.CurrentTalentLevel;
+
+        _equipmentUnLockDic.ArrayToDic(_data.EquipmentDicID, _data.EquipmentDicValue);
     }
 }
