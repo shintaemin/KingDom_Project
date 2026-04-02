@@ -14,7 +14,7 @@ public class EnemyState : MonoBehaviour
 {
     public enum EState
     {
-        None, // 스테이지 시작시에 몹이 제자리에 있어야 할 경우가 필요하다면
+        Idle,
         Patrol,
         Detect,
         Chase,
@@ -27,13 +27,14 @@ public class EnemyState : MonoBehaviour
     public event System.Action<EState> OnStateChanged;
     public event System.Action OnDead;
 
-    private EState _state = EState.None;
+    private EState _state = EState.Idle;
 
     private HpSystem _hpSystem;
 
     [HideInInspector] public bool IsNearDead = false;
     [HideInInspector] public bool IsDetected = false;
     [HideInInspector] public bool IsAtkRange = false;
+    [HideInInspector] public Vector3 DeadPosition;
     private float _chaseTimer = 0f;
     private Coroutine _stateRoutine;
     #endregion
@@ -73,11 +74,13 @@ public class EnemyState : MonoBehaviour
             _stateRoutine = null;
         }
 
+        //Debug.Log($"EnemyState : {_state} -> {next}");
+
         _state = next;
 
         switch (_state)
         {
-            case EState.None:
+            case EState.Idle:
 
                 break;
 
@@ -98,11 +101,12 @@ public class EnemyState : MonoBehaviour
                 break;
 
             case EState.Attack:
-
+                _chaseTimer = 0f;
                 break;
 
             case EState.Dead:
                 OnDead?.Invoke();
+                gameObject.SetActive(false);
                 break;
         }
 
@@ -117,22 +121,26 @@ public class EnemyState : MonoBehaviour
             return EState.Dead;
         }
 
-        if (IsAtkRange)
+        if (_state == EState.Attack)
         {
-            return EState.Attack;
-        }
+            if (!IsAtkRange)
+            {
+                return EState.Chase;
+            }
 
-        if (_state == EState.Detect || _state == EState.ChaseFail)
-        {
-            return _state;
+            return EState.Attack;
         }
 
         if (_state == EState.Chase)
         {
+            if (IsAtkRange)
+            {
+                return EState.Attack;
+            }
+
             if (IsDetected)
             {
                 _chaseTimer = 0f;
-                return EState.Chase;
             }
 
             else
@@ -144,9 +152,9 @@ public class EnemyState : MonoBehaviour
                     _chaseTimer = 0f;
                     return EState.ChaseFail;
                 }
-
-                return EState.Chase;
             }
+
+            return EState.Chase;
         }
 
         if (IsNearDead || IsDetected) 

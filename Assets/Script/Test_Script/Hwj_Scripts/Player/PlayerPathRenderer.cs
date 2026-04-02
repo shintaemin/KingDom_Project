@@ -8,7 +8,7 @@ using UnityEngine.AI;
 
     ㆍ 작성자 : 황원준
 
-    ㆍ 기능 : NavMeshAgent의 경로 데이터를 시각화
+    ㆍ 기능 : PlayerPathRecorder에 저장된 경로 및 대상을 기반으로 LineRenderer로 시각화
 */
 
 public class PlayerPathRenderer : MonoBehaviour
@@ -20,49 +20,77 @@ public class PlayerPathRenderer : MonoBehaviour
 
     #region 내부 변수
     private LineRenderer _lineRenderer;
-    private NavMeshAgent _nav;
+    private PlayerPathRecorder _pathRecorder;
+    private NavMeshPath _nav;
+    private List<Vector3> _pathPoint;
     #endregion
 
     private void Awake()
     {
         _lineRenderer = GetComponent<LineRenderer>();
-        _nav = GetComponent<NavMeshAgent>();
+        _pathRecorder = GetComponent<PlayerPathRecorder>();
+        _nav = new NavMeshPath();
+        _pathPoint = new List<Vector3>(100);
 
-        if (_lineRenderer == null || _nav == null)
+        if (_lineRenderer == null)
         {
-            Debug.LogError("PlayerPathRenderer _lineRenderer _nav 참조 실패");
+            Debug.LogError("PlayerPathRenderer _lineRenderer _pathRecorder 참조 실패");
             return;
         }
     }
 
     void Update()
     {
-        if (_nav.hasPath)
-        {
-            DrawPath();
-        }
+        DrawPath();
     }
 
     private void DrawPath()
     {
-        Vector3[] points = _nav.path.corners;
+        List<Vector3> path = _pathRecorder.GetPath();
+        Transform enemy = _pathRecorder.GetEnemy();
 
-        if (points.Length < 2)
+        if ((path == null || path.Count == 0) && enemy == null)
         {
+            _lineRenderer.positionCount = 0;
             return;
         }
 
-        _lineRenderer.positionCount = points.Length;
+        _pathPoint.Clear();
 
-        for (int i = 0; i < points.Length; i++)
+        Vector3 currentPos = transform.position;
+
+        if (enemy != null)
         {
-            Vector3 position = points[i];
-
-            position.y += _yOffset;
-
-            _lineRenderer.SetPosition(i, position);
+            if (NavMesh.CalculatePath(currentPos, enemy.position, NavMesh.AllAreas, _nav))
+            {
+                for (int i = 0; i < _nav.corners.Length; i++)
+                {
+                    _pathPoint.Add(_nav.corners[i]);
+                }
+            }
         }
 
-        _lineRenderer.alignment = LineAlignment.View;
+        else
+        {
+            for (int i = 0; i < path.Count; i++)
+            {
+                if (NavMesh.CalculatePath(currentPos, path[i], NavMesh.AllAreas, _nav))
+                {
+                    for (int j = 0; j < _nav.corners.Length; j++)
+                    {
+                        _pathPoint.Add(_nav.corners[j]);
+                    }
+
+                    currentPos = path[i];
+                }
+            }
+        }
+
+        _lineRenderer.positionCount = _pathPoint.Count;
+
+        for (int i = 0; i < _pathPoint.Count; i++)
+        {
+            _lineRenderer.SetPosition(i, _pathPoint[i] + Vector3.up * _yOffset);
+        }
     }
 }

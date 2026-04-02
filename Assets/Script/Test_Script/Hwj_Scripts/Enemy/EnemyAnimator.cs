@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 /*
@@ -15,15 +16,16 @@ public class EnemyAnimator : MonoBehaviour // 속도값 받아올 수 있을때 bool move 
     #region 인스펙터
     [SerializeField] private string _paramWalk = "bWalk";
     [SerializeField] private string _paramRun = "bRun";
-    [SerializeField] private string _paramDead = "tDead";
+    //[SerializeField] private string _paramDead = "tDead";
     [SerializeField] private string _paramAttack = "tAttack";
     #endregion
 
     #region 내부 변수
     private EnemyState _state;
+    private EnemyCombat _combat;
     private Animator _anim;
     private int _hashRun;
-    private int _hashDead;
+    //private int _hashDead;
     private int _hashAttack;
     private int _hashWalk;
     #endregion
@@ -32,15 +34,16 @@ public class EnemyAnimator : MonoBehaviour // 속도값 받아올 수 있을때 bool move 
     {
         _state = GetComponent<EnemyState>();
         _anim = GetComponent<Animator>();
+        _combat = GetComponent<EnemyCombat>();
 
-        if (_state == null || _anim == null)
+        if (_state == null || _anim == null || _combat == null)
         {
-            Debug.LogError("EnemyAnimator _state _anim 참조 실패");
+            Debug.LogError("EnemyAnimator _state _anim _combat 참조 실패");
             return;
         }
 
         _hashRun = Animator.StringToHash(_paramRun);
-        _hashDead = Animator.StringToHash(_paramDead);
+        //_hashDead = Animator.StringToHash(_paramDead);
         _hashAttack = Animator.StringToHash(_paramAttack);
         _hashWalk = Animator.StringToHash(_paramWalk);
     }
@@ -51,6 +54,11 @@ public class EnemyAnimator : MonoBehaviour // 속도값 받아올 수 있을때 bool move 
         {
             _state.OnStateChanged += StateChanged;
         }
+
+        if (_combat != null)
+        {
+            _combat.OnAttacked += Attacked;
+        }
     }
 
     private void OnDisable()
@@ -59,13 +67,18 @@ public class EnemyAnimator : MonoBehaviour // 속도값 받아올 수 있을때 bool move 
         {
             _state.OnStateChanged -= StateChanged;
         }
+
+        if (_combat != null)
+        {
+            _combat.OnAttacked -= Attacked;
+        }
     }
 
-    private void StateChanged(EnemyState.EState state) // 기본Patrol -> 적감시 Detect 1초후 -> Chase 5초경과 -> ChaseFail -> Patrol
+    private void StateChanged(EnemyState.EState state)
     {
         switch (state)
         {
-            case EnemyState.EState.None:
+            case EnemyState.EState.Idle:
                 _anim.SetBool(_hashWalk, false);
                 break;
 
@@ -89,12 +102,17 @@ public class EnemyAnimator : MonoBehaviour // 속도값 받아올 수 있을때 bool move 
 
             case EnemyState.EState.Attack:
                 _anim.SetBool(_hashRun, false);
-                _anim.SetTrigger(_hashAttack);
+                _anim.SetBool(_hashWalk, false);
                 break;
 
             case EnemyState.EState.Dead:
-                _anim.SetTrigger(_hashDead);
+                //_anim.SetTrigger(_hashDead);
                 break;
         }
+    }
+
+    private void Attacked()
+    {
+        _anim.SetTrigger(_hashAttack);
     }
 }
