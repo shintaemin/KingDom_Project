@@ -145,7 +145,7 @@ public class IngameManager : MonoBehaviour
     #region 미션 클리어 구독
     private void Subscription()
     {
-        if (_msManager == null)
+        if (_msManager == null || _sm == null)
         {
             return;
         }
@@ -198,16 +198,20 @@ public class IngameManager : MonoBehaviour
         if (answer == EMissionAnswer.Success)
         {
             // 여기서 문을 연다
-            if (_currentMap.TryGetComponent<DoorOpenAnim>(out DoorOpenAnim doorOpen))
+            DoorOpenAnim doorOpen = FindFirstObjectByType<DoorOpenAnim>();
+
+            if (doorOpen != null)
             {
                 doorOpen.PlayOpenAnim();
+                Door_StageEnd_Col endCol = doorOpen.transform.GetComponentInChildren<Door_StageEnd_Col>();
+                
+                // 스테이지 종료 충돌 시점 구독
+                if (endCol != null)
+                {
+                    endCol.OnStageEnd += ChaingedNextMap;
+                }
             }
 
-            // 스테이지 종료 충돌 시점 구독
-            if (_currentMap.TryGetComponent<Door_StageEnd_Col>(out Door_StageEnd_Col endCol))
-            {
-                endCol.OnStageEnd += ChaingedNextMap;
-            }
             else
             {
                 // 여기서 성공 UI 를 띄우고 씬전환 입력대기
