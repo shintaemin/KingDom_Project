@@ -8,7 +8,7 @@ using UnityEngine.AI;
 
     ㆍ 작성자 : 황원준
 
-    ㆍ 기능 : 
+    ㆍ 기능 : PlayerPathRecorder에 저장된 경로 및 대상을 기반으로 LineRenderer로 시각화
 */
 
 public class PlayerPathRenderer : MonoBehaviour

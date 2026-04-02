@@ -20,7 +20,6 @@ public class EnemyMover : MonoBehaviour
     [Header("정찰 설정")]
     [SerializeField] private float _detectRange = 5f;
     [SerializeField] private float _detectDelay = 1f;
-    [SerializeField] private float _remainDistance = 0.3f;
 
     [Header("추격 설정")]
     [SerializeField] private float _chaseDelay = 0.1f;
@@ -85,6 +84,7 @@ public class EnemyMover : MonoBehaviour
         switch (state)
         {
             case EnemyState.EState.Patrol:
+                _nav.speed = 1.5f;
                 _nav.isStopped = false;
                 _moveRoutine = StartCoroutine(CoPatrol());
                 break;
@@ -94,6 +94,7 @@ public class EnemyMover : MonoBehaviour
                 break;
 
             case EnemyState.EState.Chase:
+                _nav.speed = 2.2f;
                 _nav.isStopped = false;
                 _moveRoutine = StartCoroutine(CoChase());
                 break;
@@ -101,6 +102,10 @@ public class EnemyMover : MonoBehaviour
             case EnemyState.EState.ChaseFail:
                 _nav.isStopped = true;
                 _nav.ResetPath();
+                break;
+
+            case EnemyState.EState.Attack:
+                _nav.isStopped = true;
                 break;
         }
     }
@@ -119,7 +124,7 @@ public class EnemyMover : MonoBehaviour
 
                 _nav.SetDestination(center);
 
-                while (Vector3.Distance(transform.position, center) > _remainDistance)
+                while (Vector3.Distance(transform.position, center) > _nav.stoppingDistance)
                 {
                     yield return null;
                 }

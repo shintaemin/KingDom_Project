@@ -8,7 +8,7 @@ using UnityEngine.AI;
 
     ㆍ 작성자 : 황원준
 
-    ㆍ 기능 : 
+    ㆍ 기능 : PlayerPathRecorder에 기록된 데이터를 기반으로 플레이어 이동 제어
 */
 
 public class PlayerMover : MonoBehaviour

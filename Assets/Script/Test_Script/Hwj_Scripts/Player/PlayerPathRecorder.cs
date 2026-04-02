@@ -8,7 +8,7 @@ using UnityEngine.AI;
 
     ㆍ 작성자 : 황원준
 
-    ㆍ 기능 : 
+    ㆍ 기능 : Input을 통해 플레이어가 이동할 경로 및 대상 기록
 */
 
 public class PlayerPathRecorder : MonoBehaviour
