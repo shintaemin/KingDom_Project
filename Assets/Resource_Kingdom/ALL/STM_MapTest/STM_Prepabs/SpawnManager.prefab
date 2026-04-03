@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currentMap: {fileID: 0}
-  _playerPrefab: {fileID: 8415525942462818456, guid: 0febcfad21919cf4b9a69a6f83e3c67b, type: 3}
-  _enemyPrefab: {fileID: 2793875383466050067, guid: f950214f45e847f43baa7ddc320b39fd, type: 3}
+  _playerPrefab: {fileID: 1050013909949325014, guid: 9a1b09012212f66429b7e2ba2d1be52b, type: 3}
+  _enemyPrefab: {fileID: 7166652829329580452, guid: 5084b588d1e044145b5714943d2246b1, type: 3}
   _zombiePrefab: {fileID: 3158656997804470477, guid: df4398ce6618441429fe6eea7ea8527b, type: 3}
   _eBossPrefab: {fileID: 0}
   _zBossPrefab: {fileID: 0}
