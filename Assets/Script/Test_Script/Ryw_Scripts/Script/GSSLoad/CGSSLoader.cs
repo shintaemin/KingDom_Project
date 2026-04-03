@@ -100,7 +100,7 @@ public partial class CGSSLoader : MonoBehaviour
         }
 
 #if UNITY_EDITOR
-        AssetDatabase.SaveAssets();
+        //AssetDatabase.SaveAssets();
 #endif
 
         if (PrintData)
@@ -115,7 +115,7 @@ public partial class CGSSLoader : MonoBehaviour
         string path = ed.ParseData(data);
 
 #if UNITY_EDITOR
-        AssetDatabase.CreateAsset(this, path);
+        AssetDatabase.CreateAsset(ed, path);
 #endif
     }
 
