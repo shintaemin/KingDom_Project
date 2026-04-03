@@ -16,30 +16,34 @@ public class PlayerAnimatior : MonoBehaviour // IK 쓰기
     [SerializeField] private string _paramDead = "tDead";
     [SerializeField] private string _paramAtk = "tAttack";
     [SerializeField] private string _paramCombo = "iComboIndex";
+    [SerializeField] private string _paramAtkSpeed = "fAttackSpeed";
     #endregion
 
     #region 내부 변수
     private PlayerState _state;
     private PlayerCombat _combat;
+    private PlayerStatus _status;
     private Animator _anim;
     private NavMeshAgent _nav;
     private int _hashSpeed;
     private int _hashDead;
     private int _hashAtk;
     private int _hashCombo;
+    private int _hashAtkSpeed;
     private int _comboIndex = 0;
     #endregion
 
     private void Awake()
     {
         _state = GetComponent<PlayerState>();
-        _anim = GetComponent<Animator>();
         _combat = GetComponent<PlayerCombat>();
+        _status = GetComponent<PlayerStatus>();
+        _anim = GetComponent<Animator>();
         _nav = GetComponent<NavMeshAgent>();
 
-        if (_state == null || _anim == null || _combat == null || _nav == null)
+        if (_state == null || _anim == null || _combat == null || _nav == null || _status == null)
         {
-            Debug.LogError("PlayerAnimatior _state _anim _combat _nav 참조 실패");
+            Debug.LogError("PlayerAnimatior _state _anim _combat _nav _status 참조 실패");
             return;
         }
 
@@ -47,6 +51,7 @@ public class PlayerAnimatior : MonoBehaviour // IK 쓰기
         _hashDead = Animator.StringToHash(_paramDead);
         _hashAtk = Animator.StringToHash(_paramAtk);
         _hashCombo = Animator.StringToHash(_paramCombo);
+        _hashAtkSpeed = Animator.StringToHash(_paramAtkSpeed);
     }
 
     private void OnEnable()
@@ -102,6 +107,8 @@ public class PlayerAnimatior : MonoBehaviour // IK 쓰기
 
     private void Attacked()
     {
+        _anim.SetFloat(_hashAtkSpeed, _status.AtkSpeed);
+
         _anim.SetInteger(_hashCombo, _comboIndex);
 
         _anim.SetTrigger(_hashAtk);

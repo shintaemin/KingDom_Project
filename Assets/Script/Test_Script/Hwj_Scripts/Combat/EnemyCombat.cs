@@ -7,7 +7,7 @@ using UnityEngine;
 
     ㆍ 작성자 : 황원준
 
-    ㆍ 기능 : 적의 상태 기반 자동 공격 및 OnHitTarget 애니메이션 이벤트 함수로 플레이어에게 데미지 전달
+    ㆍ 기능 : 적의 상태 기반 자동 공격 및 OnHitTarget 애니메이션 이벤트 함수로 플레이어에게 대미지 전달
 */
 
 public class EnemyCombat : BaseCombat
@@ -49,9 +49,21 @@ public class EnemyCombat : BaseCombat
 
         _state.IsAttacking = true;
 
+        LookTarget(_rangeCheck.TargetTr);
+
         OnAttacked?.Invoke();
     }
 
+    private void LookTarget(Transform target)
+    {
+        Vector3 direction = (target.position - transform.position).normalized;
+        direction.y = 0;
+
+        if (direction != Vector3.zero)
+        {
+            transform.rotation = Quaternion.LookRotation(direction);
+        }
+    }
 
     #region 애니메이션 이벤트 함수
     public override void OnHitTarget()

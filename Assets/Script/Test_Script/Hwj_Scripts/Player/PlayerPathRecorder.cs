@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using static UnityEngine.CullingGroup;
 
 /*
     ¤ý PlayerPathRecorder
@@ -46,11 +47,35 @@ public class PlayerPathRecorder : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        if (_playerState != null)
+        {
+            _playerState.OnStateChanged += StateChanged;
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (_playerState != null)
+        {
+            _playerState.OnStateChanged -= StateChanged;
+        }
+    }
+
     void Update()
     {
         if (_inputState.GetState() == InputState.EState.Drawing)
         {
             DrawingRecordPath();
+        }
+    }
+
+    private void StateChanged(PlayerState.EState state)
+    {
+        if (state == PlayerState.EState.Idle)
+        {
+            ResetPath();
         }
     }
 
