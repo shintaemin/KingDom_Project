@@ -7,7 +7,7 @@ using UnityEngine;
 
     ㆍ 작성자 : 황원준
 
-    ㆍ 기능 : 적의 상태 기반 자동 공격 및 OnHitTarget 애니메이션 이벤트 함수로 플레이어에게 데미지 전달
+    ㆍ 기능 : 적의 상태 기반 자동 공격 및 OnHitTarget 애니메이션 이벤트 함수로 플레이어에게 대미지 전달
 */
 
 public class EnemyCombat : BaseCombat
@@ -16,6 +16,7 @@ public class EnemyCombat : BaseCombat
     public event System.Action OnAttacked;
     private EnemyState _state;
     #endregion
+
     protected override void Awake()
     {
         base.Awake();
@@ -46,13 +47,47 @@ public class EnemyCombat : BaseCombat
 
         _lastAtkTime = Time.time;
 
+        _state.IsAttacking = true;
+
+        LookTarget(_rangeCheck.TargetTr);
+
         OnAttacked?.Invoke();
     }
 
+    private void LookTarget(Transform target)
+    {
+        Vector3 direction = (target.position - transform.position).normalized;
+        direction.y = 0;
+
+        if (direction != Vector3.zero)
+        {
+            transform.rotation = Quaternion.LookRotation(direction);
+        }
+    }
+
+    #region 애니메이션 이벤트 함수
     public override void OnHitTarget()
     {
         if (_rangeCheck.TargetTr == null)
         {
+            return;
+        }
+
+        float distance = Vector3.Distance(transform.position, _rangeCheck.TargetTr.position);
+
+        if (distance > _status.AtkRange)
+        {
+            // 공격 사거리 밖에 있으면 대미지 X
+            return;
+        }
+
+        Vector3 direction = (_rangeCheck.TargetTr.position - transform.position).normalized;
+
+        float dot = Vector3.Dot(transform.forward, direction);
+
+        if (dot < 0.5f)
+        {
+            // 정면이 아니면 대미지 X
             return;
         }
 
@@ -63,4 +98,10 @@ public class EnemyCombat : BaseCombat
             playerHP.TakeDamage(_status.AtkPower);
         }
     }
+
+    public void EndAttack()
+    {
+        _state.IsAttacking = false;
+    }
+    #endregion
 }

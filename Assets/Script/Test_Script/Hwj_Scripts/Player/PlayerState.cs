@@ -48,12 +48,7 @@ public class PlayerState : MonoBehaviour
     // 단일 상태 진입점
     private void SetState(EState next)
     {
-        if (_state == EState.Dead)
-        {
-            return;
-        }
-
-        if (_state == next)
+        if (_state == next || _state == EState.Dead)
         {
             return;
         }

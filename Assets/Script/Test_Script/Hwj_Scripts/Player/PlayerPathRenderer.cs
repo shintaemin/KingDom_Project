@@ -49,7 +49,7 @@ public class PlayerPathRenderer : MonoBehaviour
         List<Vector3> path = _pathRecorder.GetPath();
         Transform enemy = _pathRecorder.GetEnemy();
 
-        if ((path == null || path.Count == 0) && enemy == null)
+        if (path == null || path.Count == 0 && enemy == null)
         {
             _lineRenderer.positionCount = 0;
             return;
