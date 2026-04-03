@@ -1,5 +1,4 @@
 using System;
-using UnityEditor;
 using UnityEngine;
 
 
@@ -41,7 +40,7 @@ public class CMissionDataSO : ScriptableObject, ICSVData
     public int Reward => _reward;
     #endregion
 
-    public void ParseData(string data)
+    public string ParseData(string data)
     {
         string[] dataArr = data.Split(",");
 
@@ -51,10 +50,7 @@ public class CMissionDataSO : ScriptableObject, ICSVData
         _condition = int.Parse(dataArr[3]);
         _reward = int.Parse(dataArr[4]);
 
-        string path = CGSSLoader.SOSavePath(NAME) + $"/{NAME}SO_{_ID}.asset";
-
-        AssetDatabase.CreateAsset(this, path);
-        AssetDatabase.SaveAssets();
+        return CGSSLoader.SOSavePath(NAME) + $"/{NAME}SO_{_ID}.asset";
     }
 
 }

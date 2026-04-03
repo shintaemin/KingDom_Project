@@ -1,5 +1,4 @@
 using System;
-using UnityEditor;
 using UnityEngine;
 
 #region CTalentDataSO
@@ -33,7 +32,7 @@ public class CTalentDataSO : ScriptableObject, ICSVData
     public Texture2D Icon => _icon;
     #endregion
 
-    public void ParseData(string data)
+    public string ParseData(string data)
     {
         string[] dataArr = data.Split(",");
 
@@ -45,10 +44,7 @@ public class CTalentDataSO : ScriptableObject, ICSVData
         _icon = _icon.ParseData(dataArr[5]);
 
 
-        string path = CGSSLoader.SOSavePath(NAME) + $"/{NAME}SO_{_ID}.asset";
-
-        AssetDatabase.CreateAsset(this, path);
-        AssetDatabase.SaveAssets();
+        return CGSSLoader.SOSavePath(NAME) + $"/{NAME}SO_{_ID}.asset";
     }
 
 

@@ -1,4 +1,3 @@
-using UnityEditor;
 using UnityEngine;
 
 
@@ -29,7 +28,7 @@ public class CAbilityDataSO : ScriptableObject, ICSVData
     public Texture2D[] IconArr => _iconArr;
     #endregion
 
-    public void ParseData(string data)
+    public string ParseData(string data)
     {
         string[] dataArr = data.Split(",");
 
@@ -39,9 +38,6 @@ public class CAbilityDataSO : ScriptableObject, ICSVData
         _capacity = int.Parse(dataArr[3]);
         _iconArr = _iconArr.ParseData(dataArr[4]);
 
-        string path = CGSSLoader.SOSavePath(NAME) + $"/{NAME}SO_{_ID}.asset";
-
-        AssetDatabase.CreateAsset(this, path);
-        AssetDatabase.SaveAssets();
+        return CGSSLoader.SOSavePath(NAME) + $"/{NAME}SO_{_ID}.asset";
     }
 }

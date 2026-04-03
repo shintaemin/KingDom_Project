@@ -1,5 +1,4 @@
 using System;
-using UnityEditor;
 using UnityEngine;
 
 
@@ -49,7 +48,7 @@ public class CEquipmentDataSO : ScriptableObject, ICSVData
     #endregion
 
 
-    public void ParseData(string data)
+    public string ParseData(string data)
     {
         string[] dataArr = data.Split(",");
 
@@ -62,9 +61,6 @@ public class CEquipmentDataSO : ScriptableObject, ICSVData
         _image = _image.ParseData(dataArr[6]);
 
 
-        string path = CGSSLoader.SOSavePath(NAME) + $"/{NAME}SO_{_ID}.asset";
-
-        AssetDatabase.CreateAsset(this, path);
-        AssetDatabase.SaveAssets();
+        return CGSSLoader.SOSavePath(NAME) + $"/{NAME}SO_{_ID}.asset";
     }
 }
