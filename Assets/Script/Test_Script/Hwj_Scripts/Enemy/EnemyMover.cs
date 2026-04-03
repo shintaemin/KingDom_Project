@@ -127,9 +127,17 @@ public class EnemyMover : MonoBehaviour
 
     private IEnumerator CoChase()
     {
-        while (_playerTr != null)
+        while (_state.GetState() == EnemyState.EState.Chase)
         {
-            _nav.SetDestination(_playerTr.position);
+            if (_state.DeadPosition != Vector3.zero)
+            {
+                _nav.SetDestination(_state.DeadPosition);
+            }
+
+            else
+            {
+                _nav.SetDestination(_playerTr.position);
+            }
 
             yield return new WaitForSeconds(_chaseDelay);
         }

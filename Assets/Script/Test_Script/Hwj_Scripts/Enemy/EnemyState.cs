@@ -91,6 +91,11 @@ public class EnemyState : MonoBehaviour
                 break;
 
             case EState.Detect:
+                if (IsNearDead)
+                {
+                    IsNearDead = false;
+                }
+
                 _stateRoutine = StartCoroutine(CoDetectToChase(1f));
                 break;
 
@@ -99,6 +104,7 @@ public class EnemyState : MonoBehaviour
                 break;
 
             case EState.ChaseFail:
+                DeadPosition = Vector3.zero;
                 SetState(EState.Idle);
                 break;
 
@@ -165,14 +171,7 @@ public class EnemyState : MonoBehaviour
             return EState.Chase;
         }
 
-        if (IsNearDead)
-        {
-            IsNearDead = false;
-
-            return EState.Detect;
-        }
-
-        if (IsDetected)
+        if (IsDetected || IsNearDead)
         {
             return EState.Detect;
         }

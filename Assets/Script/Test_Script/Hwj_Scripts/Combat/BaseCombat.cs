@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 /*
     ㆍ BaseCombat
@@ -12,21 +13,54 @@ using UnityEngine;
 
 public abstract class BaseCombat : MonoBehaviour
 {
+    #region 인스펙터
+    [Header("공격시 회전속도 설정")]
+    [SerializeField] protected float _rotSpeed = 5f;
+    #endregion
+
     #region 내부 변수
     protected BaseStatus _status;
     protected BaseRangeCheck _rangeCheck;
     protected float _lastAtkTime;
+    protected NavMeshAgent _nav;
     #endregion
 
     protected virtual void Awake()
     {
         _status = GetComponent<BaseStatus>();
         _rangeCheck = GetComponent<BaseRangeCheck>();
+        _nav = GetComponent<NavMeshAgent>();
 
-        if (_status == null || _rangeCheck == null)
+        if (_status == null || _rangeCheck == null || _nav == null)
         {
             Debug.LogError("BaseCombat _status _rangeCheck 참조 실패");
             return;
+        }
+    }
+
+    protected virtual void Update()
+    {
+        if (_rangeCheck.TargetTr != null && _rangeCheck.IsAtkRange)
+        {
+            LookTarget(_rangeCheck.TargetTr);
+        }
+    }
+
+    protected void LookTarget(Transform target)
+    {
+        if (target == null || _nav.velocity.magnitude > 0.1f)
+        {
+            return;
+        }
+
+        Vector3 direction = (target.position - transform.position).normalized;
+        direction.y = 0;
+
+        if (direction != Vector3.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * _rotSpeed);
         }
     }
 

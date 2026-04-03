@@ -30,8 +30,10 @@ public class EnemyCombat : BaseCombat
         }
     }
 
-    void Update()
+    protected override void Update()
     {
+        base.Update();
+
         if (_state.GetState() == EnemyState.EState.Attack && CanAttack())
         {
             Attack();
@@ -49,20 +51,7 @@ public class EnemyCombat : BaseCombat
 
         _state.IsAttacking = true;
 
-        LookTarget(_rangeCheck.TargetTr);
-
         OnAttacked?.Invoke();
-    }
-
-    private void LookTarget(Transform target)
-    {
-        Vector3 direction = (target.position - transform.position).normalized;
-        direction.y = 0;
-
-        if (direction != Vector3.zero)
-        {
-            transform.rotation = Quaternion.LookRotation(direction);
-        }
     }
 
     #region 애니메이션 이벤트 함수

@@ -9,7 +9,7 @@ using UnityEngine.AI;
     ㆍ 기능 : PlayerState의 OnStateChanged 이벤트를 구독하여 플레이어 애니메이션 제어
 */
 
-public class PlayerAnimatior : MonoBehaviour // IK 쓰기
+public class PlayerAnimatior : MonoBehaviour
 {
     #region 인스펙터
     [SerializeField] private string _paramSpeed = "fSpeed";

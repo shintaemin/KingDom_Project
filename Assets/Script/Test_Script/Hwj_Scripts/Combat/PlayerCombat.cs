@@ -17,8 +17,10 @@ public class PlayerCombat : BaseCombat
     public event System.Action OnAttacked;
     #endregion
 
-    void Update()
+    protected override void Update()
     {
+        base.Update();
+
         if (CanAttack())
         {
             Attack();
@@ -34,20 +36,7 @@ public class PlayerCombat : BaseCombat
 
         _lastAtkTime = Time.time;
 
-        LookTarget(_rangeCheck.TargetTr);
-
         OnAttacked?.Invoke();
-    }
-
-    private void LookTarget(Transform target)
-    {
-        Vector3 direction = (target.position - transform.position).normalized;
-        direction.y = 0;
-
-        if (direction != Vector3.zero)
-        {
-            transform.rotation = Quaternion.LookRotation(direction);
-        }
     }
 
     #region 애니메이션 이벤트 함수
@@ -55,6 +44,24 @@ public class PlayerCombat : BaseCombat
     {
         if (_rangeCheck.TargetTr == null)
         {
+            return;
+        }
+
+        float distance = Vector3.Distance(transform.position, _rangeCheck.TargetTr.position);
+
+        if (distance > _status.AtkRange)
+        {
+            // 공격 사거리 밖에 있으면 대미지 X
+            return;
+        }
+
+        Vector3 direction = (_rangeCheck.TargetTr.position - transform.position).normalized;
+
+        float dot = Vector3.Dot(transform.forward, direction);
+
+        if (dot < 0.5f)
+        {
+            // 정면이 아니면 대미지 X
             return;
         }
 
