@@ -37,7 +37,9 @@ public abstract class BaseCombat : MonoBehaviour
             return false;
         }
 
-        if (Time.time - _lastAtkTime < _status.AtkSpeed)
+        float interval = 1f / _status.AtkSpeed;
+
+        if (Time.time - _lastAtkTime < interval)
         {
             return false;
         }

@@ -19,7 +19,6 @@ public class EnemyMover : MonoBehaviour
 
     [Header("정찰 설정")]
     [SerializeField] private float _detectRange = 5f;
-    [SerializeField] private float _detectDelay = 1f;
 
     [Header("추격 설정")]
     [SerializeField] private float _chaseDelay = 0.1f;
@@ -81,6 +80,9 @@ public class EnemyMover : MonoBehaviour
             _moveRoutine = null;
         }
 
+        _nav.isStopped = true;
+        _nav.ResetPath();
+
         switch (state)
         {
             case EnemyState.EState.Patrol:
@@ -89,53 +91,37 @@ public class EnemyMover : MonoBehaviour
                 _moveRoutine = StartCoroutine(CoPatrol());
                 break;
 
-            case EnemyState.EState.Detect:
-                _nav.isStopped = true;
-                break;
-
             case EnemyState.EState.Chase:
                 _nav.speed = 2.2f;
                 _nav.isStopped = false;
                 _moveRoutine = StartCoroutine(CoChase());
-                break;
-
-            case EnemyState.EState.ChaseFail:
-                _nav.isStopped = true;
-                _nav.ResetPath();
-                break;
-
-            case EnemyState.EState.Attack:
-                _nav.isStopped = true;
                 break;
         }
     }
 
     private IEnumerator CoPatrol()
     {
-        while (true)
+        Vector3 randomPos = transform.position + Random.insideUnitSphere * _detectRange;
+
+        if (NavMesh.SamplePosition(randomPos, out NavMeshHit hit, _detectRange, NavMesh.AllAreas))
         {
-            Vector3 randomPos = transform.position + Random.insideUnitSphere * _detectRange;
+            Vector3 center = hit.position;
 
-            if (NavMesh.SamplePosition(randomPos, out NavMeshHit hit, Mathf.Infinity, NavMesh.AllAreas))
-            {
-                Vector3 center = hit.position;
+            center.y = transform.position.y;
 
-                center.y = transform.position.y;
+            _nav.SetDestination(center);
 
-                _nav.SetDestination(center);
-
-                while (Vector3.Distance(transform.position, center) > _nav.stoppingDistance)
-                {
-                    yield return null;
-                }
-
-                yield return new WaitForSeconds(_detectDelay);
-            }
-
-            else
+            while (_nav.pathPending || _nav.remainingDistance > _nav.stoppingDistance)
             {
                 yield return null;
             }
+
+            _state.IsTargetPosArrived = true;
+        }
+
+        else
+        {
+            _state.IsTargetPosArrived = true;
         }
     }
 
