@@ -1,35 +1,97 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
+using Unity.AI.Navigation;
 using UnityEngine;
 
-#region ¸Ê Á¦ÀÛ Åø
+#region ë§µ ì œì‘ íˆ´
 /*
- ¢º ÇÒÀÏ
-  - ÇÁ¸®ÆéÀ» ³Ö°í Ãß°¡ÇÒ ÄÄÆ÷³ÍÆ®¸¦ ÁöÁ¤ÇÏ°í À§Ä¡, ¹æÇâ, °¹¼ö ¸¦ ÁöÁ¤ÇØ ÇÁ¸®ÆéÀ» »ı¼ºÇÏ´Â ½ºÅ©¸³Æ®
+ â–¶ í• ì¼
+  - í”„ë¦¬í©ì„ ë„£ê³  ì¶”ê°€í•  ì»´í¬ë„ŒíŠ¸ë¥¼ ì§€ì •í•˜ê³  ìœ„ì¹˜, ë°©í–¥, ê°¯ìˆ˜ ë¥¼ ì§€ì •í•´ í”„ë¦¬í©ì„ ìƒì„±í•˜ëŠ” ìŠ¤í¬ë¦½íŠ¸
 */
 #endregion
+
+
+[System.Serializable]
+public class SetDir
+{
+    public enum EDirType
+    {
+        None,
+        Left,
+        Right,
+        Forward,
+        Back,
+    }
+
+    public EDirType dir;
+
+    public Vector3 GetDir()
+    {
+        switch(dir)
+        {
+            case EDirType.Left:
+                return Vector3.left;
+            case EDirType.Right:
+                return Vector3.right;
+            case EDirType.Forward:
+                return Vector3.forward;
+            case EDirType.Back:
+                return Vector3.back;
+        }
+        return Vector3.zero;
+    }
+}
 
 [ExecuteInEditMode]
 public class Map_CreateTool : MonoBehaviour
 {
-    #region ÀÎ½ºÆåÅÍ
+    #region ì¸ìŠ¤í™í„°
+    [Header("í”„ë¦¬í©")]
     [SerializeField] private GameObject _prefab;
-    [SerializeField] private string _setLayerName;
+
+    [Header("ë¶€ëª¨ì„¤ì •")]
+    [SerializeField] private Transform _root;
+
+    [Header("ì™¸í˜•ì„¤ì •")]
+    [SerializeField] private Material _mat;
+
+    [Header("ë ˆì´ì–´ ì„¤ì •")]
+    [SerializeField] private int _layerIndex = 0;
+
+    [Header("ê°¯ìˆ˜ ì„¤ì •")]
+    [SerializeField] private int _count = 1;
+
+    [Header("ì‹œì‘ ìœ„ì¹˜")]
     [SerializeField] private Vector3 _startPos;
-    [SerializeField] private Vector3 _dir;
-    [SerializeField] private Vector3 _scail;
-    [SerializeField] private int _count;
+
+    [Header("ë°©í–¥")]
+    [SerializeField] private SetDir _dir;
+
+    [Header("ìŠ¤ì¼€ì¼")]
+    [SerializeField] private Vector3 _scail = Vector3.one;
+
+    [Header("ì˜µì…˜")]
     [SerializeField] private bool _addBoxCol;
     [SerializeField] private bool _addNavMesh;
+
+    [Header("ìœ„ ì˜µì…˜ìœ¼ë¡œ ë§Œë“¤ê¸°")]
+    [SerializeField] private bool _create;
     #endregion
 
-    #region
-
-    #endregion
-
-    private void OnValidate()
+    private void Update()
     {
-        SetCreateObject();
+        if (_count == 0 )
+        {
+            return;
+        }
+
+        if (_create)
+        {
+            _create = false;
+            SetCreateObject();
+            return;
+        }
+
     }
 
     private void SetCreateObject()
@@ -38,16 +100,53 @@ public class Map_CreateTool : MonoBehaviour
         {
             return;
         }
-        if (_setLayerName == null)
+        if (_layerIndex == default)
         {
-            Debug.LogWarning($"[] : ·¹ÀÌ¾î ÁöÁ¤ ¾ÈµÊ »ı¼º ºÒ°¡");
+            Debug.LogWarning($"[] : ë ˆì´ì–´ ì§€ì • ì•ˆë¨ ìƒì„± ë¶ˆê°€");
             return;
         }
         if (_count == 0)
         {
-            Debug.LogWarning($"[] : Ä«¿îÆ® ÁöÁ¤¾ÈµÊ »ı¼º ºÒ°¡");
+            Debug.LogWarning($"[] : ì¹´ìš´íŠ¸ ì§€ì •ì•ˆë¨ ìƒì„± ë¶ˆê°€");
             return;
         }
 
+        Transform root = new GameObject("OBJ_Root").transform;
+        root.position = _startPos;
+
+        if (_root != null)
+        {
+            root.transform.parent = _root;
+        }
+
+        Vector3 dir = _dir.GetDir();
+
+        for (int i = 0; i < _count; i++)
+        {
+            GameObject go = Instantiate(_prefab);
+            go.name = $"{_prefab.name}_{i + 1}";
+            go.transform.parent = root;
+            go.layer = _layerIndex;
+            go.transform.position = _startPos + dir * i;
+            go.transform.localScale = _scail;
+
+            if (_mat != null)
+            {
+                Renderer rend = go.GetComponentInChildren<Renderer>();
+                if (rend != null)
+                {
+                    rend.material = _mat;
+                }
+            }
+
+            if (_addBoxCol)
+            {
+                go.AddComponent<BoxCollider>();
+            }
+            if (_addNavMesh)
+            {
+                go.AddComponent<NavMeshModifier>();
+            }
+        }
     }
 }
