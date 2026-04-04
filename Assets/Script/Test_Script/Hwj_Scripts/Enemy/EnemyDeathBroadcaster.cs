@@ -65,7 +65,7 @@ public class EnemyDeathBroadcaster : MonoBehaviour // 추가필요 : 적 죽은 위치로 
 
             if (enemy != null)
             {
-                if (enemy.GetState() == EnemyState.EState.Patrol)
+                if (enemy.GetState() == EnemyState.EState.Patrol || enemy.GetState() == EnemyState.EState.Idle)
                 {
                     enemy.IsNearDead = true;
                     enemy.DeadPosition = transform.position;

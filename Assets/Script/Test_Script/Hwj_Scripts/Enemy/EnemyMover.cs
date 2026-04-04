@@ -118,11 +118,6 @@ public class EnemyMover : MonoBehaviour
 
             _state.IsTargetPosArrived = true;
         }
-
-        else
-        {
-            _state.IsTargetPosArrived = true;
-        }
     }
 
     private IEnumerator CoChase()

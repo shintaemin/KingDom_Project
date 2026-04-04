@@ -1377,7 +1377,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3ec7f094636c7844834c7cb7a2a3ef4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _arrivedEnemyDistance: 0.5
+  _arrivedEnemyDistance: 0.8
   _baseSpeed: 5
 --- !u!114 &7018607890215314314
 MonoBehaviour:
@@ -1421,6 +1421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf84e098b4261e40bce4a9729bb8d82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rotSpeed: 5
 --- !u!114 &5881326999996672903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1501,7 +1502,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1050013909949325014}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.004
+  m_Radius: 0.006
   m_Speed: 3
   m_Acceleration: 30
   avoidancePriority: 50
@@ -1533,7 +1534,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.005
+  m_Radius: 0.006
   m_Height: 0.02
   m_Direction: 1
   m_Center: {x: 0, y: 0.01, z: 0}

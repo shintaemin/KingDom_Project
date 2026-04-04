@@ -71,7 +71,7 @@ public class PlayerMover : MonoBehaviour
 
             case InputState.EState.Drawing:
                 _nav.ResetPath();
-                _playerState.IsMoving = true;
+                _playerState.IsMoving = true; // 이게 작동을 안함.. 아마 속도 때문인듯
                 break;
 
             case InputState.EState.End:
@@ -119,12 +119,16 @@ public class PlayerMover : MonoBehaviour
     {
         while (enemy != null)
         {
-            _nav.SetDestination(enemy.position);
-
             if (Vector3.Distance(transform.position, enemy.position) <= _arrivedEnemyDistance)
             {
                 _playerState.IsMoving = false;
+                _nav.ResetPath();
                 break;
+            }
+
+            else
+            {
+                _nav.SetDestination(enemy.position);
             }
 
             yield return null;

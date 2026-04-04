@@ -30,14 +30,17 @@ public class EnemyState : MonoBehaviour
     private EState _state = EState.Patrol;
 
     private HpSystem _hpSystem;
-    
+    private PlayerState _playerState;
+
     [HideInInspector] public bool IsNearDead = false;
     [HideInInspector] public bool IsDetected = false;
     [HideInInspector] public bool IsAtkRange = false;
     [HideInInspector] public bool IsAttacking = false;
     [HideInInspector] public bool IsTargetPosArrived = false;
+    [HideInInspector] public bool IsOnHit = false;
     [HideInInspector] public Vector3 DeadPosition;
     private float _chaseTimer = 0f;
+    private bool _isPlayerDead = false;
     private Coroutine _stateRoutine;
     #endregion
 
@@ -50,6 +53,48 @@ public class EnemyState : MonoBehaviour
             Debug.LogError("EnemyState _hpSystem 참조 실패");
             return;
         }
+    }
+
+    private void OnEnable()
+    {
+        if (_hpSystem != null)
+        {
+            _hpSystem.OnDamaged += Damaged;
+        }
+
+        if (_playerState == null)
+        {
+            _playerState = FindObjectOfType<PlayerState>();
+        }
+
+        if (_playerState != null)
+        {
+            _playerState.OnDead += PlayerDead;
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (_hpSystem != null)
+        {
+            _hpSystem.OnDamaged -= Damaged;
+        }
+
+        if (_playerState != null)
+        {
+            _playerState.OnDead -= PlayerDead;
+        }
+    }
+
+    private void Damaged()
+    {
+        IsOnHit = true;
+    }
+
+    private void PlayerDead()
+    {
+        _isPlayerDead = true;
+        SetState(EState.Idle);
     }
 
     void Start()
@@ -76,13 +121,16 @@ public class EnemyState : MonoBehaviour
             _stateRoutine = null;
         }
 
-        //Debug.Log($"EnemyState : {_state} -> {next}");
-
         _state = next;
 
         switch (_state)
         {
             case EState.Idle:
+                if (_isPlayerDead)
+                {
+                    break;
+                }
+
                 _stateRoutine = StartCoroutine(CoIdleToPatrol(2f));
                 break;
 
@@ -105,11 +153,12 @@ public class EnemyState : MonoBehaviour
 
             case EState.ChaseFail:
                 DeadPosition = Vector3.zero;
+                IsOnHit = false;
                 SetState(EState.Idle);
                 break;
 
             case EState.Attack:
-                
+
                 break;
 
             case EState.Dead:
@@ -145,7 +194,7 @@ public class EnemyState : MonoBehaviour
             return EState.Attack;
         }
 
-        if (_state == EState.Chase)
+        if (_state == EState.Chase || IsOnHit)
         {
             if (IsAtkRange)
             {
@@ -208,5 +257,24 @@ public class EnemyState : MonoBehaviour
     {
         return _state;
     }
+
+    /*
+    빌드 테스트 후 PlayerState 구독이 안될 시에 스포너에서 적 생성 시 Init으로 구독 시도
+
+    public void Init(PlayerState player)
+    {
+        if (_playerState != null)
+        {
+            _playerState.OnDead -= PlayerDead;
+        }
+
+        _playerState = player;
+
+        if (_playerState != null)
+        {
+            _playerState.OnDead += PlayerDead;
+        }
+    }
+    */
     #endregion
 }

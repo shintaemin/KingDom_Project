@@ -13,6 +13,7 @@ using UnityEngine;
 public class HpSystem : MonoBehaviour, IDamageable
 {
     #region 내부 변수
+    public event System.Action OnDamaged;
     private BaseStatus _status;
     private float _currentHP;
     private bool _isDead = false;
@@ -51,6 +52,11 @@ public class HpSystem : MonoBehaviour, IDamageable
         {
             _currentHP = 0;
             _isDead = true;
+        }
+
+        else
+        {
+            OnDamaged?.Invoke();
         }
     }
 }
