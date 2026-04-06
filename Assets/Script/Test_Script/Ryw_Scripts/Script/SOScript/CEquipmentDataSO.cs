@@ -26,7 +26,7 @@ public class CEquipmentDataSO : ScriptableObject, ICSVData
         Skin
     }
 
-    public enum EbonusType
+    public enum EBonusType
     {
         Attak,
         Health,
@@ -46,8 +46,8 @@ public class CEquipmentDataSO : ScriptableObject, ICSVData
     #endregion
 
     #region 내부 변수
-    private (float value, EbonusType type)[] bonuses;
-    private (float value, EbonusType type)? maxBonus;
+    private (float value, EBonusType type)[] bonuses;
+    private (float value, EBonusType type)? maxBonus;
     #endregion
 
     #region 프로퍼티
@@ -56,17 +56,17 @@ public class CEquipmentDataSO : ScriptableObject, ICSVData
     public int AdditionalAtt => _additionalAtt;
     public float BonusAmount => Math.Max(_additionalAttackRatio, Math.Max(_additionalHealthRatio, _additionalSpeedRatio));
     // BonusAmount가 가장 큰 type을 반환.
-    public EbonusType BonusType
+    public EBonusType BonusType
     {
         get
         {
             if (bonuses == null)
             {
-                bonuses = new (float value, EbonusType type)[]
+                bonuses = new (float value, EBonusType type)[]
                 {
-                    (_additionalAttackRatio, EbonusType.Attak),
-                    (_additionalHealthRatio, EbonusType.Health),
-                    (_additionalSpeedRatio, EbonusType.MoveSpeed)
+                    (_additionalAttackRatio, EBonusType.Attak),
+                    (_additionalHealthRatio, EBonusType.Health),
+                    (_additionalSpeedRatio, EBonusType.MoveSpeed)
                 };
             }
 
