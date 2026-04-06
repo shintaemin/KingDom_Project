@@ -27,13 +27,15 @@ public class EnemyState : MonoBehaviour
     public event System.Action<EState> OnStateChanged;
     public event System.Action OnDead;
 
-    private EState _state = EState.Idle;
+    private EState _state = EState.Patrol;
 
     private HpSystem _hpSystem;
-
+    
     [HideInInspector] public bool IsNearDead = false;
     [HideInInspector] public bool IsDetected = false;
     [HideInInspector] public bool IsAtkRange = false;
+    [HideInInspector] public bool IsAttacking = false;
+    [HideInInspector] public bool IsTargetPosArrived = false;
     [HideInInspector] public Vector3 DeadPosition;
     private float _chaseTimer = 0f;
     private Coroutine _stateRoutine;
@@ -50,6 +52,11 @@ public class EnemyState : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+        SetState(EState.Idle);
+    }
+
     void Update()
     {
         SetState(DecideState());
@@ -58,12 +65,7 @@ public class EnemyState : MonoBehaviour
     // 단일 상태 진입점
     private void SetState(EState next)
     {
-        if (_state == EState.Dead)
-        {
-            return;
-        }
-
-        if (_state == next)
+        if (_state == EState.Dead || _state == next)
         {
             return;
         }
@@ -81,15 +83,15 @@ public class EnemyState : MonoBehaviour
         switch (_state)
         {
             case EState.Idle:
-
+                _stateRoutine = StartCoroutine(CoIdleToPatrol(2f));
                 break;
 
             case EState.Patrol:
-
+                IsTargetPosArrived = false;
                 break;
 
             case EState.Detect:
-                _stateRoutine = StartCoroutine(CoDetectToChase());
+                _stateRoutine = StartCoroutine(CoDetectToChase(1f));
                 break;
 
             case EState.Chase:
@@ -97,11 +99,11 @@ public class EnemyState : MonoBehaviour
                 break;
 
             case EState.ChaseFail:
-                _stateRoutine = StartCoroutine(CoChaseFailToPatrol());
+                SetState(EState.Idle);
                 break;
 
             case EState.Attack:
-                _chaseTimer = 0f;
+                
                 break;
 
             case EState.Dead:
@@ -123,11 +125,17 @@ public class EnemyState : MonoBehaviour
 
         if (_state == EState.Attack)
         {
+            if (IsAttacking)
+            {
+                return EState.Attack;
+            }
+
             if (!IsAtkRange)
             {
                 return EState.Chase;
             }
 
+            _chaseTimer = 0f;
             return EState.Attack;
         }
 
@@ -157,26 +165,41 @@ public class EnemyState : MonoBehaviour
             return EState.Chase;
         }
 
-        if (IsNearDead || IsDetected) 
+        if (IsNearDead)
         {
             IsNearDead = false;
 
             return EState.Detect;
         }
 
-        return EState.Patrol;
+        if (IsDetected)
+        {
+            return EState.Detect;
+        }
+
+        if (_state == EState.Patrol)
+        {
+            if (IsTargetPosArrived)
+            {
+                return EState.Idle;
+            }
+
+            return EState.Patrol;
+        }
+
+        return _state;
     }
 
-    private IEnumerator CoDetectToChase()
+    private IEnumerator CoDetectToChase(float time)
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(time);
 
         SetState(EState.Chase);
     }
 
-    private IEnumerator CoChaseFailToPatrol()
+    private IEnumerator CoIdleToPatrol(float time)
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(time);
 
         SetState(EState.Patrol);
     }

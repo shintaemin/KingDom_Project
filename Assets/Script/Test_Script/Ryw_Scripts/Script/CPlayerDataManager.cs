@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 
@@ -24,6 +23,8 @@ public class PlayerSaveData
     public int CurrentWeaponID;
     public int CurrentClothesID;
 
+    public int CurrentStage;
+
     public int[] CurrentUpgradeLevel = new int[3];
     public int[] CurrentTalentLevel = new int[9];
 
@@ -36,14 +37,26 @@ public class PlayerSaveData
 public class CPlayerDataManager : MonoBehaviour, IJsonData
 {
     #region 인스펙터
+    [Header("저장될 정보")]
     [SerializeField] private int _gem;
     [SerializeField] private int _energy;
 
     [SerializeField] private int _currentWeaponID;
     [SerializeField] private int _currentClothesID;
 
+    [SerializeField] private int _currentStage;
+
     [SerializeField] private int[] _currentUpgradeLevel = new int[3];
     [SerializeField] private int[] _currentTalentLevel = new int[9];
+
+    [Header("플레이어 캐릭터 관련 기본값")]
+    [SerializeField] private int _defaultAttack = 100;
+    [SerializeField] private float _defaultCriticalRate = 1.05f;
+    [SerializeField] private int _defaultDefence = 10;
+    [SerializeField] private int _defaultHp = 100;
+    [SerializeField] private int _defaultRecovery = 10;
+    [SerializeField] private float _defaultMoveSpeed = 1f;
+
 
     [Header("디버그용. 추후 [SerializeField]를 제거하고 내부변수쪽으로 옮긴다.")]
     [SerializeField] private PlayerSaveData _data;
@@ -58,10 +71,14 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
     #endregion
 
     #region 프로퍼티
+    public static CPlayerDataManager Instance;
+
     public int Gem => _gem;
     public int Energy => _energy;
     public int CurrentWeaponID => _currentWeaponID;
     public int CurrentClothesID => _currentClothesID;
+
+    public int CurrentStage => _currentStage;
 
     public int[] CurrentUpgradeLevel => _currentUpgradeLevel;
     public int[] CurrentTalentLevel => _currentTalentLevel;
@@ -96,12 +113,40 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
     }
     public Dictionary<int, bool> EquipmentUnLockDic => _equipmentUnLockDic;
 
+    // playerCharacter
+
+    public int Attack => _defaultAttack;
+
+    public float CriticalRate => _defaultCriticalRate;
+
+    // 추가 공격력
+    public int CriticalAttack => (int)(Attack * 1.5f);
+
+    // 추가 공격력
+    public int BackAttackAttack=> (int)(Attack * 1.3f);
+
+    public int Defence => _defaultDefence;
+
+    public int HP => _defaultHp;
+
+    public int Recovery => _defaultRecovery;
+
+    public float MoveSpeed => _defaultMoveSpeed;
+
     public object SaveData { get => _data; set => _data = (PlayerSaveData)value; }
     #endregion
 
     void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Debug.Log("Instance != null && Instance != this");
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
 
+        DontDestroyOnLoad(this.gameObject);
     }
 
     void Start()
@@ -112,6 +157,11 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
     void Update()
     {
 
+    }
+    private void OnDestroy()
+    {
+        if (Instance == this)
+            Instance = null;
     }
 
     public bool TryUseEnergy(int energy)
@@ -146,6 +196,8 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
         _data.CurrentWeaponID = _currentWeaponID;
         _data.CurrentClothesID = _currentClothesID;
 
+        _data.CurrentStage = _currentStage;
+
         _data.CurrentUpgradeLevel = _currentUpgradeLevel;
         _data.CurrentTalentLevel = _currentTalentLevel;
 
@@ -162,6 +214,8 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
 
         _currentWeaponID = _data.CurrentWeaponID;
         _currentClothesID = _data.CurrentClothesID;
+
+        _currentStage = _data.CurrentStage;
 
         _currentUpgradeLevel = _data.CurrentUpgradeLevel;
         _currentTalentLevel = _data.CurrentTalentLevel;
