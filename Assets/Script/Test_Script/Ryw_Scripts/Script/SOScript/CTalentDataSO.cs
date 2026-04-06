@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 #region CTalentDataSO
@@ -42,7 +41,6 @@ public class CTalentDataSO : ScriptableObject, ICSVData
         _basic = int.Parse(dataArr[3]);
         _volume = int.Parse(dataArr[4]);
         _icon = _icon.ParseData(dataArr[5]);
-
 
         return CGSSLoader.SOSavePath(NAME) + $"/{NAME}SO_{_ID}.asset";
     }
