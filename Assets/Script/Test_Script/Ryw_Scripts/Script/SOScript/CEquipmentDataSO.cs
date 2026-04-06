@@ -25,6 +25,14 @@ public class CEquipmentDataSO : ScriptableObject, ICSVData
         Sword,
         Skin
     }
+
+    public enum EbonusType
+    {
+        Attak,
+        Health,
+        MoveSpeed
+    }
+
     #region 인스펙터
     [SerializeField] private int _ID = 0;
     [SerializeField] private EEquipmentType _type = EEquipmentType.Dagger;
@@ -37,10 +45,46 @@ public class CEquipmentDataSO : ScriptableObject, ICSVData
     // pre...
     #endregion
 
+    #region 내부 변수
+    private (float value, EbonusType type)[] bonuses;
+    private (float value, EbonusType type)? maxBonus;
+    #endregion
+
     #region 프로퍼티
     public int ID => _ID;
     public EEquipmentType Type => _type;
     public int AdditionalAtt => _additionalAtt;
+    public float BonusAmount => Math.Max(_additionalAttackRatio, Math.Max(_additionalHealthRatio, _additionalSpeedRatio));
+    // BonusAmount가 가장 큰 type을 반환.
+    public EbonusType BonusType
+    {
+        get
+        {
+            if (bonuses == null)
+            {
+                bonuses = new (float value, EbonusType type)[]
+                {
+                    (_additionalAttackRatio, EbonusType.Attak),
+                    (_additionalHealthRatio, EbonusType.Health),
+                    (_additionalSpeedRatio, EbonusType.MoveSpeed)
+                };
+            }
+
+            if (maxBonus == null)
+            {
+                maxBonus = bonuses[0];
+                for (int i = 1; i < bonuses.Length; i++)
+                {
+                    if (bonuses[i].value > maxBonus.Value.value)
+                    {
+                        maxBonus = bonuses[i];
+                    }
+                }
+            }
+
+            return maxBonus.Value.type;
+        }
+    }
     public float AdditionalAttackRatio => _additionalAttackRatio;
     public float AdditionalHealthRatio => _additionalHealthRatio;
     public float AdditionalSpeedRatio => _additionalSpeedRatio;
@@ -60,6 +104,8 @@ public class CEquipmentDataSO : ScriptableObject, ICSVData
         _additionalSpeedRatio = float.Parse(dataArr[5]);
         _image = _image.ParseData(dataArr[6]);
 
+        bonuses = null;
+        maxBonus = null;
 
         return CGSSLoader.SOSavePath(NAME) + $"/{NAME}SO_{_ID}.asset";
     }
