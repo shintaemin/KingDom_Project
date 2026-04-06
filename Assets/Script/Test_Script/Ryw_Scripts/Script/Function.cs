@@ -146,6 +146,31 @@ public static partial class Function
 
                     result = _texture2DArr;
                 }
+                else if (type == typeof(Sprite))
+                {
+                    path = CGSSLoader.Sprite_PATH + "/" + data.Trim().Replace("\r", "");
+                    Sprite _sprite = Resources.Load<Sprite>(path);
+                    if (_sprite == null)
+                        Debug.Log($"Sprite == null. {path}");
+                    result = _sprite;
+                }
+                else if (type == typeof(Sprite[]))
+                {
+                    strings = data.Split(';');
+
+                    Sprite[] _spriteArr = new Sprite[strings.Length];
+
+                    for (int i = 0; i < strings.Length; i++)
+                    {
+                        path = CGSSLoader.Sprite_PATH + "/" + strings[i].Trim().Replace("\r", "");
+
+                        _spriteArr[i] = Resources.Load<Sprite>(path);
+                        if (_spriteArr[i] == null)
+                            Debug.Log($"_texture2DArr[{i}] == null. {path}");
+                    }
+
+                    result = _spriteArr;
+                }
                 else
                     result = null;
                 break;

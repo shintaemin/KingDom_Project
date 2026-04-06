@@ -19,7 +19,7 @@ public class CTalentDataSO : ScriptableObject, ICSVData
     [SerializeField] private string _information = "방어력 {}상승";
     [SerializeField] private int _basic = 30;
     [SerializeField] private int _volume = 10;
-    [SerializeField] private Texture2D _icon;
+    [SerializeField] private Sprite _icon;
     #endregion
 
     #region 프로퍼티
@@ -28,7 +28,7 @@ public class CTalentDataSO : ScriptableObject, ICSVData
     public string Information => _information;
     public int Basic => _basic;
     public int Volume => _volume;
-    public Texture2D Icon => _icon;
+    public Sprite Icon => _icon;
     #endregion
 
     public string ParseData(string data)

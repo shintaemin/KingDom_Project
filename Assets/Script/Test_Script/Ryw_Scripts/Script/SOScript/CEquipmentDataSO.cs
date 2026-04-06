@@ -32,7 +32,7 @@ public class CEquipmentDataSO : ScriptableObject, ICSVData
     [SerializeField] private float _additionalAttackRatio = 0;
     [SerializeField] private float _additionalHealthRatio = 0;
     [SerializeField] private float _additionalSpeedRatio = 3;
-    [SerializeField] private Texture2D _image;
+    [SerializeField] private Sprite _image;
     // mesh
     // pre...
     #endregion
@@ -44,7 +44,7 @@ public class CEquipmentDataSO : ScriptableObject, ICSVData
     public float AdditionalAttackRatio => _additionalAttackRatio;
     public float AdditionalHealthRatio => _additionalHealthRatio;
     public float AdditionalSpeedRatio => _additionalSpeedRatio;
-    public Texture2D Image => _image;
+    public Sprite Image => _image;
     #endregion
 
 
