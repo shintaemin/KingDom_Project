@@ -58,8 +58,8 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
     [SerializeField] private float _defaultMoveSpeed = 1f;
 
 
-    [Header("디버그용. 추후 [SerializeField]를 제거하고 내부변수쪽으로 옮긴다.")]
-    [SerializeField] private PlayerSaveData _data;
+    //[Header("디버그용. 추후 [SerializeField]를 제거하고 내부변수쪽으로 옮긴다.")]
+    //[SerializeField] private PlayerSaveData _data;
     #endregion
 
     #region 내부 변수
@@ -67,7 +67,12 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
 
     // 저장 직전 자신의 데이터를 덮어씌우는 부분이 있긴 하지만
     // 실제 저장 / 불러오기는 이 객체를 기준으로 이루어 진다.
-    //private PlayerSaveData _data;
+    private PlayerSaveData _data;
+
+    private CEquipmentDataSO _currentWeapon;
+    private CEquipmentDataSO _currentClothes;
+
+
     #endregion
 
     #region 프로퍼티
@@ -75,8 +80,40 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
 
     public int Gem => _gem;
     public int Energy => _energy;
-    public int CurrentWeaponID => _currentWeaponID;
-    public int CurrentClothesID => _currentClothesID;
+    public int CurrentWeaponID
+    {
+        get
+        {
+            return _currentWeaponID;
+        }
+        set
+        {
+            if (value >= 1000)
+            {
+                Debug.LogWarning($"CurrentWeaponID에 입력한 ID 값이 1000 이상입니다. {value}");
+                return;
+            }
+            _currentWeaponID = value;
+            _currentWeapon = (CSOManager.Instance[CDataArraySO.EDataType.EquipmentData][_currentWeaponID] as CEquipmentDataSO);
+        }
+    }
+    public int CurrentClothesID
+    {
+        get
+        {
+            return _currentClothesID;
+        }
+        set
+        {
+            if (value < 1000)
+            {
+                Debug.LogWarning($"CurrentClothesID에 입력한 ID 값이 1000 미만입니다. {value}");
+                return;
+            }
+            _currentClothesID = value;
+            _currentClothes = (CSOManager.Instance[CDataArraySO.EDataType.EquipmentData][_currentClothesID] as CEquipmentDataSO);
+        }
+    }
 
     public int CurrentStage => _currentStage;
 
@@ -111,19 +148,54 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
             return sum;
         }
     }
+    // 언락 관련
     public Dictionary<int, bool> EquipmentUnLockDic => _equipmentUnLockDic;
 
+    public int UnLockedWeaponCount
+    {
+        get
+        {
+            return 0;
+        }
+    }
+
+    public int UnLockedClothesCount
+    {
+        get
+        {
+            return 0;
+        }
+    }
     // playerCharacter
+    // 캐싱 권장.
+    // 간결화 하지 말고 작성 권장.
+    public int Attack
+    {
+        get
+        {
+            int result = _defaultAttack;
+            result += _currentWeapon.AdditionalAtt;
+            // 재능 / 등으로 얻는 수치 포함
 
-    public int Attack => _defaultAttack;
-
-    public float CriticalRate => _defaultCriticalRate;
-
+            // 배율 설정.
+            return result;
+        }
+    }
+    // 재능으로 얻는 수치 
+    public float CriticalRate
+    {
+        get
+        {
+            float result = _defaultCriticalRate;
+            // 재능 / 등으로 얻는 수치 포함
+            return result;
+        }
+    }
     // 추가 공격력
     public int CriticalAttack => (int)(Attack * 1.5f);
 
     // 추가 공격력
-    public int BackAttackAttack=> (int)(Attack * 1.3f);
+    public int BackAttackAttack => (int)(Attack * 1.3f);
 
     public int Defence => _defaultDefence;
 
@@ -158,6 +230,26 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
     {
 
     }
+
+    public void ChangeCurrentEquipment(int id)
+    {
+
+    }
+    private void ChangeCurrentClothes(int id)
+    {
+
+    }
+
+    private void ChangeCurrentWeapon(int id)
+    {
+
+    }
+
+    public void ChangeUnLockDic(int key, bool value)
+    {
+
+    }
+
     private void OnDestroy()
     {
         if (Instance == this)
