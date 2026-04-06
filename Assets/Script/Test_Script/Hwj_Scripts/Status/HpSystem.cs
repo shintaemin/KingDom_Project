@@ -12,8 +12,14 @@ using UnityEngine;
 
 public class HpSystem : MonoBehaviour, IDamageable
 {
+    #region 인스펙터
+    [Header("방패병 설정")]
+    [SerializeField] private bool _isShielded = false;
+    #endregion
+
     #region 내부 변수
     public event System.Action OnDamaged;
+    public event System.Action OnBlocked;
     private BaseStatus _status;
     private float _currentHP;
     private bool _isDead = false;
@@ -42,8 +48,27 @@ public class HpSystem : MonoBehaviour, IDamageable
         }
     }
 
-    public void TakeDamage(float amount)
+    public void TakeDamage(float amount, Vector3 attackerPosition)
     {
+        if (_isShielded)
+        {
+            Vector3 attackerPos = attackerPosition;
+            Vector3 pos = transform.position;
+
+            attackerPos.y = 0;
+            pos.y = 0;
+
+            Vector3 direction = (attackerPos - pos).normalized;
+
+            float dot = Vector3.Dot(transform.forward, direction);
+
+            if (dot > 0.5)
+            {
+                OnBlocked?.Invoke();
+                return;
+            }
+        }
+
         float finalDmg = Mathf.Max(0, amount - _status.Armor);
 
         _currentHP -= finalDmg;

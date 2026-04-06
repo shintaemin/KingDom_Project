@@ -18,7 +18,7 @@ public class EnemyMover : MonoBehaviour
     [SerializeField] private string _playerTag = "Player";
 
     [Header("정찰 설정")]
-    [SerializeField] private float _detectRange = 5f;
+    [SerializeField] private float _detectMoveRange = 5f;
 
     [Header("추격 설정")]
     [SerializeField] private float _chaseDelay = 0.1f;
@@ -96,14 +96,18 @@ public class EnemyMover : MonoBehaviour
                 _nav.isStopped = false;
                 _moveRoutine = StartCoroutine(CoChase());
                 break;
+
+            case EnemyState.EState.BossJump:
+                _moveRoutine = StartCoroutine(CoBossJump());
+                break;
         }
     }
 
     private IEnumerator CoPatrol()
     {
-        Vector3 randomPos = transform.position + Random.insideUnitSphere * _detectRange;
+        Vector3 randomPos = transform.position + Random.insideUnitSphere * _detectMoveRange;
 
-        if (NavMesh.SamplePosition(randomPos, out NavMeshHit hit, _detectRange, NavMesh.AllAreas))
+        if (NavMesh.SamplePosition(randomPos, out NavMeshHit hit, _detectMoveRange, NavMesh.AllAreas))
         {
             Vector3 center = hit.position;
 
@@ -135,6 +139,27 @@ public class EnemyMover : MonoBehaviour
             }
 
             yield return new WaitForSeconds(_chaseDelay);
+        }
+    }
+
+    private IEnumerator CoBossJump()
+    {
+        Vector3 randomPos = transform.position + Random.insideUnitSphere * _detectMoveRange;
+
+        if (NavMesh.SamplePosition(randomPos, out NavMeshHit hit, _detectMoveRange, NavMesh.AllAreas))
+        {
+            Vector3 center = hit.position;
+
+            center.y = transform.position.y;
+
+            
+
+            while (true)
+            {
+                yield return null;
+            }
+
+            //_state.IsBossEndJump = true;
         }
     }
 }

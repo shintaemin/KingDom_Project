@@ -84,7 +84,7 @@ public class EnemyCombat : BaseCombat
 
         if (playerHP != null)
         {
-            playerHP.TakeDamage(_status.AtkPower);
+            playerHP.TakeDamage(_status.AtkPower, transform.position);
         }
     }
 

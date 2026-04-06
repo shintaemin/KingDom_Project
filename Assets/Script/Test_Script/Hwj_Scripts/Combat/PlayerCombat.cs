@@ -69,7 +69,7 @@ public class PlayerCombat : BaseCombat
 
         if (enemyHP != null)
         {
-            enemyHP.TakeDamage(_status.AtkPower);
+            enemyHP.TakeDamage(_status.AtkPower, transform.position);
         }
     }
     #endregion
