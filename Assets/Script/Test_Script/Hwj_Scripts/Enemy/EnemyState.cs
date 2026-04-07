@@ -46,7 +46,7 @@ public class EnemyState : MonoBehaviour
     [HideInInspector] public bool IsAttacking = false;
     [HideInInspector] public bool IsTargetPosArrived = false;
     [HideInInspector] public bool IsOnHit = false;
-    [HideInInspector] public bool IsBossEndJump = true;
+    [HideInInspector] public bool IsGrounded = true;
     [HideInInspector] public Vector3 DeadPosition;
     private float _chaseTimer = 0f;
     private bool _isPlayerDead = false;
@@ -210,7 +210,7 @@ public class EnemyState : MonoBehaviour
                 break;
 
             case EState.BossJump:
-                IsBossEndJump = false;
+                IsGrounded = false;
                 break;
         }
 

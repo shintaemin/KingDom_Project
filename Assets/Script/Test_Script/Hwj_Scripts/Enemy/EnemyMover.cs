@@ -22,6 +22,12 @@ public class EnemyMover : MonoBehaviour
 
     [Header("추격 설정")]
     [SerializeField] private float _chaseDelay = 0.1f;
+
+    [Header("보스 점프 설정")]
+    [SerializeField] private float _jumpMinRange = 3f;
+    [SerializeField] private float _jumpMaxRange = 7f;
+    [SerializeField] private float _jumpDuration = 1f;
+    [SerializeField] private float _jumpHeight = 3f;
     #endregion
 
     #region 내부 변수
@@ -98,6 +104,7 @@ public class EnemyMover : MonoBehaviour
                 break;
 
             case EnemyState.EState.BossJump:
+                _nav.enabled = false;
                 _moveRoutine = StartCoroutine(CoBossJump());
                 break;
         }
@@ -144,22 +151,42 @@ public class EnemyMover : MonoBehaviour
 
     private IEnumerator CoBossJump()
     {
-        Vector3 randomPos = transform.position + Random.insideUnitSphere * _detectMoveRange;
+        Vector3 dir = Random.insideUnitSphere;
+        dir.y = 0;
+        dir.Normalize();
 
-        if (NavMesh.SamplePosition(randomPos, out NavMeshHit hit, _detectMoveRange, NavMesh.AllAreas))
+        Vector3 randomPos = _playerTr.position + (dir * Random.Range(_jumpMinRange, _jumpMaxRange));
+
+        if (NavMesh.SamplePosition(randomPos, out NavMeshHit hit, _jumpMaxRange, NavMesh.AllAreas))
         {
             Vector3 center = hit.position;
 
             center.y = transform.position.y;
 
-            
+            Vector3 startPos = transform.position;
+            float timer = 0;
 
-            while (true)
+            while (_jumpDuration > timer)
             {
+                timer += Time.deltaTime;
+
+                float t = timer / _jumpDuration;
+
+                // 수평
+                Vector3 movePos = Vector3.Lerp(startPos, center, t);
+
+                // 수직
+                movePos.y += Mathf.Sin(t * Mathf.PI) * _jumpHeight;
+
+                transform.position = movePos;
+
                 yield return null;
             }
 
-            //_state.IsBossEndJump = true;
+            transform.position = center;
+            _nav.Warp(center);
+            _nav.enabled = true;
+            _state.IsGrounded = true;
         }
     }
 }
