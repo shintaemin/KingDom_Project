@@ -56,7 +56,7 @@ public class CInGameCamera : MonoBehaviour
     [SerializeField] private ECameraMoveType _cameraType = ECameraMoveType.MoveTowards;
 
     [Header("카메라 적 검사 딜레이")]
-    [SerializeField] private bool _uesDelayedCheckEnemy = false;
+    [SerializeField] private bool _uesDelayedCheckEnemy = true;
 
     [Header("MoveTowards")]
     [SerializeField] private float _cameraSpeed = 10;
@@ -173,7 +173,7 @@ public class CInGameCamera : MonoBehaviour
             if (Time.time >= _nextEnemyUpdateTime)
             {
                 GetNearestEnemyTransform(out _nearestEnemyTransform);
-                _nextEnemyUpdateTime += Time.time + _cameraUpdateInterval;
+                _nextEnemyUpdateTime = Time.time + _cameraUpdateInterval;
             }
         }
         else
