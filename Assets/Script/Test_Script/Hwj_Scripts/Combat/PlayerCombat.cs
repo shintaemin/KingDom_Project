@@ -13,10 +13,6 @@ using UnityEngine;
 
 public class PlayerCombat : BaseCombat
 {
-    #region 내부 변수
-    public event System.Action OnAttacked;
-    #endregion
-
     protected override void Update()
     {
         base.Update();
@@ -29,14 +25,7 @@ public class PlayerCombat : BaseCombat
 
     protected override void Attack()
     {
-        if (_rangeCheck.TargetTr == null)
-        {
-            return;
-        }
-
-        _lastAtkTime = Time.time;
-
-        OnAttacked?.Invoke();
+        base.Attack();
     }
 
     #region 애니메이션 이벤트 함수

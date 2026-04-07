@@ -94,6 +94,4 @@ public class Player_Data_SO : ScriptableObject
         }
     }
     #endregion
-
-
 }

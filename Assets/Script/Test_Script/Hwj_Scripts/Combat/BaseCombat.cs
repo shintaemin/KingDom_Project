@@ -19,6 +19,7 @@ public abstract class BaseCombat : MonoBehaviour
     #endregion
 
     #region 내부 변수
+    public event System.Action OnAttacked;
     protected BaseStatus _status;
     protected BaseRangeCheck _rangeCheck;
     protected float _lastAtkTime;
@@ -81,6 +82,17 @@ public abstract class BaseCombat : MonoBehaviour
         return true;
     }
 
-    protected abstract void Attack();
+    protected virtual void Attack()
+    {
+        if (_rangeCheck.TargetTr == null)
+        {
+            return;
+        }
+
+        _lastAtkTime = Time.time;
+        
+        OnAttacked?.Invoke();
+    }
+
     public abstract void OnHitTarget();
 }

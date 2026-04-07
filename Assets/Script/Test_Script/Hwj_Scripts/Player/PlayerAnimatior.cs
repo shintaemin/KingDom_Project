@@ -21,7 +21,7 @@ public class PlayerAnimatior : MonoBehaviour
 
     #region 내부 변수
     private PlayerState _state;
-    private PlayerCombat _combat;
+    private BaseCombat _combat;
     private PlayerStatus _status;
     private Animator _anim;
     private NavMeshAgent _nav;
@@ -36,7 +36,7 @@ public class PlayerAnimatior : MonoBehaviour
     private void Awake()
     {
         _state = GetComponent<PlayerState>();
-        _combat = GetComponent<PlayerCombat>();
+        _combat = GetComponent<BaseCombat>();
         _status = GetComponent<PlayerStatus>();
         _anim = GetComponent<Animator>();
         _nav = GetComponent<NavMeshAgent>();

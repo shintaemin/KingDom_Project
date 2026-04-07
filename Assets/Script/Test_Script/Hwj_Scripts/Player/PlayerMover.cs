@@ -168,5 +168,19 @@ public class PlayerMover : MonoBehaviour
 
         _nav.acceleration = _baseSpeed * 10f * (speed / 100f);
     }
+
+    public void RoomClearMoveToDoor(Vector3 targetPosition)
+    {
+        StopMove();
+
+        if (_nav == null)
+        {
+            _nav = GetComponent<NavMeshAgent>();
+        }
+
+        _nav.SetDestination(targetPosition);
+
+        _playerState.IsMoving = true;
+    }
     #endregion
 }

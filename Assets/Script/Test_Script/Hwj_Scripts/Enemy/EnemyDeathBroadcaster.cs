@@ -10,7 +10,7 @@ using UnityEngine;
     ㆍ 기능 : 적이 죽었을 때, _deadNotifyRadius 값 범위안에 있는 적들에게 알림
 */
 
-public class EnemyDeathBroadcaster : MonoBehaviour // 추가필요 : 적 죽은 위치로 이동시켜야한다.
+public class EnemyDeathBroadcaster : MonoBehaviour
 {
     #region 인스펙터
     [Header("범위 / 레이어 설정")]

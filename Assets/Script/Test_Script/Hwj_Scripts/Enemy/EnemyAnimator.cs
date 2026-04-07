@@ -20,7 +20,7 @@ public class EnemyAnimator : MonoBehaviour
 
     #region 내부 변수
     private EnemyState _state;
-    private EnemyCombat _combat;
+    private BaseCombat _combat;
     private HpSystem _hpSystem;
     private Animator _anim;
     private NavMeshAgent _nav;
@@ -34,7 +34,7 @@ public class EnemyAnimator : MonoBehaviour
     private void Awake()
     {
         _state = GetComponent<EnemyState>();
-        _combat = GetComponent<EnemyCombat>();
+        _combat = GetComponent<BaseCombat>();
         _hpSystem = GetComponent<HpSystem>();
         _anim = GetComponent<Animator>();
         _nav = GetComponent<NavMeshAgent>();

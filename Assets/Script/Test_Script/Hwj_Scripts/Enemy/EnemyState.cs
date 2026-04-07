@@ -33,6 +33,7 @@ public class EnemyState : MonoBehaviour
 
     #region 내부 변수
     public event System.Action<EState> OnStateChanged;
+    public event System.Action<bool> OnDetectionChanged;
     public event System.Action OnDead;
 
     private EState _state = EState.Patrol;
@@ -40,8 +41,24 @@ public class EnemyState : MonoBehaviour
     private HpSystem _hpSystem;
     private PlayerState _playerState;
 
+    private bool _isDetected = false;
+
+    [HideInInspector]
+    public bool IsDetected
+    {
+        get => _isDetected;
+
+        set
+        {
+            if (_isDetected != value)
+            {
+                _isDetected = value;
+                OnDetectionChanged?.Invoke(_isDetected);
+            }
+        }
+    }
+
     [HideInInspector] public bool IsNearDead = false;
-    [HideInInspector] public bool IsDetected = false;
     [HideInInspector] public bool IsAtkRange = false;
     [HideInInspector] public bool IsAttacking = false;
     [HideInInspector] public bool IsTargetPosArrived = false;

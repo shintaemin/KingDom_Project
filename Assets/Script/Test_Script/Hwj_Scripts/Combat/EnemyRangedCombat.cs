@@ -3,15 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /*
-    ㆍ EnemyCombat
+    ㆍ EnemyRangedCombat
 
     ㆍ 작성자 : 황원준
 
     ㆍ 기능 : 적의 상태 기반 자동 공격 및 OnHitTarget 애니메이션 이벤트 함수로 플레이어에게 대미지 전달
 */
 
-public class EnemyCombat : BaseCombat
+public class EnemyRangedCombat : BaseCombat
 {
+    #region 인스펙터
+    [Header("투사체 설정")]
+    [SerializeField] private ProjectileFactory.ProjectileType _projectileType;
+    [SerializeField] private Transform _firePoint;
+    [SerializeField] private float _forwardOffset = 0.2f;
+    #endregion
+
     #region 내부 변수
     private EnemyState _state;
     #endregion
@@ -24,7 +31,7 @@ public class EnemyCombat : BaseCombat
 
         if (_state == null)
         {
-            Debug.LogError("EnemyCombat _state 참조 실패");
+            Debug.LogError("EnemyRangedCombat _state 참조 실패");
             return;
         }
     }
@@ -54,30 +61,13 @@ public class EnemyCombat : BaseCombat
             return;
         }
 
-        float distance = Vector3.Distance(transform.position, _rangeCheck.TargetTr.position);
-
-        if (distance > _status.AtkRange)
-        {
-            // 공격 사거리 밖에 있으면 대미지 X
-            return;
-        }
-
-        Vector3 direction = (_rangeCheck.TargetTr.position - transform.position).normalized;
-
-        float dot = Vector3.Dot(transform.forward, direction);
-
-        if (dot < 0.5f)
-        {
-            // 정면이 아니면 대미지 X
-            return;
-        }
-
-        var playerHP = _rangeCheck.TargetTr.GetComponent<HpSystem>();
-
-        if (playerHP != null)
-        {
-            playerHP.TakeDamage(_status.AtkPower, transform.position);
-        }
+        // 플레이어가 투사체에 맞았을 시. 즉 트리거 스크립트? 에서 플레이어가 맞으면 디스폰하고 대미지 주면 될듯?
+        //var playerHp = _rangeCheck.TargetTr.GetComponent<HpSystem>();
+        //
+        //if (playerHp != null)
+        //{
+        //    playerHp.TakeDamage(_status.AtkPower, transform.position);
+        //}
     }
 
     public void EndAttack()
