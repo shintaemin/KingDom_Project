@@ -11,6 +11,9 @@ using UnityEngine;
 
 
 이건 싱글톤이여야 할까?
+
+최대 스테이지인 20을 저장하는 부분은 어디에 있는가?
+20 이후로는 어떻게 할 것인가?
 */
 #endregion
 
@@ -46,6 +49,7 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
 
     [SerializeField] private int _currentStage;
 
+    // 리스트로 변경해 프로퍼티에서 readonlyList를 사용하는걸 고려
     [SerializeField] private int[] _currentUpgradeLevel = new int[3];
     [SerializeField] private int[] _currentTalentLevel = new int[9];
 
@@ -93,8 +97,8 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
                 Debug.LogWarning($"CurrentWeaponID에 입력한 ID 값이 1000 이상입니다. {value}");
                 return;
             }
-            _currentWeaponID = value;
-            _currentWeapon = (CSOManager.Instance[CDataArraySO.EDataType.EquipmentData][_currentWeaponID] as CEquipmentDataSO);
+
+            ChangeCurrentWeapon(value);
         }
     }
     public int CurrentClothesID
@@ -110,13 +114,25 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
                 Debug.LogWarning($"CurrentClothesID에 입력한 ID 값이 1000 미만입니다. {value}");
                 return;
             }
-            _currentClothesID = value;
-            _currentClothes = (CSOManager.Instance[CDataArraySO.EDataType.EquipmentData][_currentClothesID] as CEquipmentDataSO);
+            ChangeCurrentClothes(value);
         }
     }
 
-    public int CurrentStage => _currentStage;
-
+    /// <summary>
+    /// CurrentStage의 경우 대입하는 값에 상관 없이 무조건 1 증가한다.
+    /// </summary>
+    public int CurrentStage
+    {
+        get
+        {
+            return _currentStage;
+        }
+        set
+        {
+            _currentStage++;
+            // maxStage를 넘어가면 0으로 돌리거나, 랜덤 스테이지로 가거나.
+        }
+    }
     public int[] CurrentUpgradeLevel => _currentUpgradeLevel;
     public int[] CurrentTalentLevel => _currentTalentLevel;
 
@@ -149,8 +165,9 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
         }
     }
     // 언락 관련
-    public Dictionary<int, bool> EquipmentUnLockDic => _equipmentUnLockDic;
+    public IReadOnlyDictionary<int,bool> EquipmentUnLockDic => _equipmentUnLockDic;
 
+    // 메모, 주석, 여기부터 작성 계속
     public int UnLockedWeaponCount
     {
         get
@@ -233,21 +250,43 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
 
     public void ChangeCurrentEquipment(int id)
     {
-
+        if (id < 1000)
+        {
+            ChangeCurrentWeapon(id);
+        }
+        else
+        {
+            ChangeCurrentClothes(id);
+        }
     }
     private void ChangeCurrentClothes(int id)
     {
-
+        if (_currentClothesID != id)
+        {
+            _currentClothesID = id;
+            _currentClothes = CSOManager.Instance[CDataArraySO.EDataType.EquipmentData][id] as CEquipmentDataSO;
+        }
     }
 
     private void ChangeCurrentWeapon(int id)
     {
-
+        if (_currentWeaponID != id)
+        {
+            _currentWeaponID = id;
+            _currentWeapon = CSOManager.Instance[CDataArraySO.EDataType.EquipmentData][id] as CEquipmentDataSO;
+        }
     }
 
     public void ChangeUnLockDic(int key, bool value)
     {
-
+        if (_equipmentUnLockDic.ContainsKey(key))
+        {
+            _equipmentUnLockDic[key] = value;
+        }
+        else
+        {
+            Debug.LogWarning($"사전에 등록되지 않은 key값에 접근. key = {key}");
+        }
     }
 
     private void OnDestroy()
