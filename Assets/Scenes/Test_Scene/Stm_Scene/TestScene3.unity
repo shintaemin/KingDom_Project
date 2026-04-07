@@ -330,7 +330,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4040819005429316075, guid: 3e429a4df4dc7d843b8c47f5ed2f1e7d, type: 3}
       propertyPath: _count
-      value: 1
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4040819005429316075, guid: 3e429a4df4dc7d843b8c47f5ed2f1e7d, type: 3}
       propertyPath: _create
@@ -339,7 +339,7 @@ PrefabInstance:
     - target: {fileID: 4040819005429316075, guid: 3e429a4df4dc7d843b8c47f5ed2f1e7d, type: 3}
       propertyPath: _prefab
       value: 
-      objectReference: {fileID: 5931943786811735790, guid: 3346caa3714f9094ab12304fb4e0628c, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 4040819005429316075, guid: 3e429a4df4dc7d843b8c47f5ed2f1e7d, type: 3}
       propertyPath: _dir.dir
       value: 3
@@ -358,7 +358,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4040819005429316075, guid: 3e429a4df4dc7d843b8c47f5ed2f1e7d, type: 3}
       propertyPath: _addBoxCol
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4040819005429316075, guid: 3e429a4df4dc7d843b8c47f5ed2f1e7d, type: 3}
       propertyPath: _addNavMesh
@@ -366,19 +366,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4040819005429316075, guid: 3e429a4df4dc7d843b8c47f5ed2f1e7d, type: 3}
       propertyPath: _layerIndex
-      value: 29
+      value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 4040819005429316075, guid: 3e429a4df4dc7d843b8c47f5ed2f1e7d, type: 3}
       propertyPath: _startPos.x
-      value: -1.5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4040819005429316075, guid: 3e429a4df4dc7d843b8c47f5ed2f1e7d, type: 3}
       propertyPath: _startPos.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4040819005429316075, guid: 3e429a4df4dc7d843b8c47f5ed2f1e7d, type: 3}
       propertyPath: _startPos.z
-      value: 0
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8387623910609008795, guid: 3e429a4df4dc7d843b8c47f5ed2f1e7d, type: 3}
       propertyPath: m_LocalPosition.x
