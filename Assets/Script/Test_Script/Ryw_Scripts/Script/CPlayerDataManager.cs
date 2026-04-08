@@ -35,6 +35,19 @@ public class PlayerSaveData
     // 2026-04-02 기준 장비의 총 개수는 64개임. 데이터 시트 참고.
     public int[] EquipmentDicID = new int[64];
     public bool[] EquipmentDicValue = new bool[64];
+
+    public PlayerSaveData()
+    {
+        CurrentClothesID = 1000;
+        // 기본 무기
+        EquipmentDicID[0] = 0;
+        EquipmentDicValue[0] = true;
+
+        // 기본 스킨
+        // '배열의 index'가 중요한게 아니라 '해당 index에 저장된 값'이 중요하다.
+        EquipmentDicID[1] = 1000;
+        EquipmentDicValue[1] = true;
+    }
 }
 
 public class CPlayerDataManager : MonoBehaviour, IJsonData
@@ -465,8 +478,8 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
         _gem = _data.Gem;
         _energy = _data.Energy;
 
-        _currentWeaponID = _data.CurrentWeaponID;
-        _currentClothesID = _data.CurrentClothesID;
+        CurrentWeaponID = _data.CurrentWeaponID;
+        CurrentClothesID = _data.CurrentClothesID;
 
         _currentStage = _data.CurrentStage;
 
@@ -490,5 +503,14 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
                 }
             }
         }
+    }
+
+    public void InitSaveData()
+    {
+        if (_data != null)
+        {
+            _data = null;
+        }
+        _data = new PlayerSaveData();
     }
 }

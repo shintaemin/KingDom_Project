@@ -53,6 +53,8 @@ public class Test1 : MonoBehaviour, IJsonData
 public interface IJsonData
 {
     object SaveData { get; set;}
+
+    public void InitSaveData();
     public void MakeSaveData();
     public void LoadSaveData();
 }
