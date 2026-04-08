@@ -53,13 +53,16 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
     [SerializeField] private int[] _currentUpgradeLevel = new int[3];
     [SerializeField] private int[] _currentTalentLevel = new int[9];
 
+
     [Header("플레이어 캐릭터 관련 기본값")]
     [SerializeField] private int _defaultAttack = 100;
-    [SerializeField] private float _defaultCriticalRate = 1.05f;
+    [SerializeField] private float _defaultCriticalRate = 0.05f;
     [SerializeField] private int _defaultDefence = 10;
     [SerializeField] private int _defaultHp = 100;
     [SerializeField] private int _defaultRecovery = 10;
     [SerializeField] private float _defaultMoveSpeed = 1f;
+    [SerializeField] private float _defaultCriticalAttackRate = 0.5f;
+    [SerializeField] private float _defaultBackAttackRate = 0.3f;
 
 
     //[Header("디버그용. 추후 [SerializeField]를 제거하고 내부변수쪽으로 옮긴다.")]
@@ -68,6 +71,10 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
 
     #region 내부 변수
     private readonly Dictionary<int, bool> _equipmentUnLockDic = new Dictionary<int, bool>();
+
+    // 저장 고려
+    private int _unLockedWeaponCount;
+    private int _unLockedClothesCount;
 
     // 저장 직전 자신의 데이터를 덮어씌우는 부분이 있긴 하지만
     // 실제 저장 / 불러오기는 이 객체를 기준으로 이루어 진다.
@@ -165,63 +172,171 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
         }
     }
     // 언락 관련
-    public IReadOnlyDictionary<int,bool> EquipmentUnLockDic => _equipmentUnLockDic;
+    public IReadOnlyDictionary<int, bool> EquipmentUnLockDic => _equipmentUnLockDic;
 
-    // 메모, 주석, 여기부터 작성 계속
-    public int UnLockedWeaponCount
-    {
-        get
-        {
-            return 0;
-        }
-    }
+    public int UnLockedWeaponCount => _unLockedWeaponCount;
+    public int UnLockedClothesCount => _unLockedClothesCount;
 
-    public int UnLockedClothesCount
-    {
-        get
-        {
-            return 0;
-        }
-    }
     // playerCharacter
-    // 캐싱 권장.
-    // 간결화 하지 말고 작성 권장.
     public int Attack
     {
         get
         {
+            // 기본
             int result = _defaultAttack;
+            // 무기
             result += _currentWeapon.AdditionalAtt;
-            // 재능 / 등으로 얻는 수치 포함
-
-            // 배율 설정.
-            return result;
+            // 업그레이드
+            result += (CSOManager.Instance[CDataArraySO.EDataType.AbilityData][0] as CAbilityDataSO).Val * _currentUpgradeLevel[0];
+            // 재능
+            var talentAtt = CSOManager.Instance[CDataArraySO.EDataType.TalentData][4] as CTalentDataSO;
+            int talentAttLevel = _currentTalentLevel[4];
+            if (talentAttLevel > 0)
+            {
+                result += talentAtt.Basic + talentAtt.Volume * (talentAttLevel - 1);
+            }
+            // 배율
+            float ratio = 1f;
+            if(_currentWeapon.BonusType == CEquipmentDataSO.EBonusType.Attak)
+            {
+                ratio += 0.01f * (_currentWeapon.BonusAmount);
+            }
+            ratio += 0.005f * _unLockedWeaponCount;
+            return (int)(result * ratio);
         }
     }
-    // 재능으로 얻는 수치 
     public float CriticalRate
     {
         get
         {
             float result = _defaultCriticalRate;
-            // 재능 / 등으로 얻는 수치 포함
+            // 재능
+            var talentCri = CSOManager.Instance[CDataArraySO.EDataType.TalentData][2] as CTalentDataSO;
+            int talentCriLevel = _currentTalentLevel[2];
+            if (talentCriLevel > 0)
+            {
+                result += 0.01f * (talentCri.Basic + talentCri.Volume * (talentCriLevel - 1));
+            }
             return result;
         }
     }
-    // 추가 공격력
-    public int CriticalAttack => (int)(Attack * 1.5f);
+    // 치명타시 추가 공격력
+    public int AdditionalCriticalAttack
+    {
+        get
+        {
+            int result = (int)(Attack * _defaultCriticalAttackRate);
+            // 재능
+            var talentCri = CSOManager.Instance[CDataArraySO.EDataType.TalentData][6] as CTalentDataSO;
+            int talentCriLevel = _currentTalentLevel[6];
+            if (talentCriLevel > 0)
+            {
+                result += talentCri.Basic + talentCri.Volume * (talentCriLevel - 1);
+            }
+            return result;
+        }
+    }
 
-    // 추가 공격력
-    public int BackAttackAttack => (int)(Attack * 1.3f);
+    // 백어택시 추가 공격력
+    public int AdditionalBackAttack
+    {
+        get
+        {
+            int result = (int)(Attack * _defaultBackAttackRate);
+            // 재능
+            var talentCri = CSOManager.Instance[CDataArraySO.EDataType.TalentData][6] as CTalentDataSO;
+            int talentCriLevel = _currentTalentLevel[6];
+            if (talentCriLevel > 0)
+            {
+                result += talentCri.Basic + talentCri.Volume * (talentCriLevel - 1);
+            }
+            return result;
+        }
+    }
+    public int Defence
+    {
+        get
+        {
+            // 기본
+            int result = _defaultDefence;
+            // 재능
+            var talentAtt = CSOManager.Instance[CDataArraySO.EDataType.TalentData][0] as CTalentDataSO;
+            int talentAttLevel = _currentTalentLevel[0];
+            if (talentAttLevel > 0)
+            {
+                result += talentAtt.Basic + talentAtt.Volume * (talentAttLevel - 1);
+            }
+            return result;
+        }
+    }
+    public int HP
+    {
+        get
+        {
+            // 기본
+            int result = _defaultHp;
+            // 업그레이드
+            result += (CSOManager.Instance[CDataArraySO.EDataType.AbilityData][1] as CAbilityDataSO).Val * _currentUpgradeLevel[0];
+            // 재능
+            var talentAtt = CSOManager.Instance[CDataArraySO.EDataType.TalentData][5] as CTalentDataSO;
+            int talentAttLevel = _currentTalentLevel[5];
+            if (talentAttLevel > 0)
+            {
+                result += talentAtt.Basic + talentAtt.Volume * (talentAttLevel - 1);
+            }
+            // 배율
+            float ratio = 1f;
+            if (_currentWeapon.BonusType == CEquipmentDataSO.EBonusType.Health)
+            {
+                ratio += 0.01f * (_currentWeapon.BonusAmount);
+            }
+            ratio += 0.005f * _unLockedWeaponCount;
+            ratio += 0.005f * _unLockedClothesCount;
+            return (int)(result * ratio);
+        }
+    }
 
-    public int Defence => _defaultDefence;
-
-    public int HP => _defaultHp;
-
-    public int Recovery => _defaultRecovery;
-
-    public float MoveSpeed => _defaultMoveSpeed;
-
+    public int Recovery
+    {
+        get
+        {
+            // 기본
+            int result = _defaultRecovery;
+            // 재능
+            var talentAtt = CSOManager.Instance[CDataArraySO.EDataType.TalentData][1] as CTalentDataSO;
+            int talentAttLevel = _currentTalentLevel[1];
+            if (talentAttLevel > 0)
+            {
+                result += talentAtt.Basic + talentAtt.Volume * (talentAttLevel - 1);
+            }
+            return result;
+        }
+    }
+    public float MoveSpeed
+    {
+        get
+        {
+            // 기본
+            float result = _defaultMoveSpeed;
+            // 업그레이드
+            result += (CSOManager.Instance[CDataArraySO.EDataType.AbilityData][2] as CAbilityDataSO).Val * _currentUpgradeLevel[0];
+            // 재능
+            var talentAtt = CSOManager.Instance[CDataArraySO.EDataType.TalentData][7] as CTalentDataSO;
+            int talentAttLevel = _currentTalentLevel[7];
+            if (talentAttLevel > 0)
+            {
+                result += 0.01f * (talentAtt.Basic + talentAtt.Volume * (talentAttLevel - 1));
+            }
+            // 배율
+            float ratio = 1f;
+            if (_currentWeapon.BonusType == CEquipmentDataSO.EBonusType.MoveSpeed)
+            {
+                ratio += 0.01f * (_currentWeapon.BonusAmount);
+            }
+            ratio += 0.005f * _unLockedClothesCount;
+            return (int)(result * ratio);
+        }
+    }
     public object SaveData { get => _data; set => _data = (PlayerSaveData)value; }
     #endregion
 
@@ -276,12 +391,19 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
             _currentWeapon = CSOManager.Instance[CDataArraySO.EDataType.EquipmentData][id] as CEquipmentDataSO;
         }
     }
-
-    public void ChangeUnLockDic(int key, bool value)
+    public void UnLockEquipmentDic(int key)
     {
         if (_equipmentUnLockDic.ContainsKey(key))
         {
-            _equipmentUnLockDic[key] = value;
+            _equipmentUnLockDic[key] = true;
+            if (key < 1000)
+            {
+                _unLockedWeaponCount++;
+            }
+            else
+            {
+                _unLockedClothesCount++;
+            }
         }
         else
         {
@@ -352,5 +474,21 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
         _currentTalentLevel = _data.CurrentTalentLevel;
 
         _equipmentUnLockDic.ArrayToDic(_data.EquipmentDicID, _data.EquipmentDicValue);
+        _unLockedWeaponCount = 0;
+        _unLockedClothesCount = 0;
+        foreach ((int key, bool value) in _equipmentUnLockDic)
+        {
+            if (value)
+            {
+                if (key < 1000)
+                {
+                    _unLockedWeaponCount++;
+                }
+                else
+                {
+                    _unLockedClothesCount++;
+                }
+            }
+        }
     }
 }
