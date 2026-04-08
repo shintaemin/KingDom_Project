@@ -17,6 +17,10 @@ public class EnemyRangedCombat : BaseCombat
     [SerializeField] private ProjectileFactory.ProjectileType _projectileType;
     [SerializeField] private Transform _firePoint;
     [SerializeField] private float _forwardOffset = 0.2f;
+    [SerializeField] private float _speed = 500f;
+
+    [Header("정면 자동공격 (18 스테이지 전용)")]
+    [SerializeField] private bool _autoAttack = false;
     #endregion
 
     #region 내부 변수
@@ -38,16 +42,35 @@ public class EnemyRangedCombat : BaseCombat
 
     protected override void Update()
     {
-        base.Update();
-
-        if (_state.GetState() == EnemyState.EState.Attack && CanAttack())
+        if (!_autoAttack)
         {
-            Attack();
+            if (_state.GetState() == EnemyState.EState.Chase || _state.GetState() == EnemyState.EState.Attack)
+            {
+                base.Update();
+            }
+
+            if (_state.GetState() == EnemyState.EState.Attack && CanAttack())
+            {
+                Attack();
+            }
+        }
+
+        else
+        {
+            if (CanAttack())
+            {
+                Attack();
+            }
         }
     }
 
     protected override void Attack()
     {
+        if (_rangeCheck.TargetTr == null && !_autoAttack)
+        {
+            return;
+        }
+
         _state.IsAttacking = true;
 
         base.Attack();
@@ -56,18 +79,22 @@ public class EnemyRangedCombat : BaseCombat
     #region 애니메이션 이벤트 함수
     public override void OnHitTarget()
     {
-        if (_rangeCheck.TargetTr == null)
+        if (_rangeCheck.TargetTr == null && !_autoAttack)
         {
             return;
         }
 
-        // 플레이어가 투사체에 맞았을 시. 즉 트리거 스크립트? 에서 플레이어가 맞으면 디스폰하고 대미지 주면 될듯?
-        //var playerHp = _rangeCheck.TargetTr.GetComponent<HpSystem>();
-        //
-        //if (playerHp != null)
-        //{
-        //    playerHp.TakeDamage(_status.AtkPower, transform.position);
-        //}
+        GameObject projectile = ProjectileFactory.Instance.SpawnProjectile(_projectileType);
+
+        projectile.transform.position = _firePoint.position + _firePoint.forward * _forwardOffset;
+        projectile.transform.rotation = _firePoint.rotation;
+
+        var projectileTrigger = projectile.GetComponent<ProjectileTrigger>();
+
+        if (projectileTrigger != null)
+        {
+            projectileTrigger.SetProjectile(_speed, _status.AtkPower, _firePoint.forward);
+        }
     }
 
     public void EndAttack()

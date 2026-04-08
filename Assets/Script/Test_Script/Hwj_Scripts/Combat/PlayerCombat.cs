@@ -25,6 +25,11 @@ public class PlayerCombat : BaseCombat
 
     protected override void Attack()
     {
+        if (_rangeCheck.TargetTr == null)
+        {
+            return;
+        }
+
         base.Attack();
     }
 
@@ -58,7 +63,19 @@ public class PlayerCombat : BaseCombat
 
         if (enemyHP != null)
         {
-            enemyHP.TakeDamage(_status.AtkPower, transform.position);
+            float finalAtkPower = _status.AtkPower;
+
+            Vector3 dir = (transform.position - _rangeCheck.TargetTr.position).normalized;
+
+            float backDot = Vector3.Dot(_rangeCheck.TargetTr.forward, dir);
+
+            if (backDot < - 0.5f)
+            {
+                finalAtkPower *= 2f;
+                Debug.Log($"백어택 적용 [{finalAtkPower}]");
+            }
+
+            enemyHP.TakeDamage(finalAtkPower, transform.position);
         }
     }
     #endregion

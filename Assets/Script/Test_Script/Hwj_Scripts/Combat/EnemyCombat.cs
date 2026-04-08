@@ -31,7 +31,10 @@ public class EnemyCombat : BaseCombat
 
     protected override void Update()
     {
-        base.Update();
+        if (_state.GetState() == EnemyState.EState.Chase || _state.GetState() == EnemyState.EState.Attack)
+        {
+            base.Update();
+        }
 
         if (_state.GetState() == EnemyState.EState.Attack && CanAttack())
         {
@@ -41,6 +44,11 @@ public class EnemyCombat : BaseCombat
 
     protected override void Attack()
     {
+        if (_rangeCheck.TargetTr == null)
+        {
+            return;
+        }
+
         _state.IsAttacking = true;
 
         base.Attack();

@@ -176,7 +176,7 @@ public class EnemyState : MonoBehaviour
                     break;
                 }
 
-                _stateRoutine = StartCoroutine(CoIdleToPatrol(2f));
+                _stateRoutine = StartCoroutine(CoIdleToPatrol(3f));
                 break;
 
             case EState.Patrol:
@@ -263,7 +263,7 @@ public class EnemyState : MonoBehaviour
             return EState.Attack;
         }
 
-        if (_state == EState.Chase || IsOnHit)
+        if (_state == EState.Chase)
         {
             if (IsAtkRange)
             {
@@ -289,7 +289,7 @@ public class EnemyState : MonoBehaviour
             return EState.Chase;
         }
 
-        if (IsDetected || IsNearDead)
+        if (IsDetected || IsNearDead || IsOnHit)
         {
             return EState.Detect;
         }
@@ -311,6 +311,7 @@ public class EnemyState : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
 
+        IsOnHit = false;
         SetState(EState.Chase);
     }
 

@@ -84,11 +84,6 @@ public abstract class BaseCombat : MonoBehaviour
 
     protected virtual void Attack()
     {
-        if (_rangeCheck.TargetTr == null)
-        {
-            return;
-        }
-
         _lastAtkTime = Time.time;
         
         OnAttacked?.Invoke();

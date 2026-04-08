@@ -84,4 +84,16 @@ public class HpSystem : MonoBehaviour, IDamageable
             OnDamaged?.Invoke();
         }
     }
+
+    #region 외부 호출 함수
+    public float GetCurrentHP()
+    {
+        return _currentHP;
+    }
+
+    public float GetMaxHP()
+    {
+        return _status.MaxHP;
+    }
+    #endregion
 }

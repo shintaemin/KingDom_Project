@@ -7,7 +7,7 @@ using UnityEngine;
 
     ㆍ 작성자 : 황원준
 
-    ㆍ 기능 : 
+    ㆍ 기능 : 오브젝트 풀링 기반의 투사체 관리 및 생성
 */
 
 public class ProjectileFactory : MonoBehaviour

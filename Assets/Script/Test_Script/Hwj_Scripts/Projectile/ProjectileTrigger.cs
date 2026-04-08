@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static ProjectileFactory;
 
 /*
     ㆍ ProjectileTrigger
@@ -18,6 +17,9 @@ public class ProjectileTrigger : MonoBehaviour
     [SerializeField] private LayerMask _notTerrainLayer;
     [SerializeField] private bool _onlyOnce = true;
 
+    [Header("타입 설정")]
+    [SerializeField] private ProjectileFactory.ProjectileType _projectileType;
+
     [Header("수명 설정")]
     [SerializeField] private float _lifeTime = 3f;
     #endregion
@@ -25,6 +27,8 @@ public class ProjectileTrigger : MonoBehaviour
     #region 내부 변수
     private bool _onHit = false;
     private float _damage = 0f;
+    private Rigidbody _rb;
+    private Coroutine _lifeTimeRoutine;
     #endregion
 
     private void Reset()
@@ -37,6 +41,23 @@ public class ProjectileTrigger : MonoBehaviour
         }
     }
 
+    private void Awake()
+    {
+        _rb = GetComponent<Rigidbody>();
+
+        if (_rb == null)
+        {
+            Debug.LogError("ProjectileTrigger _rb 참조 실패");
+            return;
+        }
+
+        if (_projectileType == ProjectileFactory.ProjectileType.None)
+        {
+            Debug.LogError("ProjectileTrigger _projectileType 인스펙터 확인");
+            return;
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (_onlyOnce && _onHit)
@@ -44,24 +65,52 @@ public class ProjectileTrigger : MonoBehaviour
             return;
         }
 
+        _onHit = true;
+
         if (other.CompareTag(_playerTag))
         {
-            _onHit = true;
-
             var playerHp = other.GetComponent<HpSystem>();
 
             if (playerHp != null)
             {
                 playerHp.TakeDamage(_damage, transform.position);
-            }
 
-            // 디스폰 요청
+                ReturnToPool();
+            }
         }
 
         else if (((1 << other.gameObject.layer) & _notTerrainLayer) != 0)
         {
-            // 디스폰 요청
+            if (_projectileType == ProjectileFactory.ProjectileType.Arrow)
+            {
+                _rb.velocity = Vector3.zero;
+                _rb.angularVelocity = Vector3.zero;
+
+                //_rb.isKinematic = true; 테스트 후에 느낌이 없다면 적용
+            }
+
+            else
+            {
+                ReturnToPool();
+            }
         }
+    }
+
+    private void ReturnToPool()
+    {
+        if (!gameObject.activeSelf)
+        {
+            return;
+        }
+
+        if (_lifeTimeRoutine != null)
+        {
+            StopCoroutine(_lifeTimeRoutine);
+        }
+
+        _lifeTimeRoutine = null;
+
+        ProjectileFactory.Instance.DespawnProjectile(_projectileType, this.gameObject);
     }
 
     private IEnumerator CoLifeTime()
@@ -71,16 +120,25 @@ public class ProjectileTrigger : MonoBehaviour
         ReturnToPool();
     }
 
-    private void ReturnToPool()
-    {
-        //ProjectileFactory.Instance.DespawnProjectile(, this.gameObject);
-    }
-
     #region 외부 호출 함수
-    public void SetProjectile(float damage)
+    public void SetProjectile(float speed, float damage, Vector3 dir)
     {
-        _damage = damage;
         _onHit = false;
+        _damage = damage;
+
+        //_rb.isKinematic = false; 테스트 후에 느낌이 없다면 적용
+
+        _rb.velocity = Vector3.zero;
+        _rb.angularVelocity = Vector3.zero;
+
+        _rb.AddForce(speed * dir.normalized, ForceMode.VelocityChange);
+
+        if (_lifeTimeRoutine != null)
+        {
+            StopCoroutine(_lifeTimeRoutine);
+        }
+
+        _lifeTimeRoutine = StartCoroutine(CoLifeTime());
     }
     #endregion
 }
