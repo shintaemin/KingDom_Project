@@ -323,14 +323,14 @@ PrefabInstance:
     - target: {fileID: 4040819005429316075, guid: 3e429a4df4dc7d843b8c47f5ed2f1e7d, type: 3}
       propertyPath: _mat
       value: 
-      objectReference: {fileID: 2100000, guid: 3abce4a4866b0c04ba99f7e179405fe2, type: 2}
+      objectReference: {fileID: 2100000, guid: 2ff18fa472eacd1488a959cbf9b5dd22, type: 2}
     - target: {fileID: 4040819005429316075, guid: 3e429a4df4dc7d843b8c47f5ed2f1e7d, type: 3}
       propertyPath: _root
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4040819005429316075, guid: 3e429a4df4dc7d843b8c47f5ed2f1e7d, type: 3}
       propertyPath: _count
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4040819005429316075, guid: 3e429a4df4dc7d843b8c47f5ed2f1e7d, type: 3}
       propertyPath: _create
@@ -342,7 +342,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4040819005429316075, guid: 3e429a4df4dc7d843b8c47f5ed2f1e7d, type: 3}
       propertyPath: _dir.dir
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4040819005429316075, guid: 3e429a4df4dc7d843b8c47f5ed2f1e7d, type: 3}
       propertyPath: _scail.x
@@ -358,19 +358,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4040819005429316075, guid: 3e429a4df4dc7d843b8c47f5ed2f1e7d, type: 3}
       propertyPath: _addBoxCol
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4040819005429316075, guid: 3e429a4df4dc7d843b8c47f5ed2f1e7d, type: 3}
       propertyPath: _addNavMesh
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4040819005429316075, guid: 3e429a4df4dc7d843b8c47f5ed2f1e7d, type: 3}
       propertyPath: _layerIndex
-      value: 29
+      value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 4040819005429316075, guid: 3e429a4df4dc7d843b8c47f5ed2f1e7d, type: 3}
       propertyPath: _startPos.x
-      value: 0
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4040819005429316075, guid: 3e429a4df4dc7d843b8c47f5ed2f1e7d, type: 3}
       propertyPath: _startPos.y
@@ -378,7 +378,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4040819005429316075, guid: 3e429a4df4dc7d843b8c47f5ed2f1e7d, type: 3}
       propertyPath: _startPos.z
-      value: 0
+      value: 23
       objectReference: {fileID: 0}
     - target: {fileID: 8387623910609008795, guid: 3e429a4df4dc7d843b8c47f5ed2f1e7d, type: 3}
       propertyPath: m_LocalPosition.x
