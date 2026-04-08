@@ -15,9 +15,10 @@ MonoBehaviour:
   _ID: 2
   _val: 1
   _priceArr: c2010000bc020000e80300001405000040060000d007000060090000b80b0000480d0000d80e0000
+  _capacity: 50
   _iconArr:
-  - {fileID: 2800000, guid: c116bc0bdb78e69499e280ba5c1c534a, type: 3}
-  - {fileID: 2800000, guid: 98746f0b277c8684f8a1f68d2f9ff069, type: 3}
-  - {fileID: 2800000, guid: e6699e2f42595db45a2700784ed46967, type: 3}
-  - {fileID: 2800000, guid: 459ec11bd5576a44f99bcdc615975be9, type: 3}
-  - {fileID: 2800000, guid: c273e94fd8eb4a1428c9e1d60334d362, type: 3}
+  - {fileID: 21300000, guid: c116bc0bdb78e69499e280ba5c1c534a, type: 3}
+  - {fileID: 21300000, guid: 98746f0b277c8684f8a1f68d2f9ff069, type: 3}
+  - {fileID: 21300000, guid: e6699e2f42595db45a2700784ed46967, type: 3}
+  - {fileID: 21300000, guid: 459ec11bd5576a44f99bcdc615975be9, type: 3}
+  - {fileID: 21300000, guid: c273e94fd8eb4a1428c9e1d60334d362, type: 3}
