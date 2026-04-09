@@ -18,10 +18,6 @@ public class Ceiling_Hiding : MonoBehaviour
     [SerializeField] private bool _view;
     #endregion
 
-    #region
-
-    #endregion
-
     private void Awake()
     {
         if (_ceilingRoot == null)
