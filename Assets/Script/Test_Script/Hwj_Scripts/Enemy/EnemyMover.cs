@@ -18,10 +18,16 @@ public class EnemyMover : MonoBehaviour
     [SerializeField] private string _playerTag = "Player";
 
     [Header("정찰 설정")]
-    [SerializeField] private float _detectRange = 5f;
+    [SerializeField] private float _detectMoveRange = 5f;
 
     [Header("추격 설정")]
     [SerializeField] private float _chaseDelay = 0.1f;
+
+    [Header("보스 점프 설정")]
+    [SerializeField] private float _jumpMinRange = 3f;
+    [SerializeField] private float _jumpMaxRange = 7f;
+    [SerializeField] private float _jumpDuration = 1f;
+    [SerializeField] private float _jumpHeight = 3f;
     #endregion
 
     #region 내부 변수
@@ -96,14 +102,19 @@ public class EnemyMover : MonoBehaviour
                 _nav.isStopped = false;
                 _moveRoutine = StartCoroutine(CoChase());
                 break;
+
+            case EnemyState.EState.BossJump:
+                _nav.enabled = false;
+                _moveRoutine = StartCoroutine(CoBossJump());
+                break;
         }
     }
 
     private IEnumerator CoPatrol()
     {
-        Vector3 randomPos = transform.position + Random.insideUnitSphere * _detectRange;
+        Vector3 randomPos = transform.position + Random.insideUnitSphere * _detectMoveRange;
 
-        if (NavMesh.SamplePosition(randomPos, out NavMeshHit hit, _detectRange, NavMesh.AllAreas))
+        if (NavMesh.SamplePosition(randomPos, out NavMeshHit hit, _detectMoveRange, NavMesh.AllAreas))
         {
             Vector3 center = hit.position;
 
@@ -118,20 +129,64 @@ public class EnemyMover : MonoBehaviour
 
             _state.IsTargetPosArrived = true;
         }
-
-        else
-        {
-            _state.IsTargetPosArrived = true;
-        }
     }
 
     private IEnumerator CoChase()
     {
-        while (_playerTr != null)
+        while (_state.GetState() == EnemyState.EState.Chase)
         {
-            _nav.SetDestination(_playerTr.position);
+            if (_state.DeadPosition != Vector3.zero)
+            {
+                _nav.SetDestination(_state.DeadPosition);
+            }
+
+            else
+            {
+                _nav.SetDestination(_playerTr.position);
+            }
 
             yield return new WaitForSeconds(_chaseDelay);
+        }
+    }
+
+    private IEnumerator CoBossJump()
+    {
+        Vector3 dir = Random.insideUnitSphere;
+        dir.y = 0;
+        dir.Normalize();
+
+        Vector3 randomPos = _playerTr.position + (dir * Random.Range(_jumpMinRange, _jumpMaxRange));
+
+        if (NavMesh.SamplePosition(randomPos, out NavMeshHit hit, _jumpMaxRange, NavMesh.AllAreas))
+        {
+            Vector3 center = hit.position;
+
+            center.y = transform.position.y;
+
+            Vector3 startPos = transform.position;
+            float timer = 0;
+
+            while (_jumpDuration > timer)
+            {
+                timer += Time.deltaTime;
+
+                float t = timer / _jumpDuration;
+
+                // 수평
+                Vector3 movePos = Vector3.Lerp(startPos, center, t);
+
+                // 수직
+                movePos.y += Mathf.Sin(t * Mathf.PI) * _jumpHeight;
+
+                transform.position = movePos;
+
+                yield return null;
+            }
+
+            transform.position = center;
+            _nav.Warp(center);
+            _nav.enabled = true;
+            _state.IsGrounded = true;
         }
     }
 }

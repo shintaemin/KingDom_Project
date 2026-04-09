@@ -48,7 +48,7 @@ public class CJsonManager : MonoBehaviour
 
     void Update()
     {
-        if(_useDebugKey)
+        if (_useDebugKey)
         {
             if (Input.GetKeyDown(_saveKey))
             {
@@ -76,6 +76,9 @@ public class CJsonManager : MonoBehaviour
         {
             //TryAdd
             SavaDataDictionary.Add(fileName, (data, type));
+
+            // 한번 로드를 해준다.
+            LoadData(fileName, data, type);
         }
         else
         {
@@ -110,15 +113,20 @@ public class CJsonManager : MonoBehaviour
 
         foreach (var data in SavaDataDictionary)
         {
+            // 데이터 클래스
             var value = data.Value;
+            // 파일 이름
             var key = data.Key;
             SaveData(value.Item1, key);
         }
     }
 
-    private void SaveData(IJsonData data, string pileName)
+    private void SaveData(IJsonData data, string pileName, bool makeSaveData = true)
     {
-        data.MakeSaveData();
+        if(makeSaveData)
+        {
+            data.MakeSaveData();
+        }
         string json = JsonUtility.ToJson(data.SaveData, true);
         string path = Path.Combine(Application.persistentDataPath, $"{pileName}.json");
 
@@ -147,7 +155,7 @@ public class CJsonManager : MonoBehaviour
         }
     }
 
-    private void LoadData (string pileName, IJsonData data, System.Type type)
+    private void LoadData(string pileName, IJsonData data, System.Type type)
     {
         string path = Path.Combine(Application.persistentDataPath, $"{pileName}.json");
 
@@ -162,7 +170,10 @@ public class CJsonManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("없음");
+            Debug.Log("세이브 파일이 없으므로 새로 생성한다.");
+            data.InitSaveData();
+            SaveData(data, pileName, false);
+            data.LoadSaveData();
         }
 
     }

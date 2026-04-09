@@ -69,15 +69,4 @@ public class PlayerRangeCheck : BaseRangeCheck
 
         _targetTr = nearEnemy;
     }
-
-    private void OnDrawGizmosSelected()
-    {
-        if (_status == null)
-        {
-            return;
-        }
-
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, _status.AtkRange * _rangeOffset);
-    }
 }

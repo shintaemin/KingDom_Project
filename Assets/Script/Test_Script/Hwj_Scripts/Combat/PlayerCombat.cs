@@ -13,12 +13,10 @@ using UnityEngine;
 
 public class PlayerCombat : BaseCombat
 {
-    #region 내부 변수
-    public event System.Action OnAttacked;
-    #endregion
-
-    void Update()
+    protected override void Update()
     {
+        base.Update();
+
         if (CanAttack())
         {
             Attack();
@@ -32,22 +30,7 @@ public class PlayerCombat : BaseCombat
             return;
         }
 
-        _lastAtkTime = Time.time;
-
-        LookTarget(_rangeCheck.TargetTr);
-
-        OnAttacked?.Invoke();
-    }
-
-    private void LookTarget(Transform target)
-    {
-        Vector3 direction = (target.position - transform.position).normalized;
-        direction.y = 0;
-
-        if (direction != Vector3.zero)
-        {
-            transform.rotation = Quaternion.LookRotation(direction);
-        }
+        base.Attack();
     }
 
     #region 애니메이션 이벤트 함수
@@ -58,11 +41,41 @@ public class PlayerCombat : BaseCombat
             return;
         }
 
+        float distance = Vector3.Distance(transform.position, _rangeCheck.TargetTr.position);
+
+        if (distance > _status.AtkRange)
+        {
+            // 공격 사거리 밖에 있으면 대미지 X
+            return;
+        }
+
+        Vector3 direction = (_rangeCheck.TargetTr.position - transform.position).normalized;
+
+        float dot = Vector3.Dot(transform.forward, direction);
+
+        if (dot < 0.5f)
+        {
+            // 정면이 아니면 대미지 X
+            return;
+        }
+
         var enemyHP = _rangeCheck.TargetTr.GetComponent<HpSystem>();
 
         if (enemyHP != null)
         {
-            enemyHP.TakeDamage(_status.AtkPower);
+            float finalAtkPower = _status.AtkPower;
+
+            Vector3 dir = (transform.position - _rangeCheck.TargetTr.position).normalized;
+
+            float backDot = Vector3.Dot(_rangeCheck.TargetTr.forward, dir);
+
+            if (backDot < - 0.5f)
+            {
+                finalAtkPower *= 2f;
+                Debug.Log($"백어택 적용 [{finalAtkPower}]");
+            }
+
+            enemyHP.TakeDamage(finalAtkPower, transform.position);
         }
     }
     #endregion

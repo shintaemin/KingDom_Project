@@ -1,5 +1,8 @@
 using System;
 using System.Collections;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -49,9 +52,11 @@ public partial class CGSSLoader : MonoBehaviour
     #region 인스펙터
     public bool PrintData = true;
     public ECreateFlag CreateFlag = 0;
+
+    public bool UseMakeDataArraySO = true;
     #endregion
 
-    
+
 
     void Awake()
     {
@@ -64,6 +69,7 @@ public partial class CGSSLoader : MonoBehaviour
             if ((CreateFlag & (ECreateFlag)(1 << i)) != 0)
                 StartCoroutine(LoadFromURL((ESheetType)i));
         }
+        MakeDataArraySO();
     }
 
     IEnumerator LoadFromURL(ESheetType type)
@@ -96,16 +102,37 @@ public partial class CGSSLoader : MonoBehaviour
             }
         }
 
+#if UNITY_EDITOR
+        //AssetDatabase.SaveAssets();
+#endif
+
         if (PrintData)
         {
             print(data);
         }
     }
 
+    private void MakeDataArraySO()
+    {
+#if UNITY_EDITOR
+        CDataArraySO so = ScriptableObject.CreateInstance<CDataArraySO>();
+
+        string path = so.SetData();
+        
+        EditorUtility.SetDirty(so);
+
+        AssetDatabase.CreateAsset(so, path);
+#endif
+    }
+
     private void ParseData<T>(string data) where T : ScriptableObject, ICSVData
     {
         T ed = ScriptableObject.CreateInstance<T>();
-        ed.ParseData(data);
+        string path = ed.ParseData(data);
+
+#if UNITY_EDITOR
+        AssetDatabase.CreateAsset(ed, path);
+#endif
     }
 
     public static string SOSavePath(string name)

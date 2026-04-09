@@ -1,4 +1,3 @@
-//using UnityEditor;
 using UnityEngine;
 
 
@@ -18,7 +17,7 @@ public class CAbilityDataSO : ScriptableObject, ICSVData
     [SerializeField] private int _val = 20;
     [SerializeField] private int[] _priceArr = { 300, 600, 800, 870, 930, 990, 1050, 1110, 1170, 1240, 1310, 1380, 1450, 1520, 1620, 1720, 1820, 1920, 2020, 2130, 2240, 2350, 2460, 2570 }; //...
     [SerializeField] private int _capacity;
-    [SerializeField] private Texture2D[] _iconArr;
+    [SerializeField] private Sprite[] _iconArr;
     #endregion
 
     #region 프로퍼티
@@ -26,10 +25,10 @@ public class CAbilityDataSO : ScriptableObject, ICSVData
     public int Val => _val;
     public int[] PriceArr => _priceArr;
     public int Capacity => _capacity;
-    public Texture2D[] IconArr => _iconArr;
+    public Sprite[] IconArr => _iconArr;
     #endregion
 
-    public void ParseData(string data)
+    public string ParseData(string data)
     {
         string[] dataArr = data.Split(",");
 
@@ -39,9 +38,6 @@ public class CAbilityDataSO : ScriptableObject, ICSVData
         _capacity = int.Parse(dataArr[3]);
         _iconArr = _iconArr.ParseData(dataArr[4]);
 
-        string path = CGSSLoader.SOSavePath(NAME) + $"/{NAME}SO_{_ID}.asset";
-
-        //AssetDatabase.CreateAsset(this, path);
-        //AssetDatabase.SaveAssets();
+        return CGSSLoader.SOSavePath(NAME) + $"/{NAME}SO_{_ID}.asset";
     }
 }

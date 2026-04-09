@@ -14,6 +14,7 @@ public class DoorOpenAnim : MonoBehaviour
 {
     #region 인스펙터
     [SerializeField] private Animator _anim;
+    [SerializeField] private Door_StageEnd_Col _col;
     [SerializeField] private string _openingParam = "tOpening";
     #endregion
 
@@ -32,6 +33,15 @@ public class DoorOpenAnim : MonoBehaviour
             }
         }
 
+        if (_col == null)
+        {
+            if (!TryGetComponent<Door_StageEnd_Col>(out _col))
+            {
+                Debug.LogWarning($"[DoorOpenAnim] : 콜라이더 참조 실패");
+                return;
+            }
+        }
+
         _openingTrigerHash = Animator.StringToHash(_openingParam);
     }
 
@@ -43,6 +53,7 @@ public class DoorOpenAnim : MonoBehaviour
             return;
         }
 
+        _col.SetTrigger(true);
         _anim.SetTrigger(_openingTrigerHash);
     }
     #endregion

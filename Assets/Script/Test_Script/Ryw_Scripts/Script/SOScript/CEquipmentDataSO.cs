@@ -1,5 +1,4 @@
 using System;
-//using UnityEditor;
 using UnityEngine;
 
 
@@ -26,6 +25,14 @@ public class CEquipmentDataSO : ScriptableObject, ICSVData
         Sword,
         Skin
     }
+
+    public enum EBonusType
+    {
+        Attak,
+        Health,
+        MoveSpeed
+    }
+
     #region 인스펙터
     [SerializeField] private int _ID = 0;
     [SerializeField] private EEquipmentType _type = EEquipmentType.Dagger;
@@ -33,23 +40,59 @@ public class CEquipmentDataSO : ScriptableObject, ICSVData
     [SerializeField] private float _additionalAttackRatio = 0;
     [SerializeField] private float _additionalHealthRatio = 0;
     [SerializeField] private float _additionalSpeedRatio = 3;
-    [SerializeField] private Texture2D _image;
+    [SerializeField] private Sprite _image;
     // mesh
     // pre...
+    #endregion
+
+    #region 내부 변수
+    private (float value, EBonusType type)[] bonuses;
+    private (float value, EBonusType type)? maxBonus;
     #endregion
 
     #region 프로퍼티
     public int ID => _ID;
     public EEquipmentType Type => _type;
     public int AdditionalAtt => _additionalAtt;
+    public float BonusAmount => Math.Max(_additionalAttackRatio, Math.Max(_additionalHealthRatio, _additionalSpeedRatio));
+    // BonusAmount가 가장 큰 type을 반환.
+    public EBonusType BonusType
+    {
+        get
+        {
+            if (bonuses == null)
+            {
+                bonuses = new (float value, EBonusType type)[]
+                {
+                    (_additionalAttackRatio, EBonusType.Attak),
+                    (_additionalHealthRatio, EBonusType.Health),
+                    (_additionalSpeedRatio, EBonusType.MoveSpeed)
+                };
+            }
+
+            if (maxBonus == null)
+            {
+                maxBonus = bonuses[0];
+                for (int i = 1; i < bonuses.Length; i++)
+                {
+                    if (bonuses[i].value > maxBonus.Value.value)
+                    {
+                        maxBonus = bonuses[i];
+                    }
+                }
+            }
+
+            return maxBonus.Value.type;
+        }
+    }
     public float AdditionalAttackRatio => _additionalAttackRatio;
     public float AdditionalHealthRatio => _additionalHealthRatio;
     public float AdditionalSpeedRatio => _additionalSpeedRatio;
-    public Texture2D Image => _image;
+    public Sprite Image => _image;
     #endregion
 
 
-    public void ParseData(string data)
+    public string ParseData(string data)
     {
         string[] dataArr = data.Split(",");
 
@@ -61,10 +104,9 @@ public class CEquipmentDataSO : ScriptableObject, ICSVData
         _additionalSpeedRatio = float.Parse(dataArr[5]);
         _image = _image.ParseData(dataArr[6]);
 
+        bonuses = null;
+        maxBonus = null;
 
-        string path = CGSSLoader.SOSavePath(NAME) + $"/{NAME}SO_{_ID}.asset";
-
-        //AssetDatabase.CreateAsset(this, path);
-        //AssetDatabase.SaveAssets();
+        return CGSSLoader.SOSavePath(NAME) + $"/{NAME}SO_{_ID}.asset";
     }
 }
