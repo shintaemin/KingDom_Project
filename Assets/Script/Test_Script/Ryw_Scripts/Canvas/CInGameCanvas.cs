@@ -73,9 +73,12 @@ public class CInGameCanvas : MonoBehaviour
                 break;
         }
 
-        if (Input.GetKeyDown(ImpactKey))
+        if (UseDebugKey)
         {
-            CallFullscreenImpact(ImpactColor);
+            if (Input.GetKeyDown(ImpactKey))
+            {
+                CallFullscreenImpact(ImpactColor);
+            }
         }
 
     }
