@@ -9,7 +9,7 @@ using UnityEngine.AI;
     ㆍ 기능 : PlayerState의 OnStateChanged 이벤트를 구독하여 플레이어 애니메이션 제어
 */
 
-public class PlayerAnimatior : MonoBehaviour // IK 쓰기
+public class PlayerAnimatior : MonoBehaviour
 {
     #region 인스펙터
     [SerializeField] private string _paramSpeed = "fSpeed";
@@ -21,7 +21,7 @@ public class PlayerAnimatior : MonoBehaviour // IK 쓰기
 
     #region 내부 변수
     private PlayerState _state;
-    private PlayerCombat _combat;
+    private BaseCombat _combat;
     private PlayerStatus _status;
     private Animator _anim;
     private NavMeshAgent _nav;
@@ -36,7 +36,7 @@ public class PlayerAnimatior : MonoBehaviour // IK 쓰기
     private void Awake()
     {
         _state = GetComponent<PlayerState>();
-        _combat = GetComponent<PlayerCombat>();
+        _combat = GetComponent<BaseCombat>();
         _status = GetComponent<PlayerStatus>();
         _anim = GetComponent<Animator>();
         _nav = GetComponent<NavMeshAgent>();

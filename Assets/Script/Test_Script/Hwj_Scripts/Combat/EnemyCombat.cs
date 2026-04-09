@@ -13,7 +13,6 @@ using UnityEngine;
 public class EnemyCombat : BaseCombat
 {
     #region 내부 변수
-    public event System.Action OnAttacked;
     private EnemyState _state;
     #endregion
 
@@ -30,8 +29,13 @@ public class EnemyCombat : BaseCombat
         }
     }
 
-    void Update()
+    protected override void Update()
     {
+        if (_state.GetState() == EnemyState.EState.Chase || _state.GetState() == EnemyState.EState.Attack)
+        {
+            base.Update();
+        }
+
         if (_state.GetState() == EnemyState.EState.Attack && CanAttack())
         {
             Attack();
@@ -45,24 +49,9 @@ public class EnemyCombat : BaseCombat
             return;
         }
 
-        _lastAtkTime = Time.time;
-
         _state.IsAttacking = true;
 
-        LookTarget(_rangeCheck.TargetTr);
-
-        OnAttacked?.Invoke();
-    }
-
-    private void LookTarget(Transform target)
-    {
-        Vector3 direction = (target.position - transform.position).normalized;
-        direction.y = 0;
-
-        if (direction != Vector3.zero)
-        {
-            transform.rotation = Quaternion.LookRotation(direction);
-        }
+        base.Attack();
     }
 
     #region 애니메이션 이벤트 함수
@@ -95,7 +84,7 @@ public class EnemyCombat : BaseCombat
 
         if (playerHP != null)
         {
-            playerHP.TakeDamage(_status.AtkPower);
+            playerHP.TakeDamage(_status.AtkPower, transform.position);
         }
     }
 

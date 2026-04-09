@@ -21,23 +21,54 @@ public class EnemyState : MonoBehaviour
         ChaseFail,
         Attack,
         Dead,
+        BossRoar,
+        BossJump,
     }
+
+    #region 인스펙터
+    [Header("보스 설정")]
+    [SerializeField] private bool _isBoss = false;
+    [SerializeField] private float _bossRoarCooldown = 15f;
+    #endregion
 
     #region 내부 변수
     public event System.Action<EState> OnStateChanged;
+    public event System.Action<bool> OnDetectionChanged;
     public event System.Action OnDead;
 
     private EState _state = EState.Patrol;
 
     private HpSystem _hpSystem;
-    
+    private PlayerState _playerState;
+
+    private bool _isDetected = false;
+
+    [HideInInspector]
+    public bool IsDetected
+    {
+        get => _isDetected;
+
+        set
+        {
+            if (_isDetected != value)
+            {
+                _isDetected = value;
+                OnDetectionChanged?.Invoke(_isDetected);
+            }
+        }
+    }
+
     [HideInInspector] public bool IsNearDead = false;
-    [HideInInspector] public bool IsDetected = false;
     [HideInInspector] public bool IsAtkRange = false;
     [HideInInspector] public bool IsAttacking = false;
     [HideInInspector] public bool IsTargetPosArrived = false;
+    [HideInInspector] public bool IsOnHit = false;
+    [HideInInspector] public bool IsGrounded = true;
     [HideInInspector] public Vector3 DeadPosition;
     private float _chaseTimer = 0f;
+    private bool _isPlayerDead = false;
+    private float _bossRoarTimer = 0f;
+    private bool _canBossRoar = true;
     private Coroutine _stateRoutine;
     #endregion
 
@@ -52,6 +83,54 @@ public class EnemyState : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        if (_hpSystem != null)
+        {
+            _hpSystem.OnDamaged += Damaged;
+        }
+
+        if (_playerState == null)
+        {
+            _playerState = FindObjectOfType<PlayerState>();
+        }
+
+        if (_playerState != null)
+        {
+            _playerState.OnDead += PlayerDead;
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (_hpSystem != null)
+        {
+            _hpSystem.OnDamaged -= Damaged;
+        }
+
+        if (_playerState != null)
+        {
+            _playerState.OnDead -= PlayerDead;
+        }
+    }
+
+    private void Damaged()
+    {
+        IsOnHit = true;
+
+        if (_isBoss && _canBossRoar)
+        {
+            _canBossRoar = false;
+            SetState(EState.BossRoar);
+        }
+    }
+
+    private void PlayerDead()
+    {
+        _isPlayerDead = true;
+        SetState(EState.Idle);
+    }
+
     void Start()
     {
         SetState(EState.Idle);
@@ -60,6 +139,17 @@ public class EnemyState : MonoBehaviour
     void Update()
     {
         SetState(DecideState());
+
+        if (_isBoss && !_canBossRoar)
+        {
+            _bossRoarTimer += Time.deltaTime;
+
+            if (_bossRoarTimer >= _bossRoarCooldown)
+            {
+                _bossRoarTimer = 0f;
+                _canBossRoar = true;
+            }
+        }
     }
 
     // 단일 상태 진입점
@@ -76,14 +166,17 @@ public class EnemyState : MonoBehaviour
             _stateRoutine = null;
         }
 
-        //Debug.Log($"EnemyState : {_state} -> {next}");
-
         _state = next;
 
         switch (_state)
         {
             case EState.Idle:
-                _stateRoutine = StartCoroutine(CoIdleToPatrol(2f));
+                if (_isPlayerDead)
+                {
+                    break;
+                }
+
+                _stateRoutine = StartCoroutine(CoIdleToPatrol(3f));
                 break;
 
             case EState.Patrol:
@@ -91,7 +184,22 @@ public class EnemyState : MonoBehaviour
                 break;
 
             case EState.Detect:
-                _stateRoutine = StartCoroutine(CoDetectToChase(1f));
+                //if (IsNearDead)
+                //{
+                //    IsNearDead = false;
+                //}
+
+                if (_isBoss && _canBossRoar)
+                {
+                    _canBossRoar = false;
+                    SetState(EState.BossRoar);
+                }
+
+                else
+                {
+                    _stateRoutine = StartCoroutine(CoDetectToChase(1f));
+                }
+
                 break;
 
             case EState.Chase:
@@ -99,16 +207,27 @@ public class EnemyState : MonoBehaviour
                 break;
 
             case EState.ChaseFail:
+                DeadPosition = Vector3.zero;
+                IsNearDead = false;
+                IsOnHit = false;
                 SetState(EState.Idle);
                 break;
 
             case EState.Attack:
-                
+
                 break;
 
             case EState.Dead:
                 OnDead?.Invoke();
                 gameObject.SetActive(false);
+                break;
+
+            case EState.BossRoar:
+                _stateRoutine = StartCoroutine(CoBossRoarToJump(2f));
+                break;
+
+            case EState.BossJump:
+                IsGrounded = false;
                 break;
         }
 
@@ -121,6 +240,11 @@ public class EnemyState : MonoBehaviour
         if (_hpSystem.IsDead)
         {
             return EState.Dead;
+        }
+
+        if (_state == EState.BossRoar || _state == EState.BossJump)
+        {
+            return _state;
         }
 
         if (_state == EState.Attack)
@@ -165,14 +289,7 @@ public class EnemyState : MonoBehaviour
             return EState.Chase;
         }
 
-        if (IsNearDead)
-        {
-            IsNearDead = false;
-
-            return EState.Detect;
-        }
-
-        if (IsDetected)
+        if (IsDetected || IsNearDead || IsOnHit)
         {
             return EState.Detect;
         }
@@ -194,6 +311,7 @@ public class EnemyState : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
 
+        IsOnHit = false;
         SetState(EState.Chase);
     }
 
@@ -204,10 +322,36 @@ public class EnemyState : MonoBehaviour
         SetState(EState.Patrol);
     }
 
+    private IEnumerator CoBossRoarToJump(float time)
+    {
+        yield return new WaitForSeconds(time);
+
+        SetState(EState.BossJump);
+    }
+
     #region 외부 호출 함수
     public EState GetState()
     {
         return _state;
     }
+
+    /*
+    빌드 테스트 후 PlayerState 구독이 안될 시에 스포너에서 적 생성 시 Init으로 구독 시도
+
+    public void Init(PlayerState player)
+    {
+        if (_playerState != null)
+        {
+            _playerState.OnDead -= PlayerDead;
+        }
+
+        _playerState = player;
+
+        if (_playerState != null)
+        {
+            _playerState.OnDead += PlayerDead;
+        }
+    }
+    */
     #endregion
 }

@@ -29,5 +29,6 @@ public abstract class BaseStatus : MonoBehaviour
     public float AtkSpeed => _atkSpeed;
     public float MoveSpeed => _moveSpeed;
     public float Armor => _armor;
+    public Vector3 GetPosition() => transform.position;
     #endregion
 }
