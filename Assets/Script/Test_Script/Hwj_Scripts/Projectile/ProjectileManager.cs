@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /*
-    ㆍ ProjectileFactory
+    ㆍ ProjectileManager
 
     ㆍ 작성자 : 황원준
 
@@ -12,7 +12,7 @@ using UnityEngine;
 
 public class ProjectileManager : MonoBehaviour
 {
-    public enum ProjectileType
+    public enum EProjectileType
     {
         None,
         Arrow,
@@ -22,7 +22,7 @@ public class ProjectileManager : MonoBehaviour
     [System.Serializable]
     public class ProjectileInfo
     {
-        public ProjectileType type;
+        public EProjectileType type;
         public GameObject prefab;
         public int prewarmCount;
     }
@@ -34,7 +34,7 @@ public class ProjectileManager : MonoBehaviour
 
     #region 내부 변수
     public static ProjectileManager Instance { get; private set; }
-    private readonly Dictionary<ProjectileType, Queue<GameObject>> _pools = new Dictionary<ProjectileType, Queue<GameObject>>();
+    private readonly Dictionary<EProjectileType, Queue<GameObject>> _pools = new Dictionary<EProjectileType, Queue<GameObject>>();
     private Transform _poolRoot;
     #endregion
 
@@ -50,11 +50,11 @@ public class ProjectileManager : MonoBehaviour
 
         for (int i = 0; i < _projectileInfos.Count; i++)
         {
-            if (_projectileInfos[i].type == ProjectileType.None ||
+            if (_projectileInfos[i].type == EProjectileType.None ||
                 _projectileInfos[i].prefab == null ||
                 _projectileInfos[i].prewarmCount <= 0)
             {
-                Debug.LogError($"ProjectileFactory _projectileInfos[{i}] 인스펙터 확인");
+                Debug.LogError($"ProjectileManager _projectileInfos[{i}] 인스펙터 확인");
                 return;
             }
         }
@@ -76,7 +76,7 @@ public class ProjectileManager : MonoBehaviour
 
         for (int i = 0; i < _projectileInfos.Count; i++)
         {
-            ProjectileType type = _projectileInfos[i].type;
+            EProjectileType type = _projectileInfos[i].type;
 
             if (!_pools.ContainsKey(type))
             {
@@ -93,7 +93,7 @@ public class ProjectileManager : MonoBehaviour
     }
 
     #region 외부 호출 함수
-    public GameObject SpawnProjectile(ProjectileType type)
+    public GameObject SpawnProjectile(EProjectileType type)
     {
         if (_poolRoot == null)
         {
@@ -122,7 +122,7 @@ public class ProjectileManager : MonoBehaviour
         return null;
     }
 
-    public void DespawnProjectile(ProjectileType type, GameObject projectile)
+    public void DespawnProjectile(EProjectileType type, GameObject projectile)
     {
         if (projectile == null)
         {

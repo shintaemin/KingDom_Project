@@ -14,7 +14,7 @@ public class EnemyRangedCombat : BaseCombat
 {
     #region 인스펙터
     [Header("투사체 설정")]
-    [SerializeField] private ProjectileManager.ProjectileType _projectileType;
+    [SerializeField] private ProjectileManager.EProjectileType _projectileType;
     [SerializeField] private Transform _firePoint;
     [SerializeField] private float _forwardOffset = 0.2f;
     [SerializeField] private float _speed = 500f;

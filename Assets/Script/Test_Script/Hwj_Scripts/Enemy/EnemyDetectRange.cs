@@ -25,6 +25,11 @@ public class EnemyDetectRange : MonoBehaviour
 
     [Header("감지 주기")]
     [SerializeField] private float _findInterval = 0.2f;
+
+    [Header("시각화 설정")]
+    [SerializeField] private SpriteRenderer _sprite;
+    [SerializeField] private Color _detectColor = new Color(166f / 255f, 72f / 255f, 32f / 255f, 1f);
+    [SerializeField] private Color _undetectColor = new Color(166f / 255f, 166f / 255f, 32f / 255f, 1f);
     #endregion
 
     #region 내부 변수
@@ -37,24 +42,16 @@ public class EnemyDetectRange : MonoBehaviour
     {
         _state = GetComponent<EnemyState>();
 
-        if (_state == null)
+        if (_state == null || _sprite == null)
         {
-            Debug.LogError("EnemyDetectRange _state 참조 실패");
+            Debug.LogError("EnemyDetectRange _state _sprite 참조 실패");
             return;
         }
+    }
 
-        var player = GameObject.FindWithTag(_playerTag);
-
-        if (player != null)
-        {
-            _playerTr = player.transform;
-
-            if (_playerTr == null)
-            {
-                Debug.LogError("EnemyDetectRange _playerTr 참조 실패 (태그 설정 필요)");
-                return;
-            }
-        }
+    private void OnEnable()
+    {
+        StartCoroutine(CoBindPlayer());
     }
 
     void Update()
@@ -72,6 +69,25 @@ public class EnemyDetectRange : MonoBehaviour
         _nextFindTime = Time.time + _findInterval;
 
         CheckDetect();
+        UpdateVisual(_state.IsDetected);
+    }
+
+    private IEnumerator CoBindPlayer()
+    {
+        while (_playerTr == null)
+        {
+            var player = GameObject.FindWithTag(_playerTag);
+
+            if (player != null)
+            {
+                _playerTr = player.transform;
+            }
+
+            else
+            {
+                yield return null;
+            }
+        }
     }
 
     private void CheckDetect()
@@ -101,6 +117,11 @@ public class EnemyDetectRange : MonoBehaviour
                 _state.IsDetected = true;
             }
         }
+    }
+
+    private void UpdateVisual(bool isDetected)
+    {
+        _sprite.color = isDetected ? _detectColor : _undetectColor;
     }
 
     private void OnDrawGizmosSelected()

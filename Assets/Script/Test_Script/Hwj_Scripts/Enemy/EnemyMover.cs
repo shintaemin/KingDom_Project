@@ -48,18 +48,18 @@ public class EnemyMover : MonoBehaviour
             return;
         }
 
-        var player = GameObject.FindWithTag(_playerTag);
-
-        if (player != null)
-        {
-            _playerTr = player.transform;
-
-            if (_playerTr == null)
-            {
-                Debug.LogError("EnemyMover _playerTr 참조 실패 (태그 설정 필요)");
-                return;
-            }
-        }
+        //var player = GameObject.FindWithTag(_playerTag);
+        //
+        //if (player != null)
+        //{
+        //    _playerTr = player.transform;
+        //
+        //    if (_playerTr == null)
+        //    {
+        //        Debug.LogError("EnemyMover _playerTr 참조 실패 (태그 설정 필요)");
+        //        return;
+        //    }
+        //}
     }
 
     private void OnEnable()
@@ -68,6 +68,8 @@ public class EnemyMover : MonoBehaviour
         {
             _state.OnStateChanged += StateChanged;
         }
+
+        StartCoroutine(CoBindPlayer());
     }
 
     private void OnDisable()
@@ -75,6 +77,24 @@ public class EnemyMover : MonoBehaviour
         if (_state != null)
         {
             _state.OnStateChanged -= StateChanged;
+        }
+    }
+
+    private IEnumerator CoBindPlayer()
+    {
+        while (_playerTr == null)
+        {
+            var player = GameObject.FindWithTag(_playerTag);
+
+            if (player != null)
+            {
+                _playerTr = player.transform;
+            }
+
+            else
+            {
+                yield return null;
+            }
         }
     }
 
