@@ -12,6 +12,8 @@ using UnityEngine;
   1. 슬롯 버튼 클릭 시 OnClickSlot() 호출
   2. controller가 존재하는지 확인
   3. 현재 슬롯(GameObject)을 컨트롤러에 전달
+
+- 박라희
 */
 #endregion
 

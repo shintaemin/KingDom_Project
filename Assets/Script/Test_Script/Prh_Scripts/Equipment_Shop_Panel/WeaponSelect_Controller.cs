@@ -15,6 +15,8 @@ using UnityEngine;
   3. 잠겨있으면 선택 불가
   4. 모든 슬롯의 체크 해제
   5. 클릭한 슬롯만 체크 활성화
+
+- 박라희
 */
 #endregion
 
@@ -42,15 +44,20 @@ public class WeaponSelect_Controller : MonoBehaviour
         Transform checkObj = clickedSlot.transform.Find("Check");
 
         if (lockObj == null || checkObj == null)
-        {
             return;
-        }
 
         // 잠겨있으면 선택 불가
         if (lockObj.gameObject.activeSelf)
         {
             Debug.Log("잠긴 아이템은 선택 불가");
             return;
+        }
+
+        var slotData = clickedSlot.GetComponent<Equipment_Slot_Data>();
+
+        if (slotData != null)
+        {
+            Debug.Log("선택된 장비 ID: " + slotData.GetData().ID);
         }
 
         // 모든 슬롯의 체크 해제
