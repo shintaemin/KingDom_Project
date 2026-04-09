@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.IO;
+using UnityEditor;
 using UnityEngine;
 
 
@@ -15,6 +17,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Create SO/Data/Data Array (SO)", fileName = "DataArraySO_")]
 public class CDataArraySO : ScriptableObject
 {
+    static readonly string NAME = "DataArraySO";
     public enum EDataType
     {
         EquipmentData,
@@ -51,7 +54,7 @@ public class CDataArraySO : ScriptableObject
 
     //private object InitDataDic()
     //{
-        
+
     //}
     #endregion
 
@@ -78,5 +81,36 @@ public class CDataArraySO : ScriptableObject
             }
         }
         return dic;
+    }
+
+    public string SetData()
+    {
+#if UNITY_EDITOR
+        Debug.Log("Set DataArraySO");
+
+        SetSOAsset(ref _talentDataArr);
+        SetSOAsset(ref _missionDataArr);
+        SetSOAsset(ref _equipmentDataArr);
+        SetSOAsset(ref _abilityDataArr);
+#endif
+        return Path.Combine(CGSSLoader.SO_PATH, NAME+".asset");
+    }
+
+    private void SetSOAsset<T>(ref List<T> soList) where T : UnityEngine.Object, ICSVData
+    {
+#if UNITY_EDITOR
+        string[] list = AssetDatabase.FindAssets($"t:{typeof(T).Name}");
+
+
+        soList ??= new List<T>();
+
+        for (int j = 0; j < list.Length; j++)
+        {
+            string assetPath = AssetDatabase.GUIDToAssetPath(list[j]);
+            soList.Add(AssetDatabase.LoadAssetAtPath<T>(assetPath));
+        }
+
+        Debug.Log($"{typeof(T).Name} : {list.Length}");
+#endif
     }
 }
