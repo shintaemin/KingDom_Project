@@ -122,6 +122,10 @@ public class CInGameCamera : MonoBehaviour
 
     void Update()
     {
+        if (_player == null)
+        {
+            return;
+        }
         switch (cameraPhase)
         {
             case ECameraPhase.Ready:
@@ -135,6 +139,8 @@ public class CInGameCamera : MonoBehaviour
 
     private void InitCameraSetting()
     {
+        if (_leftDownPos == null || _rightUpPos == null) return;
+
         _camera.fieldOfView = _fov;
         // 추후 맵 아래에 무언가 추가된다면 이 상수도 필드로 만든다.
         // 깊이에 따라서 그림자가 달라지는데?
@@ -163,6 +169,7 @@ public class CInGameCamera : MonoBehaviour
 
     private void UpdateCameraTransform()
     {
+        if (_leftDownPos == null || _rightUpPos == null) return;
         Vector3 pos = _player.position;
 
         // x,z값 계산
@@ -239,6 +246,7 @@ public class CInGameCamera : MonoBehaviour
     private void OnDrawGizmos()
     {
         if (_camera == null) return;
+        if (_leftDownPos == null || _rightUpPos == null) return;
 
         // 평면
         if (_drawfloor)

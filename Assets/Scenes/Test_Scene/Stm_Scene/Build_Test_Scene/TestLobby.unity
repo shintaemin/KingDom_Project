@@ -376,7 +376,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1945351123
+--- !u!1001 &1940331633
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -786,7 +786,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7593791507793697126, guid: ca11f73376a2dfd4aba9840ae2ea5624, type: 3}
       propertyPath: m_Name
-      value: Out_Canvas 1
+      value: Out_Canvas
       objectReference: {fileID: 0}
     - target: {fileID: 7593791507793697126, guid: ca11f73376a2dfd4aba9840ae2ea5624, type: 3}
       propertyPath: m_IsActive
@@ -827,5 +827,5 @@ SceneRoots:
   m_Roots:
   - {fileID: 1220935428}
   - {fileID: 86320149}
-  - {fileID: 1945351123}
+  - {fileID: 1940331633}
   - {fileID: 737967933}

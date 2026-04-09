@@ -25,7 +25,28 @@ public class EnemyRangedCombat : BaseCombat
 
     #region 내부 변수
     private EnemyState _state;
+    private string _playerTag = "Player";
+    private Transform _playerTr;
     #endregion
+    private IEnumerator CoBindPlayer()
+    {
+        while (_playerTr == null)
+        {
+            var player = GameObject.FindWithTag(_playerTag);
+
+            if (player != null)
+            {
+                Debug.Log("플레이어 태그 지정 완료");
+                _playerTr = player.transform;
+                yield break;
+            }
+
+            else
+            {
+                yield return null;
+            }
+        }
+    }
 
     protected override void Awake()
     {
@@ -38,6 +59,11 @@ public class EnemyRangedCombat : BaseCombat
             Debug.LogError("EnemyRangedCombat _state 참조 실패");
             return;
         }
+    }
+
+    private void OnEnable()
+    {
+        StartCoroutine(CoBindPlayer());
     }
 
     protected override void Update()

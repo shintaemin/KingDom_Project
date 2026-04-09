@@ -169,6 +169,10 @@ public class MissionManager : MonoBehaviour
         int target = _currentMission.GetTargetCount();
         int remain = _currentMission.GetRemainCount();
         _gameUIManger.GetKillCountUI(remain, target);
+        if (target == remain)
+        {
+            _currentMission = null;
+        }
     }
 
     // 외부에서 지정된 미션구독을 진행하기위해

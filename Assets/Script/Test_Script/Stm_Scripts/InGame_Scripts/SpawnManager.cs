@@ -41,7 +41,8 @@ public class SpawnManager : MonoBehaviour
         }
 
         // 가독성을 위해.. 하나씩 생성
-        // 각 위치정보를 맵에서 가져온다.
+        // 각 위치정보를 맵에서 가져온다
+        Transform player = _currentMap.GetPlayerSpawnPos;
         Transform[] enemy = _currentMap.GetSpawnPos(Map_Stage.ESpawnPosType.Enemy);
         Transform[] boss = _currentMap.GetSpawnPos(Map_Stage.ESpawnPosType.Boss);
         Transform[] key = _currentMap.GetSpawnPos(Map_Stage.ESpawnPosType.Key);
@@ -52,6 +53,10 @@ public class SpawnManager : MonoBehaviour
         if (_enemyPrefab != null && _zombiePrefab != null)
         {
             PosCheck(_enemyPrefab, _zombiePrefab, enemy, "EnemySpawnPos", "ZombieSpawnPos");
+        }
+        if (_playerPrefab != null)
+        {
+            Spawn(_playerPrefab, player);
         }
         if (_eBossPrefab != null && _zBossPrefab != null)
         {
@@ -68,13 +73,6 @@ public class SpawnManager : MonoBehaviour
         if (_citizenPrefab != null)
         {
             PosCheck(_citizenPrefab, citizen);
-        }
-
-        Transform player = _currentMap.GetPlayerSpawnPos;
-
-        if (_playerPrefab != null)
-        {
-            Spawn(_playerPrefab, player);
         }
     }
 
@@ -163,10 +161,7 @@ public class SpawnManager : MonoBehaviour
     #region 외부 호출 함수
     public void SetMap(Map_Stage map)
     {
-        if (_currentMap != null)
-        {
-            MapClear();
-        }
+        MapClear();
 
         GameObject go = Instantiate(map.gameObject, Vector3.zero, Quaternion.identity);
 

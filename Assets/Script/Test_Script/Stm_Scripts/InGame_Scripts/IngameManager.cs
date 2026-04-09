@@ -22,9 +22,9 @@ public class IngameManager : MonoBehaviour
     [SerializeField] private SpawnManager _sm;
     [SerializeField] private Map_Registry_SO _mapSO;
     [SerializeField] private FadeSystem _fadeSystem;
-    //[SerializeField] private Player_Data_SO _playerData;
     [SerializeField] private Map_Stage _currentMap;
 
+    [SerializeField] private int _playerStageData;
     [SerializeField] private int _mapIndex = 1;
     [SerializeField] private float _fadeTime = 0.5f;
     [SerializeField] private float _waitTime = 2.5f;
@@ -42,10 +42,13 @@ public class IngameManager : MonoBehaviour
     // 게임 시작시 맵 데이터값 받아와서 맵지정
     public void GameStart()
     {
-        //int stateData = _playerData.GetStageData;
+        if (CPlayerDataManager.Instance != null)
+        {
+            _playerStageData = CPlayerDataManager.Instance.CurrentStage;
+        }
 
         _mapIndex = 1;
-        SetMap(1/*stateData*/, _mapIndex);
+        SetMap(_playerStageData, _mapIndex);
     }
 
     public MissionBase GetMission => _msManager.GetMission;
@@ -117,6 +120,14 @@ public class IngameManager : MonoBehaviour
 
         _sm.SpawnStart();
 
+        // 코루틴
+        // 입력제한
+        // 시간 흐름 제한
+        // 카메라
+        // 끝나면 클릭가능
+        // 시간 흐름
+        // 플레이어 이펙트 재생
+
         CInGameCamera cam = Camera.main.GetComponent<CInGameCamera>();
         if (cam != null)
         {
@@ -171,6 +182,11 @@ public class IngameManager : MonoBehaviour
             _currentMap = null;
         }
 
+        if (_pState != null)
+        {
+            Destroy(_pState.gameObject);
+        }
+        _pState = null;
         // 스폰 구독 해제
         _sm.OnSpawn -= SpawnCheck;
 
@@ -210,12 +226,13 @@ public class IngameManager : MonoBehaviour
             if (doorOpen != null)
             {
                 doorOpen.PlayOpenAnim();
-                Door_StageEnd_Col endCol = doorOpen.transform.GetComponentInChildren<Door_StageEnd_Col>();
+                Door_StageEnd_Col endCol = doorOpen.transform.GetComponent<Door_StageEnd_Col>();
                 
                 // 스테이지 종료 충돌 시점 구독
                 if (endCol != null)
                 {
                     endCol.OnStageEnd += ChaingedNextMap;
+                    Debug.Log($"[] : 문 충돌 구독 성공");
                 }
             }
 
@@ -224,7 +241,12 @@ public class IngameManager : MonoBehaviour
                 // 여기서 성공 UI 를 띄우고 씬전환 입력대기
                 // 여기서 플레이어 스테이지 레벨 ++
                 OnGameEnd?.Invoke(answer);
+                if (CPlayerDataManager.Instance != null)
+                {
+                    CPlayerDataManager.Instance.CurrentStage += 1;
+                }
                 MissionClear();
+                Debug.Log("[IngameManager] : 미션 클리어!");
             }
             
             return;
@@ -253,23 +275,19 @@ public class IngameManager : MonoBehaviour
         if (go.TryGetComponent<PlayerState>(out _pState))
         {
             // 파티클 생성
-            Debug.Log($"[IngameManager] : {_pState.gameObject.name} 전달 완료");
+            Debug.Log($"[IngameManager] : {go.name} 전달 완료");
         }
     }
 
     private void ChaingedNextMap(Door_StageEnd_Col endCol)
     {
         endCol.OnStageEnd -= ChaingedNextMap;
-
-        // 다음 맵으로 이동 하기위해 인덱스 변경
-        _mapIndex++;
         // 미션 클리어하여 해당 미션 구독 취소
         MissionClear();
+        // 다음 맵으로 이동 하기위해 인덱스 변경
+        _mapIndex++;
 
-        // 데이터 다시확인하고 맵 재지정
-        //int stateData = _playerData.GetStageData;
-
-        _mapChanegeCo = StartCoroutine(CoChangeMap(1/*stateData*/, _mapIndex));
+        _mapChanegeCo = StartCoroutine(CoChangeMap(_playerStageData, _mapIndex));
     }
     #endregion
 }

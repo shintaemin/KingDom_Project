@@ -57,6 +57,30 @@ public class EnemyDetectRange : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        StartCoroutine(CoBindPlayer());
+    }
+    private IEnumerator CoBindPlayer()
+    {
+        while (_playerTr == null)
+        {
+            var player = GameObject.FindWithTag(_playerTag);
+
+            if (player != null)
+            {
+                Debug.Log("플레이어 태그 지정 완료");
+                _playerTr = player.transform;
+                yield break;
+            }
+
+            else
+            {
+                yield return null;
+            }
+        }
+    }
+
     void Update()
     {
         if (_playerTr == null)

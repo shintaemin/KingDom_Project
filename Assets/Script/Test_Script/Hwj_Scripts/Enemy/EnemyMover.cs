@@ -47,23 +47,25 @@ public class EnemyMover : MonoBehaviour
             Debug.LogError("EnemyMover _state _nav 참조 실패");
             return;
         }
+    }
 
-        var player = GameObject.FindWithTag(_playerTag);
-
-        if (player != null)
+    private IEnumerator CoBindPlayer()
+    {
+        while (_playerTr == null)
         {
-            _playerTr = player.transform;
+            var player = GameObject.FindWithTag(_playerTag);
 
-            if (_playerTr == null)
+            if (player != null)
             {
-                Debug.LogError("EnemyMover _playerTr 참조 실패 (태그 설정 필요)");
-                return;
+                Debug.Log("플레이어 태그 지정 완료");
+                _playerTr = player.transform;
+                yield break;
             }
-        }
-        else
-        {
-            Debug.LogError("EnemyMover _playerTr 참조 실패 (태그 설정 필요)");
-            return;
+
+            else
+            {
+                yield return null;
+            }
         }
     }
 
@@ -73,6 +75,8 @@ public class EnemyMover : MonoBehaviour
         {
             _state.OnStateChanged += StateChanged;
         }
+
+        StartCoroutine(CoBindPlayer());
     }
 
     private void OnDisable()
@@ -147,22 +151,6 @@ public class EnemyMover : MonoBehaviour
 
             else
             {
-                if (_nav == null)
-                {
-                    Debug.LogError($"[EnemyMover] : 네브메쉬 없음");
-                }
-
-                if (_playerTr == null)
-                {
-                    var player = GameObject.FindWithTag(_playerTag);
-
-                    if (player == null)
-                    {
-                        Debug.LogError($"[EnemyMover] : 플레이어 없음");
-                    }
-                    _playerTr = player.transform;
-                }
-
                 _nav.SetDestination(_playerTr.position);
             }
 

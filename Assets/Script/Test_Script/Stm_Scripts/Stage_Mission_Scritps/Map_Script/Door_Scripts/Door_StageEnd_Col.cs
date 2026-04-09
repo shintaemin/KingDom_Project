@@ -18,6 +18,11 @@ public class Door_StageEnd_Col : MonoBehaviour
     [SerializeField] private string _colTarget = "Player";
     [SerializeField] private Transform _endPos;
     [SerializeField] private Collider _col;
+    [SerializeField] private bool _playerCollision = false;
+    #endregion
+
+    #region 내부변수
+    private PlayerMover _pMover;
     #endregion
 
     #region 이벤트
@@ -42,6 +47,22 @@ public class Door_StageEnd_Col : MonoBehaviour
         _col.isTrigger = false;
     }
 
+    private void Update()
+    {
+        if (!_playerCollision)
+        {
+            return;
+        }
+
+        float dis = Vector3.Distance(_endPos.position, _pMover.transform.position);
+        if (dis <= 0.5f)
+        {
+            _playerCollision = false;
+            OnStageEnd?.Invoke(this);
+            Debug.Log($"[] : 플레이어 충돌 감지 및 목적지 지정 완료");
+        }
+    }
+
     #region 외부 호출 함수
     public void SetTrigger(bool trigger)
     {
@@ -61,15 +82,11 @@ public class Door_StageEnd_Col : MonoBehaviour
             return;
         }
 
-        if (other.TryGetComponent<PlayerMover>(out PlayerMover pMover))
+        if (other.TryGetComponent<PlayerMover>(out _pMover))
         {
-            //pMover.RoomClearMoveToDoor(_endPos.position);
+            _pMover.RoomClearMoveToDoor(_endPos.position);
 
-            float dis = Vector3.Distance(_endPos.position, pMover.transform.position);
-            if (dis <= 0.001f)
-            {
-                OnStageEnd?.Invoke(this);
-            }
+            _playerCollision = true;
         }
     }
 }
