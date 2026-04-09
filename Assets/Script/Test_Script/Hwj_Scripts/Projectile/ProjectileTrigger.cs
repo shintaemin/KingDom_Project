@@ -10,7 +10,7 @@ using UnityEngine;
     ㆍ 기능 : 투사체의 충돌 및 대미지 처리 담당 / 생성 시 SetProjectile 함수를 통해 대미지 설정
 */
 
-public class ProjectileTrigger : MonoBehaviour
+public class Projectile : MonoBehaviour
 {
     #region 인스펙터
     [SerializeField] private string _playerTag = "Player";
@@ -18,7 +18,7 @@ public class ProjectileTrigger : MonoBehaviour
     [SerializeField] private bool _onlyOnce = true;
 
     [Header("타입 설정")]
-    [SerializeField] private ProjectileFactory.ProjectileType _projectileType;
+    [SerializeField] private ProjectileManager.ProjectileType _projectileType;
 
     [Header("수명 설정")]
     [SerializeField] private float _lifeTime = 3f;
@@ -51,7 +51,7 @@ public class ProjectileTrigger : MonoBehaviour
             return;
         }
 
-        if (_projectileType == ProjectileFactory.ProjectileType.None)
+        if (_projectileType == ProjectileManager.ProjectileType.None)
         {
             Debug.LogError("ProjectileTrigger _projectileType 인스펙터 확인");
             return;
@@ -81,7 +81,7 @@ public class ProjectileTrigger : MonoBehaviour
 
         else if (((1 << other.gameObject.layer) & _notTerrainLayer) != 0)
         {
-            if (_projectileType == ProjectileFactory.ProjectileType.Arrow)
+            if (_projectileType == ProjectileManager.ProjectileType.Arrow)
             {
                 _rb.velocity = Vector3.zero;
                 _rb.angularVelocity = Vector3.zero;
@@ -110,7 +110,7 @@ public class ProjectileTrigger : MonoBehaviour
 
         _lifeTimeRoutine = null;
 
-        ProjectileFactory.Instance.DespawnProjectile(_projectileType, this.gameObject);
+        ProjectileManager.Instance.DespawnProjectile(_projectileType, this.gameObject);
     }
 
     private IEnumerator CoLifeTime()

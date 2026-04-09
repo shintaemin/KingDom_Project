@@ -48,5 +48,5 @@ public class EnemyStatus : BaseStatus
         _atkPower = _baseAtkPower * Mathf.Pow(_atkRatio, increase);
         _diamond = _baseDiamond * Mathf.Pow(_diamondRatio, increase);
     }
-	#endregion
+    #endregion
 }

@@ -10,7 +10,7 @@ using UnityEngine;
     ㆍ 기능 : 오브젝트 풀링 기반의 투사체 관리 및 생성
 */
 
-public class ProjectileFactory : MonoBehaviour
+public class ProjectileManager : MonoBehaviour
 {
     public enum ProjectileType
     {
@@ -33,7 +33,7 @@ public class ProjectileFactory : MonoBehaviour
     #endregion
 
     #region 내부 변수
-    public static ProjectileFactory Instance { get; private set; }
+    public static ProjectileManager Instance { get; private set; }
     private readonly Dictionary<ProjectileType, Queue<GameObject>> _pools = new Dictionary<ProjectileType, Queue<GameObject>>();
     private Transform _poolRoot;
     #endregion

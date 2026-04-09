@@ -14,7 +14,7 @@ public class EnemyRangedCombat : BaseCombat
 {
     #region 인스펙터
     [Header("투사체 설정")]
-    [SerializeField] private ProjectileFactory.ProjectileType _projectileType;
+    [SerializeField] private ProjectileManager.ProjectileType _projectileType;
     [SerializeField] private Transform _firePoint;
     [SerializeField] private float _forwardOffset = 0.2f;
     [SerializeField] private float _speed = 500f;
@@ -84,12 +84,12 @@ public class EnemyRangedCombat : BaseCombat
             return;
         }
 
-        GameObject projectile = ProjectileFactory.Instance.SpawnProjectile(_projectileType);
+        GameObject projectile = ProjectileManager.Instance.SpawnProjectile(_projectileType);
 
         projectile.transform.position = _firePoint.position + _firePoint.forward * _forwardOffset;
         projectile.transform.rotation = _firePoint.rotation;
 
-        var projectileTrigger = projectile.GetComponent<ProjectileTrigger>();
+        var projectileTrigger = projectile.GetComponent<Projectile>();
 
         if (projectileTrigger != null)
         {

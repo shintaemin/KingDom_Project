@@ -1243,8 +1243,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerTag: Player
-  _detectRange: 15
+  _detectMoveRange: 8
   _chaseDelay: 0.1
+  _jumpMinRange: 3
+  _jumpMaxRange: 7
+  _jumpDuration: 1
+  _jumpHeight: 3
 --- !u!114 &8415507082218807654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1257,12 +1261,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12c1734f6bfab334c9f0439ad88c4f8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isBoss: 0
+  _bossRoarCooldown: 15
   IsNearDead: 0
-  IsDetected: 0
   IsAtkRange: 0
   IsAttacking: 0
   IsTargetPosArrived: 0
   IsOnHit: 0
+  IsGrounded: 1
   DeadPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &2733577760612070363
 MonoBehaviour:
@@ -1298,6 +1304,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 148744efb62402b418608b16e1aa64c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isShielded: 0
 --- !u!114 &4910853095987480555
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1378,7 +1378,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _arrivedEnemyDistance: 0.8
-  _baseSpeed: 5
+  _backAttackDistance: 3
+  _backAttackSpeedMultiplier: 1.5
 --- !u!114 &7018607890215314314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1391,6 +1392,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 148744efb62402b418608b16e1aa64c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isShielded: 0
 --- !u!114 &4728468637286809754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1404,7 +1406,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHP: 500
-  _atkPower: 100
+  _atkPower: 75
   _atkRange: 1
   _atkSpeed: 2
   _moveSpeed: 3

@@ -95,5 +95,10 @@ public class HpSystem : MonoBehaviour, IDamageable
     {
         return _status.MaxHP;
     }
+
+    public float GetHPPercentage()
+    {
+        return _currentHP / _status.MaxHP;
+    }
     #endregion
 }
