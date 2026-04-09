@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Map_Registry
   m_EditorClassIdentifier: 
   _maps:
-  - {fileID: 3132381152148594737, guid: 35587355e5b0e0444818a83a3e9a08bb, type: 3}
+  - {fileID: 151081552220077305, guid: e477ecb1cd0dcb04e9926a80ff73bd1f, type: 3}
   - {fileID: 3748615286345308283, guid: 792148f1b780d1a41a5579b94c9bde15, type: 3}
   - {fileID: 1969048266923701668, guid: 6ee56e1de6faeaf42911fc45d9b0b53c, type: 3}
   - {fileID: 8125112394670594930, guid: 1e8b64fc3bf03a54a9d4bbff19962b9d, type: 3}

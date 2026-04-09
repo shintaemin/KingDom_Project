@@ -60,6 +60,11 @@ public class EnemyMover : MonoBehaviour
                 return;
             }
         }
+        else
+        {
+            Debug.LogError("EnemyMover _playerTr 참조 실패 (태그 설정 필요)");
+            return;
+        }
     }
 
     private void OnEnable()
@@ -142,6 +147,22 @@ public class EnemyMover : MonoBehaviour
 
             else
             {
+                if (_nav == null)
+                {
+                    Debug.LogError($"[EnemyMover] : 네브메쉬 없음");
+                }
+
+                if (_playerTr == null)
+                {
+                    var player = GameObject.FindWithTag(_playerTag);
+
+                    if (player == null)
+                    {
+                        Debug.LogError($"[EnemyMover] : 플레이어 없음");
+                    }
+                    _playerTr = player.transform;
+                }
+
                 _nav.SetDestination(_playerTr.position);
             }
 

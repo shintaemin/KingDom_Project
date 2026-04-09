@@ -252,6 +252,7 @@ public class IngameManager : MonoBehaviour
 
         if (go.TryGetComponent<PlayerState>(out _pState))
         {
+            // 파티클 생성
             Debug.Log($"[IngameManager] : {_pState.gameObject.name} 전달 완료");
         }
     }

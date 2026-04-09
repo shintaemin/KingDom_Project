@@ -404,6 +404,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1709218921332708418, guid: 640a58ce4a26bdf4a91d299b9be7ba3d, type: 3}
+      propertyPath: _enemyPrefab
+      value: 
+      objectReference: {fileID: 7357792890693029851, guid: cfb0875df6147614d827c4bb95218c16, type: 3}
+    - target: {fileID: 1709218921332708418, guid: 640a58ce4a26bdf4a91d299b9be7ba3d, type: 3}
+      propertyPath: _playerPrefab
+      value: 
+      objectReference: {fileID: 7385519183922488706, guid: 40d0186b8eb371e4eae1c46408816eaf, type: 3}
+    - target: {fileID: 1709218921332708418, guid: 640a58ce4a26bdf4a91d299b9be7ba3d, type: 3}
+      propertyPath: _zombiePrefab
+      value: 
+      objectReference: {fileID: 7152819125296903771, guid: d2f12ed6e47027c4a82af749c193f107, type: 3}
     - target: {fileID: 3222925043608253612, guid: 640a58ce4a26bdf4a91d299b9be7ba3d, type: 3}
       propertyPath: m_Name
       value: SpawnManager
@@ -689,6 +701,7 @@ MonoBehaviour:
   _fov: 60
   _clampGap: 1
   _cameraType: 1
+  _uesDelayedCheckEnemy: 1
   _cameraSpeed: 10
   _drawfloor: 1
   _drawCamerafloor: 1

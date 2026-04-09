@@ -14,6 +14,7 @@ public class EnemyState : MonoBehaviour
 {
     public enum EState
     {
+        None,
         Idle,
         Patrol,
         Detect,
@@ -36,7 +37,7 @@ public class EnemyState : MonoBehaviour
     public event System.Action<bool> OnDetectionChanged;
     public event System.Action OnDead;
 
-    private EState _state = EState.Patrol;
+    private EState _state = EState.None;
 
     private HpSystem _hpSystem;
     private PlayerState _playerState;
@@ -71,7 +72,7 @@ public class EnemyState : MonoBehaviour
     private bool _canBossRoar = true;
     private Coroutine _stateRoutine;
     #endregion
-
+    
     private void Awake()
     {
         _hpSystem = GetComponent<HpSystem>();
