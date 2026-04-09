@@ -39,8 +39,13 @@ public class CInGameCamera : MonoBehaviour
 
     public enum ECameraPhase
     {
+        // 기본. InitSetting를 여기서 호출해야함. 검사하는 코드는 아직 없음.
+        // 존재하기 위한 정보들.
         Init,
+        // InitCameraSetting 호출
+        // 해상도에 따른 카메라 존재 가능 영역 조절.
         Ready,
+        // 플레이어 추적
         Run
     }
 
