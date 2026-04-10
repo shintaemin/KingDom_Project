@@ -52,7 +52,7 @@ public class CInGameCamera : MonoBehaviour
     #region 인스펙터
     [SerializeField] private float _cameraUpdateInterval = 0.5f;
 
-    [SerializeField, Range(10f, 20f)] private float _height = 15;
+    [SerializeField] private float _height = 15;
 
     [SerializeField] private float _fov = 60;
 
