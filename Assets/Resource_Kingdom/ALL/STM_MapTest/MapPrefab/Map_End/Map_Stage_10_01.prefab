@@ -47127,7 +47127,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.1
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: ba4bae1455e3a1043bca9f7efd9d3e51, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 64be8baa3dc0a564497094b10af8e5ab, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1 &7103198720489942553
 GameObject:

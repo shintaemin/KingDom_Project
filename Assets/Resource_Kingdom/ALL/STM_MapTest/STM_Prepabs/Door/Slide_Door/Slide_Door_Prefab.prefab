@@ -620,7 +620,7 @@ Transform:
   m_GameObject: {fileID: 4242945913004903228}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.0014749374, y: 0.031844184, z: 0.0178}
+  m_LocalPosition: {x: -0.0014749374, y: 0.031844184, z: 0.0041}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -645,7 +645,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.04, y: 0.04, z: 0.04}
+  m_Size: {x: 0.04, y: 0.04, z: 0.01}
   m_Center: {x: 0, y: -0.01, z: 0}
 --- !u!1 &4490228095354617083
 GameObject:
@@ -1029,6 +1029,7 @@ MonoBehaviour:
   _colTarget: Player
   _endPos: {fileID: 5548927665082180519}
   _col: {fileID: 6664315930094396442}
+  _playerCollision: 0
 --- !u!54 &-430802574184344615
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1054,7 +1055,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!4 &904975535209228758 stripped
 Transform:

@@ -960,6 +960,7 @@ MonoBehaviour:
   _colTarget: Player
   _endPos: {fileID: 1418080533947784733}
   _col: {fileID: 1622621540675543667}
+  _playerCollision: 0
 --- !u!54 &1119201225381993959
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -985,7 +986,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!4 &852921446750145915 stripped
 Transform:

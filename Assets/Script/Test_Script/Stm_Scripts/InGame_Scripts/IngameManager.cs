@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 #region 인게임 매니저
 /*
@@ -49,6 +48,10 @@ public class IngameManager : MonoBehaviour
 
         _mapIndex = 1;
         SetMap(_playerStageData, _mapIndex);
+        // UI 에게 정보전달
+        // 맵 스테이지 갯수?
+        // 미션 타입
+        // 미션 카운트 <-
     }
 
     public MissionBase GetMission => _msManager.GetMission;

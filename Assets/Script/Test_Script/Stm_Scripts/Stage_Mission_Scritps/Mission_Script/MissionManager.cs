@@ -29,7 +29,6 @@ public class MissionManager : MonoBehaviour
     [SerializeField] private SpawnManager _sm;
     [SerializeField] private PlayerState _pState;
 
-
     [SerializeField] private IngameUIManager _gameUIManger;
     #endregion
 
@@ -118,7 +117,13 @@ public class MissionManager : MonoBehaviour
                 int killCount = map.GetEnemyCount;
                 _currentMission = new Kill_Mission(killCount);
                 // 지정한 미션 시작
-                _currentMission.StartMission();
+                _currentMission.StartMission(); 
+
+                // UI 업데이트
+                if (_gameUIManger != null)
+                {
+                    _gameUIManger.GetKillCountUI(0, killCount);
+                }
                 // 구독진행
                 Subscription();
 

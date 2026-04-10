@@ -49,15 +49,6 @@ public class SceneLoadManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         
     }
-    #region 테스트용 -> 추후 연결시 삭제
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            LoadScene(ESceneLoadType.TestScene3);
-        }
-    }
-    #endregion
 
     private void OnDestroy()
     {
@@ -118,14 +109,18 @@ public class SceneLoadManager : MonoBehaviour
 
         SetBgm(loadType);
 
-        yield return new WaitForSeconds(_waitTime);
+        Time.timeScale = 0f;
+        
+        yield return new WaitForSecondsRealtime(_waitTime);
 
         if (_fadeSystme != null)
         {
             _fadeSystme.Fade(1, 0, time);
-            yield return new WaitForSeconds(time);
+            yield return new WaitForSecondsRealtime(time);
             _fadeSystme.SetActiveFade(false);
         }
+
+        Time.timeScale = 1f;
 
         _loadSceneCo = null;
     }

@@ -60,7 +60,7 @@ public class Mission_Banner_Controller : MonoBehaviour
     // 전체 배너 연출 흐름
     private IEnumerator CoPlayBanner()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(0f);
 
         // 시작 위치 세팅
         _leftRect.anchoredPosition = _leftStart;

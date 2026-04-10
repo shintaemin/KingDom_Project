@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -16,6 +17,7 @@ public class InGame_Center_UI_Hide : MonoBehaviour
 {
     #region ¿ŒΩ∫∆Â≈Õ
     [SerializeField] private GameObject _centerUI;
+    [SerializeField] private TextMeshProUGUI _levelText;
     [SerializeField] private float _hideTime = 5.0f;
     #endregion
 
@@ -26,6 +28,11 @@ public class InGame_Center_UI_Hide : MonoBehaviour
     private void Start()
     {
         _nextHideTime = Time.time + _hideTime;
+        if (CPlayerDataManager.Instance != null)
+        {
+            int level = CPlayerDataManager.Instance.CurrentStage;
+            _levelText.text = $"Level {level}";
+        }
     }
 
     private void Update()

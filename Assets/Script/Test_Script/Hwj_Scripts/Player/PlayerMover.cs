@@ -127,7 +127,10 @@ public class PlayerMover : MonoBehaviour
             if (distance <= _arrivedEnemyDistance)
             {
                 _playerState.IsMoving = false;
-                _nav.ResetPath();
+                if (_nav != null)
+                {
+                    _nav.ResetPath();
+                }
                 SetMoveSpeed(100f);
             }
 

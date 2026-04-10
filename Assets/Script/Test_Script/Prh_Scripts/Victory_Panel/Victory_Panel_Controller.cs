@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Victory_Panel_Controller : MonoBehaviour
 {
     [Header("등장 대상")]
+    [SerializeField] private CanvasGroup _playerImage;
     [SerializeField] private CanvasGroup _bg;
     [SerializeField] private CanvasGroup _impact;
     [SerializeField] private CanvasGroup _levelText;
@@ -13,6 +15,7 @@ public class Victory_Panel_Controller : MonoBehaviour
 
     [Header("캐릭터 대기 시간")]
     [SerializeField] private float _characterWaitTime = 3f;
+    [SerializeField] private float _uiWaitTime = 1.0f;
 
     [Header("등장 속도")]
     [SerializeField] private float _fadeTime = 1.5f;
@@ -20,11 +23,22 @@ public class Victory_Panel_Controller : MonoBehaviour
     private void Awake()
     {
         // 캐릭터 제외 나머지 전부 숨김
+        SetAlpha(_playerImage, 0f);
         SetAlpha(_bg, 0f);
         SetAlpha(_impact, 0f);
         SetAlpha(_levelText, 0f);
         SetAlpha(_victoryText, 0f);
         SetAlpha(_button, 0f);
+
+        if (_levelText != null)
+        {
+            TextMeshProUGUI levelText = _levelText.GetComponent<TextMeshProUGUI>();
+            if (levelText != null && CPlayerDataManager.Instance != null)
+            {
+                int level = CPlayerDataManager.Instance.CurrentStage;
+                levelText.text = $"Level {level}";
+            }
+        }
     }
 
     private void OnEnable()
@@ -38,6 +52,10 @@ public class Victory_Panel_Controller : MonoBehaviour
         yield return new WaitForSeconds(_characterWaitTime);
 
         // 2. 나머지 UI 동시에 등장
+        StartCoroutine(Fade(_playerImage, 0f, 1f, _fadeTime));
+
+        yield return new WaitForSeconds(_uiWaitTime);
+
         StartCoroutine(Fade(_bg, 0f, 1f, _fadeTime));
         StartCoroutine(Fade(_impact, 0f, 1f, _fadeTime));
         StartCoroutine(Fade(_levelText, 0f, 1f, _fadeTime));
