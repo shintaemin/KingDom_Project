@@ -29,7 +29,7 @@ public partial class CStageGoal : MonoBehaviour
 
     void Awake()
     {
-        
+
     }
 
     void Start()
@@ -39,12 +39,15 @@ public partial class CStageGoal : MonoBehaviour
 
     void Update()
     {
-        _currentGoalState.Update();
+        if (_currentGoalState != null)
+        {
+            _currentGoalState.Update();
+        }
     }
 
     public bool SetMissionType(EMissionType missionType)
     {
-        if(_missionType != null)
+        if (_missionType != null)
         {
             _currentGoalState.Exit();
         }

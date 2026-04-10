@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -13,16 +14,23 @@ public class CInGameCanvas : MonoBehaviour
 {
     public enum EGamePhase
     {
+        None,
         StandbyPhase,
         MainPhase,
         EndPhase
     }
+
+    private readonly CStandbyPhase STANDBYPHASE = new CStandbyPhase();
+    private readonly CMainPhase MAINPHASE = new CMainPhase();
+    private readonly CEndPhase ENDPHASE = new CEndPhase();
+
     // ~Step 이라는 이름으로 만든다.
     public enum EStep
     {
         None,
     }
     #region 인스펙터
+    // 판넬들을 담는 딕셔너리도 있는게 좋아 보인다.
     [Header("판넬들")]
     [SerializeField] private CStagePanel _stagePanel;
     [SerializeField] private CFullscreenImpact _fullscreenImpact;
@@ -37,10 +45,23 @@ public class CInGameCanvas : MonoBehaviour
     [SerializeField] private bool UseDebugKey = false;
     [SerializeField] private Color ImpactColor = Color.yellow;
     [SerializeField] private KeyCode ImpactKey = KeyCode.I;
+
+    [SerializeField] private KeyCode PhaseChageLeftKey1 = KeyCode.Comma;
+    [SerializeField] private KeyCode PhaseChageRightKey2 = KeyCode.Period;
     #endregion
 
     #region 내부 변수
-    [SerializeField] private EGamePhase _currentGamePhase = EGamePhase.StandbyPhase;
+    private EGamePhase _currentGamePhase = EGamePhase.None;
+    private IInGameCanvasPhaseFSM _fsm;
+
+    private readonly Dictionary<EGamePhase, IInGameCanvasPhaseFSM> _phaseDic = new Dictionary<EGamePhase, IInGameCanvasPhaseFSM>();
+    #endregion
+
+    #region 프로퍼티
+    // 이렇게 다 나누지 말고 판넬 딕셔너리를 만드는게 좋아보인다.
+    public CStagePanel StagePanel => _stagePanel;
+    public CFullscreenImpact FullscreenImpact => _fullscreenImpact;
+    public CStageGoal StageGoal => _stageGoal;
     #endregion
 
     public EMissionType? MissionType
@@ -63,51 +84,92 @@ public class CInGameCanvas : MonoBehaviour
             return;
         }
 
+        // 외부로부터 받아와야하는데...
+        // 외부에서 받아오도록 만들고 다 함수로 만든다.
         int level = 0;
+        // 미션 타입
         MissionType = _missionType;
+        // 서브스테이지 수
         _stagePanel.SetTextes(level/*, _missionType.Value*/); // 윗줄에서 타입을 지정해주면, 따로 해줄 필요는 없다. 불안하면 해줘도 된다. 단, 예외처리 필요.
+
+        // 미션 타입과 카운트
+
+
+        MakePhaseDic();
+
+        ChangeGamePhase(EGamePhase.StandbyPhase);
+    }
+
+    private void MakePhaseDic()
+    {
+        _phaseDic.Clear();
+
+        _phaseDic[EGamePhase.StandbyPhase] = STANDBYPHASE;
+        _phaseDic[EGamePhase.MainPhase] = MAINPHASE;
+        _phaseDic[EGamePhase.EndPhase] = ENDPHASE;
     }
 
     void Start()
     {
-        _stagePanel.gameObject.SetActive(false);
-        _stageGoal.gameObject.SetActive(false);
     }
 
     void Update()
     {
-        // 이걸 업데이트에ㅓㅅ 한다고? 엔터가 아니라?
-        switch (_currentGamePhase)
-        {
-            case EGamePhase.StandbyPhase:
-                _stagePanel.gameObject.SetActive(true);
-                _stageGoal.gameObject.SetActive(false);
-                break;
-            case EGamePhase.MainPhase:
-                _stagePanel.gameObject.SetActive(false);
-                _stageGoal.gameObject.SetActive(true);
-                break;
-            case EGamePhase.EndPhase:
-                //Victory_Panel_Controller 를 조건에 맞게 활성화.
-                break;
-        }
-
         if (UseDebugKey)
         {
             if (Input.GetKeyDown(ImpactKey))
             {
                 CallFullscreenImpact(ImpactColor);
             }
+            if (Input.GetKeyDown(PhaseChageLeftKey1))
+            {
+                int cur = (int)_currentGamePhase;
+                if (cur > 1)
+                {
+                    cur--;
+                    ChangeGamePhase((EGamePhase)cur);
+                }
+            }
+            if (Input.GetKeyDown(PhaseChageRightKey2))
+            {
+                int cur = (int)_currentGamePhase;
+                if (cur < (int)EGamePhase.EndPhase)
+                {
+                    cur++;
+                    ChangeGamePhase((EGamePhase)cur);
+                }
+            }
         }
 
+        if (_fsm.IsNull("_fsm"))
+        {
+            return;
+        }
+        _fsm.Update(this);
     }
 
     public bool ChangeGamePhase(EGamePhase phase)
     {
+        if (phase == EGamePhase.None)
+        {
+            Debug.LogWarning("이 페이즈는 아직 진입을 염두하지 않았다.");
+            return false;
+        }
         if (_currentGamePhase == phase)
             return false;
 
+        if (_fsm != null)
+        {
+            Debug.Log($"{_currentGamePhase.ToString()} Exit");
+            _fsm.Exit(this);
+        }
+
         _currentGamePhase = phase;
+        _fsm = _phaseDic[_currentGamePhase];
+
+        Debug.Log($"{_currentGamePhase.ToString()} Enter");
+        _fsm.Enter(this);
+
         return true;
     }
 
