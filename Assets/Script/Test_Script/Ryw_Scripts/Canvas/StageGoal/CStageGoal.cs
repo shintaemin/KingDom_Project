@@ -1,4 +1,6 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 #region CStageGoal
@@ -10,20 +12,24 @@ using UnityEngine;
 public partial class CStageGoal : MonoBehaviour
 {
     #region 인스펙터
+
     [Header("확인용. 직접 수정 비추")]
     [SerializeField] private EMissionType? _missionType = null;
-
-    [SerializeField] private int _subStageNum;  // 이게 이번 레벨의 스테이지 개수임.
-    [SerializeField] private int _currentSubStageNum;
     #endregion
 
     #region 내부 변수
-    private IGoalState _currentGoalState;
+    private IFSM _currentGoalState;
     #endregion
+
+    public EMissionType? MissionType
+    {
+        get { return _missionType; }
+        set { _missionType = value; }
+    }
 
     void Awake()
     {
-
+        
     }
 
     void Start()
@@ -46,8 +52,8 @@ public partial class CStageGoal : MonoBehaviour
         _missionType = missionType;
         _currentGoalState = missionType switch
         {
-            EMissionType.Kill => (IGoalState)new CStageGoalKill(),
-            EMissionType.Rescue => (IGoalState)new CStageGoalRescue(),
+            EMissionType.Kill => (IFSM)new CStageGoalKill(),
+            EMissionType.Rescue => (IFSM)new CStageGoalRescue(),
             //EMissionType.Goal => (IGoalState)new CStageGoalGoal(),
             _ => null
         };

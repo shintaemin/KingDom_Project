@@ -30,6 +30,9 @@ public class CInGameCanvas : MonoBehaviour
     //[SerializeField] private Victory_Panel_Controller _victoryPanel;
     //[SerializeField] private Victory_Panel_Controller _FailurePanel;
 
+    [Header("확인용. 직접 수정 비추")]
+    [SerializeField] private EMissionType? _missionType = null;
+
     [Header("디버그")]
     [SerializeField] private bool UseDebugKey = false;
     [SerializeField] private Color ImpactColor = Color.yellow;
@@ -40,6 +43,17 @@ public class CInGameCanvas : MonoBehaviour
     [SerializeField] private EGamePhase _currentGamePhase = EGamePhase.StandbyPhase;
     #endregion
 
+    public EMissionType? MissionType
+    {
+        get { return _missionType; }
+        set
+        {
+            _missionType = value;
+            _stagePanel.MissionType = _missionType;
+            _stageGoal.MissionType = _missionType;
+        }
+    }
+
     void Awake()
     {
         if (_stagePanel.IsNull("_stagePanel") ||
@@ -48,6 +62,10 @@ public class CInGameCanvas : MonoBehaviour
         {
             return;
         }
+
+        int level = 0;
+        MissionType = _missionType;
+        _stagePanel.SetTextes(level/*, _missionType.Value*/); // 윗줄에서 타입을 지정해주면, 따로 해줄 필요는 없다. 불안하면 해줘도 된다. 단, 예외처리 필요.
     }
 
     void Start()
@@ -58,6 +76,7 @@ public class CInGameCanvas : MonoBehaviour
 
     void Update()
     {
+        // 이걸 업데이트에ㅓㅅ 한다고? 엔터가 아니라?
         switch (_currentGamePhase)
         {
             case EGamePhase.StandbyPhase:
