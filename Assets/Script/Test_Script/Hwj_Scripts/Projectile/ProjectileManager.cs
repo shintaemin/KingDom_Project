@@ -35,6 +35,7 @@ public class ProjectileManager : MonoBehaviour
     #region 내부 변수
     public static ProjectileManager Instance { get; private set; }
     private readonly Dictionary<EProjectileType, Queue<GameObject>> _pools = new Dictionary<EProjectileType, Queue<GameObject>>();
+    private readonly Dictionary<EProjectileType, ProjectileInfo> _infos = new Dictionary<EProjectileType, ProjectileInfo>();
     private Transform _poolRoot;
     #endregion
 
@@ -59,6 +60,7 @@ public class ProjectileManager : MonoBehaviour
             }
         }
 
+        InitProjectileInfo();
         InitProjectile();
     }
 
@@ -70,24 +72,35 @@ public class ProjectileManager : MonoBehaviour
         }
     }
 
+    private void InitProjectileInfo()
+    {
+        for (int i = 0; i < _projectileInfos.Count; i++)
+        {
+            ProjectileInfo info = _projectileInfos[i];
+
+            if (info.type != EProjectileType.None && info.prefab != null && info.prewarmCount > 0)
+            {
+                _infos[info.type] = info;
+            }
+        }
+    }
+
     private void InitProjectile()
     {
         _poolRoot = new GameObject("Projectile_PoolRoot").transform;
 
-        for (int i = 0; i < _projectileInfos.Count; i++)
+        foreach (var info in _infos.Values)
         {
-            EProjectileType type = _projectileInfos[i].type;
-
-            if (!_pools.ContainsKey(type))
+            if (!_pools.ContainsKey(info.type))
             {
-                _pools[type] = new Queue<GameObject>();
+                _pools[info.type] = new Queue<GameObject>();
             }
 
-            for (int j = 0; j < _projectileInfos[i].prewarmCount; j++)
+            for (int j = 0; j < info.prewarmCount; j++)
             {
-                GameObject projectile = Instantiate(_projectileInfos[i].prefab, _poolRoot);
+                GameObject projectile = Instantiate(info.prefab, _poolRoot);
                 projectile.SetActive(false);
-                _pools[type].Enqueue(projectile);
+                _pools[info.type].Enqueue(projectile);
             }
         }
     }
@@ -100,7 +113,7 @@ public class ProjectileManager : MonoBehaviour
             _poolRoot = new GameObject("Projectile_PoolRoot").transform;
         }
 
-        if (_pools.ContainsKey(type) && _pools[type].Count > 0)
+        if (_pools.TryGetValue(type, out Queue<GameObject> pool) && pool.Count > 0)
         {
             GameObject projectile = _pools[type].Dequeue();
             projectile.transform.SetParent(null);
@@ -108,10 +121,7 @@ public class ProjectileManager : MonoBehaviour
             return projectile;
         }
 
-        // 리스트에서 본인 타입과 같은 타입을 가진 ProjectileInfo를 찾는다.
-        ProjectileInfo info = _projectileInfos.Find(projectile => projectile.type == type);
-
-        if (info != null)
+        if (_infos.TryGetValue(type, out ProjectileInfo info))
         {
             GameObject extra = Instantiate(info.prefab);
             extra.transform.SetParent(null);

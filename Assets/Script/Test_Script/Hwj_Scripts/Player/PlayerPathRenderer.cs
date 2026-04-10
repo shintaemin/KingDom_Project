@@ -16,6 +16,9 @@ public class PlayerPathRenderer : MonoBehaviour
     #region 인스펙터
     [Header("y축 보정값")]
     [SerializeField] private float _yOffset = 0.1f;
+
+    [Header("화살표 머리")]
+    [SerializeField] private GameObject _arrowHead;
     #endregion
 
     #region 내부 변수
@@ -32,9 +35,9 @@ public class PlayerPathRenderer : MonoBehaviour
         _nav = new NavMeshPath();
         _pathPoint = new List<Vector3>(100);
 
-        if (_lineRenderer == null)
+        if (_lineRenderer == null || _pathRecorder == null || _arrowHead == null)
         {
-            Debug.LogError("PlayerPathRenderer _lineRenderer _pathRecorder 참조 실패");
+            Debug.LogError("PlayerPathRenderer _lineRenderer _pathRecorder _arrowHead 참조 실패");
             return;
         }
     }
@@ -52,6 +55,7 @@ public class PlayerPathRenderer : MonoBehaviour
         if (path == null || path.Count == 0 && enemy == null)
         {
             _lineRenderer.positionCount = 0;
+            _arrowHead.SetActive(false);
             return;
         }
 
@@ -91,6 +95,24 @@ public class PlayerPathRenderer : MonoBehaviour
         for (int i = 0; i < _pathPoint.Count; i++)
         {
             _lineRenderer.SetPosition(i, _pathPoint[i] + Vector3.up * _yOffset);
+        }
+
+        _arrowHead.SetActive(true);
+
+        _arrowHead.transform.position = _pathPoint[_pathPoint.Count - 1] + Vector3.up * _yOffset;
+
+        Vector3 direction = (_pathPoint[_pathPoint.Count - 1] - _pathPoint[_pathPoint.Count - 2]).normalized;
+
+        if (direction != Vector3.zero)
+        {
+            _arrowHead.transform.rotation = Quaternion.LookRotation(direction);
+
+            _arrowHead.transform.Rotate(90, 0, 0);
+        }
+
+        else
+        {
+            _arrowHead.SetActive(false);
         }
     }
 }

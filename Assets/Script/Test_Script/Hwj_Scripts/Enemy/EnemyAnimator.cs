@@ -16,6 +16,9 @@ public class EnemyAnimator : MonoBehaviour
     [SerializeField] private string _paramAttack = "tAttack";
     [SerializeField] private string _paramOnHit = "tOnHit";
     [SerializeField] private string _paramOnHitIndex = "iOnHitIndex";
+
+    [Header("18 스테이지 전용")]
+    [SerializeField] private bool _autoAttack = false;
     #endregion
 
     #region 내부 변수
@@ -39,9 +42,9 @@ public class EnemyAnimator : MonoBehaviour
         _anim = GetComponent<Animator>();
         _nav = GetComponent<NavMeshAgent>();
 
-        if (_state == null || _anim == null || _hpSystem  == null || _combat == null || _nav == null)
+        if (_state == null || _anim == null || _hpSystem  == null)
         {
-            Debug.LogError("EnemyAnimator _state _anim _hpSystem _combat _nav 참조 실패");
+            Debug.LogError("EnemyAnimator _state _anim _hpSystem 참조 실패");
             return;
         }
 
@@ -79,6 +82,11 @@ public class EnemyAnimator : MonoBehaviour
 
     void Update()
     {
+        if (_autoAttack)
+        {
+            return;
+        }
+
         float CurrentSpeed = _nav.velocity.magnitude;
 
         _anim.SetFloat(_hashSpeed, CurrentSpeed);

@@ -9,7 +9,7 @@ public class EffectManager : MonoBehaviour
         None,
         Player_Attack,
         Enemy_Attack,
-        
+
     }
 
     [System.Serializable]
@@ -29,6 +29,7 @@ public class EffectManager : MonoBehaviour
     #region 내부 변수
     public static EffectManager Instance { get; private set; }
     private readonly Dictionary<EEffectType, Queue<GameObject>> _pools = new Dictionary<EEffectType, Queue<GameObject>>();
+    private readonly Dictionary<EEffectType, EffectInfo> _infos = new Dictionary<EEffectType, EffectInfo>();
     private Transform _poolRoot;
     #endregion
 
@@ -53,6 +54,7 @@ public class EffectManager : MonoBehaviour
             }
         }
 
+        InitEffectInfo();
         InitEffect();
     }
 
@@ -64,24 +66,35 @@ public class EffectManager : MonoBehaviour
         }
     }
 
+    private void InitEffectInfo()
+    {
+        for (int i = 0; i < _effectInfos.Count; i++)
+        {
+            EffectInfo info = _effectInfos[i];
+
+            if (info.type != EEffectType.None && info.prefab != null && info.prewarmCount > 0)
+            {
+                _infos[info.type] = info;
+            }
+        }
+    }
+
     private void InitEffect()
     {
         _poolRoot = new GameObject("Effect_PoolRoot").transform;
 
-        for (int i = 0; i < _effectInfos.Count; i++)
+        foreach (var info in _infos.Values)
         {
-            EEffectType type = _effectInfos[i].type;
-
-            if (!_pools.ContainsKey(type))
+            if (!_pools.ContainsKey(info.type))
             {
-                _pools[type] = new Queue<GameObject>();
+                _pools[info.type] = new Queue<GameObject>();
             }
 
-            for (int j = 0; j < _effectInfos[i].prewarmCount; j++)
+            for (int i = 0; i < info.prewarmCount; i++)
             {
-                GameObject effect = Instantiate(_effectInfos[i].prefab, _poolRoot);
+                GameObject effect = Instantiate(info.prefab, _poolRoot);
                 effect.SetActive(false);
-                _pools[type].Enqueue(effect);
+                _pools[info.type].Enqueue(effect);
             }
         }
     }
@@ -94,38 +107,50 @@ public class EffectManager : MonoBehaviour
             _poolRoot = new GameObject("Effect_PoolRoot").transform;
         }
 
-        EffectInfo info = _effectInfos.Find(effect => effect.type == type);
-
-        if (info == null)
+        if (_pools.TryGetValue(type, out Queue<GameObject> pool) && pool.Count > 0)
         {
-            return null;
-        }
-
-        GameObject effect = null;
-
-        if (_pools.ContainsKey(type) && _pools[type].Count > 0)
-        {
-            effect = _pools[type].Dequeue();
+            GameObject effect = _pools[type].Dequeue();
+            effect.transform.SetPositionAndRotation(position, rotation);
             effect.transform.SetParent(null);
+            effect.SetActive(true);
+
+            if (_infos.TryGetValue(type, out EffectInfo ei))
+            {
+                if (SoundManager.Instance != null)
+                {
+                    SoundManager.Instance.SFXPlay(ei.sfxType);
+                }
+
+                else
+                {
+                    Debug.LogWarning("사운드 매니저 인스턴스 = Null");
+                }
+            }
+
+            return effect;
         }
 
-        else
+        if (_infos.TryGetValue(type, out EffectInfo info))
         {
-            effect = Instantiate(info.prefab);
+            GameObject extra = Instantiate(info.prefab);
+            extra.transform.SetPositionAndRotation(position, rotation);
+            extra.transform.SetParent(null);
+            extra.SetActive(true);
+
+            if (SoundManager.Instance != null)
+            {
+                SoundManager.Instance.SFXPlay(info.sfxType);
+            }
+
+            else
+            {
+                Debug.LogWarning("사운드 매니저 인스턴스 = Null");
+            }
+
+            return extra;
         }
 
-        if (effect == null)
-        {
-            return null;
-        }
-
-        effect.transform.SetPositionAndRotation(position, rotation);
-
-        effect.SetActive(true);
-
-        SoundManager.Instance.SFXPlay(info.sfxType);
-
-        return effect;
+        return null;
     }
 
     public void DespawnEffect(EEffectType type, GameObject effect)

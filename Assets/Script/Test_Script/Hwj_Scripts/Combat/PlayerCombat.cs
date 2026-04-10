@@ -72,10 +72,10 @@ public class PlayerCombat : BaseCombat
             if (backDot < - 0.5f)
             {
                 finalAtkPower *= 2f;
-                Debug.Log($"백어택 적용 [{finalAtkPower}]");
             }
 
             enemyHP.TakeDamage(finalAtkPower, transform.position);
+            Debug.Log($"적에게 준 대미지 : [{finalAtkPower}]");
         }
     }
     #endregion
