@@ -47,13 +47,13 @@ public class Projectile : MonoBehaviour
 
         if (_rb == null)
         {
-            Debug.LogError("ProjectileTrigger _rb 참조 실패");
+            Debug.LogError("Projectile _rb 참조 실패");
             return;
         }
 
         if (_projectileType == ProjectileManager.EProjectileType.None)
         {
-            Debug.LogError("ProjectileTrigger _projectileType 인스펙터 확인");
+            Debug.LogError("Projectile _projectileType 인스펙터 확인");
             return;
         }
     }
