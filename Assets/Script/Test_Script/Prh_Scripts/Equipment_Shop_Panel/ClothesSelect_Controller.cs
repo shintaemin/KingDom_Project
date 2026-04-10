@@ -2,29 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-#region 슬롯 선택 관리
-/*
- ▶ 할일
-  - 아이템 슬롯 선택 상태를 관리
-  - 잠금 상태가 아닌 슬롯만 선택 가능
-  - 선택 시 다른 슬롯의 체크는 모두 해제
-
- ▶ 흐름
-  1. 슬롯 클릭
-  2. Lock / Check 오브젝트 확인
-  3. 잠겨있으면 선택 불가
-  4. 모든 슬롯의 체크 해제
-  5. 클릭한 슬롯만 체크 활성화
-
-- 박라희
-*/
-#endregion
-
-public class WeaponSelect_Controller : MonoBehaviour
+public class ClothesSelect_Controller : MonoBehaviour
 {
     #region 인스펙터
-    [Header("전체 무기 슬롯")]
-    [SerializeField] private List<GameObject> _allWeaponSlots;
+    [Header("전체 옷 슬롯")]
+    [SerializeField] private List<GameObject> _allClothesSlots;
     #endregion
 
     #region 내부 변수
@@ -51,11 +33,11 @@ public class WeaponSelect_Controller : MonoBehaviour
             return;
         }
 
-        // 데이터 저장 (무기)
+        // 데이터 저장 (옷)
         var slotData = clickedSlot.GetComponent<Equipment_Slot_Data>();
         if (slotData != null && Equipment_Data_Holder.Instance != null)
         {
-            Equipment_Data_Holder.Instance.currentWeapon = slotData.GetData();
+            Equipment_Data_Holder.Instance.currentClothes = slotData.GetData();
             Debug.Log("저장된 장비 ID: " + slotData.GetData().ID);
         }
 
@@ -79,7 +61,7 @@ public class WeaponSelect_Controller : MonoBehaviour
     // 모든 슬롯의 체크 비활성화
     private void ClearAllChecks()
     {
-        foreach (GameObject slot in _allWeaponSlots)
+        foreach (GameObject slot in _allClothesSlots)
         {
             if (slot == null)
                 continue;
@@ -87,7 +69,7 @@ public class WeaponSelect_Controller : MonoBehaviour
             Transform checkObj = slot.transform.Find("Check");
 
             if (checkObj != null)
-            checkObj.gameObject.SetActive(false);
+                checkObj.gameObject.SetActive(false);
         }
     }
 }

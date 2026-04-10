@@ -17,11 +17,11 @@ public class Equipment_Data_Holder : MonoBehaviour
     public static Equipment_Data_Holder Instance;
 
     [Header("현재 선택된 장비")]
-    public CEquipmentDataSO currentEquipment;
+    public CEquipmentDataSO currentWeapon;
+    public CEquipmentDataSO currentClothes;
 
     private void Awake()
     {
-        // 싱글톤 설정
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);

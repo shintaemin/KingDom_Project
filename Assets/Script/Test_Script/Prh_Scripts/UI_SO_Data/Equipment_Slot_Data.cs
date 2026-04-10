@@ -23,22 +23,26 @@ using UnityEngine.UI;
 
 public class Equipment_Slot_Data : MonoBehaviour
 {
-    #region 아이콘 (텍스트처럼 분리)
-
+    #region 인스펙터
+    [Header("아이콘")]
     [SerializeField] private Image lockIcon;
     [SerializeField] private Image openIcon;
     [SerializeField] private Image checkIcon;
-    
-    #endregion
 
-    #region 텍스트
-
+    [Header("텍스트")]
     [SerializeField] private TextMeshProUGUI openStatText;
     [SerializeField] private TextMeshProUGUI checkStatText;
 
+    [Header("ID")]
+    [SerializeField] private int id;
     #endregion
 
     private CEquipmentDataSO data;
+
+    private void Start()
+    {
+        SetData(id);
+    }
 
     public void SetData(int id)
     {
@@ -106,8 +110,10 @@ public class Equipment_Slot_Data : MonoBehaviour
         return data;
     }
 
+    /*
     public void SetSelected(bool value)
     {
         // 다른 스크립트에서 처리
     }
+    */
 }

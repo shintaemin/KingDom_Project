@@ -3473,6 +3473,7 @@ GameObject:
   - component: {fileID: 2338293815002968289}
   - component: {fileID: 8149023535299955067}
   - component: {fileID: 7304221445023744838}
+  - component: {fileID: 6932342155886174299}
   m_Layer: 5
   m_Name: NormalWeapon_Slot6_P2
   m_TagString: Untagged
@@ -3566,6 +3567,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 6932342155886174299}
+        m_TargetAssemblyTypeName: Lobby_Button_Sound, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2338293815002968289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3608,7 +3621,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc2e9806ba5231a41841d2f5fda1f56e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 6096152639122363415}
+  controller: {fileID: 1439125890754377023}
 --- !u!114 &7304221445023744838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3626,6 +3639,19 @@ MonoBehaviour:
   checkIcon: {fileID: 0}
   openStatText: {fileID: 0}
   checkStatText: {fileID: 0}
+  id: 13
+--- !u!114 &6932342155886174299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 335346920124080948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30b31315acdeba0468a03857c8f59de3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &337061692754541337
 GameObject:
   m_ObjectHideFlags: 0
@@ -5721,7 +5747,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc2e9806ba5231a41841d2f5fda1f56e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 7142157024626729634}
+  controller: {fileID: 1439125890754377023}
 --- !u!114 &6607890204864081513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5739,6 +5765,7 @@ MonoBehaviour:
   checkIcon: {fileID: 5820535361262037101}
   openStatText: {fileID: 7013253098056133606}
   checkStatText: {fileID: 8754927587540695633}
+  id: 102
 --- !u!114 &5891166256211747998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6048,7 +6075,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc2e9806ba5231a41841d2f5fda1f56e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 7142157024626729634}
+  controller: {fileID: 1439125890754377023}
 --- !u!114 &5005129400183716488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6066,6 +6093,7 @@ MonoBehaviour:
   checkIcon: {fileID: 7812299147025375225}
   openStatText: {fileID: 4245028241422711115}
   checkStatText: {fileID: 848145270627063097}
+  id: 105
 --- !u!114 &7553502140977546194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6319,9 +6347,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 3442628162916511808}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 16.5, y: -2.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 23, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3038180623241038855
@@ -7225,6 +7253,7 @@ MonoBehaviour:
   checkIcon: {fileID: 0}
   openStatText: {fileID: 0}
   checkStatText: {fileID: 0}
+  id: 301
 --- !u!1 &541993763563248897
 GameObject:
   m_ObjectHideFlags: 0
@@ -7893,6 +7922,7 @@ MonoBehaviour:
   checkIcon: {fileID: 0}
   openStatText: {fileID: 0}
   checkStatText: {fileID: 0}
+  id: 302
 --- !u!1 &600558260285530826
 GameObject:
   m_ObjectHideFlags: 0
@@ -7902,6 +7932,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7748802945003990705}
+  - component: {fileID: 4187817355435433783}
   m_Layer: 5
   m_Name: Clothes_All_Group
   m_TagString: Untagged
@@ -7932,6 +7963,46 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1080, y: 763}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &4187817355435433783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 600558260285530826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f24ddc81ea1efb042951e60187939c3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _allClothesSlots:
+  - {fileID: 2392463603800082754}
+  - {fileID: 636340737684410425}
+  - {fileID: 3195516640606969427}
+  - {fileID: 846029873658854885}
+  - {fileID: 4384906067748727448}
+  - {fileID: 3247518835006298676}
+  - {fileID: 6055877516676641609}
+  - {fileID: 731308594095938745}
+  - {fileID: 8721122516761953838}
+  - {fileID: 7598780991904296964}
+  - {fileID: 3135392983091952676}
+  - {fileID: 8265519094180036764}
+  - {fileID: 2477665020914379293}
+  - {fileID: 4566188678989977037}
+  - {fileID: 5099827795235475158}
+  - {fileID: 7734262801562326995}
+  - {fileID: 3960513707090784834}
+  - {fileID: 2062946566959655237}
+  - {fileID: 2815673513296346419}
+  - {fileID: 4099057767557200794}
+  - {fileID: 7914174119688266451}
+  - {fileID: 3137611181138935398}
+  - {fileID: 4287761554772096089}
+  - {fileID: 2058969895409577045}
+  - {fileID: 7448302347412732229}
+  - {fileID: 1551013112489391098}
+  - {fileID: 9002700687326195665}
 --- !u!1 &614174255394721404
 GameObject:
   m_ObjectHideFlags: 0
@@ -8207,9 +8278,9 @@ GameObject:
   - component: {fileID: 6487754600548645583}
   - component: {fileID: 3972078223371306652}
   - component: {fileID: 8580986947450063813}
-  - component: {fileID: 7139174752961901316}
   - component: {fileID: 4190302323696061729}
   - component: {fileID: 6413907625953193015}
+  - component: {fileID: 9081483009562316256}
   m_Layer: 5
   m_Name: NormalClothes_Slot2
   m_TagString: Untagged
@@ -8292,8 +8363,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7139174752961901316}
-        m_TargetAssemblyTypeName: WeaponSlot_Button, Assembly-CSharp
+      - m_Target: {fileID: 9081483009562316256}
+        m_TargetAssemblyTypeName: ClothesSlot_Button, Assembly-CSharp
         m_MethodName: OnClickSlot
         m_Mode: 1
         m_Arguments:
@@ -8346,19 +8417,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7139174752961901316
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 636340737684410425}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc2e9806ba5231a41841d2f5fda1f56e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 3203143263530937640}
 --- !u!114 &4190302323696061729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8388,6 +8446,20 @@ MonoBehaviour:
   checkIcon: {fileID: 5039658500014816328}
   openStatText: {fileID: 4162254171275565126}
   checkStatText: {fileID: 2809054316123364745}
+  id: 1001
+--- !u!114 &9081483009562316256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 636340737684410425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3548c8bc75c735f408026d091572a1e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 4187817355435433783}
 --- !u!1 &648876738059522802
 GameObject:
   m_ObjectHideFlags: 0
@@ -9411,9 +9483,9 @@ GameObject:
   - component: {fileID: 7571205271060903963}
   - component: {fileID: 6773486511021921243}
   - component: {fileID: 6894429074639791097}
-  - component: {fileID: 5749745437511361386}
   - component: {fileID: 4548965967045548036}
   - component: {fileID: 563550350209061741}
+  - component: {fileID: 6078934169808208608}
   m_Layer: 5
   m_Name: NormalClothes_Slot8
   m_TagString: Untagged
@@ -9496,8 +9568,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5749745437511361386}
-        m_TargetAssemblyTypeName: WeaponSlot_Button, Assembly-CSharp
+      - m_Target: {fileID: 6078934169808208608}
+        m_TargetAssemblyTypeName: ClothesSlot_Button, Assembly-CSharp
         m_MethodName: OnClickSlot
         m_Mode: 1
         m_Arguments:
@@ -9550,19 +9622,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5749745437511361386
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 731308594095938745}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc2e9806ba5231a41841d2f5fda1f56e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 3203143263530937640}
 --- !u!114 &4548965967045548036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9580,6 +9639,7 @@ MonoBehaviour:
   checkIcon: {fileID: 7211734591021351636}
   openStatText: {fileID: 180304379146347775}
   checkStatText: {fileID: 8217175818450088556}
+  id: 1007
 --- !u!114 &563550350209061741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9592,6 +9652,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30b31315acdeba0468a03857c8f59de3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6078934169808208608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 731308594095938745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3548c8bc75c735f408026d091572a1e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 4187817355435433783}
 --- !u!1 &732004074272995580
 GameObject:
   m_ObjectHideFlags: 0
@@ -10945,9 +11018,9 @@ GameObject:
   - component: {fileID: 2281154160540630362}
   - component: {fileID: 1272534557536840633}
   - component: {fileID: 5178363158742392599}
-  - component: {fileID: 300075748803911634}
   - component: {fileID: 1420707876085206223}
   - component: {fileID: 8069454967532007592}
+  - component: {fileID: 7669582046949817776}
   m_Layer: 5
   m_Name: NormalClothes_Slot4
   m_TagString: Untagged
@@ -11030,8 +11103,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 300075748803911634}
-        m_TargetAssemblyTypeName: WeaponSlot_Button, Assembly-CSharp
+      - m_Target: {fileID: 7669582046949817776}
+        m_TargetAssemblyTypeName: ClothesSlot_Button, Assembly-CSharp
         m_MethodName: OnClickSlot
         m_Mode: 1
         m_Arguments:
@@ -11084,19 +11157,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &300075748803911634
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 846029873658854885}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc2e9806ba5231a41841d2f5fda1f56e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 3203143263530937640}
 --- !u!114 &1420707876085206223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11114,6 +11174,7 @@ MonoBehaviour:
   checkIcon: {fileID: 7581235179000108317}
   openStatText: {fileID: 6721027438156027676}
   checkStatText: {fileID: 34606891859896872}
+  id: 1003
 --- !u!114 &8069454967532007592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11126,6 +11187,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30b31315acdeba0468a03857c8f59de3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7669582046949817776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 846029873658854885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3548c8bc75c735f408026d091572a1e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 4187817355435433783}
 --- !u!1 &852367300049850147
 GameObject:
   m_ObjectHideFlags: 0
@@ -11212,7 +11286,6 @@ GameObject:
   - component: {fileID: 7999456342114113825}
   - component: {fileID: 7220767112860501731}
   - component: {fileID: 9120953346197491804}
-  - component: {fileID: 2014100463962091696}
   m_Layer: 5
   m_Name: RewardWeapon_Group
   m_TagString: Untagged
@@ -11272,20 +11345,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 855014734398964289}
   m_CullTransparentMesh: 1
---- !u!114 &2014100463962091696
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 855014734398964289}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: befc45ac83a8fe44e916dffb66fe10c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _weaponSlots:
-  - {fileID: 4014588332573645195}
 --- !u!1 &859283050686595808
 GameObject:
   m_ObjectHideFlags: 0
@@ -13544,9 +13603,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 6459043414403477355}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 16.5, y: -2.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 23, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5153022576069695766
@@ -14439,6 +14498,7 @@ GameObject:
   - component: {fileID: 3980997897041981844}
   - component: {fileID: 7288476947791044333}
   - component: {fileID: 5729716089493277976}
+  - component: {fileID: 2047882233879143513}
   m_Layer: 5
   m_Name: NormalWeapon_Slot7_P2
   m_TagString: Untagged
@@ -14532,6 +14592,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2047882233879143513}
+        m_TargetAssemblyTypeName: Lobby_Button_Sound, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &3980997897041981844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14574,7 +14646,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc2e9806ba5231a41841d2f5fda1f56e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 6096152639122363415}
+  controller: {fileID: 1439125890754377023}
 --- !u!114 &5729716089493277976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14592,6 +14664,19 @@ MonoBehaviour:
   checkIcon: {fileID: 0}
   openStatText: {fileID: 0}
   checkStatText: {fileID: 0}
+  id: 14
+--- !u!114 &2047882233879143513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1140803280837451080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30b31315acdeba0468a03857c8f59de3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1145927552843691528
 GameObject:
   m_ObjectHideFlags: 0
@@ -14892,6 +14977,7 @@ MonoBehaviour:
   checkIcon: {fileID: 0}
   openStatText: {fileID: 0}
   checkStatText: {fileID: 0}
+  id: 303
 --- !u!1 &1161455298589850272
 GameObject:
   m_ObjectHideFlags: 0
@@ -15112,7 +15198,6 @@ GameObject:
   - component: {fileID: 5053027190631201620}
   - component: {fileID: 9179277843508826471}
   - component: {fileID: 3312655712241719521}
-  - component: {fileID: 5374045891589454943}
   m_Layer: 5
   m_Name: PurchasedClothes_Group
   m_TagString: Untagged
@@ -15175,23 +15260,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1165269040766401312}
   m_CullTransparentMesh: 1
---- !u!114 &5374045891589454943
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1165269040766401312}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: befc45ac83a8fe44e916dffb66fe10c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _weaponSlots:
-  - {fileID: 2058969895409577045}
-  - {fileID: 7448302347412732229}
-  - {fileID: 1551013112489391098}
-  - {fileID: 9002700687326195665}
 --- !u!1 &1170754380660021068
 GameObject:
   m_ObjectHideFlags: 0
@@ -16358,6 +16426,7 @@ GameObject:
   - component: {fileID: 4612780532962449372}
   - component: {fileID: 8829093557435746808}
   - component: {fileID: 351995159292444748}
+  - component: {fileID: 3778421390145840144}
   m_Layer: 5
   m_Name: NormalWeapon_Slot3_P2
   m_TagString: Untagged
@@ -16451,6 +16520,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 3778421390145840144}
+        m_TargetAssemblyTypeName: Lobby_Button_Sound, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &4612780532962449372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16493,7 +16574,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc2e9806ba5231a41841d2f5fda1f56e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 6096152639122363415}
+  controller: {fileID: 1439125890754377023}
 --- !u!114 &351995159292444748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16511,6 +16592,19 @@ MonoBehaviour:
   checkIcon: {fileID: 0}
   openStatText: {fileID: 0}
   checkStatText: {fileID: 0}
+  id: 10
+--- !u!114 &3778421390145840144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1254972362442590405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30b31315acdeba0468a03857c8f59de3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1257909054966033910
 GameObject:
   m_ObjectHideFlags: 0
@@ -17005,10 +17099,10 @@ RectTransform:
   - {fileID: 3845760696585722315}
   m_Father: {fileID: 5334113394627095639}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 157.5, y: -157.5}
-  m_SizeDelta: {x: 115, y: 115}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3368819694314755176
 CanvasRenderer:
@@ -17128,7 +17222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc2e9806ba5231a41841d2f5fda1f56e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 6350378480674056264}
+  controller: {fileID: 1439125890754377023}
 --- !u!114 &5451477006825877301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17146,6 +17240,7 @@ MonoBehaviour:
   checkIcon: {fileID: 7565467639129615383}
   openStatText: {fileID: 6791390536475686429}
   checkStatText: {fileID: 3566833105648335721}
+  id: 0
 --- !u!114 &1276769112260120623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20473,8 +20568,9 @@ GameObject:
   - component: {fileID: 6415226406959368558}
   - component: {fileID: 7035252436592711767}
   - component: {fileID: 8546126397305030825}
+  - component: {fileID: 3872667113611948567}
   m_Layer: 5
-  m_Name: PurchasedWeapon_Slot3
+  m_Name: PurchasedClothes_Slot3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20566,6 +20662,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 3872667113611948567}
+        m_TargetAssemblyTypeName: ClothesSlot_Button, Assembly-CSharp
+        m_MethodName: OnClickSlot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6415226406959368558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20613,6 +20721,7 @@ MonoBehaviour:
   checkIcon: {fileID: 0}
   openStatText: {fileID: 0}
   checkStatText: {fileID: 0}
+  id: 1302
 --- !u!114 &8546126397305030825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20625,6 +20734,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30b31315acdeba0468a03857c8f59de3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3872667113611948567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1551013112489391098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3548c8bc75c735f408026d091572a1e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 4187817355435433783}
 --- !u!1 &1552523629534920218
 GameObject:
   m_ObjectHideFlags: 0
@@ -21912,7 +22034,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc2e9806ba5231a41841d2f5fda1f56e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 7142157024626729634}
+  controller: {fileID: 1439125890754377023}
 --- !u!114 &3493410601220489912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21930,6 +22052,7 @@ MonoBehaviour:
   checkIcon: {fileID: 2470027168244176201}
   openStatText: {fileID: 7671642142643073437}
   checkStatText: {fileID: 716443505143250412}
+  id: 104
 --- !u!114 &8281268007377359816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22660,8 +22783,8 @@ GameObject:
   - component: {fileID: 3740577474587498493}
   - component: {fileID: 8452918006731813972}
   - component: {fileID: 4055726151653236729}
-  - component: {fileID: 6638683810466904580}
   - component: {fileID: 7285011460342195806}
+  - component: {fileID: 8764800781711188477}
   m_Layer: 5
   m_Name: Reward_Button
   m_TagString: Untagged
@@ -22743,8 +22866,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6638683810466904580}
-        m_TargetAssemblyTypeName: RandomWeapon_Unlocker, Assembly-CSharp
+      - m_Target: {fileID: 8764800781711188477}
+        m_TargetAssemblyTypeName: RandomClothes_Unlocker, Assembly-CSharp
         m_MethodName: StartRandomUnlock
         m_Mode: 1
         m_Arguments:
@@ -22797,30 +22920,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6638683810466904580
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1740347306235438747}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7ca6df8853e39d4ebab7d729a0a9ff9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _weaponSlots:
-  - {fileID: 8721122516761953838}
-  - {fileID: 7598780991904296964}
-  - {fileID: 3135392983091952676}
-  - {fileID: 8265519094180036764}
-  - {fileID: 2477665020914379293}
-  - {fileID: 4566188678989977037}
-  - {fileID: 5099827795235475158}
-  - {fileID: 7734262801562326995}
-  _rewardPopup: {fileID: 6747261901428311665}
-  startDelay: 0.05
-  endDelay: 0.3
 --- !u!114 &7285011460342195806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22833,6 +22932,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30b31315acdeba0468a03857c8f59de3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8764800781711188477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1740347306235438747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51e37cfc1b8829d45b3000c4e960b663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _clothesSlots:
+  - {fileID: 8721122516761953838}
+  - {fileID: 7598780991904296964}
+  - {fileID: 3135392983091952676}
+  - {fileID: 8265519094180036764}
+  - {fileID: 2477665020914379293}
+  - {fileID: 4566188678989977037}
+  - {fileID: 5099827795235475158}
+  - {fileID: 7734262801562326995}
+  _rewardPopup: {fileID: 6747261901428311665}
+  startDelay: 0.05
+  endDelay: 0.3
 --- !u!1 &1740794245528314587
 GameObject:
   m_ObjectHideFlags: 0
@@ -22844,7 +22967,6 @@ GameObject:
   - component: {fileID: 352508198107204397}
   - component: {fileID: 8411040409116636230}
   - component: {fileID: 7420409256809265078}
-  - component: {fileID: 6096152639122363415}
   m_Layer: 5
   m_Name: NormalWeapon_Group_P2
   m_TagString: Untagged
@@ -22911,27 +23033,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1740794245528314587}
   m_CullTransparentMesh: 1
---- !u!114 &6096152639122363415
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1740794245528314587}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: befc45ac83a8fe44e916dffb66fe10c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _weaponSlots:
-  - {fileID: 8470478907424242160}
-  - {fileID: 1914556608720086532}
-  - {fileID: 1254972362442590405}
-  - {fileID: 7707171113064031230}
-  - {fileID: 6952555262042371611}
-  - {fileID: 335346920124080948}
-  - {fileID: 1140803280837451080}
-  - {fileID: 9071339971619341849}
 --- !u!1 &1750108230142482292
 GameObject:
   m_ObjectHideFlags: 0
@@ -24801,7 +24902,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc2e9806ba5231a41841d2f5fda1f56e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 7142157024626729634}
+  controller: {fileID: 1439125890754377023}
 --- !u!114 &8078679391231794148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24819,6 +24920,7 @@ MonoBehaviour:
   checkIcon: {fileID: 7055531989059130437}
   openStatText: {fileID: 7020019018488602362}
   checkStatText: {fileID: 256526069651067407}
+  id: 106
 --- !u!114 &1677451267943465861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24845,6 +24947,7 @@ GameObject:
   - component: {fileID: 6751049518305602387}
   - component: {fileID: 4984685380338369812}
   - component: {fileID: 6706300747591622653}
+  - component: {fileID: 1040511289774553780}
   m_Layer: 5
   m_Name: NormalWeapon_Slot2_P2
   m_TagString: Untagged
@@ -24938,6 +25041,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1040511289774553780}
+        m_TargetAssemblyTypeName: Lobby_Button_Sound, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6751049518305602387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24980,7 +25095,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc2e9806ba5231a41841d2f5fda1f56e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 6096152639122363415}
+  controller: {fileID: 1439125890754377023}
 --- !u!114 &6706300747591622653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24998,6 +25113,19 @@ MonoBehaviour:
   checkIcon: {fileID: 0}
   openStatText: {fileID: 0}
   checkStatText: {fileID: 0}
+  id: 9
+--- !u!114 &1040511289774553780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1914556608720086532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30b31315acdeba0468a03857c8f59de3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1916912417416126922
 GameObject:
   m_ObjectHideFlags: 0
@@ -26225,9 +26353,9 @@ RectTransform:
   - {fileID: 4135208293733818910}
   m_Father: {fileID: 2695568941634979742}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 14.5, y: -16}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 25, y: 8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &676771498612632914
@@ -26702,11 +26830,11 @@ GameObject:
   - component: {fileID: 2767537847102008158}
   - component: {fileID: 3780605206454287758}
   - component: {fileID: 8797565335039017736}
-  - component: {fileID: 320307899948200987}
   - component: {fileID: 4622215159201985021}
   - component: {fileID: 1468286832778530979}
+  - component: {fileID: 2864377285121301888}
   m_Layer: 5
-  m_Name: PurchasedWeapon_Slot1
+  m_Name: PurchasedClothes_Slot1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26786,8 +26914,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 320307899948200987}
-        m_TargetAssemblyTypeName: WeaponSlot_Button, Assembly-CSharp
+      - m_Target: {fileID: 2864377285121301888}
+        m_TargetAssemblyTypeName: ClothesSlot_Button, Assembly-CSharp
         m_MethodName: OnClickSlot
         m_Mode: 1
         m_Arguments:
@@ -26840,19 +26968,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &320307899948200987
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2058969895409577045}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc2e9806ba5231a41841d2f5fda1f56e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 5374045891589454943}
 --- !u!114 &4622215159201985021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26870,6 +26985,7 @@ MonoBehaviour:
   checkIcon: {fileID: 0}
   openStatText: {fileID: 0}
   checkStatText: {fileID: 0}
+  id: 1300
 --- !u!114 &1468286832778530979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26882,6 +26998,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30b31315acdeba0468a03857c8f59de3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2864377285121301888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2058969895409577045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3548c8bc75c735f408026d091572a1e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 4187817355435433783}
 --- !u!1 &2062946566959655237
 GameObject:
   m_ObjectHideFlags: 0
@@ -26894,11 +27023,11 @@ GameObject:
   - component: {fileID: 4214518692402580384}
   - component: {fileID: 5238481829231197978}
   - component: {fileID: 5538285038111889814}
-  - component: {fileID: 8643013297492022790}
   - component: {fileID: 4229670733111502966}
   - component: {fileID: 6762336853129860433}
+  - component: {fileID: 6844808525957153377}
   m_Layer: 5
-  m_Name: RewardWeapon_Slot2
+  m_Name: RewardClothes_Slot2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26978,8 +27107,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8643013297492022790}
-        m_TargetAssemblyTypeName: WeaponSlot_Button, Assembly-CSharp
+      - m_Target: {fileID: 6844808525957153377}
+        m_TargetAssemblyTypeName: ClothesSlot_Button, Assembly-CSharp
         m_MethodName: OnClickSlot
         m_Mode: 1
         m_Arguments:
@@ -27032,19 +27161,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8643013297492022790
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2062946566959655237}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc2e9806ba5231a41841d2f5fda1f56e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 7563081177756045947}
 --- !u!114 &4229670733111502966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27062,6 +27178,7 @@ MonoBehaviour:
   checkIcon: {fileID: 0}
   openStatText: {fileID: 0}
   checkStatText: {fileID: 0}
+  id: 1201
 --- !u!114 &6762336853129860433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27074,6 +27191,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30b31315acdeba0468a03857c8f59de3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6844808525957153377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2062946566959655237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3548c8bc75c735f408026d091572a1e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 4187817355435433783}
 --- !u!1 &2078029014005166294
 GameObject:
   m_ObjectHideFlags: 0
@@ -28089,9 +28219,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2118034950738998511}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 2.5, y: -2.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 5, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8101060663909585165
@@ -29075,6 +29205,7 @@ GameObject:
   - component: {fileID: 2803856837884769553}
   - component: {fileID: 1104332332356904234}
   - component: {fileID: 3206280451281192182}
+  - component: {fileID: 77549088939541773}
   m_Layer: 5
   m_Name: NormalWeapon_Slot1_P3
   m_TagString: Untagged
@@ -29168,6 +29299,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 77549088939541773}
+        m_TargetAssemblyTypeName: Lobby_Button_Sound, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2803856837884769553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29210,7 +29353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc2e9806ba5231a41841d2f5fda1f56e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 7057884493633664334}
+  controller: {fileID: 1439125890754377023}
 --- !u!114 &3206280451281192182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29228,6 +29371,19 @@ MonoBehaviour:
   checkIcon: {fileID: 0}
   openStatText: {fileID: 0}
   checkStatText: {fileID: 0}
+  id: 16
+--- !u!114 &77549088939541773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2187302429582132752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30b31315acdeba0468a03857c8f59de3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2201830343535414772
 GameObject:
   m_ObjectHideFlags: 0
@@ -30176,10 +30332,10 @@ RectTransform:
   - {fileID: 4483092434205406939}
   m_Father: {fileID: 5334113394627095639}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 382.5, y: -432.5}
-  m_SizeDelta: {x: 115, y: 115}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5346653113195578117
 CanvasRenderer:
@@ -30299,7 +30455,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc2e9806ba5231a41841d2f5fda1f56e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 6350378480674056264}
+  controller: {fileID: 1439125890754377023}
 --- !u!114 &164058587026353771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30317,6 +30473,7 @@ MonoBehaviour:
   checkIcon: {fileID: 3427796241921945750}
   openStatText: {fileID: 2567135504082581999}
   checkStatText: {fileID: 7660498329879186825}
+  id: 5
 --- !u!114 &7988535572510728750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31413,9 +31570,9 @@ GameObject:
   - component: {fileID: 1486882807821940678}
   - component: {fileID: 6435278246196456368}
   - component: {fileID: 2356505633485360180}
-  - component: {fileID: 5180168013566611259}
   - component: {fileID: 7646311801492988617}
   - component: {fileID: 819222925501277166}
+  - component: {fileID: 7686685168564221982}
   m_Layer: 5
   m_Name: NormalClothes_Slot1
   m_TagString: Untagged
@@ -31498,8 +31655,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5180168013566611259}
-        m_TargetAssemblyTypeName: WeaponSlot_Button, Assembly-CSharp
+      - m_Target: {fileID: 7686685168564221982}
+        m_TargetAssemblyTypeName: ClothesSlot_Button, Assembly-CSharp
         m_MethodName: OnClickSlot
         m_Mode: 1
         m_Arguments:
@@ -31552,19 +31709,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5180168013566611259
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2392463603800082754}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc2e9806ba5231a41841d2f5fda1f56e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 3203143263530937640}
 --- !u!114 &7646311801492988617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31594,6 +31738,20 @@ MonoBehaviour:
   checkIcon: {fileID: 6683601042382154081}
   openStatText: {fileID: 6593931768877090099}
   checkStatText: {fileID: 3615721414232232141}
+  id: 1000
+--- !u!114 &7686685168564221982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2392463603800082754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3548c8bc75c735f408026d091572a1e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 4187817355435433783}
 --- !u!1 &2397708137607613571
 GameObject:
   m_ObjectHideFlags: 0
@@ -32684,9 +32842,9 @@ GameObject:
   - component: {fileID: 8553965445557470537}
   - component: {fileID: 4440036299714122121}
   - component: {fileID: 6553841689546701648}
-  - component: {fileID: 3975153011647241071}
   - component: {fileID: 1646906757734566984}
   - component: {fileID: 1411958235193682999}
+  - component: {fileID: 7955869707913282330}
   m_Layer: 5
   m_Name: RareClothes_Slot5
   m_TagString: Untagged
@@ -32769,8 +32927,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3975153011647241071}
-        m_TargetAssemblyTypeName: WeaponSlot_Button, Assembly-CSharp
+      - m_Target: {fileID: 7955869707913282330}
+        m_TargetAssemblyTypeName: ClothesSlot_Button, Assembly-CSharp
         m_MethodName: OnClickSlot
         m_Mode: 1
         m_Arguments:
@@ -32823,19 +32981,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3975153011647241071
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2477665020914379293}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc2e9806ba5231a41841d2f5fda1f56e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 7278898838359275479}
 --- !u!114 &1646906757734566984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32853,6 +32998,7 @@ MonoBehaviour:
   checkIcon: {fileID: 3616026273967755331}
   openStatText: {fileID: 5917667673612666449}
   checkStatText: {fileID: 947911218455989793}
+  id: 1104
 --- !u!114 &1411958235193682999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32865,6 +33011,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30b31315acdeba0468a03857c8f59de3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7955869707913282330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2477665020914379293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3548c8bc75c735f408026d091572a1e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 4187817355435433783}
 --- !u!1 &2478761450015918763
 GameObject:
   m_ObjectHideFlags: 0
@@ -32900,9 +33059,9 @@ RectTransform:
   - {fileID: 2843048439045953886}
   m_Father: {fileID: 9014021138663625264}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 915, y: -50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 230, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1431171900410376000
@@ -34106,6 +34265,7 @@ GameObject:
   - component: {fileID: 9103993362791441377}
   - component: {fileID: 5211822796456795960}
   - component: {fileID: 1048350601757223626}
+  - component: {fileID: 2576829563611907267}
   m_Layer: 5
   m_Name: NormalWeapon_Slot8_P3
   m_TagString: Untagged
@@ -34199,6 +34359,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2576829563611907267}
+        m_TargetAssemblyTypeName: Lobby_Button_Sound, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &9103993362791441377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34241,7 +34413,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc2e9806ba5231a41841d2f5fda1f56e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 7057884493633664334}
+  controller: {fileID: 1439125890754377023}
 --- !u!114 &1048350601757223626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34259,6 +34431,19 @@ MonoBehaviour:
   checkIcon: {fileID: 0}
   openStatText: {fileID: 0}
   checkStatText: {fileID: 0}
+  id: 23
+--- !u!114 &2576829563611907267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2560654751166665040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30b31315acdeba0468a03857c8f59de3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2565648211456829317
 GameObject:
   m_ObjectHideFlags: 0
@@ -34657,10 +34842,10 @@ RectTransform:
   - {fileID: 9093636213684539603}
   m_Father: {fileID: 5334113394627095639}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 832.5, y: -157.5}
-  m_SizeDelta: {x: 115, y: 115}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &205875044058010022
 CanvasRenderer:
@@ -34780,7 +34965,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc2e9806ba5231a41841d2f5fda1f56e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 6350378480674056264}
+  controller: {fileID: 1439125890754377023}
 --- !u!114 &4857053266069929118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34798,6 +34983,7 @@ MonoBehaviour:
   checkIcon: {fileID: 6130569890537852618}
   openStatText: {fileID: 413575511547624908}
   checkStatText: {fileID: 7410299151103456564}
+  id: 3
 --- !u!114 &391364053926856691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38957,6 +39143,7 @@ GameObject:
   - component: {fileID: 1599633801464307118}
   - component: {fileID: 5262224637777407313}
   - component: {fileID: 8748578125514048090}
+  - component: {fileID: 4813932172838987703}
   m_Layer: 5
   m_Name: NormalWeapon_Slot6_P3
   m_TagString: Untagged
@@ -39050,6 +39237,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 4813932172838987703}
+        m_TargetAssemblyTypeName: Lobby_Button_Sound, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1599633801464307118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39092,7 +39291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc2e9806ba5231a41841d2f5fda1f56e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 7057884493633664334}
+  controller: {fileID: 1439125890754377023}
 --- !u!114 &8748578125514048090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39110,6 +39309,19 @@ MonoBehaviour:
   checkIcon: {fileID: 0}
   openStatText: {fileID: 0}
   checkStatText: {fileID: 0}
+  id: 21
+--- !u!114 &4813932172838987703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2777249650311225734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30b31315acdeba0468a03857c8f59de3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2784385113277036911
 GameObject:
   m_ObjectHideFlags: 0
@@ -39630,14 +39842,13 @@ GameObject:
   - component: {fileID: 9050624000474846389}
   - component: {fileID: 1950780619853726944}
   - component: {fileID: 8545720542504879572}
-  - component: {fileID: 7699772484189696504}
   m_Layer: 5
   m_Name: Equipment_Shop_Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &9050624000474846389
 RectTransform:
   m_ObjectHideFlags: 0
@@ -39702,32 +39913,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7699772484189696504
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2799066864540329727}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d219c4bbb5bb939428d61090357e50ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _weaponTabOpen: {fileID: 0}
-  _weaponTabLock: {fileID: 0}
-  _clothesTabOpen: {fileID: 0}
-  _clothesTabLock: {fileID: 0}
-  _weaponAllGroup: {fileID: 0}
-  _clothesAllGroup: {fileID: 0}
-  _weaponNormalGroup: {fileID: 0}
-  _weaponRareGroup: {fileID: 0}
-  _weaponRewardGroup: {fileID: 0}
-  _weaponPurchasedGroup: {fileID: 0}
-  _clothesNormalGroup: {fileID: 0}
-  _clothesRareGroup: {fileID: 0}
-  _clothesRewardGroup: {fileID: 0}
-  _clothesPurchasedGroup: {fileID: 0}
 --- !u!1 &2802383555513477734
 GameObject:
   m_ObjectHideFlags: 0
@@ -39815,11 +40000,11 @@ GameObject:
   - component: {fileID: 7344337140058587804}
   - component: {fileID: 1117765310931543697}
   - component: {fileID: 5450100227608624333}
-  - component: {fileID: 8050875276096677792}
   - component: {fileID: 6656780035124750393}
   - component: {fileID: 117307811437080550}
+  - component: {fileID: 1425151805578717681}
   m_Layer: 5
-  m_Name: RewardWeapon_Slot3
+  m_Name: RewardClothes_Slot3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39899,8 +40084,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8050875276096677792}
-        m_TargetAssemblyTypeName: WeaponSlot_Button, Assembly-CSharp
+      - m_Target: {fileID: 1425151805578717681}
+        m_TargetAssemblyTypeName: ClothesSlot_Button, Assembly-CSharp
         m_MethodName: OnClickSlot
         m_Mode: 1
         m_Arguments:
@@ -39953,19 +40138,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8050875276096677792
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2815673513296346419}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc2e9806ba5231a41841d2f5fda1f56e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 7563081177756045947}
 --- !u!114 &6656780035124750393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39983,6 +40155,7 @@ MonoBehaviour:
   checkIcon: {fileID: 0}
   openStatText: {fileID: 0}
   checkStatText: {fileID: 0}
+  id: 1202
 --- !u!114 &117307811437080550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39995,6 +40168,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30b31315acdeba0468a03857c8f59de3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1425151805578717681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2815673513296346419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3548c8bc75c735f408026d091572a1e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 4187817355435433783}
 --- !u!1 &2818270283759273389
 GameObject:
   m_ObjectHideFlags: 0
@@ -44204,9 +44390,9 @@ RectTransform:
   - {fileID: 6412942052886685675}
   m_Father: {fileID: 9053797994181799529}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 540, y: -125}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 200, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1886892535461374023
@@ -44582,9 +44768,9 @@ GameObject:
   - component: {fileID: 3916047186433053017}
   - component: {fileID: 6977902429432949060}
   - component: {fileID: 992172165466372075}
-  - component: {fileID: 3875385151444703287}
   - component: {fileID: 2124537865797675973}
   - component: {fileID: 3932297695505538030}
+  - component: {fileID: 2094077380579286254}
   m_Layer: 5
   m_Name: RareClothes_Slot3
   m_TagString: Untagged
@@ -44667,8 +44853,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3875385151444703287}
-        m_TargetAssemblyTypeName: WeaponSlot_Button, Assembly-CSharp
+      - m_Target: {fileID: 2094077380579286254}
+        m_TargetAssemblyTypeName: ClothesSlot_Button, Assembly-CSharp
         m_MethodName: OnClickSlot
         m_Mode: 1
         m_Arguments:
@@ -44721,19 +44907,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3875385151444703287
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3135392983091952676}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc2e9806ba5231a41841d2f5fda1f56e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 7278898838359275479}
 --- !u!114 &2124537865797675973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44751,6 +44924,7 @@ MonoBehaviour:
   checkIcon: {fileID: 698265818419142829}
   openStatText: {fileID: 1066072711686347153}
   checkStatText: {fileID: 2720722710659536748}
+  id: 1102
 --- !u!114 &3932297695505538030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44763,6 +44937,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30b31315acdeba0468a03857c8f59de3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2094077380579286254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3135392983091952676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3548c8bc75c735f408026d091572a1e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 4187817355435433783}
 --- !u!1 &3137611181138935398
 GameObject:
   m_ObjectHideFlags: 0
@@ -44775,11 +44962,11 @@ GameObject:
   - component: {fileID: 2643552185203062025}
   - component: {fileID: 1305760970947963416}
   - component: {fileID: 638564028338870966}
-  - component: {fileID: 6842481796751961564}
   - component: {fileID: 62930002069587591}
   - component: {fileID: 1627357429077197622}
+  - component: {fileID: 6574271173342343778}
   m_Layer: 5
-  m_Name: RewardWeapon_Slot6
+  m_Name: RewardClothes_Slot6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44859,8 +45046,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6842481796751961564}
-        m_TargetAssemblyTypeName: WeaponSlot_Button, Assembly-CSharp
+      - m_Target: {fileID: 6574271173342343778}
+        m_TargetAssemblyTypeName: ClothesSlot_Button, Assembly-CSharp
         m_MethodName: OnClickSlot
         m_Mode: 1
         m_Arguments:
@@ -44913,19 +45100,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6842481796751961564
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3137611181138935398}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc2e9806ba5231a41841d2f5fda1f56e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 7563081177756045947}
 --- !u!114 &62930002069587591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44943,6 +45117,7 @@ MonoBehaviour:
   checkIcon: {fileID: 0}
   openStatText: {fileID: 0}
   checkStatText: {fileID: 0}
+  id: 1205
 --- !u!114 &1627357429077197622
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44955,6 +45130,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30b31315acdeba0468a03857c8f59de3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6574271173342343778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3137611181138935398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3548c8bc75c735f408026d091572a1e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 4187817355435433783}
 --- !u!1 &3140134856762172442
 GameObject:
   m_ObjectHideFlags: 0
@@ -45374,9 +45562,9 @@ GameObject:
   - component: {fileID: 7589655849391676535}
   - component: {fileID: 6793766888747548521}
   - component: {fileID: 9061695918779556038}
-  - component: {fileID: 4707935286718524807}
   - component: {fileID: 7435928773669655970}
   - component: {fileID: 7459415423714229740}
+  - component: {fileID: 3641598219465295714}
   m_Layer: 5
   m_Name: NormalClothes_Slot3
   m_TagString: Untagged
@@ -45459,8 +45647,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4707935286718524807}
-        m_TargetAssemblyTypeName: WeaponSlot_Button, Assembly-CSharp
+      - m_Target: {fileID: 3641598219465295714}
+        m_TargetAssemblyTypeName: ClothesSlot_Button, Assembly-CSharp
         m_MethodName: OnClickSlot
         m_Mode: 1
         m_Arguments:
@@ -45513,19 +45701,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &4707935286718524807
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3195516640606969427}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc2e9806ba5231a41841d2f5fda1f56e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 3203143263530937640}
 --- !u!114 &7435928773669655970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45543,6 +45718,7 @@ MonoBehaviour:
   checkIcon: {fileID: 6882542432730757609}
   openStatText: {fileID: 8693639735200594167}
   checkStatText: {fileID: 3697628347350680487}
+  id: 1002
 --- !u!114 &7459415423714229740
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45555,6 +45731,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30b31315acdeba0468a03857c8f59de3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3641598219465295714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3195516640606969427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3548c8bc75c735f408026d091572a1e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 4187817355435433783}
 --- !u!1 &3196290418957667159
 GameObject:
   m_ObjectHideFlags: 0
@@ -46152,9 +46341,9 @@ GameObject:
   - component: {fileID: 2896340397795541111}
   - component: {fileID: 9035393802521720075}
   - component: {fileID: 1401822008935926673}
-  - component: {fileID: 8943329995930423130}
   - component: {fileID: 7885759791022909760}
   - component: {fileID: 4884989902087885523}
+  - component: {fileID: 780718532656008790}
   m_Layer: 5
   m_Name: NormalClothes_Slot6
   m_TagString: Untagged
@@ -46237,8 +46426,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8943329995930423130}
-        m_TargetAssemblyTypeName: WeaponSlot_Button, Assembly-CSharp
+      - m_Target: {fileID: 780718532656008790}
+        m_TargetAssemblyTypeName: ClothesSlot_Button, Assembly-CSharp
         m_MethodName: OnClickSlot
         m_Mode: 1
         m_Arguments:
@@ -46291,19 +46480,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8943329995930423130
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3247518835006298676}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc2e9806ba5231a41841d2f5fda1f56e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 3203143263530937640}
 --- !u!114 &7885759791022909760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46321,6 +46497,7 @@ MonoBehaviour:
   checkIcon: {fileID: 4804703516606141804}
   openStatText: {fileID: 3362076307086929572}
   checkStatText: {fileID: 4364874017884283915}
+  id: 1005
 --- !u!114 &4884989902087885523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46333,6 +46510,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30b31315acdeba0468a03857c8f59de3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &780718532656008790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3247518835006298676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3548c8bc75c735f408026d091572a1e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 4187817355435433783}
 --- !u!1 &3255810115994532750
 GameObject:
   m_ObjectHideFlags: 0
@@ -50281,10 +50471,10 @@ RectTransform:
   - {fileID: 4546137983211162035}
   m_Father: {fileID: 5334113394627095639}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 607.5, y: -432.5}
-  m_SizeDelta: {x: 115, y: 115}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3945822663342766832
 CanvasRenderer:
@@ -50404,7 +50594,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc2e9806ba5231a41841d2f5fda1f56e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 6350378480674056264}
+  controller: {fileID: 1439125890754377023}
 --- !u!114 &8193109165366171476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50422,6 +50612,7 @@ MonoBehaviour:
   checkIcon: {fileID: 782254681267327749}
   openStatText: {fileID: 4022594199511832267}
   checkStatText: {fileID: 8713104982363592076}
+  id: 6
 --- !u!114 &6527641200894964466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51127,6 +51318,7 @@ GameObject:
   - component: {fileID: 5893688932478688305}
   - component: {fileID: 2819191179941328876}
   - component: {fileID: 551696673013721955}
+  - component: {fileID: 6642980967215326896}
   m_Layer: 5
   m_Name: NormalWeapon_Slot4_P3
   m_TagString: Untagged
@@ -51220,6 +51412,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 6642980967215326896}
+        m_TargetAssemblyTypeName: Lobby_Button_Sound, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &5893688932478688305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51262,7 +51466,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc2e9806ba5231a41841d2f5fda1f56e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 7057884493633664334}
+  controller: {fileID: 1439125890754377023}
 --- !u!114 &551696673013721955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51280,6 +51484,19 @@ MonoBehaviour:
   checkIcon: {fileID: 0}
   openStatText: {fileID: 0}
   checkStatText: {fileID: 0}
+  id: 19
+--- !u!114 &6642980967215326896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3484815156482359817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30b31315acdeba0468a03857c8f59de3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3489662175244367983
 GameObject:
   m_ObjectHideFlags: 0
@@ -52644,6 +52861,7 @@ MonoBehaviour:
   checkIcon: {fileID: 0}
   openStatText: {fileID: 0}
   checkStatText: {fileID: 0}
+  id: 300
 --- !u!1 &3611131882405943789
 GameObject:
   m_ObjectHideFlags: 0
@@ -53228,9 +53446,9 @@ RectTransform:
   - {fileID: 7956520894501071268}
   m_Father: {fileID: 2695568941634979742}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 14.5, y: -8}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 25, y: 8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6670160298819474724
@@ -53771,9 +53989,9 @@ RectTransform:
   - {fileID: 2328272024316943392}
   m_Father: {fileID: 9053797994181799529}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 740, y: -125}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 200, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3823046934415981114
@@ -55866,10 +56084,10 @@ RectTransform:
   - {fileID: 8961897688247749610}
   m_Father: {fileID: 5334113394627095639}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 832.5, y: -432.5}
-  m_SizeDelta: {x: 115, y: 115}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7670331287555020400
 CanvasRenderer:
@@ -55989,7 +56207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc2e9806ba5231a41841d2f5fda1f56e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 6350378480674056264}
+  controller: {fileID: 1439125890754377023}
 --- !u!114 &5513029562896871627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56007,6 +56225,7 @@ MonoBehaviour:
   checkIcon: {fileID: 8660369705643695669}
   openStatText: {fileID: 6138880017207761221}
   checkStatText: {fileID: 3621126108713886228}
+  id: 7
 --- !u!114 &1129719065840003078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56033,6 +56252,7 @@ GameObject:
   - component: {fileID: 861719902245697916}
   - component: {fileID: 2494294499577894428}
   - component: {fileID: 7806284256429693956}
+  - component: {fileID: 8630967983793899320}
   m_Layer: 5
   m_Name: NormalWeapon_Slot5_P3
   m_TagString: Untagged
@@ -56126,6 +56346,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 8630967983793899320}
+        m_TargetAssemblyTypeName: Lobby_Button_Sound, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &861719902245697916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56168,7 +56400,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc2e9806ba5231a41841d2f5fda1f56e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 7057884493633664334}
+  controller: {fileID: 1439125890754377023}
 --- !u!114 &7806284256429693956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56186,6 +56418,19 @@ MonoBehaviour:
   checkIcon: {fileID: 0}
   openStatText: {fileID: 0}
   checkStatText: {fileID: 0}
+  id: 20
+--- !u!114 &8630967983793899320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3827355455589578201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30b31315acdeba0468a03857c8f59de3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3827626471074073999
 GameObject:
   m_ObjectHideFlags: 0
@@ -56461,6 +56706,7 @@ GameObject:
   - component: {fileID: 4289951850175724359}
   - component: {fileID: 5020321027286772770}
   - component: {fileID: 6768148604259735922}
+  - component: {fileID: 5273319037998342377}
   m_Layer: 5
   m_Name: NormalWeapon_Slot7_P3
   m_TagString: Untagged
@@ -56554,6 +56800,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 5273319037998342377}
+        m_TargetAssemblyTypeName: Lobby_Button_Sound, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &4289951850175724359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56596,7 +56854,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc2e9806ba5231a41841d2f5fda1f56e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 7057884493633664334}
+  controller: {fileID: 1439125890754377023}
 --- !u!114 &6768148604259735922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56614,6 +56872,19 @@ MonoBehaviour:
   checkIcon: {fileID: 0}
   openStatText: {fileID: 0}
   checkStatText: {fileID: 0}
+  id: 22
+--- !u!114 &5273319037998342377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3843031593495371396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30b31315acdeba0468a03857c8f59de3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3847277531742354261
 GameObject:
   m_ObjectHideFlags: 0
@@ -57955,10 +58226,10 @@ RectTransform:
   - {fileID: 6528513455923817510}
   m_Father: {fileID: 5334113394627095639}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 382.5, y: -157.5}
-  m_SizeDelta: {x: 115, y: 115}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1053695061651584848
 CanvasRenderer:
@@ -58078,7 +58349,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc2e9806ba5231a41841d2f5fda1f56e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 6350378480674056264}
+  controller: {fileID: 1439125890754377023}
 --- !u!114 &6735836393406484716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58096,6 +58367,7 @@ MonoBehaviour:
   checkIcon: {fileID: 1592132974928999432}
   openStatText: {fileID: 2890419566508230554}
   checkStatText: {fileID: 6680526435718077950}
+  id: 1
 --- !u!114 &8994722527547667188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58195,11 +58467,11 @@ GameObject:
   - component: {fileID: 9038838409761324650}
   - component: {fileID: 2270045752982606015}
   - component: {fileID: 3772471749872398942}
-  - component: {fileID: 3015805070444907351}
   - component: {fileID: 5733812108338825685}
   - component: {fileID: 4407489353537360566}
+  - component: {fileID: 8594237303287169903}
   m_Layer: 5
-  m_Name: RewardWeapon_Slot1
+  m_Name: RewardClothes_Slot1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58279,8 +58551,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3015805070444907351}
-        m_TargetAssemblyTypeName: WeaponSlot_Button, Assembly-CSharp
+      - m_Target: {fileID: 8594237303287169903}
+        m_TargetAssemblyTypeName: ClothesSlot_Button, Assembly-CSharp
         m_MethodName: OnClickSlot
         m_Mode: 1
         m_Arguments:
@@ -58333,19 +58605,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3015805070444907351
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3960513707090784834}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc2e9806ba5231a41841d2f5fda1f56e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 7563081177756045947}
 --- !u!114 &5733812108338825685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58363,6 +58622,7 @@ MonoBehaviour:
   checkIcon: {fileID: 0}
   openStatText: {fileID: 0}
   checkStatText: {fileID: 0}
+  id: 1200
 --- !u!114 &4407489353537360566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58375,6 +58635,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30b31315acdeba0468a03857c8f59de3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8594237303287169903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3960513707090784834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3548c8bc75c735f408026d091572a1e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 4187817355435433783}
 --- !u!1 &3962803774059945766
 GameObject:
   m_ObjectHideFlags: 0
@@ -59340,7 +59613,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc2e9806ba5231a41841d2f5fda1f56e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 2014100463962091696}
+  controller: {fileID: 1439125890754377023}
 --- !u!114 &7056616839376486223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59370,6 +59643,7 @@ MonoBehaviour:
   checkIcon: {fileID: 0}
   openStatText: {fileID: 0}
   checkStatText: {fileID: 0}
+  id: 200
 --- !u!1 &4018610339100343535
 GameObject:
   m_ObjectHideFlags: 0
@@ -60379,11 +60653,11 @@ GameObject:
   - component: {fileID: 7089695024761065074}
   - component: {fileID: 6645432411490178544}
   - component: {fileID: 5071529373319047416}
-  - component: {fileID: 6523267404595106129}
   - component: {fileID: 4783975095404727132}
   - component: {fileID: 5756899847505822044}
+  - component: {fileID: 6853071169680843766}
   m_Layer: 5
-  m_Name: RewardWeapon_Slot4
+  m_Name: RewardClothes_Slot4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -60463,8 +60737,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6523267404595106129}
-        m_TargetAssemblyTypeName: WeaponSlot_Button, Assembly-CSharp
+      - m_Target: {fileID: 6853071169680843766}
+        m_TargetAssemblyTypeName: ClothesSlot_Button, Assembly-CSharp
         m_MethodName: OnClickSlot
         m_Mode: 1
         m_Arguments:
@@ -60517,19 +60791,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6523267404595106129
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4099057767557200794}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc2e9806ba5231a41841d2f5fda1f56e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 7563081177756045947}
 --- !u!114 &4783975095404727132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60547,6 +60808,7 @@ MonoBehaviour:
   checkIcon: {fileID: 0}
   openStatText: {fileID: 0}
   checkStatText: {fileID: 0}
+  id: 1203
 --- !u!114 &5756899847505822044
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60559,6 +60821,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30b31315acdeba0468a03857c8f59de3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6853071169680843766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4099057767557200794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3548c8bc75c735f408026d091572a1e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 4187817355435433783}
 --- !u!1 &4104749420538726785
 GameObject:
   m_ObjectHideFlags: 0
@@ -61035,10 +61310,10 @@ RectTransform:
   - {fileID: 6951343997194111295}
   m_Father: {fileID: 5334113394627095639}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 157.5, y: -432.5}
-  m_SizeDelta: {x: 115, y: 115}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5761690372794306833
 CanvasRenderer:
@@ -61158,7 +61433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc2e9806ba5231a41841d2f5fda1f56e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 6350378480674056264}
+  controller: {fileID: 1439125890754377023}
 --- !u!114 &2163390402956860467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61176,6 +61451,7 @@ MonoBehaviour:
   checkIcon: {fileID: 7746332252392618224}
   openStatText: {fileID: 5105117463557925296}
   checkStatText: {fileID: 3076577408345670506}
+  id: 4
 --- !u!114 &4153669862001004867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61870,9 +62146,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 3442628162916511808}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 2.5, y: -2.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 5, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4693526708995827744
@@ -62715,11 +62991,11 @@ GameObject:
   - component: {fileID: 7397205723711336793}
   - component: {fileID: 6668666505518579572}
   - component: {fileID: 7876261580739705060}
-  - component: {fileID: 7810531427068987220}
   - component: {fileID: 7816599844008963479}
   - component: {fileID: 1516861881212063306}
+  - component: {fileID: 8187222119135968343}
   m_Layer: 5
-  m_Name: RewardWeapon_Slot7
+  m_Name: RewardClothes_Slot7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62799,8 +63075,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7810531427068987220}
-        m_TargetAssemblyTypeName: WeaponSlot_Button, Assembly-CSharp
+      - m_Target: {fileID: 8187222119135968343}
+        m_TargetAssemblyTypeName: ClothesSlot_Button, Assembly-CSharp
         m_MethodName: OnClickSlot
         m_Mode: 1
         m_Arguments:
@@ -62853,19 +63129,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7810531427068987220
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4287761554772096089}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc2e9806ba5231a41841d2f5fda1f56e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 7563081177756045947}
 --- !u!114 &7816599844008963479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62883,6 +63146,7 @@ MonoBehaviour:
   checkIcon: {fileID: 0}
   openStatText: {fileID: 0}
   checkStatText: {fileID: 0}
+  id: 1206
 --- !u!114 &1516861881212063306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62895,6 +63159,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30b31315acdeba0468a03857c8f59de3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8187222119135968343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4287761554772096089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3548c8bc75c735f408026d091572a1e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 4187817355435433783}
 --- !u!1 &4295642719933125072
 GameObject:
   m_ObjectHideFlags: 0
@@ -64433,9 +64710,9 @@ GameObject:
   - component: {fileID: 6496896394187483118}
   - component: {fileID: 6744263139285338782}
   - component: {fileID: 2775491740642010337}
-  - component: {fileID: 8324158574034171658}
   - component: {fileID: 3020325109327263775}
   - component: {fileID: 7361134002931931127}
+  - component: {fileID: 1182343996794250473}
   m_Layer: 5
   m_Name: NormalClothes_Slot5
   m_TagString: Untagged
@@ -64518,8 +64795,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8324158574034171658}
-        m_TargetAssemblyTypeName: WeaponSlot_Button, Assembly-CSharp
+      - m_Target: {fileID: 1182343996794250473}
+        m_TargetAssemblyTypeName: ClothesSlot_Button, Assembly-CSharp
         m_MethodName: OnClickSlot
         m_Mode: 1
         m_Arguments:
@@ -64572,19 +64849,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8324158574034171658
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4384906067748727448}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc2e9806ba5231a41841d2f5fda1f56e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 3203143263530937640}
 --- !u!114 &3020325109327263775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64602,6 +64866,7 @@ MonoBehaviour:
   checkIcon: {fileID: 912074670512058870}
   openStatText: {fileID: 5540460228324620404}
   checkStatText: {fileID: 9077739256422273478}
+  id: 1004
 --- !u!114 &7361134002931931127
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64614,6 +64879,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30b31315acdeba0468a03857c8f59de3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1182343996794250473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4384906067748727448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3548c8bc75c735f408026d091572a1e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 4187817355435433783}
 --- !u!1 &4399247289517487237
 GameObject:
   m_ObjectHideFlags: 0
@@ -67025,9 +67303,9 @@ GameObject:
   - component: {fileID: 294318764836551145}
   - component: {fileID: 1261585673724277655}
   - component: {fileID: 6429130037144911435}
-  - component: {fileID: 3438761099484164971}
   - component: {fileID: 3843233912719309478}
   - component: {fileID: 8391972755319543564}
+  - component: {fileID: 1055424923813987199}
   m_Layer: 5
   m_Name: RareClothes_Slot6
   m_TagString: Untagged
@@ -67110,8 +67388,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3438761099484164971}
-        m_TargetAssemblyTypeName: WeaponSlot_Button, Assembly-CSharp
+      - m_Target: {fileID: 1055424923813987199}
+        m_TargetAssemblyTypeName: ClothesSlot_Button, Assembly-CSharp
         m_MethodName: OnClickSlot
         m_Mode: 1
         m_Arguments:
@@ -67164,19 +67442,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3438761099484164971
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4566188678989977037}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc2e9806ba5231a41841d2f5fda1f56e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 7278898838359275479}
 --- !u!114 &3843233912719309478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67194,6 +67459,7 @@ MonoBehaviour:
   checkIcon: {fileID: 7182434583462578339}
   openStatText: {fileID: 8900889566890763907}
   checkStatText: {fileID: 3668886906282587090}
+  id: 1105
 --- !u!114 &8391972755319543564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67206,6 +67472,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30b31315acdeba0468a03857c8f59de3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1055424923813987199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4566188678989977037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3548c8bc75c735f408026d091572a1e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 4187817355435433783}
 --- !u!1 &4572622868405468582
 GameObject:
   m_ObjectHideFlags: 0
@@ -67702,9 +67981,9 @@ RectTransform:
   - {fileID: 2301678597601523048}
   m_Father: {fileID: 9053797994181799529}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 340, y: -125}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 200, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8536665084131080265
@@ -68324,7 +68603,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc2e9806ba5231a41841d2f5fda1f56e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 7142157024626729634}
+  controller: {fileID: 1439125890754377023}
 --- !u!114 &8138790514380376837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68342,6 +68621,7 @@ MonoBehaviour:
   checkIcon: {fileID: 7971001090922490295}
   openStatText: {fileID: 2949243189456349500}
   checkStatText: {fileID: 1487932053324725490}
+  id: 103
 --- !u!114 &8096293462170643710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69329,8 +69609,8 @@ GameObject:
   - component: {fileID: 8252980427908644238}
   - component: {fileID: 43019677514851006}
   - component: {fileID: 389863069454163403}
-  - component: {fileID: 2572811948243937807}
   - component: {fileID: 2720797935687992248}
+  - component: {fileID: 1920311838588258850}
   m_Layer: 5
   m_Name: Reward_Button_Random
   m_TagString: Untagged
@@ -69414,8 +69694,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2572811948243937807}
-        m_TargetAssemblyTypeName: RandomWeapon_Unlocker, Assembly-CSharp
+      - m_Target: {fileID: 1920311838588258850}
+        m_TargetAssemblyTypeName: RandomClothes_Unlocker, Assembly-CSharp
         m_MethodName: StartRandomUnlock
         m_Mode: 1
         m_Arguments:
@@ -69468,30 +69748,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &2572811948243937807
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4768079208647242095}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7ca6df8853e39d4ebab7d729a0a9ff9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _weaponSlots:
-  - {fileID: 2392463603800082754}
-  - {fileID: 636340737684410425}
-  - {fileID: 3195516640606969427}
-  - {fileID: 846029873658854885}
-  - {fileID: 4384906067748727448}
-  - {fileID: 3247518835006298676}
-  - {fileID: 6055877516676641609}
-  - {fileID: 731308594095938745}
-  _rewardPopup: {fileID: 6747261901428311665}
-  startDelay: 0.05
-  endDelay: 0.3
 --- !u!114 &2720797935687992248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69504,6 +69760,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30b31315acdeba0468a03857c8f59de3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1920311838588258850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4768079208647242095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51e37cfc1b8829d45b3000c4e960b663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _clothesSlots:
+  - {fileID: 2392463603800082754}
+  - {fileID: 636340737684410425}
+  - {fileID: 3195516640606969427}
+  - {fileID: 846029873658854885}
+  - {fileID: 4384906067748727448}
+  - {fileID: 3247518835006298676}
+  - {fileID: 6055877516676641609}
+  - {fileID: 731308594095938745}
+  _rewardPopup: {fileID: 6747261901428311665}
+  startDelay: 0.05
+  endDelay: 0.3
 --- !u!1 &4770890871172998801
 GameObject:
   m_ObjectHideFlags: 0
@@ -71586,7 +71866,6 @@ GameObject:
   - component: {fileID: 8246422771456185208}
   - component: {fileID: 6626427229271471307}
   - component: {fileID: 1285518112721379320}
-  - component: {fileID: 7563081177756045947}
   m_Layer: 5
   m_Name: RewardClothes_Group
   m_TagString: Untagged
@@ -71652,26 +71931,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4901315586418654421}
   m_CullTransparentMesh: 1
---- !u!114 &7563081177756045947
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4901315586418654421}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: befc45ac83a8fe44e916dffb66fe10c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _weaponSlots:
-  - {fileID: 3960513707090784834}
-  - {fileID: 2062946566959655237}
-  - {fileID: 2815673513296346419}
-  - {fileID: 4099057767557200794}
-  - {fileID: 7914174119688266451}
-  - {fileID: 3137611181138935398}
-  - {fileID: 4287761554772096089}
 --- !u!1 &4902112988105220129
 GameObject:
   m_ObjectHideFlags: 0
@@ -71860,9 +72119,9 @@ RectTransform:
   - {fileID: 67169161124082062}
   m_Father: {fileID: 9053797994181799529}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 940, y: -125}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 200, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3619491183795087906
@@ -72111,7 +72370,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2031850235138927371
 RectTransform:
   m_ObjectHideFlags: 0
@@ -72431,7 +72690,6 @@ GameObject:
   - component: {fileID: 8668416335774265947}
   - component: {fileID: 3783971995764854570}
   - component: {fileID: 5545561530250903419}
-  - component: {fileID: 3203143263530937640}
   m_Layer: 5
   m_Name: NormalClothes_Group
   m_TagString: Untagged
@@ -72498,27 +72756,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4959414719375226993}
   m_CullTransparentMesh: 1
---- !u!114 &3203143263530937640
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4959414719375226993}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: befc45ac83a8fe44e916dffb66fe10c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _weaponSlots:
-  - {fileID: 2392463603800082754}
-  - {fileID: 636340737684410425}
-  - {fileID: 3195516640606969427}
-  - {fileID: 846029873658854885}
-  - {fileID: 4384906067748727448}
-  - {fileID: 3247518835006298676}
-  - {fileID: 6055877516676641609}
-  - {fileID: 731308594095938745}
 --- !u!1 &4962528289115995818
 GameObject:
   m_ObjectHideFlags: 0
@@ -74242,9 +74479,9 @@ GameObject:
   - component: {fileID: 5731088628619151271}
   - component: {fileID: 4244223712778611848}
   - component: {fileID: 6026010102937454766}
-  - component: {fileID: 6989365439731992429}
   - component: {fileID: 5074017035013693959}
   - component: {fileID: 3861107563966805103}
+  - component: {fileID: 4385418801351453881}
   m_Layer: 5
   m_Name: RareClothes_Slot7
   m_TagString: Untagged
@@ -74327,8 +74564,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6989365439731992429}
-        m_TargetAssemblyTypeName: WeaponSlot_Button, Assembly-CSharp
+      - m_Target: {fileID: 4385418801351453881}
+        m_TargetAssemblyTypeName: ClothesSlot_Button, Assembly-CSharp
         m_MethodName: OnClickSlot
         m_Mode: 1
         m_Arguments:
@@ -74381,19 +74618,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6989365439731992429
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5099827795235475158}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc2e9806ba5231a41841d2f5fda1f56e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 7278898838359275479}
 --- !u!114 &5074017035013693959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74411,6 +74635,7 @@ MonoBehaviour:
   checkIcon: {fileID: 2071510545028133972}
   openStatText: {fileID: 1139708208568542666}
   checkStatText: {fileID: 4892322928290556525}
+  id: 1106
 --- !u!114 &3861107563966805103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74423,6 +74648,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30b31315acdeba0468a03857c8f59de3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4385418801351453881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5099827795235475158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3548c8bc75c735f408026d091572a1e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 4187817355435433783}
 --- !u!1 &5108890133767108677
 GameObject:
   m_ObjectHideFlags: 0
@@ -77011,7 +77249,7 @@ GameObject:
   - component: {fileID: 3328527732878805541}
   - component: {fileID: 4790732247862064748}
   - component: {fileID: 8337307771324939087}
-  - component: {fileID: 2197551644404998374}
+  - component: {fileID: 2916651736563627387}
   m_Layer: 5
   m_Name: Reward_Button_Ad
   m_TagString: Untagged
@@ -77136,8 +77374,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2197551644404998374}
-        m_TargetAssemblyTypeName: RandomWeapon_Unlocker, Assembly-CSharp
+      - m_Target: {fileID: 2916651736563627387}
+        m_TargetAssemblyTypeName: RandomClothes_Unlocker, Assembly-CSharp
         m_MethodName: StartRandomUnlock
         m_Mode: 1
         m_Arguments:
@@ -77160,7 +77398,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30b31315acdeba0468a03857c8f59de3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2197551644404998374
+--- !u!114 &2916651736563627387
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -77169,10 +77407,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5285442643443478309}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7ca6df8853e39d4ebab7d729a0a9ff9, type: 3}
+  m_Script: {fileID: 11500000, guid: 51e37cfc1b8829d45b3000c4e960b663, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _weaponSlots:
+  _clothesSlots:
   - {fileID: 2392463603800082754}
   - {fileID: 636340737684410425}
   - {fileID: 3195516640606969427}
@@ -79695,9 +79933,9 @@ RectTransform:
   - {fileID: 8239953653266126566}
   m_Father: {fileID: 9014021138663625264}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 665, y: -50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 230, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4372175416942319548
@@ -81483,7 +81721,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc2e9806ba5231a41841d2f5fda1f56e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 7142157024626729634}
+  controller: {fileID: 1439125890754377023}
 --- !u!114 &6674604003825360341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81501,6 +81739,7 @@ MonoBehaviour:
   checkIcon: {fileID: 2166512486087863439}
   openStatText: {fileID: 3949901732020223880}
   checkStatText: {fileID: 1673283400192512213}
+  id: 101
 --- !u!114 &6467784772914082866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83307,6 +83546,7 @@ GameObject:
   - component: {fileID: 4531447920207267378}
   - component: {fileID: 5663368881068513872}
   - component: {fileID: 9052951145145307146}
+  - component: {fileID: 5530014360103700214}
   m_Layer: 5
   m_Name: NormalWeapon_Slot3_P3
   m_TagString: Untagged
@@ -83400,6 +83640,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 5530014360103700214}
+        m_TargetAssemblyTypeName: Lobby_Button_Sound, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &4531447920207267378
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83442,7 +83694,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc2e9806ba5231a41841d2f5fda1f56e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 7057884493633664334}
+  controller: {fileID: 1439125890754377023}
 --- !u!114 &9052951145145307146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83460,6 +83712,19 @@ MonoBehaviour:
   checkIcon: {fileID: 0}
   openStatText: {fileID: 0}
   checkStatText: {fileID: 0}
+  id: 18
+--- !u!114 &5530014360103700214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5707298815328078709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30b31315acdeba0468a03857c8f59de3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5709422596001562393
 GameObject:
   m_ObjectHideFlags: 0
@@ -88011,9 +88276,9 @@ GameObject:
   - component: {fileID: 596988294442177675}
   - component: {fileID: 4900783591123505847}
   - component: {fileID: 2454611148724625808}
-  - component: {fileID: 8145866272268084683}
   - component: {fileID: 7842998387795880977}
   - component: {fileID: 6979692809458026956}
+  - component: {fileID: 1428863172227568000}
   m_Layer: 5
   m_Name: NormalClothes_Slot7
   m_TagString: Untagged
@@ -88096,8 +88361,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8145866272268084683}
-        m_TargetAssemblyTypeName: WeaponSlot_Button, Assembly-CSharp
+      - m_Target: {fileID: 1428863172227568000}
+        m_TargetAssemblyTypeName: ClothesSlot_Button, Assembly-CSharp
         m_MethodName: OnClickSlot
         m_Mode: 1
         m_Arguments:
@@ -88150,19 +88415,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8145866272268084683
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6055877516676641609}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc2e9806ba5231a41841d2f5fda1f56e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 3203143263530937640}
 --- !u!114 &7842998387795880977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88180,6 +88432,7 @@ MonoBehaviour:
   checkIcon: {fileID: 8640569724295732793}
   openStatText: {fileID: 3710774669934311534}
   checkStatText: {fileID: 7883082949402047352}
+  id: 1006
 --- !u!114 &6979692809458026956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88192,6 +88445,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30b31315acdeba0468a03857c8f59de3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1428863172227568000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6055877516676641609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3548c8bc75c735f408026d091572a1e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 4187817355435433783}
 --- !u!1 &6079399313336248158
 GameObject:
   m_ObjectHideFlags: 0
@@ -89414,7 +89680,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc2e9806ba5231a41841d2f5fda1f56e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 7142157024626729634}
+  controller: {fileID: 1439125890754377023}
 --- !u!114 &3706428208486217964
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89432,6 +89698,7 @@ MonoBehaviour:
   checkIcon: {fileID: 2372831993433325146}
   openStatText: {fileID: 351832684506972841}
   checkStatText: {fileID: 6637951041804101437}
+  id: 100
 --- !u!114 &3512464961503639033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92777,7 +93044,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc2e9806ba5231a41841d2f5fda1f56e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 7142157024626729634}
+  controller: {fileID: 1439125890754377023}
 --- !u!114 &878627393502719062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92795,6 +93062,7 @@ MonoBehaviour:
   checkIcon: {fileID: 4105197941940954982}
   openStatText: {fileID: 5542372557944388121}
   checkStatText: {fileID: 7372161295197200395}
+  id: 107
 --- !u!114 &5785747747422222808
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93423,7 +93691,6 @@ GameObject:
   - component: {fileID: 5334113394627095639}
   - component: {fileID: 2165383596714140885}
   - component: {fileID: 7673093606130008311}
-  - component: {fileID: 6350378480674056264}
   m_Layer: 5
   m_Name: NormalWeapon_Group_P1
   m_TagString: Untagged
@@ -93490,27 +93757,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6568348008350588859}
   m_CullTransparentMesh: 1
---- !u!114 &6350378480674056264
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6568348008350588859}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: befc45ac83a8fe44e916dffb66fe10c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _weaponSlots:
-  - {fileID: 1281042224452756266}
-  - {fileID: 3955950180431568293}
-  - {fileID: 8466555744987283423}
-  - {fileID: 2571623630929120555}
-  - {fileID: 4150760676900026696}
-  - {fileID: 2261849523378908306}
-  - {fileID: 3450251749644619782}
-  - {fileID: 3826985257200799370}
 --- !u!1 &6568626472771233463
 GameObject:
   m_ObjectHideFlags: 0
@@ -95702,7 +95948,6 @@ GameObject:
   - component: {fileID: 4583659162962134745}
   - component: {fileID: 4241560953022772051}
   - component: {fileID: 1638111853361497677}
-  - component: {fileID: 7142157024626729634}
   m_Layer: 5
   m_Name: RareWeapon_Group
   m_TagString: Untagged
@@ -95769,27 +96014,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6799023244317307500}
   m_CullTransparentMesh: 1
---- !u!114 &7142157024626729634
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6799023244317307500}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: befc45ac83a8fe44e916dffb66fe10c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _weaponSlots:
-  - {fileID: 6192305059239612986}
-  - {fileID: 5550530032787157144}
-  - {fileID: 440265384795909748}
-  - {fileID: 4705720470814117393}
-  - {fileID: 1670584161997525913}
-  - {fileID: 449730254180390701}
-  - {fileID: 1911376347989501515}
-  - {fileID: 6518979684789350252}
 --- !u!1 &6801917815317164053
 GameObject:
   m_ObjectHideFlags: 0
@@ -98586,6 +98810,7 @@ GameObject:
   - component: {fileID: 8132840505141713504}
   - component: {fileID: 8852115822859594380}
   - component: {fileID: 2437491106068351295}
+  - component: {fileID: 3043408652274197749}
   m_Layer: 5
   m_Name: NormalWeapon_Slot5_P2
   m_TagString: Untagged
@@ -98679,6 +98904,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 3043408652274197749}
+        m_TargetAssemblyTypeName: Lobby_Button_Sound, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &8132840505141713504
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98721,7 +98958,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc2e9806ba5231a41841d2f5fda1f56e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 6096152639122363415}
+  controller: {fileID: 1439125890754377023}
 --- !u!114 &2437491106068351295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98739,6 +98976,19 @@ MonoBehaviour:
   checkIcon: {fileID: 0}
   openStatText: {fileID: 0}
   checkStatText: {fileID: 0}
+  id: 12
+--- !u!114 &3043408652274197749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6952555262042371611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30b31315acdeba0468a03857c8f59de3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6954091757221659264
 GameObject:
   m_ObjectHideFlags: 0
@@ -99280,7 +99530,6 @@ GameObject:
   - component: {fileID: 6149967230781386619}
   - component: {fileID: 5682892380219298312}
   - component: {fileID: 3345887624806606352}
-  - component: {fileID: 7278898838359275479}
   m_Layer: 5
   m_Name: RareClothes_Group
   m_TagString: Untagged
@@ -99347,27 +99596,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7011121670969873828}
   m_CullTransparentMesh: 1
---- !u!114 &7278898838359275479
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7011121670969873828}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: befc45ac83a8fe44e916dffb66fe10c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _weaponSlots:
-  - {fileID: 8721122516761953838}
-  - {fileID: 7598780991904296964}
-  - {fileID: 3135392983091952676}
-  - {fileID: 8265519094180036764}
-  - {fileID: 2477665020914379293}
-  - {fileID: 4566188678989977037}
-  - {fileID: 5099827795235475158}
-  - {fileID: 7734262801562326995}
 --- !u!1 &7021828012219140643
 GameObject:
   m_ObjectHideFlags: 0
@@ -99604,16 +99832,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: befc45ac83a8fe44e916dffb66fe10c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _weaponSlots:
-  - {fileID: 2565648211456829317}
-  - {fileID: 5340015682549595687}
-  - {fileID: 2701496186679241394}
-  - {fileID: 6220805652381408407}
-  - {fileID: 3873176199323708857}
-  - {fileID: 1187066259197899900}
-  - {fileID: 7471018305074474002}
-  - {fileID: 2888863133254966078}
-  - {fileID: 142022367220674796}
+  _allWeaponSlots: []
 --- !u!1 &7052151849095571576
 GameObject:
   m_ObjectHideFlags: 0
@@ -102155,9 +102374,9 @@ RectTransform:
   - {fileID: 734296156463463592}
   m_Father: {fileID: 2695568941634979742}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 14.5, y: -24}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 25, y: 8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1957176102620268662
@@ -104144,8 +104363,9 @@ GameObject:
   - component: {fileID: 62738859468383423}
   - component: {fileID: 1726053769396665600}
   - component: {fileID: 7714922924172112967}
+  - component: {fileID: 8589273816776621498}
   m_Layer: 5
-  m_Name: PurchasedWeapon_Slot2
+  m_Name: PurchasedClothes_Slot2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -104237,6 +104457,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 8589273816776621498}
+        m_TargetAssemblyTypeName: ClothesSlot_Button, Assembly-CSharp
+        m_MethodName: OnClickSlot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &62738859468383423
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104284,6 +104516,7 @@ MonoBehaviour:
   checkIcon: {fileID: 0}
   openStatText: {fileID: 0}
   checkStatText: {fileID: 0}
+  id: 1301
 --- !u!114 &7714922924172112967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104296,6 +104529,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30b31315acdeba0468a03857c8f59de3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8589273816776621498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7448302347412732229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3548c8bc75c735f408026d091572a1e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 4187817355435433783}
 --- !u!1 &7450806585769141942
 GameObject:
   m_ObjectHideFlags: 0
@@ -105088,9 +105334,9 @@ RectTransform:
   - {fileID: 2270332754037032911}
   m_Father: {fileID: 9014021138663625264}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 165, y: -50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 230, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &949708460834997445
@@ -106645,7 +106891,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &626175338314079197
 RectTransform:
   m_ObjectHideFlags: 0
@@ -106748,9 +106994,9 @@ GameObject:
   - component: {fileID: 7805296120571499753}
   - component: {fileID: 227396854835628911}
   - component: {fileID: 8137160288185451395}
-  - component: {fileID: 6174338922127412960}
   - component: {fileID: 8660833967531711365}
   - component: {fileID: 1557778485112646106}
+  - component: {fileID: 7372682001355629899}
   m_Layer: 5
   m_Name: RareClothes_Slot2
   m_TagString: Untagged
@@ -106833,8 +107079,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6174338922127412960}
-        m_TargetAssemblyTypeName: WeaponSlot_Button, Assembly-CSharp
+      - m_Target: {fileID: 7372682001355629899}
+        m_TargetAssemblyTypeName: ClothesSlot_Button, Assembly-CSharp
         m_MethodName: OnClickSlot
         m_Mode: 1
         m_Arguments:
@@ -106887,19 +107133,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6174338922127412960
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7598780991904296964}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc2e9806ba5231a41841d2f5fda1f56e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 7278898838359275479}
 --- !u!114 &8660833967531711365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106917,6 +107150,7 @@ MonoBehaviour:
   checkIcon: {fileID: 3170201804474373589}
   openStatText: {fileID: 4525311287309714792}
   checkStatText: {fileID: 6725813498613163746}
+  id: 1101
 --- !u!114 &1557778485112646106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106929,6 +107163,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30b31315acdeba0468a03857c8f59de3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7372682001355629899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7598780991904296964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3548c8bc75c735f408026d091572a1e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 4187817355435433783}
 --- !u!1 &7599106219270117623
 GameObject:
   m_ObjectHideFlags: 0
@@ -108196,6 +108443,7 @@ GameObject:
   - component: {fileID: 8263187633513694890}
   - component: {fileID: 1896038663610370281}
   - component: {fileID: 7473167159226046181}
+  - component: {fileID: 8706453885661736340}
   m_Layer: 5
   m_Name: NormalWeapon_Slot4_P2
   m_TagString: Untagged
@@ -108289,6 +108537,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 8706453885661736340}
+        m_TargetAssemblyTypeName: Lobby_Button_Sound, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &8263187633513694890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108331,7 +108591,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc2e9806ba5231a41841d2f5fda1f56e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 6096152639122363415}
+  controller: {fileID: 1439125890754377023}
 --- !u!114 &7473167159226046181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108349,6 +108609,19 @@ MonoBehaviour:
   checkIcon: {fileID: 0}
   openStatText: {fileID: 0}
   checkStatText: {fileID: 0}
+  id: 11
+--- !u!114 &8706453885661736340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7707171113064031230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30b31315acdeba0468a03857c8f59de3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7707322910086940804
 GameObject:
   m_ObjectHideFlags: 0
@@ -108880,9 +109153,9 @@ GameObject:
   - component: {fileID: 3963809599765025704}
   - component: {fileID: 5898280128959154170}
   - component: {fileID: 4990763278999179665}
-  - component: {fileID: 1452265300509317681}
   - component: {fileID: 9217843334151130649}
   - component: {fileID: 4040745717693375411}
+  - component: {fileID: 3164548847875151661}
   m_Layer: 5
   m_Name: RareClothes_Slot8
   m_TagString: Untagged
@@ -108965,8 +109238,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1452265300509317681}
-        m_TargetAssemblyTypeName: WeaponSlot_Button, Assembly-CSharp
+      - m_Target: {fileID: 3164548847875151661}
+        m_TargetAssemblyTypeName: ClothesSlot_Button, Assembly-CSharp
         m_MethodName: OnClickSlot
         m_Mode: 1
         m_Arguments:
@@ -109019,19 +109292,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1452265300509317681
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7734262801562326995}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc2e9806ba5231a41841d2f5fda1f56e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 7278898838359275479}
 --- !u!114 &9217843334151130649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109049,6 +109309,7 @@ MonoBehaviour:
   checkIcon: {fileID: 6369222027847431162}
   openStatText: {fileID: 7854554986493911546}
   checkStatText: {fileID: 5151878328914801629}
+  id: 1107
 --- !u!114 &4040745717693375411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109061,6 +109322,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30b31315acdeba0468a03857c8f59de3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3164548847875151661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7734262801562326995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3548c8bc75c735f408026d091572a1e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 4187817355435433783}
 --- !u!1 &7743874289735991195
 GameObject:
   m_ObjectHideFlags: 0
@@ -111161,11 +111435,11 @@ GameObject:
   - component: {fileID: 8279112657470073069}
   - component: {fileID: 878505642698279295}
   - component: {fileID: 7350140879854667997}
-  - component: {fileID: 343641609263137583}
   - component: {fileID: 8348726106077944558}
   - component: {fileID: 6145572059113877895}
+  - component: {fileID: 8423804199882431318}
   m_Layer: 5
-  m_Name: RewardWeapon_Slot5
+  m_Name: RewardClothes_Slot5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -111245,8 +111519,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 343641609263137583}
-        m_TargetAssemblyTypeName: WeaponSlot_Button, Assembly-CSharp
+      - m_Target: {fileID: 8423804199882431318}
+        m_TargetAssemblyTypeName: ClothesSlot_Button, Assembly-CSharp
         m_MethodName: OnClickSlot
         m_Mode: 1
         m_Arguments:
@@ -111299,19 +111573,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &343641609263137583
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7914174119688266451}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc2e9806ba5231a41841d2f5fda1f56e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 7563081177756045947}
 --- !u!114 &8348726106077944558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111329,6 +111590,7 @@ MonoBehaviour:
   checkIcon: {fileID: 0}
   openStatText: {fileID: 0}
   checkStatText: {fileID: 0}
+  id: 1204
 --- !u!114 &6145572059113877895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111341,6 +111603,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30b31315acdeba0468a03857c8f59de3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8423804199882431318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7914174119688266451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3548c8bc75c735f408026d091572a1e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 4187817355435433783}
 --- !u!1 &7921966053185975871
 GameObject:
   m_ObjectHideFlags: 0
@@ -115189,9 +115464,9 @@ GameObject:
   - component: {fileID: 491958270017577622}
   - component: {fileID: 1231315276455969611}
   - component: {fileID: 4876088911884251638}
-  - component: {fileID: 8877346720988847672}
   - component: {fileID: 7313498134906934742}
   - component: {fileID: 8259216134435357733}
+  - component: {fileID: 3583516683100339256}
   m_Layer: 5
   m_Name: RareClothes_Slot4
   m_TagString: Untagged
@@ -115274,8 +115549,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8877346720988847672}
-        m_TargetAssemblyTypeName: WeaponSlot_Button, Assembly-CSharp
+      - m_Target: {fileID: 3583516683100339256}
+        m_TargetAssemblyTypeName: ClothesSlot_Button, Assembly-CSharp
         m_MethodName: OnClickSlot
         m_Mode: 1
         m_Arguments:
@@ -115328,19 +115603,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8877346720988847672
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8265519094180036764}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc2e9806ba5231a41841d2f5fda1f56e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 7278898838359275479}
 --- !u!114 &7313498134906934742
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115358,6 +115620,7 @@ MonoBehaviour:
   checkIcon: {fileID: 6869584692186707010}
   openStatText: {fileID: 4838803661036013391}
   checkStatText: {fileID: 7950094661830832442}
+  id: 1103
 --- !u!114 &8259216134435357733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115370,6 +115633,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30b31315acdeba0468a03857c8f59de3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3583516683100339256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8265519094180036764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3548c8bc75c735f408026d091572a1e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 4187817355435433783}
 --- !u!1 &8266157599543425973
 GameObject:
   m_ObjectHideFlags: 0
@@ -116420,6 +116696,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7749478922728957728}
+  - component: {fileID: 1439125890754377023}
   m_Layer: 5
   m_Name: Weapon_All_Group
   m_TagString: Untagged
@@ -116450,6 +116727,56 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1080, y: 763}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1439125890754377023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8364853419902948204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: befc45ac83a8fe44e916dffb66fe10c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _allWeaponSlots:
+  - {fileID: 1281042224452756266}
+  - {fileID: 3955950180431568293}
+  - {fileID: 8466555744987283423}
+  - {fileID: 2571623630929120555}
+  - {fileID: 4150760676900026696}
+  - {fileID: 2261849523378908306}
+  - {fileID: 3450251749644619782}
+  - {fileID: 3826985257200799370}
+  - {fileID: 8470478907424242160}
+  - {fileID: 1914556608720086532}
+  - {fileID: 1254972362442590405}
+  - {fileID: 7707171113064031230}
+  - {fileID: 6952555262042371611}
+  - {fileID: 335346920124080948}
+  - {fileID: 1140803280837451080}
+  - {fileID: 9071339971619341849}
+  - {fileID: 2187302429582132752}
+  - {fileID: 8825692259744316546}
+  - {fileID: 5707298815328078709}
+  - {fileID: 3484815156482359817}
+  - {fileID: 3827355455589578201}
+  - {fileID: 2777249650311225734}
+  - {fileID: 3843031593495371396}
+  - {fileID: 2560654751166665040}
+  - {fileID: 6192305059239612986}
+  - {fileID: 5550530032787157144}
+  - {fileID: 440265384795909748}
+  - {fileID: 4705720470814117393}
+  - {fileID: 1670584161997525913}
+  - {fileID: 449730254180390701}
+  - {fileID: 1911376347989501515}
+  - {fileID: 6518979684789350252}
+  - {fileID: 4014588332573645195}
+  - {fileID: 3607449364067103945}
+  - {fileID: 540630284684376466}
+  - {fileID: 588085272486439776}
+  - {fileID: 1156455739384944294}
 --- !u!1 &8367111154003811078
 GameObject:
   m_ObjectHideFlags: 0
@@ -117926,10 +118253,10 @@ RectTransform:
   - {fileID: 5712485940001755889}
   m_Father: {fileID: 5334113394627095639}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 607.5, y: -157.5}
-  m_SizeDelta: {x: 115, y: 115}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &637897990531858068
 CanvasRenderer:
@@ -118049,7 +118376,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc2e9806ba5231a41841d2f5fda1f56e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 6350378480674056264}
+  controller: {fileID: 1439125890754377023}
 --- !u!114 &4965906368164806115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118067,6 +118394,7 @@ MonoBehaviour:
   checkIcon: {fileID: 1499360081479345969}
   openStatText: {fileID: 5617484035555970687}
   checkStatText: {fileID: 8619338711139526875}
+  id: 2
 --- !u!114 &2445338298531300696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118093,6 +118421,7 @@ GameObject:
   - component: {fileID: 1398826020506843173}
   - component: {fileID: 167136845290417981}
   - component: {fileID: 1935202150235707508}
+  - component: {fileID: 4621871595817984657}
   m_Layer: 5
   m_Name: NormalWeapon_Slot1_P2
   m_TagString: Untagged
@@ -118186,6 +118515,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 4621871595817984657}
+        m_TargetAssemblyTypeName: Lobby_Button_Sound, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1398826020506843173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118228,7 +118569,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc2e9806ba5231a41841d2f5fda1f56e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 6096152639122363415}
+  controller: {fileID: 1439125890754377023}
 --- !u!114 &1935202150235707508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118246,6 +118587,19 @@ MonoBehaviour:
   checkIcon: {fileID: 0}
   openStatText: {fileID: 0}
   checkStatText: {fileID: 0}
+  id: 8
+--- !u!114 &4621871595817984657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8470478907424242160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30b31315acdeba0468a03857c8f59de3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8486645097039543685
 GameObject:
   m_ObjectHideFlags: 0
@@ -119507,9 +119861,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2118034950738998511}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 16.5, y: -2.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 23, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4812558463041233344
@@ -120271,9 +120625,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 6459043414403477355}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 2.5, y: -2.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 5, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6444333997604026280
@@ -121349,9 +121703,9 @@ GameObject:
   - component: {fileID: 3045992542879177156}
   - component: {fileID: 7578981281874474712}
   - component: {fileID: 2298325410512774025}
-  - component: {fileID: 2409394202753728768}
   - component: {fileID: 4468478627131393920}
   - component: {fileID: 3908020747558624876}
+  - component: {fileID: 3148993334631110838}
   m_Layer: 5
   m_Name: RareClothes_Slot1
   m_TagString: Untagged
@@ -121434,8 +121788,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2409394202753728768}
-        m_TargetAssemblyTypeName: WeaponSlot_Button, Assembly-CSharp
+      - m_Target: {fileID: 3148993334631110838}
+        m_TargetAssemblyTypeName: ClothesSlot_Button, Assembly-CSharp
         m_MethodName: OnClickSlot
         m_Mode: 1
         m_Arguments:
@@ -121488,19 +121842,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &2409394202753728768
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8721122516761953838}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc2e9806ba5231a41841d2f5fda1f56e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 7278898838359275479}
 --- !u!114 &4468478627131393920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121518,6 +121859,7 @@ MonoBehaviour:
   checkIcon: {fileID: 4271176392848717633}
   openStatText: {fileID: 3487896712973387749}
   checkStatText: {fileID: 680622761339335808}
+  id: 1100
 --- !u!114 &3908020747558624876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121530,6 +121872,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30b31315acdeba0468a03857c8f59de3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3148993334631110838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8721122516761953838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3548c8bc75c735f408026d091572a1e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 4187817355435433783}
 --- !u!1 &8722716323974321785
 GameObject:
   m_ObjectHideFlags: 0
@@ -122097,9 +122452,9 @@ RectTransform:
   - {fileID: 2297330897780263266}
   m_Father: {fileID: 9053797994181799529}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 140, y: -125}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 200, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &225925299520471214
@@ -123107,6 +123462,7 @@ GameObject:
   - component: {fileID: 2219354993530225991}
   - component: {fileID: 3964333807713839489}
   - component: {fileID: 6931489538015332798}
+  - component: {fileID: 2820247470251806642}
   m_Layer: 5
   m_Name: NormalWeapon_Slot2_P3
   m_TagString: Untagged
@@ -123200,6 +123556,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2820247470251806642}
+        m_TargetAssemblyTypeName: Lobby_Button_Sound, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2219354993530225991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123242,7 +123610,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc2e9806ba5231a41841d2f5fda1f56e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 7057884493633664334}
+  controller: {fileID: 1439125890754377023}
 --- !u!114 &6931489538015332798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123260,6 +123628,19 @@ MonoBehaviour:
   checkIcon: {fileID: 0}
   openStatText: {fileID: 0}
   checkStatText: {fileID: 0}
+  id: 17
+--- !u!114 &2820247470251806642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8825692259744316546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30b31315acdeba0468a03857c8f59de3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8828397745577734086
 GameObject:
   m_ObjectHideFlags: 0
@@ -126189,8 +126570,9 @@ GameObject:
   - component: {fileID: 6112210405927977216}
   - component: {fileID: 8056218964489035630}
   - component: {fileID: 2937712336170224983}
+  - component: {fileID: 6057558412326703770}
   m_Layer: 5
-  m_Name: PurchasedWeapon_Slot4
+  m_Name: PurchasedClothes_Slot4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -126282,6 +126664,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 6057558412326703770}
+        m_TargetAssemblyTypeName: ClothesSlot_Button, Assembly-CSharp
+        m_MethodName: OnClickSlot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6112210405927977216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126329,6 +126723,7 @@ MonoBehaviour:
   checkIcon: {fileID: 0}
   openStatText: {fileID: 0}
   checkStatText: {fileID: 0}
+  id: 1303
 --- !u!114 &2937712336170224983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126341,6 +126736,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30b31315acdeba0468a03857c8f59de3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6057558412326703770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9002700687326195665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3548c8bc75c735f408026d091572a1e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 4187817355435433783}
 --- !u!1 &9004245178709211245
 GameObject:
   m_ObjectHideFlags: 0
@@ -126957,9 +127365,9 @@ RectTransform:
   - {fileID: 4469749613042003306}
   m_Father: {fileID: 9014021138663625264}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 415, y: -50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 230, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3439492306958152669
@@ -128021,6 +128429,7 @@ GameObject:
   - component: {fileID: 6413656643616436196}
   - component: {fileID: 3118264346032869357}
   - component: {fileID: 1426517321777850272}
+  - component: {fileID: 1360045066298410259}
   m_Layer: 5
   m_Name: NormalWeapon_Slot8_P2
   m_TagString: Untagged
@@ -128114,6 +128523,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1360045066298410259}
+        m_TargetAssemblyTypeName: Lobby_Button_Sound, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6413656643616436196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128156,7 +128577,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc2e9806ba5231a41841d2f5fda1f56e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 6096152639122363415}
+  controller: {fileID: 1439125890754377023}
 --- !u!114 &1426517321777850272
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128174,6 +128595,19 @@ MonoBehaviour:
   checkIcon: {fileID: 0}
   openStatText: {fileID: 0}
   checkStatText: {fileID: 0}
+  id: 15
+--- !u!114 &1360045066298410259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9071339971619341849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30b31315acdeba0468a03857c8f59de3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9077227296590616159
 GameObject:
   m_ObjectHideFlags: 0
@@ -128604,7 +129038,6 @@ GameObject:
   - component: {fileID: 2833886175537009085}
   - component: {fileID: 8501960376338114506}
   - component: {fileID: 440381012035059381}
-  - component: {fileID: 7057884493633664334}
   m_Layer: 5
   m_Name: NormalWeapon_Group_P3
   m_TagString: Untagged
@@ -128671,27 +129104,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9104092154870940739}
   m_CullTransparentMesh: 1
---- !u!114 &7057884493633664334
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9104092154870940739}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: befc45ac83a8fe44e916dffb66fe10c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _weaponSlots:
-  - {fileID: 2187302429582132752}
-  - {fileID: 8825692259744316546}
-  - {fileID: 5707298815328078709}
-  - {fileID: 3484815156482359817}
-  - {fileID: 3827355455589578201}
-  - {fileID: 2777249650311225734}
-  - {fileID: 3843031593495371396}
-  - {fileID: 2560654751166665040}
 --- !u!1 &9107675494352550206
 GameObject:
   m_ObjectHideFlags: 0

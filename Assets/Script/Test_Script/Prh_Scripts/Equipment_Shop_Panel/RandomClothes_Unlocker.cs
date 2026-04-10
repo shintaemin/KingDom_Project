@@ -1,28 +1,11 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-#region 아이템 슬롯 랜덤 해금 관리
-/*
- ▶ 할일
-  - 잠겨있는 아이템 중 하나를 랜덤으로 선택하여 해금
-  - Lock → Open 상태로 변경
-  - 모든 아이템이 해금된 경우 동작하지 않음
-
- ▶ 흐름
-  1. 모든 슬롯 검사
-  2. 잠긴 슬롯만 리스트에 수집
-  3. 랜덤으로 하나 선택
-  4. 선택된 슬롯을 해금 상태로 변경
-
-- 박라희
-*/
-#endregion
-
-public class RandomWeapon_Unlocker : MonoBehaviour
+public class RandomClothes_Unlocker : MonoBehaviour
 {
-    #region 인스펙터
-    [SerializeField] private List<GameObject> _weaponSlots;
+    #region �ν�����
+    [SerializeField] private List<GameObject> _clothesSlots;
     [SerializeField] private GameObject _rewardPopup;
 
     [SerializeField] private float startDelay = 0.05f;
@@ -44,9 +27,9 @@ public class RandomWeapon_Unlocker : MonoBehaviour
 
         List<int> lockedIndex = new List<int>();
 
-        for (int i = 0; i < _weaponSlots.Count; i++)
+        for (int i = 0; i < _clothesSlots.Count; i++)
         {
-            GameObject slot = _weaponSlots[i];
+            GameObject slot = _clothesSlots[i];
             if (slot == null) continue;
 
             Transform lockObj = slot.transform.Find("Lock");
@@ -63,7 +46,7 @@ public class RandomWeapon_Unlocker : MonoBehaviour
 
         int targetIndex = lockedIndex[Random.Range(0, lockedIndex.Count)];
 
-        // 마지막 1개
+        // ������ 1��
         if (lockedIndex.Count == 1)
         {
             int lastIndex = lockedIndex[0];
@@ -71,7 +54,7 @@ public class RandomWeapon_Unlocker : MonoBehaviour
             SetHighlight(lastIndex);
             yield return new WaitForSeconds(0.1f);
 
-            GameObject selectedSlot = _weaponSlots[lastIndex];
+            GameObject selectedSlot = _clothesSlots[lastIndex];
 
             SetUnlock(selectedSlot);
             SelectByController(selectedSlot);
@@ -102,7 +85,7 @@ public class RandomWeapon_Unlocker : MonoBehaviour
         SetHighlight(targetIndex);
         yield return new WaitForSeconds(endDelay * 1.5f);
 
-        GameObject finalSlot = _weaponSlots[targetIndex];
+        GameObject finalSlot = _clothesSlots[targetIndex];
 
         SetUnlock(finalSlot);
         SelectByController(finalSlot);
@@ -113,10 +96,10 @@ public class RandomWeapon_Unlocker : MonoBehaviour
         isRolling = false;
     }
 
-    // Controller에게 선택 맡김
+    // Controller���� ���� �ñ�
     private void SelectByController(GameObject slot)
     {
-        var controller = FindObjectOfType<WeaponSelect_Controller>();
+        var controller = FindObjectOfType<ClothesSelect_Controller>();
         if (controller != null)
         {
             controller.SelectSlot(slot);
@@ -132,7 +115,7 @@ public class RandomWeapon_Unlocker : MonoBehaviour
             SoundManager.Instance.SFXPlay(ESfxType.Item_Unlock);
     }
 
-    // Unlock은 열기만
+    // Unlock�� ���⸸
     private void SetUnlock(GameObject slot)
     {
         Transform lockObj = slot.transform.Find("Lock");
@@ -144,9 +127,9 @@ public class RandomWeapon_Unlocker : MonoBehaviour
 
     void SetHighlight(int index)
     {
-        for (int i = 0; i < _weaponSlots.Count; i++)
+        for (int i = 0; i < _clothesSlots.Count; i++)
         {
-            Transform highlight = _weaponSlots[i].transform.Find("Highlight");
+            Transform highlight = _clothesSlots[i].transform.Find("Highlight");
 
             if (highlight != null)
             {
@@ -165,9 +148,9 @@ public class RandomWeapon_Unlocker : MonoBehaviour
 
     void SetAllHighlightOff()
     {
-        for (int i = 0; i < _weaponSlots.Count; i++)
+        for (int i = 0; i < _clothesSlots.Count; i++)
         {
-            Transform highlight = _weaponSlots[i].transform.Find("Highlight");
+            Transform highlight = _clothesSlots[i].transform.Find("Highlight");
 
             if (highlight != null)
                 highlight.gameObject.SetActive(false);

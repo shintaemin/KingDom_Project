@@ -20,12 +20,9 @@ using UnityEngine;
 public class WeaponSlot_Button : MonoBehaviour
 {
     #region 인스펙터
-    [Header("컨트롤러 참조")]
-    // 슬롯 선택 처리
     [SerializeField] private WeaponSelect_Controller controller;
     #endregion
 
-    // 버튼 클릭 시 실행되는 함수
     public void OnClickSlot()
     {
         // 컨트롤러가 없으면 동작 중단

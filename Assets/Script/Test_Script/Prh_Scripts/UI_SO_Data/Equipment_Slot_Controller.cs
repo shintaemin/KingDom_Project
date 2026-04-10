@@ -20,7 +20,7 @@ using UnityEngine;
 #endregion
 
 public class Equipment_Slot_Controller : MonoBehaviour
-{
+{/*
     #region 인스펙터
     [Header("슬롯 목록")]
     [SerializeField] private Equipment_Slot_Data[] slots;
@@ -69,4 +69,5 @@ public class Equipment_Slot_Controller : MonoBehaviour
         Debug.Log("선택된 장비 ID: " + slot.GetData().ID);
     }
     #endregion
+    */
 }
