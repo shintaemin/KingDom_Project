@@ -93,12 +93,7 @@ public class EnemyState : MonoBehaviour
 
         if (_playerState == null)
         {
-            _playerState = FindObjectOfType<PlayerState>();
-        }
-
-        if (_playerState != null)
-        {
-            _playerState.OnDead += PlayerDead;
+            StartCoroutine(CoBindPlayer());
         }
     }
 
@@ -115,6 +110,17 @@ public class EnemyState : MonoBehaviour
         }
     }
 
+    private IEnumerator CoBindPlayer()
+    {
+        while (_playerState == null)
+        {
+            _playerState = FindObjectOfType<PlayerState>();
+            yield return null;
+        }
+
+        _playerState.OnDead += PlayerDead;
+    }
+
     private void Damaged()
     {
         IsOnHit = true;
@@ -129,7 +135,6 @@ public class EnemyState : MonoBehaviour
     private void PlayerDead()
     {
         _isPlayerDead = true;
-        SetState(EState.Idle);
     }
 
     void Start()
@@ -185,11 +190,6 @@ public class EnemyState : MonoBehaviour
                 break;
 
             case EState.Detect:
-                //if (IsNearDead)
-                //{
-                //    IsNearDead = false;
-                //}
-
                 if (_isBoss && _canBossRoar)
                 {
                     _canBossRoar = false;
@@ -241,6 +241,11 @@ public class EnemyState : MonoBehaviour
         if (_hpSystem.IsDead)
         {
             return EState.Dead;
+        }
+
+        if (_isPlayerDead)
+        {
+            return EState.Idle;
         }
 
         if (_state == EState.BossRoar || _state == EState.BossJump)
@@ -335,24 +340,5 @@ public class EnemyState : MonoBehaviour
     {
         return _state;
     }
-
-    /*
-    빌드 테스트 후 PlayerState 구독이 안될 시에 스포너에서 적 생성 시 Init으로 구독 시도
-
-    public void Init(PlayerState player)
-    {
-        if (_playerState != null)
-        {
-            _playerState.OnDead -= PlayerDead;
-        }
-
-        _playerState = player;
-
-        if (_playerState != null)
-        {
-            _playerState.OnDead += PlayerDead;
-        }
-    }
-    */
     #endregion
 }

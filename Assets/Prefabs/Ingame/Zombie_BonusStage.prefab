@@ -6421,7 +6421,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &608120546547090612
 Transform:
   m_ObjectHideFlags: 0
@@ -6475,6 +6475,7 @@ MonoBehaviour:
   _paramAttack: tAttack
   _paramOnHit: tOnHit
   _paramOnHitIndex: iOnHitIndex
+  _autoAttack: 0
 --- !u!114 &6773073591928912674
 MonoBehaviour:
   m_ObjectHideFlags: 0

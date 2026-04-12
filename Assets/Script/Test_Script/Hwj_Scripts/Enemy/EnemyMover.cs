@@ -112,13 +112,13 @@ public class EnemyMover : MonoBehaviour
         switch (state)
         {
             case EnemyState.EState.Patrol:
-                _nav.speed = 1.5f;
+                _nav.speed = 2.2f;
                 _nav.isStopped = false;
                 _moveRoutine = StartCoroutine(CoPatrol());
                 break;
 
             case EnemyState.EState.Chase:
-                _nav.speed = 2.2f;
+                _nav.speed = 3f;
                 _nav.isStopped = false;
                 _moveRoutine = StartCoroutine(CoChase());
                 break;
@@ -171,7 +171,7 @@ public class EnemyMover : MonoBehaviour
 
     private IEnumerator CoBossJump()
     {
-        Vector3 dir = Random.insideUnitSphere;
+        Vector3 dir = Random.onUnitSphere;
         dir.y = 0;
         dir.Normalize();
 

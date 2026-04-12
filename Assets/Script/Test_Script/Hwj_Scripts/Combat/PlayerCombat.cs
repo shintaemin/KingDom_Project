@@ -78,7 +78,6 @@ public class PlayerCombat : BaseCombat
             }
 
             enemyHP.TakeDamage(finalAtkPower, transform.position, isBackAttack);
-            Debug.Log($"적에게 준 대미지 : [{finalAtkPower}]");
         }
     }
     #endregion

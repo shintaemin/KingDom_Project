@@ -57,11 +57,23 @@ public class EnemyRangedCombat : BaseCombat
 
         else
         {
-            if (CanAttack())
+            if (CanAutoAttack())
             {
                 Attack();
             }
         }
+    }
+
+    private bool CanAutoAttack()
+    {
+        float interval = 1f / _status.AtkSpeed;
+
+        if (Time.time - _lastAtkTime < interval)
+        {
+            return false;
+        }
+
+        return true;
     }
 
     protected override void Attack()

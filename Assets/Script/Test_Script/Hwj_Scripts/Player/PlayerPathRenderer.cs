@@ -97,19 +97,27 @@ public class PlayerPathRenderer : MonoBehaviour
             _lineRenderer.SetPosition(i, _pathPoint[i] + Vector3.up * _yOffset);
         }
 
-        _arrowHead.SetActive(true);
-
-        _arrowHead.transform.position = _pathPoint[_pathPoint.Count - 1] + Vector3.up * _yOffset;
-
-        Vector3 direction = (_pathPoint[_pathPoint.Count - 1] - _pathPoint[_pathPoint.Count - 2]).normalized;
-
-        if (direction != Vector3.zero)
+        if (_pathPoint.Count >= 2)
         {
-            _arrowHead.transform.rotation = Quaternion.LookRotation(direction);
+            _arrowHead.SetActive(true);
 
-            _arrowHead.transform.Rotate(90, 0, 0);
-        }
+            _arrowHead.transform.position = _pathPoint[_pathPoint.Count - 1] + Vector3.up * _yOffset;
 
+            Vector3 direction = (_pathPoint[_pathPoint.Count - 1] - _pathPoint[_pathPoint.Count - 2]).normalized;
+
+            if (direction != Vector3.zero)
+            {
+                _arrowHead.transform.rotation = Quaternion.LookRotation(direction);
+
+                _arrowHead.transform.Rotate(90, 0, 0);
+            }
+
+            else
+            {
+                _arrowHead.SetActive(false);
+            }
+        } 
+        
         else
         {
             _arrowHead.SetActive(false);
