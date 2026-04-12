@@ -2,6 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+    ㆍ EffectManager
+
+    ㆍ 작성자 : 황원준
+
+    ㆍ 기능 : 
+*/
+
 public class EffectManager : MonoBehaviour
 {
     public enum EEffectType

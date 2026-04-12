@@ -20,6 +20,7 @@ public class HpSystem : MonoBehaviour, IDamageable
     #region 내부 변수
     public event System.Action OnDamaged;
     public event System.Action OnBlocked;
+    public event System.Action<bool> IsBackAttackDead;
     private BaseStatus _status;
     private float _currentHP;
     private bool _isDead = false;
@@ -48,8 +49,13 @@ public class HpSystem : MonoBehaviour, IDamageable
         }
     }
 
-    public void TakeDamage(float amount, Vector3 attackerPosition)
+    public void TakeDamage(float amount, Vector3 attackerPosition, bool isBackAttackDead = false)
     {
+        if (_isDead)
+        {
+            return;
+        }
+
         if (_isShielded)
         {
             Vector3 attackerPos = attackerPosition;
@@ -77,6 +83,7 @@ public class HpSystem : MonoBehaviour, IDamageable
         {
             _currentHP = 0;
             _isDead = true;
+            IsBackAttackDead?.Invoke(isBackAttackDead);
         }
 
         else

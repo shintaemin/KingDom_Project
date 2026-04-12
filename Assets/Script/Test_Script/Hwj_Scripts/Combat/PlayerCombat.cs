@@ -69,12 +69,15 @@ public class PlayerCombat : BaseCombat
 
             float backDot = Vector3.Dot(_rangeCheck.TargetTr.forward, dir);
 
+            bool isBackAttack = false;
+
             if (backDot < - 0.5f)
             {
                 finalAtkPower *= 2f;
+                isBackAttack = true;
             }
 
-            enemyHP.TakeDamage(finalAtkPower, transform.position);
+            enemyHP.TakeDamage(finalAtkPower, transform.position, isBackAttack);
             Debug.Log($"적에게 준 대미지 : [{finalAtkPower}]");
         }
     }

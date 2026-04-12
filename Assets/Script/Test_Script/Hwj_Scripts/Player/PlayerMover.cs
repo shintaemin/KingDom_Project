@@ -23,6 +23,7 @@ public class PlayerMover : MonoBehaviour
     #endregion
 
     #region 내부 변수
+    public event System.Action OnBackMove;
     private NavMeshAgent _nav;
     private InputState _inputState;
     private PlayerState _playerState;
@@ -144,6 +145,7 @@ public class PlayerMover : MonoBehaviour
                 if (distance <= _backAttackDistance && dot < -0.5f)
                 {
                     SetMoveSpeed(100f * _backAttackSpeedMultiplier);
+                    OnBackMove?.Invoke();
                 }
 
                 else
