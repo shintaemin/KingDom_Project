@@ -3762,11 +3762,13 @@ MonoBehaviour:
   - {fileID: 6258828292281969332}
   - {fileID: 364934919839181948}
   - {fileID: 4200047908042067944}
+  _zombieSpawnPos: []
+  _bowEnemySpawnPos:
   - {fileID: 6039255223485377598}
   _bossSpawnPos: []
-  _boxSpawnPos: []
-  _keySpawnPos: []
-  _citizenSpawnPos: []
+  _shieldSpawnPos: []
+  _goalZombieSpawnPos: []
+  _goalBowEnemySpawnPos: []
   _leftDownPos: {fileID: 7886061493221908657}
   _rightUpPos: {fileID: 3364985603544108188}
 --- !u!114 &178113542996203364
@@ -30043,8 +30045,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6039255223485377598}
   m_Layer: 31
-  m_Name: EnemySpawnPos (3)
-  m_TagString: EnemySpawnPos
+  m_Name: BowEnemySpawnPos (3)
+  m_TagString: BowEnemySpawnPos
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -43060,7 +43062,6 @@ Transform:
   - {fileID: 364934919839181948}
   - {fileID: 4200047908042067944}
   - {fileID: 6039255223485377598}
-  - {fileID: 2830186239760083689}
   m_Father: {fileID: 2053718667126894319}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7241536087072233869
@@ -55372,37 +55373,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 0.05000016, z: 1}
   m_Center: {x: 0, y: 0.024999999, z: 0}
---- !u!1 &9213359005816209991
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2830186239760083689}
-  m_Layer: 0
-  m_Name: KeySpawnPos
-  m_TagString: Untagged
-  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
---- !u!4 &2830186239760083689
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9213359005816209991}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10, y: 0, z: 17}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7005247650182008059}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &4182103982412836663
 PrefabInstance:
   m_ObjectHideFlags: 0

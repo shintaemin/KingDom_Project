@@ -5755,37 +5755,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &796083990610895292
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 809054652654590759}
-  m_Layer: 0
-  m_Name: KeySpawnPos
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
---- !u!4 &809054652654590759
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 796083990610895292}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2, y: 0, z: 20}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4559412363686301457}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &821472675715885526
 GameObject:
   m_ObjectHideFlags: 0
@@ -19875,8 +19844,7 @@ MonoBehaviour:
   _bossSpawnPos: []
   _boxSpawnPos:
   - {fileID: 4594725718374717902}
-  _keySpawnPos:
-  - {fileID: 809054652654590759}
+  _keySpawnPos: []
   _citizenSpawnPos: []
   _leftDownPos: {fileID: 1026688902997350140}
   _rightUpPos: {fileID: 5150450771205993557}
@@ -20919,7 +20887,6 @@ Transform:
   - {fileID: 1996770155131493744}
   - {fileID: 6354271814888711076}
   - {fileID: 5522830312430397467}
-  - {fileID: 809054652654590759}
   - {fileID: 4594725718374717902}
   m_Father: {fileID: 8940591611381256265}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

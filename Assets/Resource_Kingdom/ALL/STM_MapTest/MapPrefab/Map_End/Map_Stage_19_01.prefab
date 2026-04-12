@@ -31925,8 +31925,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2867380621702426349}
   m_Layer: 31
-  m_Name: EnemySpawnPos (3)
-  m_TagString: EnemySpawnPos
+  m_Name: ShieldSpanwPos
+  m_TagString: ShieldSpawnPos
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -51977,12 +51977,13 @@ MonoBehaviour:
   - {fileID: 4987169827066123410}
   - {fileID: 5263385129588434772}
   - {fileID: 2553150682213975482}
-  - {fileID: 2867380621702426349}
+  _zombieSpawnPos: []
+  _bowEnemySpawnPos: []
   _bossSpawnPos: []
-  _boxSpawnPos:
-  - {fileID: 322239477951880061}
-  _keySpawnPos: []
-  _citizenSpawnPos: []
+  _shieldSpawnPos:
+  - {fileID: 2867380621702426349}
+  _goalZombieSpawnPos: []
+  _goalBowEnemySpawnPos: []
   _leftDownPos: {fileID: 6024164139607376792}
   _rightUpPos: {fileID: 5280792921295274652}
 --- !u!114 &7865254459750070951
@@ -52014,7 +52015,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.1
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 03fcebe3d5b8dc54cba7aa788aaf860a, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 64ad840f0cd4ba7438557e420bd734aa, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1 &8754472515666930438
 GameObject:
@@ -55534,7 +55535,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 904975535209228758, guid: 5d4d1f39a910ac94bb43218bed33ddeb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.1
+      value: 5.2
       objectReference: {fileID: 0}
     - target: {fileID: 904975535209228758, guid: 5d4d1f39a910ac94bb43218bed33ddeb, type: 3}
       propertyPath: m_LocalPosition.y

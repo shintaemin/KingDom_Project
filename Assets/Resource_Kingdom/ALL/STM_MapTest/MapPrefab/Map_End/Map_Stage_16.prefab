@@ -85764,12 +85764,13 @@ MonoBehaviour:
   - {fileID: 2271217400213949143}
   - {fileID: 743270380669461782}
   - {fileID: 8590764751986338594}
-  - {fileID: 628235052352476412}
+  _zombieSpawnPos: []
+  _bowEnemySpawnPos: []
   _bossSpawnPos: []
-  _boxSpawnPos:
-  - {fileID: 8990767630034614294}
-  _keySpawnPos: []
-  _citizenSpawnPos: []
+  _shieldSpawnPos:
+  - {fileID: 628235052352476412}
+  _goalZombieSpawnPos: []
+  _goalBowEnemySpawnPos: []
   _leftDownPos: {fileID: 1931825586836369814}
   _rightUpPos: {fileID: 2711772292423490411}
 --- !u!114 &3522877789599173864
@@ -85813,8 +85814,8 @@ GameObject:
   m_Component:
   - component: {fileID: 628235052352476412}
   m_Layer: 31
-  m_Name: EnemySpawnPos (4)
-  m_TagString: EnemySpawnPos
+  m_Name: ShieldSpawnPos (4)
+  m_TagString: SheldSpawnPos
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647

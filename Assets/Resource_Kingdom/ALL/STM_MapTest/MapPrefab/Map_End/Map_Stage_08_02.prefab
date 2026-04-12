@@ -11490,37 +11490,6 @@ Transform:
   - {fileID: 4938170883915847395}
   m_Father: {fileID: 8084625675034499004}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1494875907750389641
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5039091186432057790}
-  m_Layer: 0
-  m_Name: KeySpawnPos
-  m_TagString: Untagged
-  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
---- !u!4 &5039091186432057790
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1494875907750389641}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2, y: 0, z: 16}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4077016981792131098}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1497979742524786558
 GameObject:
   m_ObjectHideFlags: 0
@@ -28769,11 +28738,12 @@ MonoBehaviour:
   - {fileID: 1855354831265194354}
   - {fileID: 2635337912240716367}
   - {fileID: 8097401224317115268}
+  _zombieSpawnPos: []
+  _bowEnemySpawnPos: []
   _bossSpawnPos: []
-  _boxSpawnPos: []
-  _keySpawnPos:
-  - {fileID: 5039091186432057790}
-  _citizenSpawnPos: []
+  _shieldSpawnPos: []
+  _goalZombieSpawnPos: []
+  _goalBowEnemySpawnPos: []
   _leftDownPos: {fileID: 8342544943609982302}
   _rightUpPos: {fileID: 1597116218653915003}
 --- !u!114 &489459817807203663
@@ -35209,7 +35179,6 @@ Transform:
   - {fileID: 1855354831265194354}
   - {fileID: 2635337912240716367}
   - {fileID: 8097401224317115268}
-  - {fileID: 5039091186432057790}
   m_Father: {fileID: 7153557773919192375}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5498163450391938414

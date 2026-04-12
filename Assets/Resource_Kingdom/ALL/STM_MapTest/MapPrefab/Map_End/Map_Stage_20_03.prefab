@@ -44774,8 +44774,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5870650549816002126}
   m_Layer: 31
-  m_Name: EnemySpawnPos (1)
-  m_TagString: EnemySpawnPos
+  m_Name: BowEnemySpawnPos (1)
+  m_TagString: BowEnemySpawnPos
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -53542,12 +53542,14 @@ MonoBehaviour:
   _playerSpawnPos: {fileID: 8530645856025944409}
   _enemySpawnPos:
   - {fileID: 7055777720913379961}
+  _zombieSpawnPos: []
+  _bowEnemySpawnPos:
   - {fileID: 5870650549816002126}
   _bossSpawnPos:
   - {fileID: 6798633600043055822}
-  _boxSpawnPos: []
-  _keySpawnPos: []
-  _citizenSpawnPos: []
+  _shieldSpawnPos: []
+  _goalZombieSpawnPos: []
+  _goalBowEnemySpawnPos: []
   _leftDownPos: {fileID: 536897739286124952}
   _rightUpPos: {fileID: 6551794238112818233}
 --- !u!114 &2074350025491870201

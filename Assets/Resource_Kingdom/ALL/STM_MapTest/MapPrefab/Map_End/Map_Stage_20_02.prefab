@@ -10931,12 +10931,14 @@ MonoBehaviour:
   _playerSpawnPos: {fileID: 8884360450601612223}
   _enemySpawnPos:
   - {fileID: 3832077103401133635}
-  - {fileID: 3056185588227057769}
   - {fileID: 9029305281054790896}
+  _zombieSpawnPos: []
+  _bowEnemySpawnPos: []
   _bossSpawnPos: []
-  _boxSpawnPos: []
-  _keySpawnPos: []
-  _citizenSpawnPos: []
+  _shieldSpawnPos:
+  - {fileID: 3056185588227057769}
+  _goalZombieSpawnPos: []
+  _goalBowEnemySpawnPos: []
   _leftDownPos: {fileID: 4812921583231831816}
   _rightUpPos: {fileID: 8629935121962091002}
 --- !u!114 &4674937576806297269
@@ -10968,7 +10970,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.1
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: f40130bc4f273fa47a4b354f2c552492, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: dbd7516970d1f414bb84910c44820cbd, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1 &2555186485363628646
 GameObject:
@@ -30922,8 +30924,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3056185588227057769}
   m_Layer: 31
-  m_Name: EnemySpawnPos (1)
-  m_TagString: EnemySpawnPos
+  m_Name: ShieldSpawnPos (1)
+  m_TagString: ShieldSpawnPos
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34375,7 +34377,7 @@ Transform:
   - {fileID: 6678642651484104599}
   - {fileID: 3764659727442768070}
   - {fileID: 1729484177570369831}
-  - {fileID: 1747071379222587390}
+  - {fileID: 404721115448867775}
   m_Father: {fileID: 6725207774328064514}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7599674105535452433
@@ -40853,7 +40855,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 0.05000016, z: 1}
   m_Center: {x: 0, y: 0.024999999, z: 0}
---- !u!1001 &1491191058149723688
+--- !u!1001 &653802331157910121
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -40867,11 +40869,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 904975535209228758, guid: 5d4d1f39a910ac94bb43218bed33ddeb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.025276
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 904975535209228758, guid: 5d4d1f39a910ac94bb43218bed33ddeb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.07900095
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 904975535209228758, guid: 5d4d1f39a910ac94bb43218bed33ddeb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -40910,10 +40912,10 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d4d1f39a910ac94bb43218bed33ddeb, type: 3}
---- !u!4 &1747071379222587390 stripped
+--- !u!4 &404721115448867775 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 904975535209228758, guid: 5d4d1f39a910ac94bb43218bed33ddeb, type: 3}
-  m_PrefabInstance: {fileID: 1491191058149723688}
+  m_PrefabInstance: {fileID: 653802331157910121}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2638184034042747678
 PrefabInstance:
