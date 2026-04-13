@@ -17,6 +17,8 @@ public class Cloth_Selected : MonoBehaviour
     #region 인스펙터 
     [SerializeField] private List<Cloth_Object> _cloths = new List<Cloth_Object>();
     [SerializeField] private GameObject _currentCloth;
+
+    [Header("테스트용 - 변경시 옷 변경 0 ~ 14")]
     [SerializeField] private int _testId = 0;
     #endregion
 
@@ -24,9 +26,16 @@ public class Cloth_Selected : MonoBehaviour
     private readonly Dictionary<int, Cloth_Object> _clothDic = new Dictionary<int, Cloth_Object>();
     #endregion
 
-    private void Start()
+    private void Awake()
     {
         InitListToDic();
+
+        // 여기서 플레이어 옷 데이터 확인하고 지정
+        SetCloth(_testId);
+    }
+
+    private void OnValidate()
+    {
         SetCloth(_testId);
     }
 
@@ -54,6 +63,7 @@ public class Cloth_Selected : MonoBehaviour
     }
 
     #region 외부 호출 함수
+    // 외부에서 옷을 변경할 수 있도록 지정
     public void SetCloth(int id)
     {
         if (!_clothDic.ContainsKey(id))
@@ -69,5 +79,8 @@ public class Cloth_Selected : MonoBehaviour
         _currentCloth = obj.gameObject;
         _currentCloth.SetActive(true);
     }
+
+    // 외부 확인할 가능성이 있어서 혹시몰라 작업
+    public GameObject GetCloth => _currentCloth;
     #endregion
 }
