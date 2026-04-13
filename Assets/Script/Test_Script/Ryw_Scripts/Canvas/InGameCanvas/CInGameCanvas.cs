@@ -179,4 +179,14 @@ public class CInGameCanvas : MonoBehaviour
     {
         _fullscreenImpact.CallImpact(color);
     }
+
+    public void SpwanIcon(CInstancePanel.EIconType type, Vector3 position)
+    {
+        _instancePanel.SpawnIcon(type, position);
+    }
+
+    public void SpawnNumber(string number, Color color, Vector3 position)
+    {
+        _instancePanel.SpawnNumber(number, color, position);
+    }
 }
