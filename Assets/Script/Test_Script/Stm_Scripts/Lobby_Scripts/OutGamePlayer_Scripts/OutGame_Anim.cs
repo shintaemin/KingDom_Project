@@ -43,6 +43,7 @@ public class OutGame_Anim : MonoBehaviour
     private int _upgradeHash;
     #endregion
 
+    // 테스트용 빌드시 반드시 삭제
     private void OnValidate()
     {
         SetTriggerAnim(testType);
