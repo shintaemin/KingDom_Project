@@ -2,8 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-#region
-
+#region 무기 오브젝트
+/*
+ ▶ 할일
+  - 무기가 갖고있을 id 정보
+  - 오브젝트를 켜고 끌수 있도록 정보를 외부에서 확인할 수 있도록 작업
+*/
 #endregion
 
 
