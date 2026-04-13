@@ -45472,10 +45472,12 @@ MonoBehaviour:
   - {fileID: 6815060039233041176}
   - {fileID: 228730765942413093}
   - {fileID: 8740806434019114839}
+  _zombieSpawnPos: []
+  _bowEnemySpawnPos: []
   _bossSpawnPos: []
-  _boxSpawnPos: []
-  _keySpawnPos: []
-  _citizenSpawnPos: []
+  _shieldSpawnPos: []
+  _goalZombieSpawnPos: []
+  _goalBowEnemySpawnPos: []
   _leftDownPos: {fileID: 3125451819798623424}
   _rightUpPos: {fileID: 8537445848484344895}
 --- !u!114 &896955125832459763
@@ -56054,7 +56056,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 904975535209228758, guid: 5d4d1f39a910ac94bb43218bed33ddeb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.3193
+      value: 5.16
       objectReference: {fileID: 0}
     - target: {fileID: 904975535209228758, guid: 5d4d1f39a910ac94bb43218bed33ddeb, type: 3}
       propertyPath: m_LocalPosition.y
