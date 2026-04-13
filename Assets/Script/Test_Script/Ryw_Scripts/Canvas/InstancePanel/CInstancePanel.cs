@@ -29,6 +29,7 @@ public class CInstancePanel : MonoBehaviour
     [SerializeField] private bool _useDebugKey = false;
     [SerializeField] private KeyCode _SpawnIconKey = KeyCode.I;
     [SerializeField] private KeyCode _SpawnNumber = KeyCode.N;
+    private bool _flipFlag = false;
     #endregion
 
     #region 내부 변수
@@ -59,7 +60,11 @@ public class CInstancePanel : MonoBehaviour
         {
             if (Input.GetKeyDown(_SpawnIconKey))
             {
-                SpawnIcon(EIconType.Skull, Vector3.zero);
+                _flipFlag = !_flipFlag;
+                if (_flipFlag)
+                    SpawnIcon(EIconType.Skull, Vector3.zero);
+                else
+                    SpawnIcon(EIconType.Gem, Vector3.zero);
             }
             if (Input.GetKeyDown(_SpawnNumber))
             {

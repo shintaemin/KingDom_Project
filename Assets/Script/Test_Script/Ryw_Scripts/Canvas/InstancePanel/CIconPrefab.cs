@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 
 #region CIconPrefab
@@ -22,6 +23,7 @@ public class CIconPrefab : MonoBehaviour
     public float MoveSpeed = 5f;
     public float SpawnDelay = 0.5f;
     public float DestroyDelay = 1f;
+    [SerializeField] private Image _image;
     #endregion
 
     #region 내부 변수
@@ -34,6 +36,10 @@ public class CIconPrefab : MonoBehaviour
 
     void Awake()
     {
+        if(_image.IsNull("_image"))
+        {
+            return;
+        }
         _scale = transform.localScale;
 
         _scaleMag = _scale.magnitude;
@@ -109,12 +115,14 @@ public class CIconPrefab : MonoBehaviour
 
     public void SetIcon(Sprite icon)
     {
-        Debug.Log("Set Icon");
+        //Debug.Log("Set Icon");
         _iconSprite = icon;
+        _image.sprite = icon;
+
     }
     public void SetTargetTransform(Transform target)
     {
-        Debug.Log("Set Transform");
+        //Debug.Log("Set Transform");
         _targetTransform = target;
     }
 }
