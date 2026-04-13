@@ -109,10 +109,12 @@ public class CIconPrefab : MonoBehaviour
 
     public void SetIcon(Sprite icon)
     {
+        Debug.Log("Set Icon");
         _iconSprite = icon;
     }
     public void SetTargetTransform(Transform target)
     {
+        Debug.Log("Set Transform");
         _targetTransform = target;
     }
 }

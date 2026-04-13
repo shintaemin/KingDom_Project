@@ -9,6 +9,11 @@ using UnityEngine;
 
 public class CInstancePanel : MonoBehaviour
 {
+    public enum EIconType
+    {
+        Skull,
+        Gem
+    }
     #region 인스펙터
     [SerializeField] private GameObject _iconPrefab;
 
@@ -51,21 +56,33 @@ public class CInstancePanel : MonoBehaviour
         {
             if (Input.GetKeyDown(_SpawnKey))
             {
-                SpawnIcon(SkullIcon, Vector3.zero);
+                SpawnIcon(EIconType.Skull, Vector3.zero);
             }
         }
     }
 
-    public void SpawnIcon(Sprite icon, Vector3 position)
+    public void SpawnIcon(EIconType type, Vector3 position)
     {
-        // 생성
-        // 아이콘 설정
-        // 타겟 설정.
         GameObject go = Instantiate(_iconPrefab, _spawnRoot);
+        if (go.IsNull("gameObject"))
+        {
+            return;
+        }
+        go.transform.position = position;
         if (go.TryGetComponent(out CIconPrefab prefab))
         {
-            prefab.SetIcon(icon);
-            prefab.SetTargetTransform(_skullTargetTransform);
+            switch (type)
+            {
+                case EIconType.Skull:
+                    prefab.SetIcon(SkullIcon);
+                    prefab.SetTargetTransform(_skullTargetTransform);
+                    break;
+                case EIconType.Gem:
+                    prefab.SetIcon(GemIcon);
+                    prefab.SetTargetTransform(_gemTargetTransform);
+                    break;
+            }
         }
+
     }
 }
