@@ -35,6 +35,7 @@ public class CInGameCanvas : MonoBehaviour
     [SerializeField] private CStagePanel _stagePanel;
     [SerializeField] private CFullscreenImpact _fullscreenImpact;
     [SerializeField] private CStageGoal _stageGoal;
+    [SerializeField] private CInstancePanel _instancePanel;
     //[SerializeField] private Victory_Panel_Controller _victoryPanel;
     //[SerializeField] private Victory_Panel_Controller _FailurePanel;
 
@@ -79,7 +80,8 @@ public class CInGameCanvas : MonoBehaviour
     {
         if (_stagePanel.IsNull("_stagePanel") ||
             _fullscreenImpact.IsNull("_fullscreenImpact") ||
-            _stageGoal.IsNull("_stageGoal"))
+            _stageGoal.IsNull("_stageGoal") ||
+            _instancePanel.IsNull("_instancePanel"))
         {
             return;
         }

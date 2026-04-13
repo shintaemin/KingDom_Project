@@ -35,13 +35,13 @@ public class CIconPrefab : MonoBehaviour
     void Awake()
     {
         _scale = transform.localScale;
-        transform.localScale = Vector3.zero;
 
         _scaleMag = _scale.magnitude;
     }
 
     void Start()
     {
+        transform.localScale = Vector3.zero;
 
     }
 
@@ -51,14 +51,14 @@ public class CIconPrefab : MonoBehaviour
         {
             // 준비
             case EStep.Ready:
-                if (!_iconSprite.IsNull("_iconSprite") &&
-                !_targetTransform.IsNull("TargetTransform"))
+                if (_iconSprite.IsNull("_iconSprite") ||
+                _targetTransform.IsNull("TargetTransform"))
                 {
-                    ChageStep(EStep.Spawn);
-                    break;
+                    return;
                 }
+                ChageStep(EStep.Spawn);
                 break;
-                // 스폰 애니메이션
+            // 스폰 애니메이션
             case EStep.Spawn:
                 transform.localScale = Vector3.MoveTowards(transform.localScale, _scale, (_scaleMag / SpawnDelay) * Time.deltaTime);
                 if (transform.localScale == _scale)
@@ -73,7 +73,7 @@ public class CIconPrefab : MonoBehaviour
                     ChageStep(EStep.Destroy);
                 }
                 break;
-                // 삭제 애니메이션
+            // 삭제 애니메이션
             case EStep.Destroy:
                 transform.localScale = Vector3.MoveTowards(transform.localScale, Vector3.zero, _scaleMag / DestroyDelay * Time.deltaTime);
                 break;
