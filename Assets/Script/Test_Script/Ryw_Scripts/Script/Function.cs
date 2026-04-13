@@ -171,6 +171,14 @@ public static partial class Function
 
                     result = _spriteArr;
                 }
+                else if (type == typeof(Mesh))
+                {
+                    path = CGSSLoader.Mesh_PATH + "/" + data.Trim().Replace("\r", "");
+                    Mesh _mesh = Resources.Load<Mesh>(path);
+                    if (_mesh == null)
+                        Debug.Log($"Mesh == null. {path}");
+                    result = _mesh;
+                }
                 else
                     result = null;
                 break;
