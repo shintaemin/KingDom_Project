@@ -1,93 +1,111 @@
-using System.Collections;
+Ôªøusing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-#region ΩΩ∑‘ º±≈√ ∞¸∏Æ
-/*
- ¢∫ «“¿œ
-  - æ∆¿Ã≈€ ΩΩ∑‘ º±≈√ ªÛ≈¬∏¶ ∞¸∏Æ
-  - ¿·±› ªÛ≈¬∞° æ∆¥— ΩΩ∑‘∏∏ º±≈√ ∞°¥…
-  - º±≈√ Ω√ ¥Ÿ∏• ΩΩ∑‘¿« √º≈©¥¬ ∏µŒ «ÿ¡¶
-
- ¢∫ »Â∏ß
-  1. ΩΩ∑‘ ≈¨∏Ø
-  2. Lock / Check ø¿∫Í¡ß∆Æ »Æ¿Œ
-  3. ¿·∞‹¿÷¿∏∏È º±≈√ ∫“∞°
-  4. ∏µÁ ΩΩ∑‘¿« √º≈© «ÿ¡¶
-  5. ≈¨∏Ø«— ΩΩ∑‘∏∏ √º≈© »∞º∫»≠
-
-- π⁄∂Û»Ò
-*/
-#endregion
-
 public class WeaponSelect_Controller : MonoBehaviour
 {
-    #region ¿ŒΩ∫∆Â≈Õ
-    [Header("¿¸√º π´±‚ ΩΩ∑‘")]
+    #region Ïù∏Ïä§ÌéôÌÑ∞
+    [Header("Ï†ÑÏ≤¥ Î¨¥Í∏∞ Ïä¨Î°Ø")]
     [SerializeField] private List<GameObject> _allWeaponSlots;
     #endregion
 
-    #region ≥ª∫Œ ∫Øºˆ
-    // «ˆ¿Á º±≈√µ» ΩΩ∑‘
+    #region ÎÇ¥Î∂Ä Î≥ÄÏàò
     private GameObject _currentSelectedSlot;
     #endregion
 
-    // ≈¨∏Ø«— ΩΩ∑‘ º±≈√ √≥∏Æ
+    void Start()
+    {
+        StartCoroutine(InitAfterLoad());
+    }
+
+    IEnumerator InitAfterLoad()
+    {
+        yield return new WaitUntil(() => CPlayerDataManager.Instance != null);
+
+        InitSelectedWeapon();
+    }
+
+
+    // Ïä¨Î°Ø ÌÅ¥Î¶≠
     public void SelectSlot(GameObject clickedSlot)
     {
-        if (clickedSlot == null)
+        if (clickedSlot == null) 
             return;
 
         Transform lockObj = clickedSlot.transform.Find("Lock");
         Transform checkObj = clickedSlot.transform.Find("Check");
 
-        if (lockObj == null || checkObj == null)
+        if (lockObj == null || checkObj == null) 
             return;
 
-        // ¿·∞‹¿÷¿∏∏È º±≈√ ∫“∞°
+        // Ïû†Í∏à ÏÉÅÌÉú Ï≤¥ÌÅ¨
         if (lockObj.gameObject.activeSelf)
         {
-            Debug.Log("¿·±‰ æ∆¿Ã≈€¿∫ º±≈√ ∫“∞°");
+            Debug.Log("Ïû†Í∏¥ ÏïÑÏù¥ÌÖúÏùÄ ÏÑ†ÌÉù Î∂àÍ∞Ä");
             return;
         }
 
-        // µ•¿Ã≈Õ ¿˙¿Â (π´±‚)
         var slotData = clickedSlot.GetComponent<Equipment_Slot_Data>();
-        if (slotData != null && Equipment_Data_Holder.Instance != null)
+
+        if (slotData != null)
         {
-            Equipment_Data_Holder.Instance.currentWeapon = slotData.GetData();
-            Debug.Log("¿˙¿Âµ» ¿Â∫Ò ID: " + slotData.GetData().ID);
+            int id = slotData.GetData().ID;
+
+            // Îç∞Ïù¥ÌÑ∞ ÏÑ∏ÌåÖ
+            CPlayerDataManager.Instance.CurrentWeaponID = id;
+
+            Debug.Log("ÏÑ†ÌÉùÎêú Î¨¥Í∏∞ ID: " + id);
         }
 
-        // ±‚¡∏ º±≈√ √º≈© «ÿ¡¶
         ClearAllChecks();
 
-        // «ˆ¿Á ΩΩ∑‘∏∏ √º≈© »∞º∫»≠
         checkObj.gameObject.SetActive(true);
         _currentSelectedSlot = clickedSlot;
     }
 
-    /*
-    // «ˆ¿Á º±≈√µ» ΩΩ∑‘ π›»Ø
-    public GameObject GetSelectedSlot()
-    {
-        return _currentSelectedSlot;
-    }
-    */
-
-
-    // ∏µÁ ΩΩ∑‘¿« √º≈© ∫Ò»∞º∫»≠
     private void ClearAllChecks()
     {
         foreach (GameObject slot in _allWeaponSlots)
         {
-            if (slot == null)
+            if (slot == null) 
                 continue;
 
             Transform checkObj = slot.transform.Find("Check");
 
             if (checkObj != null)
-            checkObj.gameObject.SetActive(false);
+                checkObj.gameObject.SetActive(false);
+        }
+    }
+
+    void InitSelectedWeapon()
+    {
+        Debug.Log("InitSelectedWeapon Ïã§ÌñâÎê®");
+
+        int currentID = CPlayerDataManager.Instance.CurrentWeaponID;
+
+        foreach (GameObject slot in _allWeaponSlots)
+        {
+            if (slot == null) continue;
+
+            var data = slot.GetComponent<Equipment_Slot_Data>();
+            if (data == null) continue;
+            if (data.GetData() == null) continue;
+
+            if (data.GetData().ID == currentID)
+            {
+                Transform lockObj = slot.transform.Find("Lock");
+                Transform openObj = slot.transform.Find("Open");
+                Transform checkObj = slot.transform.Find("Check");
+
+                // Ïû†Í∏à Ìï¥Ï†ú
+                if (lockObj != null) lockObj.gameObject.SetActive(false);
+                if (openObj != null) openObj.gameObject.SetActive(true);
+
+                ClearAllChecks();
+                SelectSlot(slot);
+
+                break;
+            }
         }
     }
 }
