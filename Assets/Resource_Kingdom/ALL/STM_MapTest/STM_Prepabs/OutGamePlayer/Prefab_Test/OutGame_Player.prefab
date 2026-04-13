@@ -181,6 +181,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2926376397190402584}
+  - component: {fileID: 4512772691429468995}
   m_Layer: 0
   m_Name: ShortSword14
   m_TagString: Untagged
@@ -204,6 +205,19 @@ Transform:
   - {fileID: 2213178350118115303}
   m_Father: {fileID: 1123412397795123839}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4512772691429468995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 228115799801049272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47080fd448adecc4da46cd23240bbaca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 13
 --- !u!1 &257745698439465242
 GameObject:
   m_ObjectHideFlags: 0
@@ -640,6 +654,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2432967472219524347}
+  - component: {fileID: 6422228804495883675}
   m_Layer: 0
   m_Name: Spear01
   m_TagString: Untagged
@@ -663,6 +678,19 @@ Transform:
   - {fileID: 5798303420921030300}
   m_Father: {fileID: 1123412397795123839}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6422228804495883675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468163884411389693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47080fd448adecc4da46cd23240bbaca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 14
 --- !u!1 &479262270515816547
 GameObject:
   m_ObjectHideFlags: 0
@@ -1010,6 +1038,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2374412605163001557}
+  - component: {fileID: 7767710399655322858}
   m_Layer: 0
   m_Name: Sword08
   m_TagString: Untagged
@@ -1033,6 +1062,19 @@ Transform:
   - {fileID: 8670719520033415511}
   m_Father: {fileID: 1123412397795123839}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7767710399655322858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 648447260005154368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47080fd448adecc4da46cd23240bbaca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 34
 --- !u!1 &708315339118457682
 GameObject:
   m_ObjectHideFlags: 0
@@ -1208,13 +1250,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3636482679827958247}
+  - component: {fileID: 2595252368428182942}
   m_Layer: 0
   m_Name: Sword13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3636482679827958247
 Transform:
   m_ObjectHideFlags: 0
@@ -1224,13 +1267,26 @@ Transform:
   m_GameObject: {fileID: 819835090204612729}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: -0.027}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2065216746697061235}
   m_Father: {fileID: 1123412397795123839}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2595252368428182942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 819835090204612729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47080fd448adecc4da46cd23240bbaca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 39
 --- !u!1 &829725941028812915
 GameObject:
   m_ObjectHideFlags: 0
@@ -1756,6 +1812,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6709324752526765264}
+  - component: {fileID: 2011933868195657149}
   m_Layer: 0
   m_Name: ShortSword03
   m_TagString: Untagged
@@ -1779,6 +1836,19 @@ Transform:
   - {fileID: 2137480167729841386}
   m_Father: {fileID: 1123412397795123839}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2011933868195657149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 958535599280247027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47080fd448adecc4da46cd23240bbaca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 2
 --- !u!1 &1202793369094620515
 GameObject:
   m_ObjectHideFlags: 0
@@ -1788,6 +1858,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4299255792674724645}
+  - component: {fileID: 5675862991262334846}
   m_Layer: 0
   m_Name: Sword03
   m_TagString: Untagged
@@ -1811,6 +1882,19 @@ Transform:
   - {fileID: 7571785191769882487}
   m_Father: {fileID: 1123412397795123839}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5675862991262334846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1202793369094620515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47080fd448adecc4da46cd23240bbaca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 29
 --- !u!1 &1203645142717412070
 GameObject:
   m_ObjectHideFlags: 0
@@ -1998,13 +2082,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8165618591857316951}
+  - component: {fileID: 7808935172545245440}
   m_Layer: 0
   m_Name: ShortSword01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8165618591857316951
 Transform:
   m_ObjectHideFlags: 0
@@ -2021,6 +2106,19 @@ Transform:
   - {fileID: 2682241916844301715}
   m_Father: {fileID: 1123412397795123839}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7808935172545245440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1341899304477853793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47080fd448adecc4da46cd23240bbaca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 0
 --- !u!1 &1380940724002549513
 GameObject:
   m_ObjectHideFlags: 0
@@ -2114,6 +2212,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8103485339232269160}
   - component: {fileID: 6898211086454741790}
+  - component: {fileID: 4513969480480639731}
   m_Layer: 6
   m_Name: OutGame_Player
   m_TagString: Player
@@ -2150,7 +2249,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: af29c45e352596e46bf91989e0f21472, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -2158,6 +2257,25 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4513969480480639731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1432843888833151094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de384666880315c47b7fc10a0253e503, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _anim: {fileID: 6898211086454741790}
+  _tWalkParam: tWalk
+  _tHit01_Param: tHit01
+  _tHit02_Param: tHit02
+  _tDeadParam: tDead
+  _tUpgradeParam: tUpgrade
+  testType: 0
 --- !u!1 &1460115080904219585
 GameObject:
   m_ObjectHideFlags: 0
@@ -2416,6 +2534,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4506882577657445154}
+  - component: {fileID: 8204656803553418022}
   m_Layer: 0
   m_Name: Spear09
   m_TagString: Untagged
@@ -2439,6 +2558,19 @@ Transform:
   - {fileID: 8924564549158058590}
   m_Father: {fileID: 1123412397795123839}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8204656803553418022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1611718572089896019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47080fd448adecc4da46cd23240bbaca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 22
 --- !u!1 &1661666712243584776
 GameObject:
   m_ObjectHideFlags: 0
@@ -2728,6 +2860,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1123412397795123839}
+  - component: {fileID: 6207026333719508653}
   m_Layer: 6
   m_Name: WeaponPoint
   m_TagString: Untagged
@@ -2791,6 +2924,62 @@ Transform:
   - {fileID: 2313856220633042163}
   m_Father: {fileID: 3341631947306952273}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6207026333719508653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1829626113406436721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fbfdd242a0534340b3113740cff554d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _weapons:
+  - {fileID: 7808935172545245440}
+  - {fileID: 3547667631033515454}
+  - {fileID: 2011933868195657149}
+  - {fileID: 7706311470266698526}
+  - {fileID: 1510104780791675826}
+  - {fileID: 6968555295062746157}
+  - {fileID: 2081893403421986368}
+  - {fileID: 7569714796248782336}
+  - {fileID: 8633176594497545384}
+  - {fileID: 5156088210953111887}
+  - {fileID: 7679539320100701900}
+  - {fileID: 7697037524430723133}
+  - {fileID: 8739530411184962649}
+  - {fileID: 4512772691429468995}
+  - {fileID: 6422228804495883675}
+  - {fileID: 319310063179481010}
+  - {fileID: 5928550511346659441}
+  - {fileID: 758879715721233240}
+  - {fileID: 5439735975833843370}
+  - {fileID: 4978644609395975069}
+  - {fileID: 5203250335394242390}
+  - {fileID: 6224846544408469673}
+  - {fileID: 8204656803553418022}
+  - {fileID: 5305574254396261273}
+  - {fileID: 948914549462274153}
+  - {fileID: 1331528193982178187}
+  - {fileID: 2774340712333269452}
+  - {fileID: 177132095212032653}
+  - {fileID: 1786552557569339385}
+  - {fileID: 5675862991262334846}
+  - {fileID: 5445328728686529676}
+  - {fileID: 2702815295803330097}
+  - {fileID: 4144222996879815691}
+  - {fileID: 8688105652881062698}
+  - {fileID: 7767710399655322858}
+  - {fileID: 8878924687735530003}
+  - {fileID: 8589412641386296369}
+  - {fileID: 6783135481937843365}
+  - {fileID: 3050014563322988690}
+  - {fileID: 2595252368428182942}
+  - {fileID: 6224166703022758629}
+  _currentWeapon: {fileID: 0}
+  _testId: 0
 --- !u!1 &1897615998127856473
 GameObject:
   m_ObjectHideFlags: 0
@@ -2864,6 +3053,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7133665238347585021}
+  - component: {fileID: 1510104780791675826}
   m_Layer: 0
   m_Name: ShortSword05
   m_TagString: Untagged
@@ -2887,6 +3077,19 @@ Transform:
   - {fileID: 3026306016431578358}
   m_Father: {fileID: 1123412397795123839}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1510104780791675826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1969099982093963384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47080fd448adecc4da46cd23240bbaca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 4
 --- !u!1 &2037791887938911662
 GameObject:
   m_ObjectHideFlags: 0
@@ -3011,6 +3214,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7069885002416350006}
+  - component: {fileID: 8878924687735530003}
   m_Layer: 0
   m_Name: Sword09
   m_TagString: Untagged
@@ -3034,6 +3238,19 @@ Transform:
   - {fileID: 6085622706940566256}
   m_Father: {fileID: 1123412397795123839}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8878924687735530003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2330062345528270583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47080fd448adecc4da46cd23240bbaca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 35
 --- !u!1 &2553596811344589256
 GameObject:
   m_ObjectHideFlags: 0
@@ -3387,6 +3604,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7277049612273071248}
+  - component: {fileID: 1786552557569339385}
   m_Layer: 0
   m_Name: Sword02
   m_TagString: Untagged
@@ -3403,13 +3621,26 @@ Transform:
   m_GameObject: {fileID: 2755490387822811687}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.034, y: 0.013, z: -0.003}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 287604871382088000}
   m_Father: {fileID: 1123412397795123839}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1786552557569339385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2755490387822811687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47080fd448adecc4da46cd23240bbaca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 28
 --- !u!1 &2786935652118390148
 GameObject:
   m_ObjectHideFlags: 0
@@ -4048,6 +4279,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7349848332813001530}
+  - component: {fileID: 8633176594497545384}
   m_Layer: 0
   m_Name: ShortSword09
   m_TagString: Untagged
@@ -4071,6 +4303,19 @@ Transform:
   - {fileID: 9071063294239474100}
   m_Father: {fileID: 1123412397795123839}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8633176594497545384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3460733872016405870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47080fd448adecc4da46cd23240bbaca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 8
 --- !u!1 &3511193889526013199
 GameObject:
   m_ObjectHideFlags: 0
@@ -4080,6 +4325,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2341361444447947510}
+  - component: {fileID: 2774340712333269452}
   m_Layer: 0
   m_Name: Spear13
   m_TagString: Untagged
@@ -4103,6 +4349,19 @@ Transform:
   - {fileID: 1760153663246447023}
   m_Father: {fileID: 1123412397795123839}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2774340712333269452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3511193889526013199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47080fd448adecc4da46cd23240bbaca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 26
 --- !u!1 &3628885107002090853
 GameObject:
   m_ObjectHideFlags: 0
@@ -4316,6 +4575,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4898840536243655383}
+  - component: {fileID: 3547667631033515454}
   m_Layer: 0
   m_Name: ShortSword02
   m_TagString: Untagged
@@ -4339,6 +4599,19 @@ Transform:
   - {fileID: 4487040265974011564}
   m_Father: {fileID: 1123412397795123839}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3547667631033515454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3723509319246922023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47080fd448adecc4da46cd23240bbaca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 1
 --- !u!1 &3737055028910983133
 GameObject:
   m_ObjectHideFlags: 0
@@ -4571,6 +4844,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5440053710110402022}
+  - component: {fileID: 2702815295803330097}
   m_Layer: 0
   m_Name: Sword05
   m_TagString: Untagged
@@ -4587,13 +4861,26 @@ Transform:
   m_GameObject: {fileID: 3923867163957034958}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.036, y: 0.02, z: -0.009}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5269079396985243931}
   m_Father: {fileID: 1123412397795123839}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2702815295803330097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3923867163957034958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47080fd448adecc4da46cd23240bbaca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 31
 --- !u!1 &4107753241349960267
 GameObject:
   m_ObjectHideFlags: 0
@@ -4781,6 +5068,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1768731044915570205}
+  - component: {fileID: 948914549462274153}
   m_Layer: 0
   m_Name: Spear11
   m_TagString: Untagged
@@ -4804,6 +5092,19 @@ Transform:
   - {fileID: 3082346403748380658}
   m_Father: {fileID: 1123412397795123839}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &948914549462274153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4427903431125085508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47080fd448adecc4da46cd23240bbaca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 24
 --- !u!1 &4440505788074828193
 GameObject:
   m_ObjectHideFlags: 0
@@ -4813,6 +5114,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 989179902274657863}
+  - component: {fileID: 6224846544408469673}
   m_Layer: 0
   m_Name: Spear08
   m_TagString: Untagged
@@ -4836,6 +5138,19 @@ Transform:
   - {fileID: 2485307439190776988}
   m_Father: {fileID: 1123412397795123839}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6224846544408469673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4440505788074828193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47080fd448adecc4da46cd23240bbaca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 21
 --- !u!1 &4464971282093679279
 GameObject:
   m_ObjectHideFlags: 0
@@ -4845,6 +5160,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3038894608463566680}
+  - component: {fileID: 8688105652881062698}
   m_Layer: 0
   m_Name: Sword07
   m_TagString: Untagged
@@ -4861,13 +5177,26 @@ Transform:
   m_GameObject: {fileID: 4464971282093679279}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.042, y: 0.027, z: -0}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8126762526250577635}
   m_Father: {fileID: 1123412397795123839}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8688105652881062698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4464971282093679279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47080fd448adecc4da46cd23240bbaca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 33
 --- !u!1 &4567833765188213730
 GameObject:
   m_ObjectHideFlags: 0
@@ -5356,6 +5685,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5251248105243111921}
+  - component: {fileID: 8589412641386296369}
   m_Layer: 0
   m_Name: Sword10
   m_TagString: Untagged
@@ -5380,6 +5710,19 @@ Transform:
   - {fileID: 1170744303757681229}
   m_Father: {fileID: 1123412397795123839}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8589412641386296369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5126201568672172146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47080fd448adecc4da46cd23240bbaca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 36
 --- !u!1 &5163903174265923389
 GameObject:
   m_ObjectHideFlags: 0
@@ -5472,6 +5815,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8554590639671991560}
+  - component: {fileID: 7706311470266698526}
   m_Layer: 0
   m_Name: ShortSword04
   m_TagString: Untagged
@@ -5495,6 +5839,19 @@ Transform:
   - {fileID: 7280672386839464642}
   m_Father: {fileID: 1123412397795123839}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7706311470266698526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5191271241857699495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47080fd448adecc4da46cd23240bbaca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 3
 --- !u!1 &5367571092364835672
 GameObject:
   m_ObjectHideFlags: 0
@@ -5644,6 +6001,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6876957122780611060}
+  - component: {fileID: 177132095212032653}
   m_Layer: 0
   m_Name: Sword01
   m_TagString: Untagged
@@ -5660,13 +6018,26 @@ Transform:
   m_GameObject: {fileID: 5407012406232326166}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.037, y: 0.007, z: -0.003}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8415004872224343252}
   m_Father: {fileID: 1123412397795123839}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &177132095212032653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5407012406232326166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47080fd448adecc4da46cd23240bbaca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 27
 --- !u!1 &5459848375225420139
 GameObject:
   m_ObjectHideFlags: 0
@@ -6015,6 +6386,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8840791567672816178}
+  - component: {fileID: 5305574254396261273}
   m_Layer: 0
   m_Name: Spear10
   m_TagString: Untagged
@@ -6038,6 +6410,19 @@ Transform:
   - {fileID: 1474072076176371104}
   m_Father: {fileID: 1123412397795123839}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5305574254396261273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5733660053338301649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47080fd448adecc4da46cd23240bbaca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 23
 --- !u!1 &5739216136735480684
 GameObject:
   m_ObjectHideFlags: 0
@@ -6047,6 +6432,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5659226152940485983}
+  - component: {fileID: 2081893403421986368}
   m_Layer: 0
   m_Name: ShortSword07
   m_TagString: Untagged
@@ -6070,6 +6456,19 @@ Transform:
   - {fileID: 9162870362829598835}
   m_Father: {fileID: 1123412397795123839}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2081893403421986368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5739216136735480684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47080fd448adecc4da46cd23240bbaca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 6
 --- !u!1 &5834115432024372303
 GameObject:
   m_ObjectHideFlags: 0
@@ -6079,6 +6478,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2214835011440173256}
+  - component: {fileID: 5203250335394242390}
   m_Layer: 0
   m_Name: Spear07
   m_TagString: Untagged
@@ -6102,6 +6502,19 @@ Transform:
   - {fileID: 2289213650559841215}
   m_Father: {fileID: 1123412397795123839}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5203250335394242390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5834115432024372303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47080fd448adecc4da46cd23240bbaca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 20
 --- !u!1 &5890321924232061681
 GameObject:
   m_ObjectHideFlags: 0
@@ -6111,6 +6524,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 275065832763521137}
+  - component: {fileID: 6968555295062746157}
   m_Layer: 0
   m_Name: ShortSword06
   m_TagString: Untagged
@@ -6134,6 +6548,19 @@ Transform:
   - {fileID: 6786239818897628781}
   m_Father: {fileID: 1123412397795123839}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6968555295062746157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5890321924232061681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47080fd448adecc4da46cd23240bbaca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 5
 --- !u!1 &5985759454620559537
 GameObject:
   m_ObjectHideFlags: 0
@@ -6143,6 +6570,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3335429782729480880}
+  - component: {fileID: 7679539320100701900}
   m_Layer: 0
   m_Name: ShortSword11
   m_TagString: Untagged
@@ -6166,6 +6594,19 @@ Transform:
   - {fileID: 4659434050967268586}
   m_Father: {fileID: 1123412397795123839}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7679539320100701900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5985759454620559537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47080fd448adecc4da46cd23240bbaca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 10
 --- !u!1 &6056526892127682859
 GameObject:
   m_ObjectHideFlags: 0
@@ -6206,6 +6647,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8092915502965712996}
+  - component: {fileID: 5439735975833843370}
   m_Layer: 0
   m_Name: Spear05
   m_TagString: Untagged
@@ -6229,6 +6671,19 @@ Transform:
   - {fileID: 592824984385367173}
   m_Father: {fileID: 1123412397795123839}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5439735975833843370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6247302159592289444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47080fd448adecc4da46cd23240bbaca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 18
 --- !u!1 &6266505935939036636
 GameObject:
   m_ObjectHideFlags: 0
@@ -6352,6 +6807,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2360150024543271050}
+  - component: {fileID: 3050014563322988690}
   m_Layer: 0
   m_Name: Sword12
   m_TagString: Untagged
@@ -6368,13 +6824,26 @@ Transform:
   m_GameObject: {fileID: 6409515459833827831}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.033, y: 0.04, z: -0.016}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2173164910823954719}
   m_Father: {fileID: 1123412397795123839}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3050014563322988690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6409515459833827831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47080fd448adecc4da46cd23240bbaca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 38
 --- !u!1 &6662646263606657844
 GameObject:
   m_ObjectHideFlags: 0
@@ -6384,6 +6853,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7119884702048082626}
+  - component: {fileID: 1331528193982178187}
   m_Layer: 0
   m_Name: Spear12
   m_TagString: Untagged
@@ -6407,6 +6877,19 @@ Transform:
   - {fileID: 3598458511284994117}
   m_Father: {fileID: 1123412397795123839}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1331528193982178187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6662646263606657844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47080fd448adecc4da46cd23240bbaca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 25
 --- !u!1 &6702246765191909554
 GameObject:
   m_ObjectHideFlags: 0
@@ -6648,6 +7131,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5303708972884548676}
+  - component: {fileID: 6783135481937843365}
   m_Layer: 0
   m_Name: Sword11
   m_TagString: Untagged
@@ -6671,6 +7155,19 @@ Transform:
   - {fileID: 6373575276986809412}
   m_Father: {fileID: 1123412397795123839}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6783135481937843365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7174447016344071347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47080fd448adecc4da46cd23240bbaca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 37
 --- !u!1 &7265498743567956955
 GameObject:
   m_ObjectHideFlags: 0
@@ -6680,6 +7177,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2464870467869129405}
+  - component: {fileID: 7569714796248782336}
   m_Layer: 0
   m_Name: ShortSword08
   m_TagString: Untagged
@@ -6703,6 +7201,19 @@ Transform:
   - {fileID: 8154352759081282923}
   m_Father: {fileID: 1123412397795123839}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7569714796248782336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7265498743567956955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47080fd448adecc4da46cd23240bbaca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 7
 --- !u!1 &7330523288031899263
 GameObject:
   m_ObjectHideFlags: 0
@@ -6712,6 +7223,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1742226101799632943}
+  - component: {fileID: 8739530411184962649}
   m_Layer: 0
   m_Name: ShortSword13
   m_TagString: Untagged
@@ -6735,6 +7247,19 @@ Transform:
   - {fileID: 7771307785402720557}
   m_Father: {fileID: 1123412397795123839}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8739530411184962649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7330523288031899263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47080fd448adecc4da46cd23240bbaca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 12
 --- !u!1 &7355129496537239908
 GameObject:
   m_ObjectHideFlags: 0
@@ -6776,6 +7301,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5572132923243046213}
+  - component: {fileID: 5156088210953111887}
   m_Layer: 0
   m_Name: ShortSword10
   m_TagString: Untagged
@@ -6799,6 +7325,19 @@ Transform:
   - {fileID: 610304700704175011}
   m_Father: {fileID: 1123412397795123839}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5156088210953111887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7406275586119705342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47080fd448adecc4da46cd23240bbaca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 9
 --- !u!1 &7420322209301050503
 GameObject:
   m_ObjectHideFlags: 0
@@ -6840,6 +7379,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6239667578701569619}
+  - component: {fileID: 319310063179481010}
   m_Layer: 0
   m_Name: Spear02
   m_TagString: Untagged
@@ -6863,6 +7403,19 @@ Transform:
   - {fileID: 7807297275585046943}
   m_Father: {fileID: 1123412397795123839}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &319310063179481010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7472685889870166705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47080fd448adecc4da46cd23240bbaca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 15
 --- !u!1 &7534442609592623605
 GameObject:
   m_ObjectHideFlags: 0
@@ -7096,6 +7649,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8210520963981285903}
+  - component: {fileID: 5445328728686529676}
   m_Layer: 0
   m_Name: Sword04
   m_TagString: Untagged
@@ -7112,13 +7666,26 @@ Transform:
   m_GameObject: {fileID: 7562786337420335147}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.027, y: 0.018, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6672116980583708277}
   m_Father: {fileID: 1123412397795123839}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5445328728686529676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7562786337420335147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47080fd448adecc4da46cd23240bbaca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 30
 --- !u!1 &7570192724408999990
 GameObject:
   m_ObjectHideFlags: 0
@@ -7468,6 +8035,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7904489904824912250}
+  - component: {fileID: 758879715721233240}
   m_Layer: 0
   m_Name: Spear04
   m_TagString: Untagged
@@ -7491,6 +8059,19 @@ Transform:
   - {fileID: 3338087260335838148}
   m_Father: {fileID: 1123412397795123839}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &758879715721233240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8179093838345848718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47080fd448adecc4da46cd23240bbaca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 17
 --- !u!1 &8184661999032529475
 GameObject:
   m_ObjectHideFlags: 0
@@ -7837,6 +8418,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2313856220633042163}
+  - component: {fileID: 6224166703022758629}
   m_Layer: 0
   m_Name: Sword14
   m_TagString: Untagged
@@ -7860,6 +8442,19 @@ Transform:
   - {fileID: 1368431519426116879}
   m_Father: {fileID: 1123412397795123839}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6224166703022758629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8276191538871333542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47080fd448adecc4da46cd23240bbaca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 40
 --- !u!1 &8291831407714664787
 GameObject:
   m_ObjectHideFlags: 0
@@ -7932,6 +8527,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9176108718254610951}
+  - component: {fileID: 4978644609395975069}
   m_Layer: 0
   m_Name: Spear06
   m_TagString: Untagged
@@ -7955,6 +8551,19 @@ Transform:
   - {fileID: 6604936030178911555}
   m_Father: {fileID: 1123412397795123839}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4978644609395975069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8492803769217429384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47080fd448adecc4da46cd23240bbaca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 19
 --- !u!1 &8498873964919703040
 GameObject:
   m_ObjectHideFlags: 0
@@ -8328,6 +8937,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5794962733075326878}
+  - component: {fileID: 5928550511346659441}
   m_Layer: 0
   m_Name: Spear03
   m_TagString: Untagged
@@ -8351,6 +8961,19 @@ Transform:
   - {fileID: 4114473909024273554}
   m_Father: {fileID: 1123412397795123839}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5928550511346659441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8928939515819665619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47080fd448adecc4da46cd23240bbaca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 16
 --- !u!1 &8950138149159202532
 GameObject:
   m_ObjectHideFlags: 0
@@ -8360,6 +8983,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8412280468080581733}
+  - component: {fileID: 7697037524430723133}
   m_Layer: 0
   m_Name: ShortSword12
   m_TagString: Untagged
@@ -8383,6 +9007,19 @@ Transform:
   - {fileID: 6279159453332366772}
   m_Father: {fileID: 1123412397795123839}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7697037524430723133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8950138149159202532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47080fd448adecc4da46cd23240bbaca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 11
 --- !u!1 &8983524562301461104
 GameObject:
   m_ObjectHideFlags: 0
@@ -8490,6 +9127,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7889966845100838774}
+  - component: {fileID: 4144222996879815691}
   m_Layer: 0
   m_Name: Sword06
   m_TagString: Untagged
@@ -8506,10 +9144,23 @@ Transform:
   m_GameObject: {fileID: 9177353102230828130}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.049, y: 0.024, z: -0.012}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5109430323678679962}
   m_Father: {fileID: 1123412397795123839}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4144222996879815691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9177353102230828130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47080fd448adecc4da46cd23240bbaca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 32
