@@ -16,6 +16,7 @@ public class CInstancePanel : MonoBehaviour
     }
     #region 인스펙터
     [SerializeField] private GameObject _iconPrefab;
+    [SerializeField] private GameObject _numberPrefab;
 
     public Sprite SkullIcon;
     public Sprite GemIcon;
@@ -26,7 +27,8 @@ public class CInstancePanel : MonoBehaviour
 
     [Header("디버그 키")]
     [SerializeField] private bool _useDebugKey = false;
-    [SerializeField] private KeyCode _SpawnKey = KeyCode.S;
+    [SerializeField] private KeyCode _SpawnIconKey = KeyCode.I;
+    [SerializeField] private KeyCode _SpawnNumber = KeyCode.N;
     #endregion
 
     #region 내부 변수
@@ -36,6 +38,7 @@ public class CInstancePanel : MonoBehaviour
     void Awake()
     {
         if (_iconPrefab.IsNull("_gemPrefab") ||
+            _numberPrefab.IsNull("_numberPrefab") ||
             _skullTargetTransform.IsNull("_skullTargetTransform") ||
             _gemTargetTransform.IsNull("_gemTargetTransform") ||
             _spawnRoot.IsNull("_spawnRoot")
@@ -54,9 +57,13 @@ public class CInstancePanel : MonoBehaviour
     {
         if (_useDebugKey)
         {
-            if (Input.GetKeyDown(_SpawnKey))
+            if (Input.GetKeyDown(_SpawnIconKey))
             {
                 SpawnIcon(EIconType.Skull, Vector3.zero);
+            }
+            if (Input.GetKeyDown(_SpawnNumber))
+            {
+                SpawnNumber("0123456789", Color.red, Vector3.zero);
             }
         }
     }
@@ -84,5 +91,20 @@ public class CInstancePanel : MonoBehaviour
             }
         }
 
+    }
+
+    // 색도 type으로 결정.
+    public void SpawnNumber(string number, Color color, Vector3 position)
+    {
+        GameObject go = Instantiate(_numberPrefab, _spawnRoot);
+        if (go.IsNull("gameObject"))
+        {
+            return;
+        }
+        go.transform.position = position;
+        if (go.TryGetComponent(out CNumberPrefab prefab))
+        {
+            prefab.InitData(number, color);
+        }
     }
 }
