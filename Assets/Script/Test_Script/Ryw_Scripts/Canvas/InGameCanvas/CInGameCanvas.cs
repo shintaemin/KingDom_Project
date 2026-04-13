@@ -189,4 +189,18 @@ public class CInGameCanvas : MonoBehaviour
     {
         _instancePanel.SpawnNumber(number, color, position);
     }
+
+    public static bool WorldToUI(Vector3 worldPosition, out Vector3 UIPos)
+    {
+        Vector3 screenPos = Camera.main.WorldToScreenPoint(worldPosition);
+
+        if (screenPos.z < 0)
+        {
+            // 카메라의 뒤에 있다.
+            UIPos = Vector3.zero;
+            return false;
+        }
+        UIPos = screenPos;
+        return true;
+    }
 }

@@ -6,6 +6,8 @@ using UnityEngine.UI;
 #region CNumberPrefab
 /*
 ▶ 작성자 류연우
+
+생성 후 InitData를 호출하면 step이 넘어가기 시작한다.
 */
 #endregion
 
@@ -21,7 +23,7 @@ public class CNumberPrefab : MonoBehaviour
     #region 인스펙터
     public float SpawnDelay = 0.5f;
 
-    public Vector2 MoveOffeset = new Vector2(0,10);
+    public Vector2 MoveOffeset = new Vector2(0, 10);
     public float MoveDelay = 1f;
 
     public float DestroyDelay = 1f;
@@ -45,18 +47,17 @@ public class CNumberPrefab : MonoBehaviour
     void Awake()
     {
         Sprites.IsNull("Sprites");
-        if(_canvasGroup.IsNull("_canvasGroup"))
+        if (_canvasGroup.IsNull("_canvasGroup"))
         {
             return;
         }
-        _canvasGroup.alpha = 0;
-        _targetPosition = transform.localPosition + (Vector3)MoveOffeset;
-        moveSpeed = MoveOffeset.magnitude / MoveDelay;
     }
 
     void Start()
     {
-
+        _canvasGroup.alpha = 0;
+        _targetPosition = transform.position + (Vector3)MoveOffeset;
+        moveSpeed = MoveOffeset.magnitude / MoveDelay;
     }
 
     void Update()
@@ -185,18 +186,21 @@ public class CNumberPrefab : MonoBehaviour
                 image.SetNativeSize();
             }
             // 위치, 크기 조정.
-            go.transform.position = new Vector3(length, 0, 0);
-            // length 만큼 밀어준다.
-            // length 업데이트
+            Vector3 pos = go.transform.position;
+            pos.x += length;
+            go.transform.position = pos;
+
             length += image.sprite.rect.width;
         }
 
         _color = color;
-        // 색상 배정.
-        // 캐싱된 이미지들 컬러 수정.
+        length /= 2;
         for (int i = 0; i < number.Length; i++)
         {
             _numberImage[i].color = _color;
+            Vector3 pos =  _numberImage[i].transform.position;
+            pos.x -= length;
+            _numberImage[i].transform.position = pos;
         }
 
         _isReady = true;

@@ -30,6 +30,8 @@ public class CInstancePanel : MonoBehaviour
     [SerializeField] private KeyCode _SpawnIconKey = KeyCode.I;
     [SerializeField] private KeyCode _SpawnNumber = KeyCode.N;
     private bool _flipFlag = false;
+
+    [SerializeField] private Transform _targetTransform;
     #endregion
 
     #region 내부 변수
@@ -58,17 +60,36 @@ public class CInstancePanel : MonoBehaviour
     {
         if (_useDebugKey)
         {
+            
+
             if (Input.GetKeyDown(_SpawnIconKey))
             {
+                Vector3 position = Vector3.zero;
+                if (_targetTransform != null)
+                {
+                    if (CInGameCanvas.WorldToUI(_targetTransform.position, out Vector3 uIPos))
+                    {
+                        position = uIPos;
+                    }
+                }
+
                 _flipFlag = !_flipFlag;
                 if (_flipFlag)
-                    SpawnIcon(EIconType.Skull, Vector3.zero);
+                    SpawnIcon(EIconType.Skull, position);
                 else
-                    SpawnIcon(EIconType.Gem, Vector3.zero);
+                    SpawnIcon(EIconType.Gem, position);
             }
             if (Input.GetKeyDown(_SpawnNumber))
             {
-                SpawnNumber("0123456789", Color.red, Vector3.zero);
+                Vector3 position = Vector3.zero;
+                if (_targetTransform != null)
+                {
+                    if (CInGameCanvas.WorldToUI(_targetTransform.position, out Vector3 uIPos))
+                    {
+                        position = uIPos;
+                    }
+                }
+                SpawnNumber("0123456789", Color.red, position);
             }
         }
     }

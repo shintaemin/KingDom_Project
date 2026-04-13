@@ -4999,6 +4999,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a195cd7c7cd79754986f5ac15e58e6ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _canvas: {fileID: 855023189065433014}
   _stagePanel: {fileID: 1855751293880491852}
   _fullscreenImpact: {fileID: 1173255453408334977}
   _stageGoal: {fileID: 6625581110539245848}
@@ -5801,3 +5802,4 @@ MonoBehaviour:
   _useDebugKey: 1
   _SpawnIconKey: 105
   _SpawnNumber: 110
+  _targetTransform: {fileID: 0}
