@@ -17,9 +17,6 @@ public class Cloth_Selected : MonoBehaviour
     #region 인스펙터 
     [SerializeField] private List<Cloth_Object> _cloths = new List<Cloth_Object>();
     [SerializeField] private GameObject _currentCloth;
-
-    [Header("테스트용 - 변경시 옷 변경 0 ~ 14")]
-    [SerializeField] private int _testId = 0;
     #endregion
 
     #region 내부 변수
@@ -29,14 +26,15 @@ public class Cloth_Selected : MonoBehaviour
     private void Awake()
     {
         InitListToDic();
-
-        // 여기서 플레이어 옷 데이터 확인하고 지정
-        SetCloth(_testId);
     }
 
-    private void OnValidate()
+    private void Start()
     {
-        SetCloth(_testId);
+        if (CPlayerDataManager.Instance != null)
+        {
+            int id = CPlayerDataManager.Instance.CurrentClothesID;
+            SetCloth(id);
+        }
     }
 
     private void InitListToDic()

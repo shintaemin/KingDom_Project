@@ -74,7 +74,7 @@ public class OutGame_Anim : MonoBehaviour
         {
             return;
         }
-
+        _anim.Play("HumanE_Idle");
         int current = 0;
 
         switch(type)
@@ -98,6 +98,16 @@ public class OutGame_Anim : MonoBehaviour
         {
             _anim.SetTrigger(current);
         }
+    }
+
+    public void OnClickHit()
+    {
+        SetTriggerAnim(EOutGameAnimType.Hit);
+    }
+
+    public void OnClickUpgarade()
+    {
+        SetTriggerAnim(EOutGameAnimType.Upgrade);
     }
     #endregion
 }

@@ -112,9 +112,6 @@ public class MissionManager : MonoBehaviour
                 Subscription();
 
                 break;
-            case EMissionType.Rescue:
-                _currentMission = null;
-                break;
             case EMissionType.Goal:
                 _currentMission = null;
                 break;
