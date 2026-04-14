@@ -166,6 +166,7 @@ public class CNumberPrefab : MonoBehaviour
         ChageStep((EStep)(i + 1));
     }
 
+    // 타입을 받도록 하거나 문자열에 특별한 값이 들어오면 해당 기호를 그리도록...
     public void InitData(string number, Color color)
     {
         _numberImage = new Image[number.Length];
