@@ -89,6 +89,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveSpeed: 5000
-  SpawnDelay: 0.1
+  SpawnDelay: 0.3
   DestroyDelay: 0.1
   _image: {fileID: 5566786905238533478}
+  _explosionSpeed: 500

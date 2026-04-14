@@ -12,7 +12,8 @@ public class CInstancePanel : MonoBehaviour
     public enum EIconType
     {
         Skull,
-        Gem
+        GemToUI,
+        GemToPlayer
     }
     #region 인스펙터
     [SerializeField] private GameObject _iconPrefab;
@@ -31,12 +32,14 @@ public class CInstancePanel : MonoBehaviour
     [SerializeField] private KeyCode _SpawnNumber = KeyCode.N;
     private bool _flipFlag = false;
 
-    [SerializeField] private Transform _targetTransform;
+    [SerializeField] private Transform _debugSpawnTransform;
     #endregion
 
     #region 내부 변수
 
     #endregion
+
+    public Transform PlayerTransform { get; set; }
 
     void Awake()
     {
@@ -65,9 +68,9 @@ public class CInstancePanel : MonoBehaviour
             if (Input.GetKeyDown(_SpawnIconKey))
             {
                 Vector3 position = Vector3.zero;
-                if (_targetTransform != null)
+                if (_debugSpawnTransform != null)
                 {
-                    if (CInGameCanvas.WorldToUI(_targetTransform.position, out Vector3 uIPos))
+                    if (CInGameCanvas.WorldToUI(_debugSpawnTransform.position, out Vector3 uIPos))
                     {
                         position = uIPos;
                     }
@@ -77,14 +80,14 @@ public class CInstancePanel : MonoBehaviour
                 if (_flipFlag)
                     SpawnIcon(EIconType.Skull, position);
                 else
-                    SpawnIcon(EIconType.Gem, position);
+                    SpawnIcon(EIconType.GemToUI, position);
             }
             if (Input.GetKeyDown(_SpawnNumber))
             {
                 Vector3 position = Vector3.zero;
-                if (_targetTransform != null)
+                if (_debugSpawnTransform != null)
                 {
-                    if (CInGameCanvas.WorldToUI(_targetTransform.position, out Vector3 uIPos))
+                    if (CInGameCanvas.WorldToUI(_debugSpawnTransform.position, out Vector3 uIPos))
                     {
                         position = uIPos;
                     }
@@ -94,29 +97,29 @@ public class CInstancePanel : MonoBehaviour
         }
     }
 
-    public void SpawnIcon(EIconType type, Vector3 position)
+    public void SpawnIcon(EIconType type, Vector3 spawnPosition)
     {
         GameObject go = Instantiate(_iconPrefab, _spawnRoot);
         if (go.IsNull("gameObject"))
         {
             return;
         }
-        go.transform.position = position;
+        go.transform.position = spawnPosition;
         if (go.TryGetComponent(out CIconPrefab prefab))
         {
             switch (type)
             {
                 case EIconType.Skull:
-                    prefab.SetIcon(SkullIcon);
-                    prefab.SetTargetTransform(_skullTargetTransform);
+                    prefab.Init(SkullIcon, _skullTargetTransform);
                     break;
-                case EIconType.Gem:
-                    prefab.SetIcon(GemIcon);
-                    prefab.SetTargetTransform(_gemTargetTransform);
+                case EIconType.GemToUI:
+                    prefab.Init(GemIcon, _gemTargetTransform, true);
+                    break;
+                case EIconType.GemToPlayer:
+                    prefab.Init(GemIcon, PlayerTransform, true);    // 플레이어를 가져와야 한다.
                     break;
             }
         }
-
     }
 
     // 색도 type으로 결정.

@@ -24,6 +24,7 @@ public class CIconPrefab : MonoBehaviour
     public float SpawnDelay = 0.5f;
     public float DestroyDelay = 1f;
     [SerializeField] private Image _image;
+    [SerializeField] private float _explosionSpeed = 5f;
     #endregion
 
     #region 내부 변수
@@ -32,6 +33,10 @@ public class CIconPrefab : MonoBehaviour
     private EStep _currentStep = EStep.Ready;
     private Vector3 _scale;
     private float _scaleMag;
+
+    private bool _isReady = false;
+    private bool _explosionEffect = false;
+    private Vector3 _explosionDir;
     #endregion
 
     void Awake()
@@ -57,16 +62,19 @@ public class CIconPrefab : MonoBehaviour
         {
             // 준비
             case EStep.Ready:
-                if (_iconSprite.IsNull("_iconSprite") ||
-                _targetTransform.IsNull("TargetTransform"))
-                {
-                    return;
-                }
-                ChageStep(EStep.Spawn);
+                if(_isReady)
+                    ChageStep(EStep.Spawn);
                 break;
             // 스폰 애니메이션
             case EStep.Spawn:
                 transform.localScale = Vector3.MoveTowards(transform.localScale, _scale, (_scaleMag / SpawnDelay) * Time.deltaTime);
+                if(_explosionEffect)
+                {
+                    // 폭발하는 효과를 준다.
+                    // 랜덤한 방향으로
+                    // 랜덤한 거리를 이동한다.
+                    transform.Translate(_explosionDir * _explosionSpeed * Time.deltaTime);
+                }
                 if (transform.localScale == _scale)
                 {
                     ChageStep(EStep.Translate);
@@ -113,16 +121,30 @@ public class CIconPrefab : MonoBehaviour
         }
     }
 
-    public void SetIcon(Sprite icon)
+
+
+    public void Init(Sprite icon, Transform target, bool explosionEffect = false)
+    {
+        SetIcon(icon);
+        SetTargetTransform(target);
+        _explosionEffect = explosionEffect;
+        if(_explosionEffect)
+        {
+            _explosionDir = Random.onUnitSphere;
+        }
+        _isReady = true;
+    }
+    private void SetIcon(Sprite icon)
     {
         //Debug.Log("Set Icon");
         _iconSprite = icon;
         _image.sprite = icon;
 
     }
-    public void SetTargetTransform(Transform target)
+    private void SetTargetTransform(Transform target)
     {
         //Debug.Log("Set Transform");
         _targetTransform = target;
+        _targetTransform.IsNull("_targetTransform");
     }
 }
