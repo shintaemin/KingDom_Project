@@ -1701,7 +1701,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3516610565055684563
 Transform:
   m_ObjectHideFlags: 0
@@ -1712,7 +1712,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.397011, y: 0.5, z: 3.2942338}
-  m_LocalScale: {x: 50, y: 50, z: 50}
+  m_LocalScale: {x: 70, y: 70, z: 70}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2612735177470130355}
@@ -1770,6 +1770,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61ee227c2f37dca4cbf142eaceec4ba4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _notTerrain:
+    serializedVersion: 2
+    m_Bits: 536870912
+  _yOffset: 0.5
   _playerTag: Player
 --- !u!114 &6199538668646749480
 MonoBehaviour:
@@ -1787,6 +1791,8 @@ MonoBehaviour:
   _paramAttack: tAttack
   _paramOnHit: tOnHit
   _paramOnHitIndex: iOnHitIndex
+  _paramBossRoar: tBossRoar
+  _paramBossJump: tBossJump
   _autoAttack: 1
 --- !u!114 &8968987062370870284
 MonoBehaviour:

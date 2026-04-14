@@ -183,6 +183,8 @@ public class EnemyMover : MonoBehaviour
 
             center.y = transform.position.y;
 
+            transform.rotation = Quaternion.LookRotation(dir);
+
             Vector3 startPos = transform.position;
             float timer = 0;
 

@@ -174,6 +174,8 @@ public class EnemyState : MonoBehaviour
 
         _state = next;
 
+        Debug.Log($"현재 보스 상태 : [{_state}]");
+
         switch (_state)
         {
             case EState.Idle:
@@ -224,11 +226,11 @@ public class EnemyState : MonoBehaviour
                 break;
 
             case EState.BossRoar:
-                _stateRoutine = StartCoroutine(CoBossRoarToJump(2f));
+                _stateRoutine = StartCoroutine(CoBossRoarToJump(2.8f));
                 break;
 
             case EState.BossJump:
-                IsGrounded = false;
+                
                 break;
         }
 
@@ -250,11 +252,18 @@ public class EnemyState : MonoBehaviour
 
         if (_state == EState.BossRoar || _state == EState.BossJump)
         {
+            if (_state == EState.BossJump && IsGrounded)
+            {
+                return EState.Chase;
+            }
+
             return _state;
         }
 
         if (_state == EState.Attack)
         {
+            _chaseTimer = 0f;
+
             if (IsAttacking)
             {
                 return EState.Attack;
@@ -264,8 +273,7 @@ public class EnemyState : MonoBehaviour
             {
                 return EState.Chase;
             }
-
-            _chaseTimer = 0f;
+            
             return EState.Attack;
         }
 
@@ -332,6 +340,7 @@ public class EnemyState : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
 
+        IsGrounded = false;
         SetState(EState.BossJump);
     }
 
