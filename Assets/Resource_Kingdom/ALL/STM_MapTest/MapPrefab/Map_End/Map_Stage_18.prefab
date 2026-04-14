@@ -23756,31 +23756,33 @@ MonoBehaviour:
   _subStageNum: 1
   _missionType: 2
   _playerSpawnPos: {fileID: 671500121279424431}
-  _enemySpawnPos:
-  - {fileID: 3623632634612376535}
-  - {fileID: 279089869808064181}
+  _enemySpawnPos: []
+  _zombieSpawnPos: []
+  _bowEnemySpawnPos: []
+  _bossSpawnPos: []
+  _shieldSpawnPos: []
+  _goalZombieSpawnPos:
   - {fileID: 7178041202798821577}
   - {fileID: 467400081829017259}
   - {fileID: 3198234434891140879}
+  - {fileID: 4378257275582134668}
+  - {fileID: 2265160699632625183}
+  - {fileID: 1304730639240101400}
   - {fileID: 1349912311083441399}
   - {fileID: 8858396759713520357}
+  - {fileID: 925445952765008911}
+  - {fileID: 4895692011155521639}
   - {fileID: 687557775172138177}
   - {fileID: 5547777216059202526}
   - {fileID: 2982796062238692334}
   - {fileID: 295550664019219981}
   - {fileID: 1337392620924398754}
   - {fileID: 4056438506557750915}
-  - {fileID: 925445952765008911}
-  - {fileID: 4895692011155521639}
-  - {fileID: 4378257275582134668}
-  - {fileID: 2265160699632625183}
-  - {fileID: 1304730639240101400}
-  - {fileID: 7861981109555192879}
+  _goalBowEnemySpawnPos:
+  - {fileID: 3623632634612376535}
+  - {fileID: 279089869808064181}
   - {fileID: 691098965037982937}
-  _bossSpawnPos: []
-  _boxSpawnPos: []
-  _keySpawnPos: []
-  _citizenSpawnPos: []
+  - {fileID: 7861981109555192879}
   _leftDownPos: {fileID: 3422414371191820362}
   _rightUpPos: {fileID: 2881614698005581625}
 --- !u!114 &8144247459210696478

@@ -22,11 +22,11 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private GameObject _playerPrefab;
     [SerializeField] private GameObject _enemyPrefab;
     [SerializeField] private GameObject _zombiePrefab;
-    [SerializeField] private GameObject _eBossPrefab;
-    [SerializeField] private GameObject _zBossPrefab;
-    [SerializeField] private GameObject _keyPrefab;
-    [SerializeField] private GameObject _boxPrefab;
-    [SerializeField] private GameObject _citizenPrefab;
+    [SerializeField] private GameObject _shieldPrefab;
+    [SerializeField] private GameObject _bowPrefab;
+    [SerializeField] private GameObject _goalBowPrefab;
+    [SerializeField] private GameObject _goalZombiePrefab;
+    [SerializeField] private GameObject _bossPrefab;
     #endregion
 
     #region 이벤트
@@ -41,38 +41,50 @@ public class SpawnManager : MonoBehaviour
         }
 
         // 가독성을 위해.. 하나씩 생성
-        // 각 위치정보를 맵에서 가져온다
-        Transform player = _currentMap.GetPlayerSpawnPos;
+        // 각 위치정보를 맵에서 가져온다.
         Transform[] enemy = _currentMap.GetSpawnPos(Map_Stage.ESpawnPosType.Enemy);
+        Transform[] zombie = _currentMap.GetSpawnPos(Map_Stage.ESpawnPosType.Zombie);
         Transform[] boss = _currentMap.GetSpawnPos(Map_Stage.ESpawnPosType.Boss);
-        Transform[] key = _currentMap.GetSpawnPos(Map_Stage.ESpawnPosType.Key);
-        Transform[] box = _currentMap.GetSpawnPos(Map_Stage.ESpawnPosType.Box);
-        Transform[] citizen = _currentMap.GetSpawnPos(Map_Stage.ESpawnPosType.Citizen);
+        Transform[] shield = _currentMap.GetSpawnPos(Map_Stage.ESpawnPosType.Shield);
+        Transform[] bow = _currentMap.GetSpawnPos(Map_Stage.ESpawnPosType.Bow);
+        Transform[] goalBow = _currentMap.GetSpawnPos(Map_Stage.ESpawnPosType.GoalBow);
+        Transform[] goalZombie = _currentMap.GetSpawnPos(Map_Stage.ESpawnPosType.GoalZombie);
 
         // 각 프리펩을 생성할수있도록 태그와 위치를 체크 -- 테스트용 널체크
-        if (_enemyPrefab != null && _zombiePrefab != null)
+        if (_enemyPrefab != null && enemy.Length != 0)
         {
-            PosCheck(_enemyPrefab, _zombiePrefab, enemy, "EnemySpawnPos", "ZombieSpawnPos");
+            PosCheck(_enemyPrefab, enemy);
         }
+        if (_zombiePrefab != null && zombie.Length != 0)
+        {
+            PosCheck(_zombiePrefab, zombie);
+        }
+        if (_shieldPrefab != null && shield.Length != 0)
+        {
+            PosCheck(_shieldPrefab, shield);
+        }
+        if (_bowPrefab != null && bow.Length != 0)
+        {
+            PosCheck(_bowPrefab, bow);
+        }
+        if (_goalBowPrefab != null && goalBow.Length != 0)
+        {
+            PosCheck(_goalBowPrefab, goalBow);
+        }
+        if (_goalZombiePrefab != null && goalZombie.Length != 0)
+        {
+            PosCheck(_goalZombiePrefab, goalZombie);
+        }
+        if (_bossPrefab != null && boss.Length != 0)
+        {
+            PosCheck(_bossPrefab, boss);
+        }
+
+        Transform player = _currentMap.GetPlayerSpawnPos;
+
         if (_playerPrefab != null)
         {
             Spawn(_playerPrefab, player);
-        }
-        if (_eBossPrefab != null && _zBossPrefab != null)
-        {
-            PosCheck(_eBossPrefab, _zBossPrefab, boss, "eBossSpawnPos", "zBossSpawnPos");
-        }
-        if (_keyPrefab != null)
-        {
-            PosCheck(_keyPrefab, key);
-        }
-        if (_keyPrefab != null)
-        {
-            PosCheck(_boxPrefab, box);
-        }
-        if (_citizenPrefab != null)
-        {
-            PosCheck(_citizenPrefab, citizen);
         }
     }
 
@@ -105,46 +117,6 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-    private void PosCheck(GameObject prefab_1, GameObject prefab_2, Transform[] pos, string tag_1, string tag_2)
-    {
-        if (prefab_1 == null || prefab_2 == null)
-        {
-            return;
-        }
-        if (pos == null || pos.Length == 0)
-        {
-            return;
-        }
-
-        for (int i = 0; i < pos.Length; i++)
-        {
-            if (pos[i] == null)
-            {
-                continue;
-            }
-
-            Transform tr = pos[i];
-
-            // 지정한 번호 태그가 맞다면 해당 프리펩 전달
-            if (tr.CompareTag(tag_1))
-            {
-                if (prefab_1 != null)
-                {
-                    Spawn(prefab_1, tr);
-                }
-                continue;
-            }
-            if (tr.CompareTag(tag_2))
-            {
-                if (prefab_2 != null)
-                {
-                    Spawn(prefab_2, tr);
-                }
-                continue;
-            }
-        }
-    }
-
     // 프리펩과 Transform 전달받아 생성
     private void Spawn(GameObject prefab, Transform pos)
     {
@@ -161,7 +133,10 @@ public class SpawnManager : MonoBehaviour
     #region 외부 호출 함수
     public void SetMap(Map_Stage map)
     {
-        MapClear();
+        if (_currentMap != null)
+        {
+            MapClear();
+        }
 
         GameObject go = Instantiate(map.gameObject, Vector3.zero, Quaternion.identity);
 

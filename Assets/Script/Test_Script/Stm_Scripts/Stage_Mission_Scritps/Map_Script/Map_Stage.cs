@@ -20,10 +20,12 @@ public class Map_Stage : MonoBehaviour
     [SerializeField] private EMissionType _missionType;
     [SerializeField] private Transform _playerSpawnPos;
     [SerializeField] private Transform[] _enemySpawnPos = new Transform[0];
+    [SerializeField] private Transform[] _zombieSpawnPos = new Transform[0];
+    [SerializeField] private Transform[] _bowEnemySpawnPos = new Transform[0];
     [SerializeField] private Transform[] _bossSpawnPos = new Transform[0];
-    [SerializeField] private Transform[] _boxSpawnPos = new Transform[0];
-    [SerializeField] private Transform[] _keySpawnPos = new Transform[0];
-    [SerializeField] private Transform[] _citizenSpawnPos = new Transform[0];
+    [SerializeField] private Transform[] _shieldSpawnPos = new Transform[0];
+    [SerializeField] private Transform[] _goalZombieSpawnPos = new Transform[0];
+    [SerializeField] private Transform[] _goalBowEnemySpawnPos = new Transform[0];
     [SerializeField] private Transform _leftDownPos;
     [SerializeField] private Transform _rightUpPos;
     #endregion
@@ -45,10 +47,12 @@ public class Map_Stage : MonoBehaviour
     public enum ESpawnPosType
     {
         Enemy,
+        Zombie,
+        Bow,
+        Shield,
         Boss,
-        Key,
-        Box,
-        Citizen
+        GoalZombie,
+        GoalBow,
     }
 
     // 들어오는 상태에따른 Spawn 위치 반환
@@ -58,9 +62,11 @@ public class Map_Stage : MonoBehaviour
         {
             case ESpawnPosType.Enemy: return _enemySpawnPos;
             case ESpawnPosType.Boss: return _bossSpawnPos;
-            case ESpawnPosType.Key: return _keySpawnPos;
-            case ESpawnPosType.Box: return _boxSpawnPos;
-            case ESpawnPosType.Citizen: return _citizenSpawnPos;
+            case ESpawnPosType.Bow: return _bowEnemySpawnPos;
+            case ESpawnPosType.Zombie: return _zombieSpawnPos;
+            case ESpawnPosType.Shield: return _shieldSpawnPos;
+            case ESpawnPosType.GoalZombie : return _goalZombieSpawnPos;
+            case ESpawnPosType.GoalBow: return _goalBowEnemySpawnPos;
         }
 
         return null;
