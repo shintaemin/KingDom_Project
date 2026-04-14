@@ -738,6 +738,18 @@ PrefabInstance:
       propertyPath: _useDebugKey
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7602566004045824265, guid: 0d595531076e68340a2fdd1d10b53562, type: 3}
+      propertyPath: m_Spacing
+      value: -4.77
+      objectReference: {fileID: 0}
+    - target: {fileID: 7602566004045824265, guid: 0d595531076e68340a2fdd1d10b53562, type: 3}
+      propertyPath: m_ChildAlignment
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7602566004045824265, guid: 0d595531076e68340a2fdd1d10b53562, type: 3}
+      propertyPath: m_ChildForceExpandWidth
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7883336912444967496, guid: 0d595531076e68340a2fdd1d10b53562, type: 3}
       propertyPath: m_Name
       value: In_Canvas

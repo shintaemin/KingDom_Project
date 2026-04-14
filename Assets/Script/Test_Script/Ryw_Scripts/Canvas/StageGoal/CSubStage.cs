@@ -134,6 +134,7 @@ public class CSubStage : MonoBehaviour
             }
         }
         // 최종 위치를 조정한다.
+        length -= 60;   // 버블 하나의 크기
         length /= 2;
         for (int i = 0; i < _bars.Length; i++)
         {
