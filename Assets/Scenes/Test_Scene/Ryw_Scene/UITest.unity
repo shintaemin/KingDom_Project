@@ -352,6 +352,7 @@ MonoBehaviour:
   _paramAnimation: Animation
   _hpSlierPrefab: {fileID: 7488609981081227603, guid: f4c5312f8351bef46a1f9f8cc1f32d50, type: 3}
   _spawnRoot: {fileID: 1701109332}
+  _UIOffset: {x: 0, y: 50, z: 0}
 --- !u!1 &896252049
 GameObject:
   m_ObjectHideFlags: 0

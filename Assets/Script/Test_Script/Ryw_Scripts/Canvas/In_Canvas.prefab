@@ -2463,6 +2463,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c917e44f62bee24083b1ba6a38ce3ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _killIcon: {fileID: 2608512630546931003}
+  _killText: {fileID: 1750125549876874585}
+  _rescueIcon: {fileID: 2290922188584272893}
+  _rescueText: {fileID: 7285949557540160479}
+  _GoalIcon: {fileID: 488691600978341284}
+  _subStageUI: {fileID: 281816713666788363}
 --- !u!1 &4324904634995750639
 GameObject:
   m_ObjectHideFlags: 0
@@ -4999,7 +5005,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a195cd7c7cd79754986f5ac15e58e6ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _canvas: {fileID: 855023189065433014}
   _stagePanel: {fileID: 1855751293880491852}
   _fullscreenImpact: {fileID: 1173255453408334977}
   _stageGoal: {fileID: 6625581110539245848}
@@ -5802,4 +5807,4 @@ MonoBehaviour:
   _useDebugKey: 1
   _SpawnIconKey: 105
   _SpawnNumber: 110
-  _targetTransform: {fileID: 0}
+  _debugSpawnTransform: {fileID: 0}
