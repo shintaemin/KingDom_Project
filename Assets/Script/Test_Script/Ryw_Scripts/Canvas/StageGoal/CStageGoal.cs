@@ -29,7 +29,10 @@ public partial class CStageGoal : MonoBehaviour
     [Header("Goal")]
     [SerializeField] private GameObject _GoalUI;
     [Header("SubStage")]
-    [SerializeField] private GameObject _subStageUI;
+    [SerializeField] private CSubStage _subStageUI;
+
+    [Header("디버그")]
+    [SerializeField] bool _useDebugKey = false;
     #endregion
 
     #region 내부 변수
@@ -79,7 +82,7 @@ public partial class CStageGoal : MonoBehaviour
         _rescueUI.SetActive(false);
         //_rescueText.gameObject.SetActive(false);
         _GoalUI.SetActive(false);
-        _subStageUI.SetActive(false);
+        _subStageUI.gameObject.SetActive(false);
     }
 
     void Start()
@@ -89,20 +92,48 @@ public partial class CStageGoal : MonoBehaviour
 
     void Update()
     {
-
+        if (_useDebugKey)
+        {
+            if (_maxSubStage == 0)
+            {
+                for (int i = 0; i < 9; i++)
+                {
+                    int key = (int)KeyCode.Alpha1 + i;
+                    if (Input.GetKeyDown((KeyCode)key))
+                    {
+                        SetMaxSubStage(i + 1);
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < 9; i++)
+                {
+                    int key = (int)KeyCode.Alpha1 + i;
+                    if (Input.GetKeyDown((KeyCode)key))
+                    {
+                        SetCurrentSubStage(i + 1);
+                    }
+                }
+            }
+        }
     }
 
     private void SetMaxSubStage(int value)
     {
         _maxSubStage = value;
         if (_maxSubStage > 1)
-            _subStageUI.SetActive(true);
-        // 여기서 UI를 만든다.
+        {
+            _subStageUI.gameObject.SetActive(true);
+            // 여기서 UI를 만든다.
+            _subStageUI.MaxSubStage = _maxSubStage;
+        }
     }
     private void SetCurrentSubStage(int value)
     {
         _currentSubStage = value;
         // 여기서 UI의 상태를 바꾼다.
+        _subStageUI.CurrentSubStage = _currentSubStage;
     }
     //==================================================================
 
