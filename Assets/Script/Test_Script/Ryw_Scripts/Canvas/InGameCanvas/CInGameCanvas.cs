@@ -224,19 +224,28 @@ public class CInGameCanvas : MonoBehaviour
         ChangeGamePhase(EGamePhase.StandbyPhase);   // 이건 어디로?
     }
 
+    // 화면에 임팩트 효과를 줍니다. 색 지정.
     public void CallFullscreenImpact(Color color)
     {
         _fullscreenImpact.CallImpact(color);
     }
 
+    // 화면에 아이콘을 생성합니다. type에 따라 다르게 동작합니다.
     public void SpwanIcon(CInstancePanel.EIconType type, Vector3 position)
     {
         _instancePanel.SpawnIcon(type, position);
     }
 
+    // 화면에 숫자를 생성합니다. 값, 색, 위치를 지정
     public void SpawnNumber(string number, Color color, Vector3 position)
     {
         _instancePanel.SpawnNumber(number, color, position);
+    }
+    
+    // 0/3 이런 값을 넣어주면 됩니다.
+    public void SetGoalText(string goalText)
+    {
+        _stageGoal.SetText(goalText);
     }
 
     //========================================================================================================================

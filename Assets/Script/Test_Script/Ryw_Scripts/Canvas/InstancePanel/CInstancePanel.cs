@@ -97,6 +97,17 @@ public class CInstancePanel : MonoBehaviour
         }
     }
 
+    /*
+    타입에 따라 다르게 동작합니다.
+    
+    Skull = CStageGoal 판넬의 목표 아이콘을 향해 이동
+
+    GemToUI = 오른쪽 위 UI를 향해 이동. 위치 조정 필요.
+    폭발 효과 적용
+
+    GemToPlayer = 플레이어를 향해 이동.
+    폭발 효과 적용
+     */
     public void SpawnIcon(EIconType type, Vector3 spawnPosition)
     {
         GameObject go = Instantiate(_iconPrefab, _spawnRoot);
