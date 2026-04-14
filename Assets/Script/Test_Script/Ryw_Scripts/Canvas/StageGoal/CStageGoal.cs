@@ -21,13 +21,13 @@ public partial class CStageGoal : MonoBehaviour
     [SerializeField] private EMissionType? _missionType = null;
 
     [Header("Kill")]
-    [SerializeField] private GameObject _killIcon;
+    [SerializeField] private GameObject _killUI;
     [SerializeField] private TextMeshProUGUI _killText;
     [Header("Rescue")]
-    [SerializeField] private GameObject _rescueIcon;
+    [SerializeField] private GameObject _rescueUI;
     [SerializeField] private TextMeshProUGUI _rescueText;
     [Header("Goal")]
-    [SerializeField] private GameObject _GoalIcon;
+    [SerializeField] private GameObject _GoalUI;
     [Header("SubStage")]
     [SerializeField] private GameObject _subStageUI;
     #endregion
@@ -64,21 +64,21 @@ public partial class CStageGoal : MonoBehaviour
 
     void Awake()
     {
-        if (_killIcon.IsNull("_killIcon") ||
+        if (_killUI.IsNull("_killUI") ||
             _killText.IsNull("_killText") ||
-            _rescueIcon.IsNull("_rescueIcon") ||
+            _rescueUI.IsNull("_rescueUI") ||
             _rescueText.IsNull("_rescueText") ||
-            _GoalIcon.IsNull("_GoalIcon") ||
+            _GoalUI.IsNull("_GoalUI") ||
             _subStageUI.IsNull("_subStageUI")
             )
         {
             return;
         }
-        _killIcon.SetActive(false);
-        _killText.gameObject.SetActive(false);
-        _rescueIcon.SetActive(false);
-        _rescueText.gameObject.SetActive(false);
-        _GoalIcon.SetActive(false);
+        _killUI.SetActive(false);
+        //_killText.gameObject.SetActive(false);
+        _rescueUI.SetActive(false);
+        //_rescueText.gameObject.SetActive(false);
+        _GoalUI.SetActive(false);
         _subStageUI.SetActive(false);
     }
 
@@ -97,11 +97,12 @@ public partial class CStageGoal : MonoBehaviour
         _maxSubStage = value;
         if (_maxSubStage > 1)
             _subStageUI.SetActive(true);
-
+        // 여기서 UI를 만든다.
     }
     private void SetCurrentSubStage(int value)
     {
         _currentSubStage = value;
+        // 여기서 UI의 상태를 바꾼다.
     }
     //==================================================================
 
@@ -113,15 +114,15 @@ public partial class CStageGoal : MonoBehaviour
         switch (missionType)
         {
             case EMissionType.Kill:
-                _killIcon.SetActive(false);
-                _killText.gameObject.SetActive(false);
+                _killUI.SetActive(false);
+                //_killText.gameObject.SetActive(false);
                 break;
             case EMissionType.Rescue:
-                _rescueIcon.SetActive(false);
-                _rescueText.gameObject.SetActive(false);
+                _rescueUI.SetActive(false);
+                //_rescueText.gameObject.SetActive(false);
                 break;
             case EMissionType.Goal:
-                _GoalIcon.SetActive(false);
+                _GoalUI.SetActive(false);
                 break;
         }
 

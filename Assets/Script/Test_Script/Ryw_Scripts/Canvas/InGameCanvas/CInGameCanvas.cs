@@ -81,8 +81,8 @@ public class CInGameCanvas : MonoBehaviour
     public CStagePanel StagePanel => _stagePanel;
     public CFullscreenImpact FullscreenImpact => _fullscreenImpact;
     public CStageGoal StageGoal => _stageGoal;
-    #endregion
 
+    // 이건 필요한가?
     public EMissionType? MissionType
     {
         get { return _missionType; }
@@ -91,6 +91,8 @@ public class CInGameCanvas : MonoBehaviour
             SetMissionType(value);
         }
     }
+    #endregion
+
 
     void Awake()
     {
@@ -206,20 +208,23 @@ public class CInGameCanvas : MonoBehaviour
 
     //========================================================================================================================
     // 외부 호출 함수
-    public void Init(Transform playerTransform, int level, int subStage, EMissionType type)
+
+    // 여기 들어가는 값들은 아마 해당 레벨이 끝날때까지 변하지 않는 값이다.
+    public void Init(Transform playerTransform, int level, int subStage)
     {
         SetPlayerTransform(playerTransform);
 
         SetLevel(level);
         // 서브스테이지 수
         SetMaxSubStage(subStage);
-        // 미션 타입
-        MissionType = type;
+        
     }
 
     // 서브스테이지 마다 불러줘야 한다.
-    public void Standby(int currentSubStage)
+    public void Standby(int currentSubStage, EMissionType type)
     {
+        // 미션 타입
+        MissionType = type;
         SetCurrentSubStage(currentSubStage);
         ChangeGamePhase(EGamePhase.StandbyPhase);   // 이건 어디로?
     }
