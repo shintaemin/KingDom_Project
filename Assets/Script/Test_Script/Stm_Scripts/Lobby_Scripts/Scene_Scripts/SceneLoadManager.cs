@@ -49,15 +49,6 @@ public class SceneLoadManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         
     }
-    #region 테스트용 -> 추후 연결시 삭제
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            LoadScene(ESceneLoadType.TestScene3);
-        }
-    }
-    #endregion
 
     private void OnDestroy()
     {

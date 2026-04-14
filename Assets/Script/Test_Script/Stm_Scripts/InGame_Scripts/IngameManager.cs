@@ -1,7 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 #region 인게임 매니저
 /*
@@ -21,7 +21,6 @@ public class IngameManager : MonoBehaviour
     [SerializeField] private SpawnManager _sm;
     [SerializeField] private Map_Registry_SO _mapSO;
     [SerializeField] private FadeSystem _fadeSystem;
-    //[SerializeField] private Player_Data_SO _playerData;
     [SerializeField] private Map_Stage _currentMap;
 
     [SerializeField] private int _mapIndex = 1;
@@ -33,6 +32,7 @@ public class IngameManager : MonoBehaviour
     #endregion
 
     #region 내부 변수
+    public event Action<EMissionAnswer> MissionEnd;
     private Coroutine _mapChanegeCo;
     #endregion
 
@@ -40,10 +40,14 @@ public class IngameManager : MonoBehaviour
     // 게임 시작시 맵 데이터값 받아와서 맵지정
     public void GameStart()
     {
-        //int stateData = _playerData.GetStageData;
+        if (CPlayerDataManager.Instance != null)
+        {
+            int playerStage = CPlayerDataManager.Instance.CurrentStage;
 
-        _mapIndex = 1;
-        SetMap(1/*stateData*/, _mapIndex);
+            _mapIndex = 1;
+            SetMap(playerStage, _mapIndex);
+        }
+        // 여기서 UI 에 맵 정보등을 전달
     }
 
     public MissionBase GetMission => _msManager.GetMission;
@@ -202,6 +206,7 @@ public class IngameManager : MonoBehaviour
 
             if (doorOpen != null)
             {
+                // 여기서 GO UI 재생
                 doorOpen.PlayOpenAnim();
                 Door_StageEnd_Col endCol = doorOpen.transform.GetComponentInChildren<Door_StageEnd_Col>();
                 
@@ -214,10 +219,15 @@ public class IngameManager : MonoBehaviour
 
             else
             {
-                // 여기서 성공 UI 를 띄우고 씬전환 입력대기
-                // 여기서 플레이어 스테이지 레벨 ++
+                if (CPlayerDataManager.Instance != null)
+                {
+                    CPlayerDataManager.Instance.CurrentStage += 1;
+                }
+                // 여기서 성공 UI 띄우고 씬전환 입력 대기
 
                 MissionClear();
+
+                MissionEnd?.Invoke(EMissionAnswer.Success);
             }
             
             return;
@@ -226,6 +236,7 @@ public class IngameManager : MonoBehaviour
         if (answer == EMissionAnswer.Fail)
         {
             // 여기서 실패 UI 를 띄우고 씬전환 입력대기
+            MissionEnd?.Invoke(EMissionAnswer.Fail);
         }
     }
 
