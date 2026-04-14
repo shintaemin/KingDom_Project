@@ -34,7 +34,6 @@ public class Kill_Mission : MissionBase
 
     private void ResetData()
     {
-        // 구독 해제
         _targetKillCount = 0;
         _remainKillCount = 0;
     }
@@ -42,8 +41,6 @@ public class Kill_Mission : MissionBase
     #region 외부 호출 함수
     public override void StartMission()
     {
-        // 구독 진행
-
         Debug.Log($"[Kill_Mission] : 타겟갯수 : {_targetKillCount}");
     }
 

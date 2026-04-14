@@ -270,9 +270,12 @@ public class IngameManager : MonoBehaviour
 
         if (go.TryGetComponent<EnemyState>(out EnemyState eState))
         {
+            if (_msManager.GetMission is Kill_Mission)
+            {
+                eState.OnDead += _msManager.KillEvent;
+                Debug.Log($"[IngameManager] : 적 사망 {_enemys.Count} 구독 완료");
+            }
             _enemys.Add(eState);
-            eState.OnDead += _msManager.KillEvent;
-            Debug.Log($"[IngameManager] : 적 사망 {_enemys.Count} 구독 완료");
         }
 
         if (go.TryGetComponent<PlayerState>(out _pState))

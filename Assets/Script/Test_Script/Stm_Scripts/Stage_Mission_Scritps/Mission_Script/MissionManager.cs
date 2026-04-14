@@ -73,6 +73,7 @@ public class MissionManager : MonoBehaviour
     // 미션 클리어시 호출 함수
     private void MissionClear()
     {
+        Debug.Log($"[MissionManager] : MissionClear Success 너 들어오냐?");
         // 미션 클리어시 바로 해당 미션 클리어 구독 취소
         OnMissionClearAnswer?.Invoke(EMissionAnswer.Success);
         ResetMission();
@@ -80,6 +81,7 @@ public class MissionManager : MonoBehaviour
 
     private void MissionFail()
     {
+        Debug.Log($"[MissionManager] : MissionClear Fail 너 들어오냐?");
         OnMissionClearAnswer?.Invoke(EMissionAnswer.Fail);
         ResetMission();
     }
@@ -102,11 +104,6 @@ public class MissionManager : MonoBehaviour
     #region 외부 호출 함수
     public void SetMission(Map_Stage map)
     {
-        if (_currentMission != null)
-        {
-            return;
-        }
-
         EMissionType type = map.GetMissionType;
 
         switch (type)
@@ -128,11 +125,27 @@ public class MissionManager : MonoBehaviour
                 Subscription();
 
                 break;
-            case EMissionType.Rescue:
-                _currentMission = null;
-                break;
             case EMissionType.Goal:
-                _currentMission = null;
+
+                _currentMission = new Goal_Mission(1);
+                _currentMission.StartMission();
+
+                // UI 업데이트
+                if (_gameUIManger != null)
+                {
+                    _gameUIManger.GetKillCountUI(0, 1);
+                }
+                if (_currentMission == null)
+                {
+                    Debug.Log($"[MissionManager] : 골 미션 지정 실패");
+                }
+                else
+                {
+                    Debug.Log($"[MissionManager] : 골 미션 지정 성공");
+                }
+                
+                // 구독 진행
+                Subscription();
                 break;
         }
     }
@@ -160,23 +173,49 @@ public class MissionManager : MonoBehaviour
 
     public void KillEvent()
     {
-        if (_gameUIManger == null)
+        if (_currentMission is Kill_Mission)
         {
-            _gameUIManger = FindAnyObjectByType<IngameUIManager>();
             if (_gameUIManger == null)
             {
-                Debug.LogWarning("[MissionManager] : 인게임 UI 매니저 캐싱 실패");
-                return;
+                _gameUIManger = FindAnyObjectByType<IngameUIManager>();
+                if (_gameUIManger == null)
+                {
+                    Debug.LogWarning("[MissionManager] : 인게임 UI 매니저 캐싱 실패");
+                    return;
+                }
+            }
+
+            _currentMission.CheckClear();
+            int target = _currentMission.GetTargetCount();
+            int remain = _currentMission.GetRemainCount();
+            _gameUIManger.GetKillCountUI(remain, target);
+
+            if (remain >= target)
+            {
+                _currentMission = null;
             }
         }
+    }
 
-        _currentMission.CheckClear();
-        int target = _currentMission.GetTargetCount();
-        int remain = _currentMission.GetRemainCount();
-        _gameUIManger.GetKillCountUI(remain, target);
-        if (target == remain)
+    public void GoalEvent()
+    {
+        if (_currentMission != null && _currentMission is Goal_Mission)
         {
-            _currentMission = null;
+            _currentMission.CheckClear();
+
+            // UI 업데이트 로직 추가
+            int target = _currentMission.GetTargetCount();
+            int remain = _currentMission.GetRemainCount();
+            // _gameUIManger.GetGoalCountUI(remain, target);
+
+            if (remain >= target)
+            {
+                _currentMission = null;
+            }
+        }
+        else
+        {
+            Debug.LogWarning("[MissionManager] 현재 활성화된 골 미션이 없습니다!");
         }
     }
 

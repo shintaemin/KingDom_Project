@@ -7,15 +7,43 @@ using UnityEngine;
 #endregion
 
 
-public class Goal_Mission : MonoBehaviour
+public class Goal_Mission : MissionBase
 {
-#region
+    [SerializeField] private int _targetCount;
+    [SerializeField] private int _currentCount;
 
-#endregion
+    public Goal_Mission(int target)
+    {
+        _targetCount = target;
+        _currentCount = 0;
+    }
+    private void ResetData()
+    {
+        // ±¸µ¶ ÇØÁ¦
+        _targetCount = 0;
+        _currentCount = 0;
+    }
 
-#region
+    public override void StartMission()
+    {
+        Debug.Log($"[Goal_Mission] : Å¸°Ù°¹¼ö : {_targetCount}");
+    }
 
-#endregion
+    public override void CheckClear()
+    {
+        _currentCount++;
+        if (_currentCount >= _targetCount)
+        {
+            ClearMission();
+        }
+    }
 
-    
+    public override void ClearMission()
+    {
+        base.ClearMission();
+        ResetData();
+    }
+
+    public override int GetTargetCount() => _targetCount;
+    public override int GetRemainCount() => _currentCount;
 }

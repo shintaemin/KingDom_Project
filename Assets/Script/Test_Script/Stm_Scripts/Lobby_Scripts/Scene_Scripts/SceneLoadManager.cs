@@ -106,7 +106,8 @@ public class SceneLoadManager : MonoBehaviour
         {
             yield return null;
         }
-
+        
+        Cursor.lockState = CursorLockMode.Locked;
         SetBgm(loadType);
 
         Time.timeScale = 0f;
@@ -121,6 +122,7 @@ public class SceneLoadManager : MonoBehaviour
         }
 
         Time.timeScale = 1f;
+        Cursor.lockState = CursorLockMode.None;
 
         _loadSceneCo = null;
     }
