@@ -77,6 +77,8 @@ public class CInGameCamera : MonoBehaviour
     [SerializeField] private Transform _player;
     [SerializeField] private List<EnemyState> _enemyState;
 
+    [SerializeField] private EMissionType _missionType;
+
     [SerializeField] private Camera _camera;
     [SerializeField] private Transform _leftDownPos;
     [SerializeField] private Transform _rightUpPos;
@@ -99,13 +101,14 @@ public class CInGameCamera : MonoBehaviour
     Transform _nearestEnemyTransform = null;
     #endregion
 
-    public void InitSetting(Camera camera, Transform leftDownPos, Transform rightUpPos, Transform player, List<EnemyState> enemy)
+    public void InitSetting(Camera camera, Transform leftDownPos, Transform rightUpPos, Transform player, List<EnemyState> enemy, EMissionType type = EMissionType.Kill)
     {
         _camera = camera;
         _leftDownPos = leftDownPos;
         _rightUpPos = rightUpPos;
         _player = player;
         _enemyState = enemy;
+        _missionType = type;
 
         cameraPhase = ECameraPhase.Ready;
     }
@@ -187,7 +190,7 @@ public class CInGameCamera : MonoBehaviour
 
         }
 
-        if (_nearestEnemyTransform)
+        if (_missionType != EMissionType.Goal && _nearestEnemyTransform)
             pos = (pos + _nearestEnemyTransform.position) * 0.5f;
 
 
