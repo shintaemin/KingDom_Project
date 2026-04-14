@@ -13,13 +13,12 @@ using UnityEngine;
 public class Goal_COl : MonoBehaviour
 {
     #region 인스펙터
-    [SerializeField] private MissionManager _msManager;
     [SerializeField] private string _colTag = "Player";
     [SerializeField] private bool _isCol = false;
     #endregion
 
-    #region
-
+    #region 내부 변수
+    private MissionManager _msManager;
     #endregion
 
     private void Start()
