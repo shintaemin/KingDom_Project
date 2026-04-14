@@ -9,7 +9,20 @@ using UnityEngine;
 인게임 캔버스.
 판넬의 활성화의 경우 Phase 클래스들의 엔터에서 활성화.
 
-구독과 해체의 경우도 엔터에 exit에서 하는게 좋을 것 같다.
+특정 페이즈에서만 필요한 무언가가 있다면 
+이벤트의 구독과 해체의 경우도 enter exit에서 하는게 좋을 것 같다.
+
+
+
+
+첫방에만 스테이지 판넬이 나옴.
+
+적 사망등 이벤트 발생 시 스테이지 골 판넬의 메시지 변경
+// 적 사망시 이벤트 : EnemyState.OnDead
+
+모든 적 사망 시
+    다음 방이 있다면, GO 판넬 활성화.
+    없다면 종료 판넬 출력
 */
 #endregion
 
@@ -55,6 +68,8 @@ public class CInGameCanvas : MonoBehaviour
     #endregion
 
     #region 내부 변수
+    private Transform _playerTransform;
+
     private EGamePhase _currentGamePhase = EGamePhase.None;
     private IInGameCanvasPhaseFSM _fsm;
 
@@ -73,9 +88,7 @@ public class CInGameCanvas : MonoBehaviour
         get { return _missionType; }
         set
         {
-            _missionType = value;
-            _stagePanel.MissionType = _missionType;
-            _stageGoal.MissionType = _missionType;
+            SetMissionType(value);
         }
     }
 
@@ -88,21 +101,9 @@ public class CInGameCanvas : MonoBehaviour
         {
             return;
         }
-
         // 외부로부터 받아와야하는데...
         // 외부에서 받아오도록 만들고 다 함수로 만든다.
-        int level = 0;
-        // 미션 타입
-        MissionType = _missionType;
-        // 서브스테이지 수
-        _stagePanel.SetTextes(level/*, _missionType.Value*/); // 윗줄에서 타입을 지정해주면, 따로 해줄 필요는 없다. 불안하면 해줘도 된다. 단, 예외처리 필요.
-
-        // 미션 타입과 카운트
-
-
         MakePhaseDic();
-
-        ChangeGamePhase(EGamePhase.StandbyPhase);
     }
 
     private void MakePhaseDic()
@@ -146,16 +147,37 @@ public class CInGameCanvas : MonoBehaviour
             }
         }
 
-        if (_fsm.IsNull("_fsm"))
-        {
-            return;
-        }
-        _fsm.Update(this);
+        _fsm?.Update(this);
     }
 
-    //========================================================================================================================
-    // 외부 호출 함수
-    public bool ChangeGamePhase(EGamePhase phase)
+    // 이것들은 어디어디 필요하지?
+
+    private void SetPlayerTransform(Transform playerTransform)
+    {
+        _playerTransform = playerTransform;
+        _instancePanel.PlayerTransform = playerTransform;
+
+    }
+    private void SetLevel(int level)
+    {
+        _stagePanel.SetTextes(level);
+
+    }
+    private void SetMaxSubStage(int maxSubStage)
+    {
+        _stageGoal.MaxSubStage = maxSubStage;
+    }
+    private void SetCurrentSubStage(int currentSubStage)
+    {
+        _stageGoal.CurrentSubStage = currentSubStage;
+    }
+    private void SetMissionType(EMissionType? type)
+    {
+        _missionType = type;
+        _stagePanel.MissionType = _missionType;
+        _stageGoal.MissionType = _missionType.Value;
+    }
+    private bool ChangeGamePhase(EGamePhase phase)
     {
         if (phase == EGamePhase.None)
         {
@@ -165,10 +187,12 @@ public class CInGameCanvas : MonoBehaviour
         if (_currentGamePhase == phase)
             return false;
 
+
+        // _fsm?.Exit(this); 로 대체하고 로그는 다른 방식으로 찍기...
         if (_fsm != null)
         {
             Debug.Log($"{_currentGamePhase.ToString()} Exit");
-            _fsm.Exit(this);
+            _fsm.Exit(this); 
         }
 
         _currentGamePhase = phase;
@@ -178,6 +202,26 @@ public class CInGameCanvas : MonoBehaviour
         _fsm.Enter(this);
 
         return true;
+    }
+
+    //========================================================================================================================
+    // 외부 호출 함수
+    public void Init(Transform playerTransform, int level, int subStage, EMissionType type)
+    {
+        SetPlayerTransform(playerTransform);
+
+        SetLevel(level);
+        // 서브스테이지 수
+        SetMaxSubStage(subStage);
+        // 미션 타입
+        MissionType = type;
+    }
+
+    // 서브스테이지 마다 불러줘야 한다.
+    public void Standby(int currentSubStage)
+    {
+        SetCurrentSubStage(currentSubStage);
+        ChangeGamePhase(EGamePhase.StandbyPhase);   // 이건 어디로?
     }
 
     public void CallFullscreenImpact(Color color)

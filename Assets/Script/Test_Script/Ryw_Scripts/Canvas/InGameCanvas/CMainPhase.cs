@@ -4,7 +4,7 @@
 /*
 ▶ 작성자 류연우
 
-stageGoal 판넬을 보여줌.
+stageGoal 판넬업데이트.
 */
 #endregion
 
@@ -20,7 +20,7 @@ public class CMainPhase : IInGameCanvasPhaseFSM
     public void Enter(CInGameCanvas igc)
     {
         igc.StagePanel.gameObject.SetActive(false);
-        igc.StageGoal.gameObject.SetActive(true);
+        //igc.StageGoal.gameObject.SetActive(true);
     }
 
     public void Exit(CInGameCanvas igc)

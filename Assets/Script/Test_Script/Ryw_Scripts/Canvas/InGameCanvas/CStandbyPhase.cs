@@ -3,6 +3,7 @@
 #region CStandbyPhase
 /*
 스테이지 판넬을 보여줌.
+스테이지 골 판넬을 보여줌.
 */
 #endregion
 
@@ -17,7 +18,8 @@ public class CStandbyPhase : IInGameCanvasPhaseFSM
     #endregion
     public void Enter(CInGameCanvas igc)
     {
-        igc.StageGoal.gameObject.SetActive(false);
+        igc.StageGoal.gameObject.SetActive(true);
+        //if(igc.) 서브스테이지가 1인 경우. == 첫방인 경우에만 활성화한다.
         igc.StagePanel.gameObject.SetActive(true);
     }
 
