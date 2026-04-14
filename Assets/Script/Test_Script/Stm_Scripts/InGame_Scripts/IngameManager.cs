@@ -53,6 +53,11 @@ public class IngameManager : MonoBehaviour
     public MissionBase GetMission => _msManager.GetMission;
     #endregion
 
+    public void Start()
+    {
+        GameStart();
+    }
+
     private void Awake()
     {
         if (_msManager == null)

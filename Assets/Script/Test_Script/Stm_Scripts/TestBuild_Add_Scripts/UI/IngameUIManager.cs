@@ -47,7 +47,7 @@ public class IngameUIManager : MonoBehaviour
             _gm = FindFirstObjectByType<IngameManager>();
         }
 
-        _gm.OnGameEnd += SetGameEndUI;
+        _gm.MissionEnd += SetGameEndUI;
         _stagerPanel.SetActive(true);
     }
 
@@ -55,7 +55,7 @@ public class IngameUIManager : MonoBehaviour
     {
         if (_gm != null)
         {
-            _gm.OnGameEnd -= SetGameEndUI;
+            _gm.MissionEnd -= SetGameEndUI;
         }
     }
 
