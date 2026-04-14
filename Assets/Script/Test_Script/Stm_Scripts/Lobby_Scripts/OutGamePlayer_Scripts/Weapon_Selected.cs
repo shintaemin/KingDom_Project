@@ -15,9 +15,6 @@ public class Weapon_Selected : MonoBehaviour
     #region 인스펙터 
     [SerializeField] private List<Weapon_Object> _weapons = new List<Weapon_Object>();
     [SerializeField] private GameObject _currentWeapon;
-
-    [Header("테스트용 - 변경시 무기 변경 0 ~ 40")]
-    [SerializeField] private int _testId = 0;
     #endregion
 
     #region 내부 변수
@@ -27,14 +24,16 @@ public class Weapon_Selected : MonoBehaviour
     private void Awake()
     {
         InitListToDic();
-
-        // 여기서 플레이어 무기 데이터 확인하고 지정
-        SetCloth(_testId);
+        
     }
 
-    private void OnValidate()
+    private void Start()
     {
-        SetCloth(_testId);
+        if (CPlayerDataManager.Instance != null)
+        {
+            int id = CPlayerDataManager.Instance.CurrentWeaponID;
+            SetCloth(id);
+        }
     }
 
     private void InitListToDic()
