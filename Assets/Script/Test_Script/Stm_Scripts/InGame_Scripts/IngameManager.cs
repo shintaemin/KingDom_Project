@@ -21,7 +21,6 @@ public class IngameManager : MonoBehaviour
     [SerializeField] private SpawnManager _sm;
     [SerializeField] private Map_Registry_SO _mapSO;
     [SerializeField] private FadeSystem _fadeSystem;
-    //[SerializeField] private Player_Data_SO _playerData;
     [SerializeField] private Map_Stage _currentMap;
 
     [SerializeField] private int _mapIndex = 1;
@@ -40,10 +39,13 @@ public class IngameManager : MonoBehaviour
     // 게임 시작시 맵 데이터값 받아와서 맵지정
     public void GameStart()
     {
-        //int stateData = _playerData.GetStageData;
+        if (CPlayerDataManager.Instance != null)
+        {
+            int playerStage = CPlayerDataManager.Instance.CurrentStage;
 
-        _mapIndex = 1;
-        SetMap(1/*stateData*/, _mapIndex);
+            _mapIndex = 1;
+            SetMap(playerStage, _mapIndex);
+        }
     }
 
     public MissionBase GetMission => _msManager.GetMission;
@@ -214,8 +216,10 @@ public class IngameManager : MonoBehaviour
 
             else
             {
-                // 여기서 성공 UI 를 띄우고 씬전환 입력대기
-                // 여기서 플레이어 스테이지 레벨 ++
+                if (CPlayerDataManager.Instance != null)
+                {
+                    CPlayerDataManager.Instance.CurrentStage += 1;
+                }
 
                 MissionClear();
             }
