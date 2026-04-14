@@ -16,7 +16,7 @@ using UnityEngine.UI;
 public class CHPBar : MonoBehaviour
 {
     #region 인스펙터
-    [Header("일도양단")]
+    [Header("일정 시간 표시 관련")]
     [SerializeField] private bool _showOnlyOnChanged = false;
     [SerializeField] private Animator _animator;
     [SerializeField] private string _paramAnimation = "Animation";
@@ -24,6 +24,8 @@ public class CHPBar : MonoBehaviour
     [Header("그 외")]
     [SerializeField] private GameObject _hpSlierPrefab;
     [SerializeField] private Transform _spawnRoot;
+    [Header("mesh 마다, 화면 사이즈마다 다를 것")]// 그냥 position을 사용하면 안된다. UI 전용으로 해야하는데 지금화서 하기에는 너무 늦었고
+    [SerializeField] private Vector3 _UIOffset = new Vector3(0, 50f,0);
     #endregion
 
     #region 내부 변수
@@ -97,7 +99,9 @@ public class CHPBar : MonoBehaviour
     {
         if (CInGameCanvas.WorldToUI(position, out Vector3 UIPos))
         {
-            _hpSlider.transform.position = UIPos;
+            Vector3 pos = UIPos;
+            pos += _UIOffset;
+            _hpSlider.transform.position = pos;
         }
     }
 }
