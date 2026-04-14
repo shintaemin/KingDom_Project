@@ -2,7 +2,7 @@
 
 #region CStandbyPhase
 /*
-
+스테이지 판넬을 보여줌.
 */
 #endregion
 

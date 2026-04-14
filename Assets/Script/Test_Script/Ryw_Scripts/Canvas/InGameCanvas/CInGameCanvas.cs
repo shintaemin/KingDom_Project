@@ -7,6 +7,9 @@ using UnityEngine;
 ▶ 작성자 류연우
 
 인게임 캔버스.
+판넬의 활성화의 경우 Phase 클래스들의 엔터에서 활성화.
+
+구독과 해체의 경우도 엔터에 exit에서 하는게 좋을 것 같다.
 */
 #endregion
 
@@ -150,6 +153,8 @@ public class CInGameCanvas : MonoBehaviour
         _fsm.Update(this);
     }
 
+    //========================================================================================================================
+    // 외부 호출 함수
     public bool ChangeGamePhase(EGamePhase phase)
     {
         if (phase == EGamePhase.None)
@@ -190,6 +195,8 @@ public class CInGameCanvas : MonoBehaviour
         _instancePanel.SpawnNumber(number, color, position);
     }
 
+    //========================================================================================================================
+    // 유틸리티 함수
     public static bool WorldToUI(Vector3 worldPosition, out Vector3 UIPos)
     {
         Vector3 screenPos = Camera.main.WorldToScreenPoint(worldPosition);

@@ -3,6 +3,8 @@
 #region CMainPhase
 /*
 ▶ 작성자 류연우
+
+stageGoal 판넬을 보여줌.
 */
 #endregion
 
