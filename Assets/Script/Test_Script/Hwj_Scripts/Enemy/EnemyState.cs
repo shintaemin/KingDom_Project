@@ -174,8 +174,6 @@ public class EnemyState : MonoBehaviour
 
         _state = next;
 
-        Debug.Log($"현재 보스 상태 : [{_state}]");
-
         switch (_state)
         {
             case EState.Idle:
@@ -213,7 +211,8 @@ public class EnemyState : MonoBehaviour
                 DeadPosition = Vector3.zero;
                 IsNearDead = false;
                 IsOnHit = false;
-                SetState(EState.Idle);
+                _chaseTimer = 0f;
+                _stateRoutine = StartCoroutine(CoIdleToPatrol(2f));
                 break;
 
             case EState.Attack:
@@ -286,6 +285,7 @@ public class EnemyState : MonoBehaviour
 
             if (IsDetected)
             {
+                DeadPosition = Vector3.zero;
                 _chaseTimer = 0f;
             }
 
@@ -295,7 +295,6 @@ public class EnemyState : MonoBehaviour
 
                 if (_chaseTimer >= 5f)
                 {
-                    _chaseTimer = 0f;
                     return EState.ChaseFail;
                 }
             }
@@ -305,6 +304,8 @@ public class EnemyState : MonoBehaviour
 
         if (IsDetected || IsNearDead || IsOnHit)
         {
+            IsNearDead = false;
+
             return EState.Detect;
         }
 

@@ -23,6 +23,7 @@ public class EnemyEffectController : MonoBehaviour
 
     #region 인스펙터
     [SerializeField] private EEnemyType _enemyType;
+    [SerializeField] private Vector3 _yOffset = new Vector3(0, 2, 0);
     #endregion
 
     #region 내부 변수
@@ -115,19 +116,19 @@ public class EnemyEffectController : MonoBehaviour
         switch (state)
         {
             case EnemyState.EState.Detect:
-                // ! 파티클 재생
+                EffectManager.Instance.SpawnEffect(EffectManager.EEffectType.SurprisedMark, transform.position + _yOffset, transform.rotation, transform);
                 break;
 
             case EnemyState.EState.ChaseFail:
-                // ? 파티클 재생
+                EffectManager.Instance.SpawnEffect(EffectManager.EEffectType.QuestionMark, transform.position + _yOffset, transform.rotation, transform);
                 break;
 
             case EnemyState.EState.BossRoar:
-                // 보스 포효 파티클 재생
+                EffectManager.Instance.SpawnEffect(EffectManager.EEffectType.BossRoar, transform.position, transform.rotation);
                 break;
 
             case EnemyState.EState.BossJump:
-                // 보스 점프 파티클 재생 (있다면..? 착지까지 확인해야함)
+                EffectManager.Instance.SpawnEffect(EffectManager.EEffectType.BossJump, transform.position, transform.rotation);
                 break;
         }
     }
@@ -153,19 +154,11 @@ public class EnemyEffectController : MonoBehaviour
         switch (_enemyType)
         {
             case EEnemyType.Sword:
-                // 효과음만 재생
-                break;
-
-            case EEnemyType.Bow:
-                // 원형 파티클 + 효과음 (흰색)
-                break;
-
-            case EEnemyType.Zombie:
-                // 원형 파티클 + 효과음 (흰색)
+                SoundManager.Instance.SFXPlay(ESfxType.Fighter_Normal_Attack, true);
                 break;
 
             case EEnemyType.Boss:
-                // 확인필요
+                SoundManager.Instance.SFXPlay(ESfxType.Big_Monster_Attack, true);
                 break;
         }
     }

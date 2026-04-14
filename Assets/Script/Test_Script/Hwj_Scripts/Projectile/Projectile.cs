@@ -67,6 +67,7 @@ public class Projectile : MonoBehaviour
 
         _onHit = true;
 
+        // 플레이어 맞았을 경우
         if (other.CompareTag(_playerTag))
         {
             var playerHp = other.GetComponent<HpSystem>();
@@ -75,10 +76,21 @@ public class Projectile : MonoBehaviour
             {
                 playerHp.TakeDamage(_damage, transform.position);
 
+                if (_projectileType == ProjectileManager.EProjectileType.Arrow)
+                {
+                    SoundManager.Instance.SFXPlay(ESfxType.ArrowHit);
+                }
+
+                else
+                {
+                    EffectManager.Instance.SpawnEffect(EffectManager.EEffectType.ZombieSmoke, this.transform.position, this.transform.rotation);
+                }
+
                 ReturnToPool();
             }
         }
 
+        // 벽에 맞았을 경우
         else if (((1 << other.gameObject.layer) & _notTerrainLayer) != 0)
         {
             if (_projectileType == ProjectileManager.EProjectileType.Arrow)
@@ -86,11 +98,14 @@ public class Projectile : MonoBehaviour
                 _rb.velocity = Vector3.zero;
                 _rb.angularVelocity = Vector3.zero;
 
+                SoundManager.Instance.SFXPlay(ESfxType.ArrowHit);
                 //_rb.isKinematic = true; 테스트 후에 느낌이 없다면 적용
             }
 
             else
             {
+                EffectManager.Instance.SpawnEffect(EffectManager.EEffectType.ZombieSmoke, this.transform.position, this.transform.rotation);
+
                 ReturnToPool();
             }
         }

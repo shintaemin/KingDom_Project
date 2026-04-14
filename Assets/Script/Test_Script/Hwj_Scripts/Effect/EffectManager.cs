@@ -15,8 +15,14 @@ public class EffectManager : MonoBehaviour
     public enum EEffectType
     {
         None,
-        Player_Attack,
-        Enemy_Attack,
+        RangedAttack,
+        ZombieSmoke,
+        QuestionMark,
+        SurprisedMark,
+        BossJump,
+        BossJumpEnd,
+        BossRoar,
+
 
     }
 
@@ -108,7 +114,7 @@ public class EffectManager : MonoBehaviour
     }
 
     #region 외부 호출 함수
-    public GameObject SpawnEffect(EEffectType type, Vector3 position, Quaternion rotation)
+    public GameObject SpawnEffect(EEffectType type, Vector3 position, Quaternion rotation, Transform parent = null)
     {
         if (_poolRoot == null)
         {
@@ -119,20 +125,20 @@ public class EffectManager : MonoBehaviour
         {
             GameObject effect = _pools[type].Dequeue();
             effect.transform.SetPositionAndRotation(position, rotation);
-            effect.transform.SetParent(null);
+            effect.transform.SetParent(parent != null ? parent : _poolRoot);
             effect.SetActive(true);
 
             if (_infos.TryGetValue(type, out EffectInfo ei))
             {
                 if (SoundManager.Instance != null)
                 {
-                    SoundManager.Instance.SFXPlay(ei.sfxType);
+                    SoundManager.Instance.SFXPlay(ei.sfxType, true);
                 }
 
-                else
-                {
-                    Debug.LogWarning("사운드 매니저 인스턴스 = Null");
-                }
+                //else
+                //{
+                //    Debug.LogWarning("사운드 매니저 인스턴스 = Null");
+                //}
             }
 
             return effect;
@@ -142,18 +148,18 @@ public class EffectManager : MonoBehaviour
         {
             GameObject extra = Instantiate(info.prefab);
             extra.transform.SetPositionAndRotation(position, rotation);
-            extra.transform.SetParent(null);
+            extra.transform.SetParent(parent != null ? parent : _poolRoot);
             extra.SetActive(true);
 
             if (SoundManager.Instance != null)
             {
-                SoundManager.Instance.SFXPlay(info.sfxType);
+                SoundManager.Instance.SFXPlay(info.sfxType, true);
             }
 
-            else
-            {
-                Debug.LogWarning("사운드 매니저 인스턴스 = Null");
-            }
+            //else
+            //{
+            //    Debug.LogWarning("사운드 매니저 인스턴스 = Null");
+            //}
 
             return extra;
         }

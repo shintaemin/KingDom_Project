@@ -209,6 +209,7 @@ public class EnemyMover : MonoBehaviour
             _nav.Warp(center);
             _nav.enabled = true;
             _state.IsGrounded = true;
+            EffectManager.Instance.SpawnEffect(EffectManager.EEffectType.BossJumpEnd, transform.position, transform.rotation);
         }
     }
 }

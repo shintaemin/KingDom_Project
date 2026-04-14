@@ -107,6 +107,8 @@ public class EnemyRangedCombat : BaseCombat
         {
             projectileTrigger.SetProjectile(_speed, _status.AtkPower, _firePoint.forward);
         }
+
+        EffectManager.Instance.SpawnEffect(EffectManager.EEffectType.RangedAttack, _firePoint.position, _firePoint.rotation);
     }
 
     public void EndAttack()

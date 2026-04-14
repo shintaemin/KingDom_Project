@@ -36,11 +36,6 @@ public class PlayerEffectController : MonoBehaviour
             _playerState.OnDead += PlayerDead;
         }
 
-        if (_playerMover != null)
-        {
-            _playerMover.OnBackMove += BackMove;
-        }
-
         if (_pathRecorder != null)
         {
             _pathRecorder.OnClickEnemy += ClickEnemy;
@@ -64,11 +59,6 @@ public class PlayerEffectController : MonoBehaviour
             _playerState.OnDead -= PlayerDead;
         }
 
-        if (_playerMover != null)
-        {
-            _playerMover.OnBackMove -= BackMove;
-        }
-
         if (_pathRecorder != null)
         {
             _pathRecorder.OnClickEnemy -= ClickEnemy;
@@ -88,11 +78,6 @@ public class PlayerEffectController : MonoBehaviour
     private void PlayerDead()
     {
         // 플레이어 사망 시 이펙트 재생
-    }
-
-    private void BackMove()
-    {
-        // 백어택 이동 시 이펙트 재생 (잔상)
     }
 
     private void ClickEnemy()
