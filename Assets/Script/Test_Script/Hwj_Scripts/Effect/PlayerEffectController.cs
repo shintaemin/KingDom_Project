@@ -12,12 +12,18 @@ using UnityEngine;
 
 public class PlayerEffectController : MonoBehaviour
 {
+    #region 인스펙터
+    [Header("적 클릭시 파티클 쿨타임")]
+    [SerializeField] private float _clickCooldown = 1f;
+    #endregion
+
     #region 내부 변수
     private PlayerState _playerState;
     private PlayerMover _playerMover;
     private PlayerPathRecorder _pathRecorder;
     private HpSystem _hpSystem;
     private BaseCombat _combat;
+    private float _lastClick;
     #endregion
 
     void Awake()
@@ -77,12 +83,30 @@ public class PlayerEffectController : MonoBehaviour
 
     private void PlayerDead()
     {
-        // 플레이어 사망 시 이펙트 재생
+        EffectManager.Instance.SpawnEffect(EffectManager.EEffectType.DeadBlood, transform.position, transform.rotation);
     }
 
     private void ClickEnemy()
     {
-        // 적 클릭 시 이펙트 재생 (선택 이펙트)
+        if (Time.time - _lastClick < _clickCooldown)
+        {
+            return;
+        }
+
+        _lastClick = Time.time;
+
+        Transform enemy = _pathRecorder.GetEnemy();
+
+        if (enemy != null)
+        {
+            EffectManager.Instance.SpawnEffect
+                (
+                EffectManager.EEffectType.ClickEnemy,
+                enemy.position,
+                enemy.rotation,
+                enemy
+                );
+        }
     }
 
     private void Damaged()

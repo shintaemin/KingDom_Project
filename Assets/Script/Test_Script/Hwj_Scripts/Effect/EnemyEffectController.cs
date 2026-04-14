@@ -54,7 +54,7 @@ public class EnemyEffectController : MonoBehaviour
 
         if (_enemyState != null)
         {
-            _enemyState.OnDead += Dead;
+            _enemyState.OnDead += EnemyDead;
         }
 
         if (_hpSystem != null )
@@ -87,7 +87,7 @@ public class EnemyEffectController : MonoBehaviour
 
         if (_enemyState != null)
         {
-            _enemyState.OnDead -= Dead;
+            _enemyState.OnDead -= EnemyDead;
         }
 
         if (_hpSystem != null)
@@ -133,9 +133,10 @@ public class EnemyEffectController : MonoBehaviour
         }
     }
 
-    private void Dead()
+    private void EnemyDead()
     {
         // 적 죽었을때 이펙트들 (다이아 쏟아지기..?)
+        EffectManager.Instance.SpawnEffect(EffectManager.EEffectType.DeadBlood, transform.position, transform.rotation);
     }
 
     private void Damaged()

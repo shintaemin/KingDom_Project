@@ -22,6 +22,8 @@ public class EffectManager : MonoBehaviour
         BossJump,
         BossJumpEnd,
         BossRoar,
+        ClickEnemy,
+        DeadBlood,
 
 
     }
