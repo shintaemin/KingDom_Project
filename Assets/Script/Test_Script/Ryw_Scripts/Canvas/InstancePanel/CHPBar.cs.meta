@@ -3,7 +3,10 @@ guid: 4d44f42baba995e4e90ab8ced526f389
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - _animator: {fileID: 2076291815587264328, guid: f4c5312f8351bef46a1f9f8cc1f32d50, type: 3}
+  - _hpSlierPrefab: {fileID: 7488609981081227603, guid: f4c5312f8351bef46a1f9f8cc1f32d50, type: 3}
+  - _spawnRoot: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

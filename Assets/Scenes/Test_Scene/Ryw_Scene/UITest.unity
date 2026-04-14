@@ -228,6 +228,8 @@ GameObject:
   - component: {fileID: 731342966}
   - component: {fileID: 731342965}
   - component: {fileID: 731342964}
+  - component: {fileID: 731342969}
+  - component: {fileID: 731342970}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -321,6 +323,35 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &731342969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 731342963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f600597704ce014d907065076f30f0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &731342970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 731342963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d44f42baba995e4e90ab8ced526f389, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showOnlyOnChanged: 0
+  _animator: {fileID: 2076291815587264328, guid: f4c5312f8351bef46a1f9f8cc1f32d50, type: 3}
+  _paramAnimation: Animation
+  _hpSlierPrefab: {fileID: 7488609981081227603, guid: f4c5312f8351bef46a1f9f8cc1f32d50, type: 3}
+  _spawnRoot: {fileID: 1701109332}
 --- !u!1 &896252049
 GameObject:
   m_ObjectHideFlags: 0
@@ -688,6 +719,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d595531076e68340a2fdd1d10b53562, type: 3}
+--- !u!224 &1701109332 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1473575648055425165, guid: 0d595531076e68340a2fdd1d10b53562, type: 3}
+  m_PrefabInstance: {fileID: 1406040940}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

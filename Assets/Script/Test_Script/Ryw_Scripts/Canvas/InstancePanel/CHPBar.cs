@@ -1,5 +1,3 @@
-using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,26 +22,47 @@ public class CHPBar : MonoBehaviour
     [SerializeField] private string _paramAnimation = "Animation";
 
     [Header("그 외")]
-
-    [SerializeField] private Slider _hpSlider;
+    [SerializeField] private GameObject _hpSlierPrefab;
     [SerializeField] private Transform _spawnRoot;
-    [SerializeField] private IHPBar _target;
     #endregion
 
     #region 내부 변수
     private int _hashAnimation;
+    private Slider _hpSlider;
+    private IHPBar _target;
     #endregion
 
     void Awake()
     {
-        if (_hpSlider.IsNull("_hpSlider") ||
-            _spawnRoot.IsNull("_spawnRoot") ||
-            _target.IsNull("_target"))
+        if (_hpSlierPrefab.IsNull("_hpSlierPrefab") ||
+            _spawnRoot.IsNull("_spawnRoot"))
         {
             Debug.LogWarning("캔버스의 인스턴스 패널의 스폰 루트를 추가");
             return;
         }
+
+        _target = GetComponent<IHPBar>();
+        if(_target.IsNull("IHPBar"))
+        {
+            Debug.LogWarning("이 컴포넌트를 사용하는 오브젝트는 IHPBar를 상속받는 컴포넌트가 포함되어있어야 한다.");
+            return;
+        }
+
         _hashAnimation = Animator.StringToHash(_paramAnimation);
+
+        GameObject go = Instantiate(_hpSlierPrefab, _spawnRoot);
+        if (go.IsNull("gameObject"))
+        {
+            return;
+        }
+        else
+        {
+            Debug.Log("인스턴스 생성?");
+        }
+        if (go.TryGetComponent(out Slider prefab))
+        {
+            _hpSlider = prefab;
+        }
     }
 
     private void OnEnable()
@@ -78,7 +97,7 @@ public class CHPBar : MonoBehaviour
     {
         if (CInGameCanvas.WorldToUI(position, out Vector3 UIPos))
         {
-            this.transform.position = UIPos;
+            _hpSlider.transform.position = UIPos;
         }
     }
 }
