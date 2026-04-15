@@ -329,7 +329,7 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
             // 기본
             int result = _defaultHp;
             // 업그레이드
-            result += (CSOManager.Instance[CDataArraySO.EDataType.AbilityData][1] as CAbilityDataSO).Val * _currentUpgradeLevel[0];
+            result += (CSOManager.Instance[CDataArraySO.EDataType.AbilityData][1] as CAbilityDataSO).Val * _currentUpgradeLevel[1];
             // 재능
             var talentAtt = CSOManager.Instance[CDataArraySO.EDataType.TalentData][5] as CTalentDataSO;
             int talentAttLevel = _currentTalentLevel[5];
@@ -378,7 +378,7 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
             // 기본
             float result = _defaultMoveSpeed;
             // 업그레이드
-            result += (CSOManager.Instance[CDataArraySO.EDataType.AbilityData][2] as CAbilityDataSO).Val * _currentUpgradeLevel[0];
+            result += (CSOManager.Instance[CDataArraySO.EDataType.AbilityData][2] as CAbilityDataSO).Val * _currentUpgradeLevel[2];
             // 재능
             var talentAtt = CSOManager.Instance[CDataArraySO.EDataType.TalentData][7] as CTalentDataSO;
             int talentAttLevel = _currentTalentLevel[7];
