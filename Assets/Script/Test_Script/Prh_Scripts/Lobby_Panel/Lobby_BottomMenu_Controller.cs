@@ -8,10 +8,16 @@ using UnityEngine;
   - 하단 메뉴 버튼의 선택 상태 관리
   - 플레이어 레벨에 따라 버튼 잠금 상태 갱신
 
+※ 참고사항
+  - 버튼 잠금 여부는 각 버튼의 UpdateLockState()로 갱신
+  - 잠긴 버튼은 선택 불가
+
  ※ 동작 흐름
   1. 시작 시 플레이어 레벨 기준으로 버튼 잠금 상태 갱신
   2. 기본 선택 인덱스가 유효하면 해당 버튼 선택
   3. 불가능하면 선택 가능한 첫 번째 버튼 선택
+
+  - 박라희
 */
 #endregion
 
@@ -32,7 +38,6 @@ public class Lobby_BottomMenu_Controller : MonoBehaviour
     private int _currentSelectedIndex;
     #endregion
 
-    
     private void Start()
     {
         // 기본 선택 인덱스 설정

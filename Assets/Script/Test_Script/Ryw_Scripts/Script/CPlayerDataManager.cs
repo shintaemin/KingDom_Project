@@ -1,5 +1,7 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System; // 라희추가
 
 
 #region CPlayerDataManager
@@ -96,7 +98,7 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
     private CEquipmentDataSO _currentWeapon;
     private CEquipmentDataSO _currentClothes;
 
-
+    public event Action OnStatChanged; // 라희 추가
     #endregion
 
     #region 프로퍼티
@@ -228,6 +230,8 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
             int result = _defaultAttack;
             // 무기
             result += _currentWeapon.AdditionalAtt;
+            // 의상 (라희 추가)
+            result += _currentClothes.AdditionalAtt;
             // 업그레이드
             result += (CSOManager.Instance[CDataArraySO.EDataType.AbilityData][0] as CAbilityDataSO).Val * _currentUpgradeLevel[0];
             // 재능
@@ -243,6 +247,13 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
             {
                 ratio += 0.01f * (_currentWeapon.BonusAmount);
             }
+            // 의상 배율 (라희 추가)
+            if (_currentClothes.BonusType == CEquipmentDataSO.EBonusType.Attak)
+            {
+                ratio += 0.01f * _currentClothes.BonusAmount;
+            }
+
+
             ratio += 0.005f * _unLockedWeaponCount;
             return (int)(result * ratio);
         }
@@ -332,6 +343,12 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
             {
                 ratio += 0.01f * (_currentWeapon.BonusAmount);
             }
+            // 의상 배율 (라희 추가)
+            if (_currentClothes.BonusType == CEquipmentDataSO.EBonusType.Health)
+            {
+                ratio += 0.01f * _currentClothes.BonusAmount;
+            }
+
             ratio += 0.005f * _unLockedWeaponCount;
             ratio += 0.005f * _unLockedClothesCount;
             return (int)(result * ratio);
@@ -375,7 +392,15 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
             {
                 ratio += 0.01f * (_currentWeapon.BonusAmount);
             }
+
+            // 의상 배율 (라희 추가)
+            if (_currentClothes.BonusType == CEquipmentDataSO.EBonusType.MoveSpeed)
+            {
+                ratio += 0.01f * _currentClothes.BonusAmount;
+            }
+
             ratio += 0.005f * _unLockedClothesCount;
+            
             return (int)(result * ratio);
         }
     }
@@ -398,6 +423,10 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
     void Start()
     {
         CJsonManager.Instance.Add("playerData", this, typeof(PlayerSaveData));
+
+        // 저장된 무기,의상 ID로 실제 무기 데이터(SO) 가져와서 연결 (라희 추가)
+        _currentWeapon = CSOManager.Instance[CDataArraySO.EDataType.EquipmentData][_currentWeaponID] as CEquipmentDataSO;
+        _currentClothes = CSOManager.Instance[CDataArraySO.EDataType.EquipmentData][_currentClothesID] as CEquipmentDataSO;
     }
 
     void Update()
@@ -422,6 +451,8 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
         {
             _currentClothesID = id;
             _currentClothes = CSOManager.Instance[CDataArraySO.EDataType.EquipmentData][id] as CEquipmentDataSO;
+
+            OnStatChanged?.Invoke();  // 라희 추가
         }
     }
 
@@ -431,6 +462,8 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
         {
             _currentWeaponID = id;
             _currentWeapon = CSOManager.Instance[CDataArraySO.EDataType.EquipmentData][id] as CEquipmentDataSO;
+
+            OnStatChanged?.Invoke(); // 라희 추가
         }
     }
     public void UnLockEquipmentDic(int key)

@@ -5,8 +5,15 @@ using UnityEngine;
 #region 하단메뉴 패널 전환 관리
 /*
  ▶ 할일
-  - 하단 메뉴 버튼 클릭 시 해당 패널을 활성화
-  - 나머지 패널은 모두 비활성화
+  - 하단 메뉴 버튼 입력에 따라 해당 패널을 활성화
+  - 활성화된 패널을 제외한 나머지 패널은 모두 비활성화
+  - 초기 진입 시 기본 패널(Lobby) 표시
+
+ ※ 참고사항
+  - 모든 패널은 GameObject 활성/비활성으로 제어
+  - 패널 전환 시 항상 HideAllPanels() 호출 후 활성화
+
+  - 박라희
 */
 #endregion
 
@@ -27,6 +34,7 @@ public class BottomMenuPanel_Controller : MonoBehaviour
         ShowLobbyPanel();
     }
 
+    #region 내부 함수
     // 모든 패널 비활성화
     private void HideAllPanels()
     {
@@ -36,7 +44,9 @@ public class BottomMenuPanel_Controller : MonoBehaviour
         if (_upgradePanel != null) _upgradePanel.SetActive(false);
         if (_talentPanel != null) _talentPanel.SetActive(false);
     }
+    #endregion
 
+    #region 외부 호출 함수
     // 상점 활성화
     public void ShowShopPanel()
     {
@@ -71,4 +81,5 @@ public class BottomMenuPanel_Controller : MonoBehaviour
         HideAllPanels();
         _talentPanel.SetActive(true);
     }
+    #endregion
 }
