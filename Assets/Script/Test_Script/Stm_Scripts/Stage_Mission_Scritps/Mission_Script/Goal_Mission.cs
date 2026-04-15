@@ -17,12 +17,6 @@ public class Goal_Mission : MissionBase
         _targetCount = target;
         _currentCount = 0;
     }
-    private void ResetData()
-    {
-        // 구독 해제
-        _targetCount = 0;
-        _currentCount = 0;
-    }
 
     public override void StartMission()
     {
@@ -41,7 +35,6 @@ public class Goal_Mission : MissionBase
     public override void ClearMission()
     {
         base.ClearMission();
-        ResetData();
     }
 
     public override int GetTargetCount() => _targetCount;

@@ -91,29 +91,20 @@ public class SpawnManager : MonoBehaviour
     // Transform 체크 함수
     private void PosCheck(GameObject prefab, Transform[] pos)
     {
-        if (prefab == null)
-        {
-            return;
-        }
-
-        if (pos == null || pos.Length == 0)
+        if (prefab == null || pos == null || pos.Length == 0)
         {
             return;
         }
 
         for (int i = 0; i < pos.Length; i++)
         {
-            if (pos[i] == null)
+            if (pos[i] == null || prefab == null)
             {
                 continue;
             }
 
             Transform tr = pos[i];
-
-            if (prefab != null)
-            {
-                Spawn(prefab, tr);
-            }
+            Spawn(prefab, tr);
         }
     }
 

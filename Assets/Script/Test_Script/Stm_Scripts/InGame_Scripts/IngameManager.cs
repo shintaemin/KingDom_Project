@@ -187,7 +187,7 @@ public class IngameManager : MonoBehaviour
 
             if (go != null && _msManager.GetMission != null)
             {
-                go.OnDead -= _msManager.GetMission.CheckClear;
+                go.OnDead -= _msManager.KillEvent;
                 _enemys.RemoveAt(i);
             }
         }
@@ -224,15 +224,15 @@ public class IngameManager : MonoBehaviour
 
             else
             {
+                 // 여기서 성공 UI 띄우고 씬전환 입력 대기
+                MissionClear();
+
+                MissionEnd?.Invoke(EMissionAnswer.Success);
+
                 if (CPlayerDataManager.Instance != null)
                 {
                     CPlayerDataManager.Instance.CurrentStage += 1;
                 }
-                // 여기서 성공 UI 띄우고 씬전환 입력 대기
-
-                MissionClear();
-
-                MissionEnd?.Invoke(EMissionAnswer.Success);
             }
             
             return;
@@ -255,7 +255,7 @@ public class IngameManager : MonoBehaviour
         if (_msManager.GetMission is Kill_Mission && go.TryGetComponent<EnemyState>(out EnemyState eState))
         {
             _enemys.Add(eState);
-            eState.OnDead += _msManager.GetMission.CheckClear;
+            eState.OnDead += _msManager.KillEvent;
             Debug.Log($"[IngameManager] : {_enemys.Count} 구독 완료");
         }
 
@@ -269,15 +269,19 @@ public class IngameManager : MonoBehaviour
     {
         endCol.OnStageEnd -= ChaingedNextMap;
 
+        Debug.Log("다음맵 찾는중");
+
         // 다음 맵으로 이동 하기위해 인덱스 변경
         _mapIndex++;
         // 미션 클리어하여 해당 미션 구독 취소
         MissionClear();
 
-        // 데이터 다시확인하고 맵 재지정
-        //int stateData = _playerData.GetStageData;
-
-        _mapChanegeCo = StartCoroutine(CoChangeMap(1/*stateData*/, _mapIndex));
+        if (CPlayerDataManager.Instance != null)
+        {
+            int playerStage = CPlayerDataManager.Instance.CurrentStage;
+            _mapChanegeCo = StartCoroutine(CoChangeMap(playerStage, _mapIndex));
+            Destroy(_pState.gameObject);
+        }
     }
     #endregion
 }

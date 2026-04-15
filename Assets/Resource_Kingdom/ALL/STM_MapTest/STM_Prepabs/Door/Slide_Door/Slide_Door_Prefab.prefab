@@ -659,12 +659,12 @@ GameObject:
   - component: {fileID: 538635776987536018}
   - component: {fileID: 3455381153835731223}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1307027109715184305
 Transform:
   m_ObjectHideFlags: 0
@@ -1012,6 +1012,7 @@ MonoBehaviour:
   _anim: {fileID: 6516482852361434028}
   _col: {fileID: 5484866635431244351}
   _openingParam: tOpening
+  _light: {fileID: 4490228095354617083}
 --- !u!114 &5484866635431244351
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1027,6 +1028,7 @@ MonoBehaviour:
   _colTarget: Player
   _endPos: {fileID: 5548927665082180519}
   _col: {fileID: 6664315930094396442}
+  _playerCollision: 0
 --- !u!54 &-1910913359801832352
 Rigidbody:
   m_ObjectHideFlags: 0

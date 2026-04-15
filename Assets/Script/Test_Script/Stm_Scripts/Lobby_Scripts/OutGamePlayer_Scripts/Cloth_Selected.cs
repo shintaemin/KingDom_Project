@@ -36,6 +36,21 @@ public class Cloth_Selected : MonoBehaviour
             SetCloth(id);
         }
     }
+    private void OnEnable()
+    {
+        if (CPlayerDataManager.Instance != null)
+        {
+            CPlayerDataManager.Instance.OnStatChanged += ChangeCloth;
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (CPlayerDataManager.Instance != null)
+        {
+            CPlayerDataManager.Instance.OnStatChanged -= ChangeCloth;
+        }
+    }
 
     private void InitListToDic()
     {
@@ -60,9 +75,7 @@ public class Cloth_Selected : MonoBehaviour
         }
     }
 
-    #region 외부 호출 함수
-    // 외부에서 옷을 변경할 수 있도록 지정
-    public void SetCloth(int id)
+    private void SetCloth(int id)
     {
         if (!_clothDic.ContainsKey(id))
         {
@@ -76,6 +89,17 @@ public class Cloth_Selected : MonoBehaviour
         Cloth_Object obj = _clothDic[id];
         _currentCloth = obj.gameObject;
         _currentCloth.SetActive(true);
+    }
+
+    #region 외부 호출 함수
+    // 외부에서 옷을 변경할 수 있도록 지정
+    public void ChangeCloth()
+    {
+        if (CPlayerDataManager.Instance != null)
+        {
+            int id = CPlayerDataManager.Instance.CurrentClothesID;
+            SetCloth(id);
+        }
     }
 
     // 외부 확인할 가능성이 있어서 혹시몰라 작업

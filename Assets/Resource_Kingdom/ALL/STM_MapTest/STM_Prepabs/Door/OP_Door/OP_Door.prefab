@@ -267,7 +267,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3436143603724172608
 Transform:
   m_ObjectHideFlags: 0
@@ -1040,6 +1040,7 @@ MonoBehaviour:
   _anim: {fileID: 3249537787366930140}
   _col: {fileID: 2226748258184424104}
   _openingParam: tOpening
+  _light: {fileID: 423703944797239568}
 --- !u!114 &2226748258184424104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1055,6 +1056,7 @@ MonoBehaviour:
   _colTarget: Player
   _endPos: {fileID: 1418080533947784733}
   _col: {fileID: 1622621540675543667}
+  _playerCollision: 0
 --- !u!54 &8698119981496419525
 Rigidbody:
   m_ObjectHideFlags: 0

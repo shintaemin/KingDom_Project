@@ -121,6 +121,16 @@ public class MissionManager : MonoBehaviour
                 {
                     _gameUIManger.GetKillCountUI(0, killCount);
                 }
+
+                if (_currentMission == null)
+                {
+                    Debug.Log($"[MissionManager] : 킬 미션 지정 실패");
+                }
+                else
+                {
+                    Debug.Log($"[MissionManager] : 킬 미션 지정 성공");
+                }
+
                 // 구독진행
                 Subscription();
 
@@ -173,27 +183,28 @@ public class MissionManager : MonoBehaviour
 
     public void KillEvent()
     {
-        if (_currentMission is Kill_Mission)
+        if (_gameUIManger == null)
         {
+            _gameUIManger = FindAnyObjectByType<IngameUIManager>();
             if (_gameUIManger == null)
             {
-                _gameUIManger = FindAnyObjectByType<IngameUIManager>();
-                if (_gameUIManger == null)
-                {
-                    Debug.LogWarning("[MissionManager] : 인게임 UI 매니저 캐싱 실패");
-                    return;
-                }
+                Debug.LogWarning("[MissionManager] : 인게임 UI 매니저 캐싱 실패");
+                return;
             }
-
-            _currentMission.CheckClear();
-            int target = _currentMission.GetTargetCount();
-            int remain = _currentMission.GetRemainCount();
-            _gameUIManger.GetKillCountUI(remain, target);
-
-            if (remain >= target)
+            else
             {
-                _currentMission = null;
+                Debug.LogWarning("[MissionManager] : 인게임 UI 매니저 캐싱 성공");
             }
+        }
+
+        _currentMission.CheckClear();
+        int target = _currentMission.GetTargetCount();
+        int remain = _currentMission.GetRemainCount();
+        _gameUIManger.GetKillCountUI(remain, target);
+
+        if (remain >= target)
+        {
+            _currentMission = null;
         }
     }
 

@@ -32,7 +32,23 @@ public class Weapon_Selected : MonoBehaviour
         if (CPlayerDataManager.Instance != null)
         {
             int id = CPlayerDataManager.Instance.CurrentWeaponID;
-            SetCloth(id);
+            SetWeapon(id);
+        }
+    }
+
+    private void OnEnable()
+    {
+        if (CPlayerDataManager.Instance != null)
+        {
+            CPlayerDataManager.Instance.OnStatChanged += ChangeWeapon;
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (CPlayerDataManager.Instance != null)
+        {
+            CPlayerDataManager.Instance.OnStatChanged -= ChangeWeapon;
         }
     }
 
@@ -59,9 +75,8 @@ public class Weapon_Selected : MonoBehaviour
         }
     }
 
-    #region 외부 호출 함수
     // 외부에서 무기를 변경할 수 있도록 지정
-    public void SetCloth(int id)
+    private void SetWeapon(int id)
     {
         if (!_weaponDic.ContainsKey(id))
         {
@@ -75,6 +90,17 @@ public class Weapon_Selected : MonoBehaviour
         Weapon_Object obj = _weaponDic[id];
         _currentWeapon = obj.gameObject;
         _currentWeapon.SetActive(true);
+    }
+
+    #region 외부 호출 함수
+    // 외부에서 무기를 변경할 수 있도록 지정
+    public void ChangeWeapon()
+    {
+        if (CPlayerDataManager.Instance != null)
+        {
+            int id = CPlayerDataManager.Instance.CurrentWeaponID;
+            SetWeapon(id);
+        }
     }
 
     // 외부 확인할 가능성이 있어서 혹시몰라 작업

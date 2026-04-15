@@ -73,7 +73,7 @@ public class Loading_ZoomOut : MonoBehaviour
 
     #region 내부 코루틴
     // 위치 + 스케일 보간을 통한 줌아웃 연출
-    private IEnumerator CoZoomOut()
+    public IEnumerator CoZoomOut()
     {
         // 대상이 없으면 실행 중지
         if (_targetRect == null)

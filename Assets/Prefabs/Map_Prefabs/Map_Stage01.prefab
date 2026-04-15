@@ -362,16 +362,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stageNum: 1
   _subStageNum: 1
-  _missionType: 1
+  _missionType: 0
   _playerSpawnPos: {fileID: 6271290790308822406}
   _enemySpawnPos:
   - {fileID: 3609222817830533070}
   - {fileID: 4097993888832079080}
   - {fileID: 4996908639765966889}
+  _zombieSpawnPos: []
+  _bowEnemySpawnPos: []
   _bossSpawnPos: []
-  _boxSpawnPos: []
-  _keySpawnPos: []
-  _citizenSpawnPos: []
+  _shieldSpawnPos: []
+  _goalZombieSpawnPos: []
+  _goalBowEnemySpawnPos: []
   _leftDownPos: {fileID: 4074968847715080407}
   _rightUpPos: {fileID: 3290737096325381942}
 --- !u!114 &2766428507509820127

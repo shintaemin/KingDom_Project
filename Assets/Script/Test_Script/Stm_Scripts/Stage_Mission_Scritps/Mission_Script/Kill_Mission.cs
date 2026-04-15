@@ -28,14 +28,8 @@ public class Kill_Mission : MissionBase
 
     public Kill_Mission(int count)
     {
-        ResetData();
-        _targetKillCount = count;
-    }
-
-    private void ResetData()
-    {
-        _targetKillCount = 0;
         _remainKillCount = 0;
+        _targetKillCount = count;
     }
 
     #region 외부 호출 함수
@@ -60,7 +54,6 @@ public class Kill_Mission : MissionBase
     public override void ClearMission()
     {
         base.ClearMission();
-        ResetData();
     }
 
     public override int GetTargetCount()

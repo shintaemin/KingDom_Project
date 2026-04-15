@@ -36,7 +36,7 @@ public class Map_Stage : MonoBehaviour
     public int GetSubStageNum => _subStageNum;
 
     // 스폰위치를 검사해 총 적 수를 반환
-    public int GetEnemyCount => _enemySpawnPos.Length + _bossSpawnPos.Length;
+    public int GetEnemyCount => _enemySpawnPos.Length + _zombieSpawnPos.Length + _bowEnemySpawnPos.Length + _bossSpawnPos.Length + _shieldSpawnPos.Length;
 
     public Transform GetPlayerSpawnPos => _playerSpawnPos;
 

@@ -16,6 +16,7 @@ public class DoorOpenAnim : MonoBehaviour
     [SerializeField] private Animator _anim;
     [SerializeField] private Door_StageEnd_Col _col;
     [SerializeField] private string _openingParam = "tOpening";
+    [SerializeField] private GameObject _light;
     #endregion
 
     #region 내부 변수
@@ -53,6 +54,7 @@ public class DoorOpenAnim : MonoBehaviour
             return;
         }
 
+        _light.SetActive(true);
         _col.SetTrigger(true);
         _anim.SetTrigger(_openingTrigerHash);
     }
