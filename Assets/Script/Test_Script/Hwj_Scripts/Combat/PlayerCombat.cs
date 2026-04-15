@@ -13,6 +13,10 @@ using UnityEngine;
 
 public class PlayerCombat : BaseCombat
 {
+    #region 내부 변수
+    public event System.Action OnHit;
+    #endregion
+
     protected override void Update()
     {
         base.Update();
@@ -78,6 +82,7 @@ public class PlayerCombat : BaseCombat
             }
 
             enemyHP.TakeDamage(finalAtkPower, transform.position, isBackAttack);
+            OnHit?.Invoke();
         }
     }
     #endregion

@@ -24,6 +24,9 @@ public class EffectManager : MonoBehaviour
         BossRoar,
         ClickEnemy,
         DeadBlood,
+        DeadCircle,
+        PlayerDamaged,
+        PlayerHit,
 
 
     }

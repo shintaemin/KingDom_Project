@@ -137,6 +137,7 @@ public class EnemyEffectController : MonoBehaviour
     {
         // 적 죽었을때 이펙트들 (다이아 쏟아지기..?)
         EffectManager.Instance.SpawnEffect(EffectManager.EEffectType.DeadBlood, transform.position, transform.rotation);
+        EffectManager.Instance.SpawnEffect(EffectManager.EEffectType.DeadCircle, transform.position, transform.rotation);
     }
 
     private void Damaged()
@@ -168,12 +169,13 @@ public class EnemyEffectController : MonoBehaviour
     {
         if (backAtkDead)
         {
-            // 레그돌 처리
+            // 레그돌 + 뼈
+            EffectManager.Instance.SpawnEffect(EffectManager.EEffectType.PlayerDamaged, transform.position, transform.rotation);
         }
 
         else
         {
-            // 일반 사망 시 이펙트 처리
+            // 뼈
         }
     }
 }
