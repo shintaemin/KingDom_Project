@@ -104,8 +104,37 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
     #region 프로퍼티
     public static CPlayerDataManager Instance;
 
-    public int Gem => _gem;
-    public int Energy => _energy;
+    /// <summary>
+    /// set의 경우 그냥 TryUseGem를 호출해 사용하는걸 추천.
+    /// </summary>
+    public int Gem
+    {
+        get
+        {
+            return _gem;
+        }
+        set
+        {
+            // 양수인 경우
+            // 천천히 증가하는 코드
+            // 음수인 경우
+            TryUseGem(value);
+        }
+    }
+    /// <summary>
+    /// set의 경우 그냥 TryUseEnergy를 호출해 사용하는걸 추천.
+    /// </summary>
+    public int Energy
+    {
+        get
+        {
+            return _energy;
+        }
+        set
+        {
+            TryUseEnergy(value);
+        }
+    }
     public int CurrentWeaponID
     {
         get
@@ -214,7 +243,7 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
             }
             // 배율
             float ratio = 1f;
-            if(_currentWeapon.BonusType == CEquipmentDataSO.EBonusType.Attak)
+            if (_currentWeapon.BonusType == CEquipmentDataSO.EBonusType.Attak)
             {
                 ratio += 0.01f * (_currentWeapon.BonusAmount);
             }

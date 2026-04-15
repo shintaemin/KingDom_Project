@@ -1,0 +1,433 @@
+fileFormatVersion: 2
+guid: e941bd3c236616446bf9c230e363747c
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: 9
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 940
+        width: 43
+        height: 65
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 698193d443e0c814a9d7d731ead66a04
+      internalID: 156343158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 920
+        width: 47
+        height: 65
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97f44b87b12557a43abf176faa128a6a
+      internalID: -1855902357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 6
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 847
+        width: 43
+        height: 65
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 000e5a896a4aa9049b0a1815f5049c1e
+      internalID: -816751052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 8
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 754
+        width: 44
+        height: 65
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef5cf5020e0a60e45b01dadc6de0dcc2
+      internalID: -897021207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 754
+        width: 41
+        height: 65
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a0d90198049aff4f86e696c65fcd9c2
+      internalID: -1953466347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 7
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 617
+        width: 40
+        height: 65
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed6032acb8396174cbc11655124b7d07
+      internalID: -1960576528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 5
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 592
+        width: 39
+        height: 65
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: afb62be1f48672148accb504680c623f
+      internalID: 2116637499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 499
+        width: 40
+        height: 65
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71742b5d174495840a8582141e0aca7f
+      internalID: -1089347349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 0
+      rect:
+        serializedVersion: 2
+        x: 169
+        y: 223
+        width: 48
+        height: 65
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 537e5e8094513494d82b5884d801601c
+      internalID: -1009928292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 191
+        width: 35
+        height: 65
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78e3aeaf714b06540a5acf592993d2bb
+      internalID: -15285789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: c9d237a614b17da48ae34869a10dc1ea
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      '#': -135480752
+      0: -1009928292
+      1: -15285789
+      2: -1089347349
+      3: -1953466347
+      4: -1855902357
+      5: 2116637499
+      6: -816751052
+      7: -1960576528
+      8: -897021207
+      9: 156343158
+      C: 221054470
+      F: -51673774
+      I: 1801949433
+      LilitaOne-Regular Outline 72 SDF Atlas_13: 600487084
+      LilitaOne-Regular Outline 72 SDF Atlas_16: -1977798685
+      LilitaOne-Regular Outline 72 SDF Atlas_17: -1691798514
+      LilitaOne-Regular Outline 72 SDF Atlas_18: 912269137
+      LilitaOne-Regular Outline 72 SDF Atlas_19: 1393360591
+      LilitaOne-Regular Outline 72 SDF Atlas_2: -982780586
+      LilitaOne-Regular Outline 72 SDF Atlas_20: 1427086985
+      LilitaOne-Regular Outline 72 SDF Atlas_21: -2118351060
+      LilitaOne-Regular Outline 72 SDF Atlas_22: -2136207849
+      LilitaOne-Regular Outline 72 SDF Atlas_23: 677416958
+      LilitaOne-Regular Outline 72 SDF Atlas_24: -575193177
+      LilitaOne-Regular Outline 72 SDF Atlas_25: -331853706
+      LilitaOne-Regular Outline 72 SDF Atlas_26: -2143185783
+      LilitaOne-Regular Outline 72 SDF Atlas_27: -938379450
+      LilitaOne-Regular Outline 72 SDF Atlas_28: -832382471
+      LilitaOne-Regular Outline 72 SDF Atlas_31: 134795460
+      LilitaOne-Regular Outline 72 SDF Atlas_32: -892882612
+      LilitaOne-Regular Outline 72 SDF Atlas_33: -443255211
+      LilitaOne-Regular Outline 72 SDF Atlas_34: -119891526
+      LilitaOne-Regular Outline 72 SDF Atlas_35: 1464148330
+      LilitaOne-Regular Outline 72 SDF Atlas_36: -670895481
+      LilitaOne-Regular Outline 72 SDF Atlas_37: 1836170694
+      LilitaOne-Regular Outline 72 SDF Atlas_38: 698519368
+      LilitaOne-Regular Outline 72 SDF Atlas_40: 985760387
+      LilitaOne-Regular Outline 72 SDF Atlas_41: -1767944043
+      LilitaOne-Regular Outline 72 SDF Atlas_42: -827854771
+      LilitaOne-Regular Outline 72 SDF Atlas_43: -444329676
+      LilitaOne-Regular Outline 72 SDF Atlas_44: 1453409929
+      LilitaOne-Regular Outline 72 SDF Atlas_45: 1915958443
+      LilitaOne-Regular Outline 72 SDF Atlas_46: 1318413944
+      LilitaOne-Regular Outline 72 SDF Atlas_47: 1502202617
+      LilitaOne-Regular Outline 72 SDF Atlas_48: 2133475910
+      LilitaOne-Regular Outline 72 SDF Atlas_49: -2119335054
+      LilitaOne-Regular Outline 72 SDF Atlas_50: 1089578819
+      LilitaOne-Regular Outline 72 SDF Atlas_51: 315825301
+      LilitaOne-Regular Outline 72 SDF Atlas_52: 537935499
+      LilitaOne-Regular Outline 72 SDF Atlas_53: 1344264443
+      LilitaOne-Regular Outline 72 SDF Atlas_54: 79075054
+      LilitaOne-Regular Outline 72 SDF Atlas_55: -2129814717
+      LilitaOne-Regular Outline 72 SDF Atlas_56: -227099572
+      LilitaOne-Regular Outline 72 SDF Atlas_57: -900416332
+      LilitaOne-Regular Outline 72 SDF Atlas_58: 640252710
+      LilitaOne-Regular Outline 72 SDF Atlas_59: 1050044393
+      LilitaOne-Regular Outline 72 SDF Atlas_60: 1619201102
+      LilitaOne-Regular Outline 72 SDF Atlas_61: -1701644817
+      LilitaOne-Regular Outline 72 SDF Atlas_63: -401200800
+      LilitaOne-Regular Outline 72 SDF Atlas_64: 2024489168
+      LilitaOne-Regular Outline 72 SDF Atlas_65: -424512730
+      LilitaOne-Regular Outline 72 SDF Atlas_66: 1302397353
+      LilitaOne-Regular Outline 72 SDF Atlas_67: 735673269
+      LilitaOne-Regular Outline 72 SDF Atlas_69: -1023196093
+      LilitaOne-Regular Outline 72 SDF Atlas_70: 2140267387
+      LilitaOne-Regular Outline 72 SDF Atlas_71: 1257904288
+      LilitaOne-Regular Outline 72 SDF Atlas_72: 2000457986
+      LilitaOne-Regular Outline 72 SDF Atlas_73: 246617158
+      LilitaOne-Regular Outline 72 SDF Atlas_74: 220831455
+      LilitaOne-Regular Outline 72 SDF Atlas_75: -1764851552
+      LilitaOne-Regular Outline 72 SDF Atlas_76: 454551962
+      LilitaOne-Regular Outline 72 SDF Atlas_77: 1707560160
+      LilitaOne-Regular Outline 72 SDF Atlas_78: 612380224
+      LilitaOne-Regular Outline 72 SDF Atlas_79: -16891343
+      LilitaOne-Regular Outline 72 SDF Atlas_80: -209555163
+      LilitaOne-Regular Outline 72 SDF Atlas_81: 1909803762
+      LilitaOne-Regular Outline 72 SDF Atlas_82: -932278286
+      LilitaOne-Regular Outline 72 SDF Atlas_83: 1995422039
+      LilitaOne-Regular Outline 72 SDF Atlas_84: 1527878271
+      LilitaOne-Regular Outline 72 SDF Atlas_85: 291935779
+      LilitaOne-Regular Outline 72 SDF Atlas_86: 1383001379
+      LilitaOne-Regular Outline 72 SDF Atlas_87: 1328709434
+      LilitaOne-Regular Outline 72 SDF Atlas_88: -2129908372
+      LilitaOne-Regular Outline 72 SDF Atlas_89: 1024416206
+      LilitaOne-Regular Outline 72 SDF Atlas_90: 886819756
+      LilitaOne-Regular Outline 72 SDF Atlas_91: 1738050458
+      LilitaOne-Regular Outline 72 SDF Atlas_92: 303034180
+      LilitaOne-Regular Outline 72 SDF Atlas_93: -1849754805
+      LilitaOne-Regular Outline 72 SDF Atlas_94: -12589865
+      LilitaOne-Regular Outline 72 SDF Atlas_95: -208817411
+      S: 998776571
+      V: -1604605230
+      W: 1853201580
+      X: 1115184610
+      Y: 652656283
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

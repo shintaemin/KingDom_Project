@@ -24,5 +24,6 @@ public partial class CGSSLoader : MonoBehaviour
     public static readonly string SO_PATH = "Assets/Script/Test_Script/Ryw_Scripts/SO";
     public static readonly string Texture2D_PATH = "Texture2D";
     public static readonly string Sprite_PATH = "Sprite";
-    #endregion
+    public static readonly string Mesh_PATH = "Mesh";
+# endregion
 }

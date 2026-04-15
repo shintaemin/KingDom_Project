@@ -22,7 +22,7 @@ public static partial class Function
         {
             if (unityObj == null)
             {
-                Debug.Log($"[Unity Object] {varName} is null or destroyed.");
+                Debug.LogWarning($"[Unity Object] {varName} is null or destroyed.");
                 body?.Invoke();
                 return true;
             }
@@ -31,7 +31,7 @@ public static partial class Function
         {
             if (obj == null)
             {
-                Debug.Log($"{varName} == null");
+                Debug.LogWarning($"{varName} == null");
                 body?.Invoke();
                 return true;
             }
@@ -43,7 +43,7 @@ public static partial class Function
     {
         if (objArr == null || objArr.Count == 0)
         {
-            Debug.Log($"{varName} == null || obj.Length == 0");
+            Debug.LogWarning($"{varName} == null || obj.Length == 0");
             body?.Invoke();
             return true;
         }
@@ -170,6 +170,14 @@ public static partial class Function
                     }
 
                     result = _spriteArr;
+                }
+                else if (type == typeof(Mesh))
+                {
+                    path = CGSSLoader.Mesh_PATH + "/" + data.Trim().Replace("\r", "");
+                    Mesh _mesh = Resources.Load<Mesh>(path);
+                    if (_mesh == null)
+                        Debug.Log($"Mesh == null. {path}");
+                    result = _mesh;
                 }
                 else
                     result = null;
