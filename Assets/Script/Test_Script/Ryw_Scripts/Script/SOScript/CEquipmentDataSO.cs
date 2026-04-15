@@ -105,7 +105,7 @@ public class CEquipmentDataSO : ScriptableObject, ICSVData
         _additionalHealthRatio = float.Parse(dataArr[4]);
         _additionalSpeedRatio = float.Parse(dataArr[5]);
         _image = _image.ParseData(dataArr[6]);
-        _objectName = _objectName.ParseData(dataArr[7]);
+        _objectName = dataArr[7];
 
         bonuses = null;
         maxBonus = null;
