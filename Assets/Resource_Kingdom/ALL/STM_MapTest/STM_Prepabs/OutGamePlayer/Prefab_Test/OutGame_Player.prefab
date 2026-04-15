@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3588119467438896685}
   - component: {fileID: 1167458911464903153}
   - component: {fileID: 2801759608015202795}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: 02_Cloth_09
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,7 +149,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5798308403057478980}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: LeftUpLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -182,7 +182,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2926376397190402584}
   - component: {fileID: 4512772691429468995}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ShortSword14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -227,7 +227,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7003959700096674308}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: RightUpLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -261,7 +261,7 @@ GameObject:
   - component: {fileID: 2190194510110551791}
   - component: {fileID: 7180740780630692032}
   - component: {fileID: 7667227130631109830}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: 02_Cloth_07
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -401,7 +401,7 @@ GameObject:
   - component: {fileID: 3598458511284994117}
   - component: {fileID: 5643038290811713346}
   - component: {fileID: 6545435994067280364}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Spear12_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -484,7 +484,7 @@ GameObject:
   - component: {fileID: 3482320070374380135}
   - component: {fileID: 7328311801714077694}
   - component: {fileID: 2124503588681698019}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: 02_Cloth_08
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -622,7 +622,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 366647658184279943}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: RightHandIndex1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -655,7 +655,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2432967472219524347}
   - component: {fileID: 6422228804495883675}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Spear01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -702,7 +702,7 @@ GameObject:
   - component: {fileID: 3082346403748380658}
   - component: {fileID: 1547391168587548269}
   - component: {fileID: 6622802919375857866}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Spear11_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -783,7 +783,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6305631782258471820}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: RightLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -817,7 +817,7 @@ GameObject:
   - component: {fileID: 7810849206383960029}
   - component: {fileID: 2534934984400717298}
   - component: {fileID: 5251754904577442612}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: 02_Cloth_16
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -957,7 +957,7 @@ GameObject:
   - component: {fileID: 3026306016431578358}
   - component: {fileID: 113127434867130699}
   - component: {fileID: 3241372239629118501}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ShortSword05_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1039,7 +1039,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2374412605163001557}
   - component: {fileID: 7767710399655322858}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sword08
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1086,7 +1086,7 @@ GameObject:
   - component: {fileID: 1368431519426116879}
   - component: {fileID: 6674685155222393133}
   - component: {fileID: 2283681342271225320}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sword14_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1169,7 +1169,7 @@ GameObject:
   - component: {fileID: 6604936030178911555}
   - component: {fileID: 2513141064471692836}
   - component: {fileID: 3630890673050516710}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Spear06_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1251,7 +1251,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3636482679827958247}
   - component: {fileID: 2595252368428182942}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sword13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1296,7 +1296,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7079529715498991286}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: WaveBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1328,7 +1328,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5380953818502530230}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: RightToeBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1359,7 +1359,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8469199183910682671}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: RightForeArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1391,7 +1391,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7324290695769710588}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: cloth_left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1425,7 +1425,7 @@ GameObject:
   - component: {fileID: 8363145743984939319}
   - component: {fileID: 4267737283350451836}
   - component: {fileID: 3038668571987508204}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sword10_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1508,7 +1508,7 @@ GameObject:
   - component: {fileID: 6672116980583708277}
   - component: {fileID: 8031708345368595489}
   - component: {fileID: 3260743890944052745}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sword04_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1591,7 +1591,7 @@ GameObject:
   - component: {fileID: 4643734801643948462}
   - component: {fileID: 6124803820527978200}
   - component: {fileID: 565276065002892538}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: 02_Cloth_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1731,7 +1731,7 @@ GameObject:
   - component: {fileID: 6373575276986809412}
   - component: {fileID: 8369681057775107454}
   - component: {fileID: 2258378054663152082}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sword11_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1813,7 +1813,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6709324752526765264}
   - component: {fileID: 2011933868195657149}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ShortSword03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1859,7 +1859,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4299255792674724645}
   - component: {fileID: 5675862991262334846}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sword03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1904,7 +1904,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4771407080090178073}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: SuTickman_bone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1938,7 +1938,7 @@ GameObject:
   - component: {fileID: 9071063294239474100}
   - component: {fileID: 3840790698222203819}
   - component: {fileID: 144273806495553174}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ShortSword09_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2019,7 +2019,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8258352233941330275}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: RightHandThumb3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2050,7 +2050,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6747206431590571574}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Spine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2083,7 +2083,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8165618591857316951}
   - component: {fileID: 7808935172545245440}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ShortSword01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2130,7 +2130,7 @@ GameObject:
   - component: {fileID: 7771307785402720557}
   - component: {fileID: 8571354989740972675}
   - component: {fileID: 2155373848285681345}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ShortSword13_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2213,10 +2213,9 @@ GameObject:
   - component: {fileID: 8103485339232269160}
   - component: {fileID: 6898211086454741790}
   - component: {fileID: 4513969480480639731}
-  - component: {fileID: 1231510430278688863}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: OutGame_Player
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2276,21 +2275,8 @@ MonoBehaviour:
   _tHit02_Param: tHit02
   _tDeadParam: tDead
   _tUpgradeParam: tUpgrade
+  _baseAnim: HumanE_Idle
   testType: 0
---- !u!114 &1231510430278688863
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1432843888833151094}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf34a45f8c6204144999970c2bbd79db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _ig: {fileID: 6316440735064542609, guid: af81946be0ef7fd4d99df8fb03fbc869, type: 3}
-  _anim: {fileID: 4513969480480639731}
 --- !u!1 &1460115080904219585
 GameObject:
   m_ObjectHideFlags: 0
@@ -2302,7 +2288,7 @@ GameObject:
   - component: {fileID: 8924564549158058590}
   - component: {fileID: 4694625950375645211}
   - component: {fileID: 1543380712664315565}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Spear09_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2385,7 +2371,7 @@ GameObject:
   - component: {fileID: 2173164910823954719}
   - component: {fileID: 6630023766094800010}
   - component: {fileID: 4433300001089737170}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sword12_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2468,7 +2454,7 @@ GameObject:
   - component: {fileID: 2485307439190776988}
   - component: {fileID: 1922539706714262146}
   - component: {fileID: 1429143961762911942}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Spear08_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2550,7 +2536,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4506882577657445154}
   - component: {fileID: 8204656803553418022}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Spear09
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2597,7 +2583,7 @@ GameObject:
   - component: {fileID: 6443914508622431955}
   - component: {fileID: 6766247298181879898}
   - component: {fileID: 4385386873361454326}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: 02_Cloth_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2737,7 +2723,7 @@ GameObject:
   - component: {fileID: 5591566472998924843}
   - component: {fileID: 1963339752310710685}
   - component: {fileID: 4116223718911883851}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: 02_Cloth_15
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2876,7 +2862,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1123412397795123839}
   - component: {fileID: 6207026333719508653}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: WeaponPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3003,7 +2989,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5866320436274111073}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: LeftHandThumb2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3035,7 +3021,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1426229975746916570}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: RightHandIndex2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3068,7 +3054,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7133665238347585021}
   - component: {fileID: 1510104780791675826}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ShortSword05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3115,7 +3101,7 @@ GameObject:
   - component: {fileID: 1170744303757681229}
   - component: {fileID: 7901824997147923438}
   - component: {fileID: 5338415802071454822}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sword10_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3196,7 +3182,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 586146137286377924}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: RightHandThumb1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3229,7 +3215,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7069885002416350006}
   - component: {fileID: 8878924687735530003}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sword09
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3276,7 +3262,7 @@ GameObject:
   - component: {fileID: 4114473909024273554}
   - component: {fileID: 3154166178392469548}
   - component: {fileID: 8372003059232562143}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Spear03_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3357,7 +3343,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3443007291422497881}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: cloth_left_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3390,7 +3376,7 @@ GameObject:
   - component: {fileID: 9162870362829598835}
   - component: {fileID: 1551040527926771570}
   - component: {fileID: 4909212186692144294}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ShortSword07_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3473,7 +3459,7 @@ GameObject:
   - component: {fileID: 8126762526250577635}
   - component: {fileID: 8975242919960945970}
   - component: {fileID: 3539743285482486069}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sword07_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3554,7 +3540,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2790191438482744490}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: LeftLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3586,7 +3572,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5395626494248837044}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: LeftArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3619,7 +3605,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7277049612273071248}
   - component: {fileID: 1786552557569339385}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sword02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3664,7 +3650,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5559155686397893315}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Hips
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3703,7 +3689,7 @@ GameObject:
   - component: {fileID: 2267910627537068890}
   - component: {fileID: 2307230888081153541}
   - component: {fileID: 7829773270387112818}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: 02_Cloth_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3841,7 +3827,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2520352168874761417}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: cloth_back_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3874,7 +3860,7 @@ GameObject:
   - component: {fileID: 2135668935153986540}
   - component: {fileID: 4447215230180411476}
   - component: {fileID: 352807272310786275}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: 02_Cloth_05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4014,7 +4000,7 @@ GameObject:
   - component: {fileID: 2289213650559841215}
   - component: {fileID: 3496244219065018815}
   - component: {fileID: 6756313339845929699}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Spear07_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4097,7 +4083,7 @@ GameObject:
   - component: {fileID: 6279159453332366772}
   - component: {fileID: 6186651373202485829}
   - component: {fileID: 4560997569976335751}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ShortSword12_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4178,7 +4164,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3660292368411545221}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Spine1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4212,7 +4198,7 @@ GameObject:
   - component: {fileID: 610304700704175011}
   - component: {fileID: 6437203749908089738}
   - component: {fileID: 2684996331837365968}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ShortSword10_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4294,7 +4280,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7349848332813001530}
   - component: {fileID: 8633176594497545384}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ShortSword09
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4340,7 +4326,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2341361444447947510}
   - component: {fileID: 2774340712333269452}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Spear13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4385,7 +4371,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 715136612190757922}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4418,7 +4404,7 @@ GameObject:
   - component: {fileID: 3819993645252469762}
   - component: {fileID: 4542437021464205100}
   - component: {fileID: 6441883073553461340}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: 02_Cloth_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4557,7 +4543,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1254348168766138161}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: RightFoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4590,7 +4576,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4898840536243655383}
   - component: {fileID: 3547667631033515454}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ShortSword02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4637,7 +4623,7 @@ GameObject:
   - component: {fileID: 7055210672568116939}
   - component: {fileID: 6269098766971787343}
   - component: {fileID: 2582077059054983720}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: 02_Cloth_13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4777,7 +4763,7 @@ GameObject:
   - component: {fileID: 3338087260335838148}
   - component: {fileID: 1003142677597652690}
   - component: {fileID: 8789995079248671804}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Spear04_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4859,7 +4845,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5440053710110402022}
   - component: {fileID: 2702815295803330097}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sword05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4904,7 +4890,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9110204668050290281}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: LeftHandThumb1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4936,7 +4922,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8072215697830005155}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: LeftHandThumb3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4969,7 +4955,7 @@ GameObject:
   - component: {fileID: 6085622706940566256}
   - component: {fileID: 2506761221936958223}
   - component: {fileID: 4398270249572958198}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sword09_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5050,7 +5036,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4017887936740174188}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: LeftFoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5083,7 +5069,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1768731044915570205}
   - component: {fileID: 948914549462274153}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Spear11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5129,7 +5115,7 @@ GameObject:
   m_Component:
   - component: {fileID: 989179902274657863}
   - component: {fileID: 6224846544408469673}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Spear08
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5175,7 +5161,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3038894608463566680}
   - component: {fileID: 8688105652881062698}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sword07
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5220,7 +5206,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7312481771956886064}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Neck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5252,7 +5238,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4232890254015623500}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: LeftShoulder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5286,7 +5272,7 @@ GameObject:
   - component: {fileID: 1760153663246447023}
   - component: {fileID: 3719989574900105341}
   - component: {fileID: 7935095926277549718}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Spear13_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5369,7 +5355,7 @@ GameObject:
   - component: {fileID: 8415004872224343252}
   - component: {fileID: 5420971955633473600}
   - component: {fileID: 2039459783955579175}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sword01_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5452,7 +5438,7 @@ GameObject:
   - component: {fileID: 1474072076176371104}
   - component: {fileID: 8648342357228980271}
   - component: {fileID: 2448779275701771252}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Spear10_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5535,7 +5521,7 @@ GameObject:
   - component: {fileID: 5269079396985243931}
   - component: {fileID: 5572703923198747294}
   - component: {fileID: 7042246764777415010}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sword05_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5618,7 +5604,7 @@ GameObject:
   - component: {fileID: 7280672386839464642}
   - component: {fileID: 5139679827998306912}
   - component: {fileID: 3714867023879462537}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ShortSword04_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5700,7 +5686,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5251248105243111921}
   - component: {fileID: 8589412641386296369}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sword10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5748,7 +5734,7 @@ GameObject:
   - component: {fileID: 6786239818897628781}
   - component: {fileID: 1104795300101788576}
   - component: {fileID: 7386172575568391193}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ShortSword06_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5830,7 +5816,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8554590639671991560}
   - component: {fileID: 7706311470266698526}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ShortSword04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5877,7 +5863,7 @@ GameObject:
   - component: {fileID: 4852968378169380446}
   - component: {fileID: 4551461677929440142}
   - component: {fileID: 230350700939931451}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: 02_Cloth_14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6016,7 +6002,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6876957122780611060}
   - component: {fileID: 177132095212032653}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sword01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6063,7 +6049,7 @@ GameObject:
   - component: {fileID: 8154352759081282923}
   - component: {fileID: 1970818619161445958}
   - component: {fileID: 4500932216003677136}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ShortSword08_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6146,7 +6132,7 @@ GameObject:
   - component: {fileID: 7807297275585046943}
   - component: {fileID: 3174230544298499758}
   - component: {fileID: 1754912587238028022}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Spear02_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6229,7 +6215,7 @@ GameObject:
   - component: {fileID: 258601468524620139}
   - component: {fileID: 1471278648812894252}
   - component: {fileID: 8853653457864377960}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: 02_Cloth_06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6367,7 +6353,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8796936080345980391}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: LeftHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6401,7 +6387,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8840791567672816178}
   - component: {fileID: 5305574254396261273}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Spear10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6447,7 +6433,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5659226152940485983}
   - component: {fileID: 2081893403421986368}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ShortSword07
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6493,7 +6479,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2214835011440173256}
   - component: {fileID: 5203250335394242390}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Spear07
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6539,7 +6525,7 @@ GameObject:
   m_Component:
   - component: {fileID: 275065832763521137}
   - component: {fileID: 6968555295062746157}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ShortSword06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6585,7 +6571,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3335429782729480880}
   - component: {fileID: 7679539320100701900}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ShortSword11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6630,7 +6616,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4369044277335890740}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: cloth_right_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6662,7 +6648,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8092915502965712996}
   - component: {fileID: 5439735975833843370}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Spear05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6709,7 +6695,7 @@ GameObject:
   - component: {fileID: 592824984385367173}
   - component: {fileID: 6814663078996619005}
   - component: {fileID: 3344556534865289534}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Spear05_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6790,7 +6776,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6992871203761589451}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: LeftToeBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6822,7 +6808,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2360150024543271050}
   - component: {fileID: 3050014563322988690}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sword12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6868,7 +6854,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7119884702048082626}
   - component: {fileID: 1331528193982178187}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Spear12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6915,7 +6901,7 @@ GameObject:
   - component: {fileID: 8670719520033415511}
   - component: {fileID: 1020977525727051537}
   - component: {fileID: 2647529791586553352}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sword08_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6996,7 +6982,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8601483963556412959}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Spine2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7030,7 +7016,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3792663313643413097}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: cloth_right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7064,7 +7050,7 @@ GameObject:
   - component: {fileID: 4487040265974011564}
   - component: {fileID: 5521799492319137681}
   - component: {fileID: 8869187147745289024}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ShortSword02_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7146,7 +7132,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5303708972884548676}
   - component: {fileID: 6783135481937843365}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sword11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7192,7 +7178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2464870467869129405}
   - component: {fileID: 7569714796248782336}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ShortSword08
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7238,7 +7224,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1742226101799632943}
   - component: {fileID: 8739530411184962649}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ShortSword13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7283,7 +7269,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4250839865712969631}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: RightShoulder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7316,7 +7302,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5572132923243046213}
   - component: {fileID: 5156088210953111887}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ShortSword10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7361,7 +7347,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5097747554731784215}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: EnemyUnit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7394,7 +7380,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6239667578701569619}
   - component: {fileID: 319310063179481010}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Spear02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7441,7 +7427,7 @@ GameObject:
   - component: {fileID: 5109430323678679962}
   - component: {fileID: 7124017794797373335}
   - component: {fileID: 1488409372419081149}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sword06_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7524,7 +7510,7 @@ GameObject:
   - component: {fileID: 6770666978162069530}
   - component: {fileID: 5262531584798104283}
   - component: {fileID: 5718947887727710396}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: 02_Cloth_10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7664,7 +7650,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8210520963981285903}
   - component: {fileID: 5445328728686529676}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sword04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7709,7 +7695,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6479424506350661684}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: LeftForeArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7743,7 +7729,7 @@ GameObject:
   - component: {fileID: 7571785191769882487}
   - component: {fileID: 4295100510876558547}
   - component: {fileID: 5417564295835150867}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sword03_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7826,7 +7812,7 @@ GameObject:
   - component: {fileID: 287604871382088000}
   - component: {fileID: 3714394212509348628}
   - component: {fileID: 2686995435574337868}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sword02_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7907,7 +7893,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7854050457907789629}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: RightHandThumb2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7939,7 +7925,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4594559495620260477}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: cloth_back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7972,7 +7958,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7485127649755855067}
   - component: {fileID: 5253155724088024931}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8049,7 +8035,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7904489904824912250}
   - component: {fileID: 758879715721233240}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Spear04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8096,7 +8082,7 @@ GameObject:
   - component: {fileID: 2213178350118115303}
   - component: {fileID: 1747262208141690390}
   - component: {fileID: 2707225522349869886}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ShortSword14_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8177,7 +8163,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7716451458421565452}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: LeftHandIndex3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8210,7 +8196,7 @@ GameObject:
   - component: {fileID: 7957218995185376990}
   - component: {fileID: 5881413165648288933}
   - component: {fileID: 8137920694103860780}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: 02_Cloth_CPI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8350,7 +8336,7 @@ GameObject:
   - component: {fileID: 4659434050967268586}
   - component: {fileID: 5179289143980560102}
   - component: {fileID: 202442659650220041}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ShortSword11_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8432,7 +8418,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2313856220633042163}
   - component: {fileID: 6224166703022758629}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sword14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8477,7 +8463,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9090688080259780059}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: RightHandIndex3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8508,7 +8494,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2540554040618119032}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: RightArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8541,7 +8527,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9176108718254610951}
   - component: {fileID: 4978644609395975069}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Spear06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8588,7 +8574,7 @@ GameObject:
   - component: {fileID: 2065216746697061235}
   - component: {fileID: 1045154447810371448}
   - component: {fileID: 1848954090425364191}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sword13_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8671,7 +8657,7 @@ GameObject:
   - component: {fileID: 5798303420921030300}
   - component: {fileID: 1288305374109254364}
   - component: {fileID: 1705129229182946128}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Spear01_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8752,7 +8738,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1637499610943408983}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: GameObject (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8786,7 +8772,7 @@ GameObject:
   - component: {fileID: 2682241916844301715}
   - component: {fileID: 7563844072131130776}
   - component: {fileID: 2549732182094372947}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ShortSword01_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8869,7 +8855,7 @@ GameObject:
   - component: {fileID: 2137480167729841386}
   - component: {fileID: 6938473801825049573}
   - component: {fileID: 1301381829411677407}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ShortSword03_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8951,7 +8937,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5794962733075326878}
   - component: {fileID: 5928550511346659441}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Spear03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8997,7 +8983,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8412280468080581733}
   - component: {fileID: 7697037524430723133}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ShortSword12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9042,7 +9028,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3341631947306952273}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: RightHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9076,7 +9062,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6558529138768868684}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: LeftHandIndex2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9108,7 +9094,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1879141574930059790}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: LeftHandIndex1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9141,7 +9127,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7889966845100838774}
   - component: {fileID: 4144222996879815691}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sword06
   m_TagString: Untagged
   m_Icon: {fileID: 0}

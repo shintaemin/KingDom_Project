@@ -23754,7 +23754,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stageNum: 18
   _subStageNum: 1
-  _missionType: 2
+  _missionType: 1
   _playerSpawnPos: {fileID: 671500121279424431}
   _enemySpawnPos: []
   _zombieSpawnPos: []

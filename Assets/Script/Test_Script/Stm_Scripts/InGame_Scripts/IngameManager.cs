@@ -252,7 +252,7 @@ public class IngameManager : MonoBehaviour
             return;
         }
 
-        if (go.TryGetComponent<EnemyState>(out EnemyState eState))
+        if (_msManager.GetMission is Kill_Mission && go.TryGetComponent<EnemyState>(out EnemyState eState))
         {
             _enemys.Add(eState);
             eState.OnDead += _msManager.GetMission.CheckClear;

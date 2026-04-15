@@ -30,6 +30,7 @@ public class OutGame_Anim : MonoBehaviour
     [SerializeField] private string _tHit02_Param = "tHit02";
     [SerializeField] private string _tDeadParam = "tDead";
     [SerializeField] private string _tUpgradeParam = "tUpgrade";
+    [SerializeField] private string _baseAnim = "HumanE_Idle";
 
     [Header("테스트용 - 변경시 애니메이션 재생 (Hit, Dead(1Way), Walk(1Way)")]
     [SerializeField] private EOutGameAnimType testType = EOutGameAnimType.None;
@@ -41,6 +42,7 @@ public class OutGame_Anim : MonoBehaviour
     private int _hit02_Hash;
     private int _deadHash;
     private int _upgradeHash;
+    private int _baseAnimHash;
     #endregion
 
     // 테스트용 빌드시 반드시 삭제
@@ -65,6 +67,7 @@ public class OutGame_Anim : MonoBehaviour
         _hit02_Hash = Animator.StringToHash(_tHit02_Param);
         _deadHash = Animator.StringToHash(_tDeadParam);
         _upgradeHash = Animator.StringToHash(_tUpgradeParam);
+        _baseAnimHash = Animator.StringToHash(_baseAnim);
     }
 
     #region 외부 호출 함수
@@ -74,7 +77,7 @@ public class OutGame_Anim : MonoBehaviour
         {
             return;
         }
-        _anim.Play("HumanE_Idle");
+        _anim.Play(_baseAnimHash);
         int current = 0;
 
         switch(type)

@@ -583,6 +583,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5295100792941380084, guid: 5c0d75cb21bbb3f40b3f5407d0f110bf, type: 3}
+      propertyPath: _sm
+      value: 
+      objectReference: {fileID: 900604163}
+    - target: {fileID: 5295100792941380084, guid: 5c0d75cb21bbb3f40b3f5407d0f110bf, type: 3}
       propertyPath: _gameUIManger
       value: 
       objectReference: {fileID: 1676787859}

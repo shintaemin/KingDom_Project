@@ -206,7 +206,7 @@ public class MissionManager : MonoBehaviour
             // UI 업데이트 로직 추가
             int target = _currentMission.GetTargetCount();
             int remain = _currentMission.GetRemainCount();
-            // _gameUIManger.GetGoalCountUI(remain, target);
+            _gameUIManger.GetKillCountUI(remain, target);
 
             if (remain >= target)
             {
