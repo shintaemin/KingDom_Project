@@ -69,7 +69,6 @@ public partial class CGSSLoader : MonoBehaviour
             if ((CreateFlag & (ECreateFlag)(1 << i)) != 0)
                 StartCoroutine(LoadFromURL((ESheetType)i));
         }
-        MakeDataArraySO();
     }
 
     IEnumerator LoadFromURL(ESheetType type)
@@ -105,6 +104,8 @@ public partial class CGSSLoader : MonoBehaviour
 #if UNITY_EDITOR
         //AssetDatabase.SaveAssets();
 #endif
+        if (UseMakeDataArraySO)
+            MakeDataArraySO();
 
         if (PrintData)
         {
@@ -118,7 +119,7 @@ public partial class CGSSLoader : MonoBehaviour
         CDataArraySO so = ScriptableObject.CreateInstance<CDataArraySO>();
 
         string path = so.SetData();
-        
+
         EditorUtility.SetDirty(so);
 
         AssetDatabase.CreateAsset(so, path);

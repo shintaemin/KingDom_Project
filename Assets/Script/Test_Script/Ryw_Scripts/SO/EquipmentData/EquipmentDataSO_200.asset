@@ -19,3 +19,4 @@ MonoBehaviour:
   _additionalHealthRatio: 0
   _additionalSpeedRatio: 0
   _image: {fileID: 21300000, guid: b09fa2e00f23f1e4493f1ac6c5a99ba0, type: 3}
+  _charMesh: {fileID: 0}

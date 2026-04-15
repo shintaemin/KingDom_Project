@@ -39,15 +39,20 @@ public class CInGameCamera : MonoBehaviour
 
     public enum ECameraPhase
     {
+        // 기본. InitSetting를 여기서 호출해야함. 검사하는 코드는 아직 없음.
+        // 존재하기 위한 정보들.
         Init,
+        // InitCameraSetting 호출
+        // 해상도에 따른 카메라 존재 가능 영역 조절.
         Ready,
+        // 플레이어 추적
         Run
     }
 
     #region 인스펙터
     [SerializeField] private float _cameraUpdateInterval = 0.5f;
 
-    [SerializeField, Range(10f, 20f)] private float _height = 15;
+    [SerializeField] private float _height = 15;
 
     [SerializeField] private float _fov = 60;
 
@@ -72,6 +77,8 @@ public class CInGameCamera : MonoBehaviour
     [SerializeField] private Transform _player;
     [SerializeField] private List<EnemyState> _enemyState;
 
+    [SerializeField] private EMissionType _missionType;
+
     [SerializeField] private Camera _camera;
     [SerializeField] private Transform _leftDownPos;
     [SerializeField] private Transform _rightUpPos;
@@ -94,13 +101,14 @@ public class CInGameCamera : MonoBehaviour
     Transform _nearestEnemyTransform = null;
     #endregion
 
-    public void InitSetting(Camera camera, Transform leftDownPos, Transform rightUpPos, Transform player, List<EnemyState> enemy)
+    public void InitSetting(Camera camera, Transform leftDownPos, Transform rightUpPos, Transform player, List<EnemyState> enemy, EMissionType type = EMissionType.Kill)
     {
         _camera = camera;
         _leftDownPos = leftDownPos;
         _rightUpPos = rightUpPos;
         _player = player;
         _enemyState = enemy;
+        _missionType = type;
 
         cameraPhase = ECameraPhase.Ready;
     }
@@ -189,7 +197,7 @@ public class CInGameCamera : MonoBehaviour
 
         }
 
-        if (_nearestEnemyTransform)
+        if (_missionType != EMissionType.Goal && _nearestEnemyTransform)
             pos = (pos + _nearestEnemyTransform.position) * 0.5f;
 
 
