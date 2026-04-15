@@ -148,10 +148,10 @@ public partial class CStageGoal : MonoBehaviour
                 _killUI.SetActive(false);
                 //_killText.gameObject.SetActive(false);
                 break;
-            case EMissionType.Rescue:
-                _rescueUI.SetActive(false);
-                //_rescueText.gameObject.SetActive(false);
-                break;
+            //case EMissionType.Rescue:
+            //    _rescueUI.SetActive(false);
+            //    //_rescueText.gameObject.SetActive(false);
+            //    break;
             case EMissionType.Goal:
                 _GoalUI.SetActive(false);
                 break;
@@ -167,9 +167,9 @@ public partial class CStageGoal : MonoBehaviour
             case EMissionType.Kill:
                 _killText.text = text;
                 break;
-            case EMissionType.Rescue:
-                _rescueText.text = text;
-                break;
+            //case EMissionType.Rescue:
+            //    _rescueText.text = text;
+            //    break;
             case EMissionType.Goal:
                 Debug.LogWarning("골 미션에는 텍스트가 없다.");
                 break;

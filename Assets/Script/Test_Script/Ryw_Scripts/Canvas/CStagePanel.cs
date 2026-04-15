@@ -51,9 +51,9 @@ public class CStagePanel : MonoBehaviour
             case EMissionType.Kill:
                 _explanationText.text = "Eliminate all the officers.";
                 break;
-            case EMissionType.Rescue:
-                _explanationText.text = "Save everyone.";
-                break; 
+            //case EMissionType.Rescue:
+            //    _explanationText.text = "Save everyone.";
+            //    break; 
             case EMissionType.Goal:
                 _explanationText.text = "Reach the target point.";
                 break;
