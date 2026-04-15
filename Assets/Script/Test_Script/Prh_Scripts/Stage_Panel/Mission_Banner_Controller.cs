@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-#region 미션 배너 연출
+#region 인게임 미션 배너 연출
 /*
  ▶ 할일
   - 좌 / 우 UI 그룹이 중앙으로 이동하여 만나는 연출
@@ -15,7 +15,6 @@ using UnityEngine;
 public class Mission_Banner_Controller : MonoBehaviour
 {
     #region 인스펙터
-
     [Header("참조")]
     [SerializeField] private RectTransform _leftRect;
     [SerializeField] private RectTransform _rightRect;
@@ -40,13 +39,11 @@ public class Mission_Banner_Controller : MonoBehaviour
     #endregion
 
     #region 내부 변수
-    // 현재 실행 중인 코루틴 저장
     private Coroutine _playCoroutine;
     #endregion
 
     private void OnEnable()
     {
-        // 기존 코루틴이 있으면 중지
         if (_playCoroutine != null)
         {
             StopCoroutine(_playCoroutine);
@@ -106,7 +103,6 @@ public class Mission_Banner_Controller : MonoBehaviour
             rightEnd,
             _exitTime);
 
-        // 코루틴 종료 표시
         _playCoroutine = null;
     }
 
@@ -120,29 +116,27 @@ public class Mission_Banner_Controller : MonoBehaviour
         Vector2 rightTo,
         float moveTime)
     {
-        // 경과 시간
-        float elapsed = 0f;
+        float currentTime = 0f;
 
-        while (elapsed < moveTime)
+        while (currentTime < moveTime)
         {
-            // 시간 증가
-            elapsed += Time.deltaTime;
+            // 시간 누적
+            currentTime += Time.deltaTime;
 
-            // 진행률 계산 (0 ~ 1)
-            float t = Mathf.Clamp01(elapsed / moveTime);
+            // 진행률 (0 ~ 1)
+            float t = Mathf.Clamp01(currentTime / moveTime);
 
-            // 부드러운 보간
+            // 부드러운 가속/감속
             float easedT = t * t * (3f - 2f * t);
 
-            // 위치 보간 적용
+            // 좌 / 우 위치 동시 보간
             leftRect.anchoredPosition = Vector2.Lerp(leftFrom, leftTo, easedT);
             rightRect.anchoredPosition = Vector2.Lerp(rightFrom, rightTo, easedT);
 
-            // 다음 프레임 대기
             yield return null;
         }
 
-        // 마지막 정확한 위치 보정
+        // 최종 위치 보정
         leftRect.anchoredPosition = leftTo;
         rightRect.anchoredPosition = rightTo;
     }
