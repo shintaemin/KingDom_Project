@@ -8,7 +8,12 @@ using UnityEngine.UI;
   - 문구 이미지들 중 1개만 랜덤으로 선택하여 표시
   - 선택되지 않은 문구 이미지는 모두 비활성화
   - 문구 이미지는 GameObject 배열로 관리
-  - 로딩바 2초 동안 증가 0 -> 1
+  - 로딩바를 일정 시간 동안 자연스럽게 증가 (0.2 → 1)
+
+※ 참고사항
+  - OnEnable 시 문구 갱신 및 로딩바 재생
+  - 로딩 시간은 _duration 값으로 제어
+  - 로딩바는 fillAmount 기반으로 처리
 
   - 박라희
 */
@@ -63,35 +68,37 @@ public class Loading_Bar_Controller : MonoBehaviour
         }
     }
 
-    #region 로딩바
+    #region 내부 코루틴
+    // 로딩바 fillAmount 증가 처리
     private IEnumerator CoFillBar()
     {
         // 로딩바 이미지가 없으면 종료
         if (_barImage == null)
             yield break;
 
-        float time = 0f;
+        float currentTime = 0f;
 
-        // 시작 시 0 으로 초기화
+        // 시작 값 초기화 (최소값 0.2)
         _barImage.fillAmount = 0.2f;
 
-        // 반복
-        while (time < _duration)
+        // 로딩 진행
+        while (currentTime < _duration)
         {
             // 시간 누적
-            time += Time.deltaTime;
+            currentTime += Time.deltaTime;
 
-            float progress = time / _duration;
-            // 0.2 → 1 자연스럽게 증가
+            // 진행률 계산 (0 ~ 1)
+            float progress = currentTime / _duration;
+
+            // 0.2 → 1 보간
             float visibleProgress = Mathf.Lerp(0.2f, 1f, progress);
 
             _barImage.fillAmount = visibleProgress;
 
-            // 다음 프레임까지 대기
             yield return null;
         }
 
-        // 반복 종료 후 1로 보정
+        // 종료 시 1로 보정
         _barImage.fillAmount = 1f;
     }
     #endregion

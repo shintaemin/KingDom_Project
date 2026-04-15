@@ -3,20 +3,26 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+#region 인게임 배너 설명 텍스트 이동 연출
 /*
  ▶ 할일
-  - 왼쪽 화면 밖에서 시작
-  - 가운데로 이동하면서 점점 선명해짐
-  - 가운데에서 1초 대기
-  - 오른쪽으로 이동하면서 다시 흐려지며 사라짐
+  - 텍스트를 화면 왼쪽 밖에서 시작하여 중앙으로 이동
+  - 이동하면서 점점 선명해지고, 중앙에서 잠시 유지
+  - 이후 오른쪽으로 이동하며 다시 흐려지면서 사라짐
 
  ▶ 흐름
-  1. 시작 위치 + 흐릿한 알파 적용
-  2. 왼쪽 -> 중앙 이동 + 알파 증가
-  3. 중앙에서 1초 정지
-  4. 중앙 -> 오른쪽 이동 + 알파 감소
-*/
+  1. 시작 위치 + 낮은 알파 적용 (화면 밖)
+  2. 왼쪽 → 중앙 이동 + 알파 증가 (등장)
+  3. 중앙에서 대기
+  4. 중앙 → 오른쪽 이동 + 알파 감소 (퇴장)
 
+ ※ 참고사항
+  - SmoothStep을 사용하여 부드러운 가속/감속 이동 적용
+  - Lerp를 사용하여 위치와 알파를 동시에 보간
+
+  - 박라희
+*/
+#endregion
 
 public class Explanation_Text_Move : MonoBehaviour
 {
@@ -41,57 +47,71 @@ public class Explanation_Text_Move : MonoBehaviour
     [SerializeField, Range(0f, 1f)] private float _endAlpha = 0f;
     #endregion
 
+    #region 내부 변수
     private Coroutine _playCoroutine;
+    #endregion
 
     private void OnEnable()
     {
         if (_playCoroutine != null)
             StopCoroutine(_playCoroutine);
 
-        _playCoroutine = StartCoroutine(Play());
+        // 연출 시작
+        _playCoroutine = StartCoroutine(CoPlay());
     }
 
-    private IEnumerator Play()
+    #region 내부 코루틴
+    // 전체 연출 흐름 제어
+    private IEnumerator CoPlay()
     {
-        // 시작 위치 / 시작 투명도
+        // 시작 상태 설정 (위치 + 투명도)
         _textRect.anchoredPosition = _startPos;
         SetAlpha(_startAlpha);
 
-        // 왼쪽 -> 중앙 이동 + 점점 진하게
-        yield return MoveAndFade(_startPos, _centerPos, _startAlpha, _centerAlpha, _moveToCenterDuration);
+        // 왼쪽 → 중앙 이동 + 페이드 인
+        yield return CoMoveAndFade(_startPos, _centerPos, _startAlpha, _centerAlpha, _moveToCenterDuration);
 
-        // 중앙에서 잠깐 멈춤
+        // 중앙에서 대기
         yield return new WaitForSeconds(_waitTime);
 
-        // 중앙 -> 오른쪽 이동 + 점점 흐리게
-        yield return MoveAndFade(_centerPos, _endPos, _centerAlpha, _endAlpha, _moveToEndDuration);
+        // 중앙 → 오른쪽 이동 + 페이드 아웃
+        yield return CoMoveAndFade(_centerPos, _endPos, _centerAlpha, _endAlpha, _moveToEndDuration);
     }
 
-    private IEnumerator MoveAndFade(Vector2 startPos, Vector2 endPos, float startAlpha, float endAlpha, float duration)
+    // 위치 이동 + 알파 변화 동시 처리
+    private IEnumerator CoMoveAndFade(Vector2 startPos, Vector2 endPos, float startAlpha, float endAlpha, float duration)
     {
-        float time = 0f;
+        float currentTime = 0f;
 
-        while (time < duration)
+        while (currentTime < duration)
         {
-            time += Time.deltaTime;
-            float t = time / duration;
-            t = Mathf.Clamp01(t);
+            // 시간 누적
+            currentTime += Time.deltaTime;
 
-            // 부드러운 움직임
+            // 진행률 계산 (0 ~ 1)
+            float t = Mathf.Clamp01(currentTime / duration);
+
+            // 자연스러운 in/out 효과
             float smoothT = Mathf.SmoothStep(0f, 1f, t);
 
+            // 위치
             _textRect.anchoredPosition = Vector2.Lerp(startPos, endPos, smoothT);
 
+            // 알파
             float alpha = Mathf.Lerp(startAlpha, endAlpha, smoothT);
             SetAlpha(alpha);
 
             yield return null;
         }
 
+        // 최종 값 보정
         _textRect.anchoredPosition = endPos;
         SetAlpha(endAlpha);
     }
+    #endregion
 
+    #region 내부 함수
+    // 텍스트 알파값 적용
     private void SetAlpha(float alpha)
     {
         if (_text == null)
@@ -101,4 +121,5 @@ public class Explanation_Text_Move : MonoBehaviour
         color.a = alpha;
         _text.color = color;
     }
+    #endregion
 }

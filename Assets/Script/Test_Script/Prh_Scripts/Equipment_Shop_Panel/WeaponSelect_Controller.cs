@@ -1,55 +1,69 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-#region ½½·Ô ¼±ÅÃ °ü¸®
+#region ë¬´ê¸° ì„ íƒ ê´€ë¦¬
 /*
- ¢º ÇÒÀÏ
-  - ¾ÆÀÌÃÀ ½½·Ô ¼±ÅÃ »óÅÂ¸¦ °ü¸®
-  - Àá±İ »óÅÂ°¡ ¾Æ´Ñ ½½·Ô¸¸ ¼±ÅÃ °¡´É
-  - ¼±ÅÃ ½Ã ´Ù¸¥ ½½·ÔÀÇ Ã¼Å©´Â ¸ğµÎ ÇØÁ¦
+ â–¶ í• ì¼
+  - ë¬´ê¸° ìŠ¬ë¡¯ í´ë¦­ ì‹œ ì„ íƒ ì²˜ë¦¬
+  - ì„ íƒëœ ìŠ¬ë¡¯ì˜ ì²´í¬ í‘œì‹œ í™œì„±í™”
+  - ê¸°ì¡´ ì„ íƒ ìƒíƒœ ì´ˆê¸°í™”
+  - í”Œë ˆì´ì–´ ë°ì´í„°ì— ì„ íƒëœ ë¬´ê¸° ID ì €ì¥
 
- ¢º Èå¸§
-  1. ½½·Ô Å¬¸¯
-  2. Lock / Check ¿ÀºêÁ§Æ® È®ÀÎ
-  3. Àá°ÜÀÖÀ¸¸é ¼±ÅÃ ºÒ°¡
-  4. ¸ğµç ½½·ÔÀÇ Ã¼Å© ÇØÁ¦
-  5. Å¬¸¯ÇÑ ½½·Ô¸¸ Ã¼Å© È°¼ºÈ­
+ â€» ì°¸ê³ ì‚¬í•­
+  - ì ê¸ˆ ìƒíƒœì¸ ìŠ¬ë¡¯ì€ ì„ íƒ ë¶ˆê°€
+  - CPlayerDataManager ì´ˆê¸°í™” ì´í›„ ì„ íƒ ìƒíƒœ ì ìš©
+  - ìŠ¬ë¡¯ ë‚´ë¶€ì˜ Lock / Check / Open ì˜¤ë¸Œì íŠ¸ë¥¼ í†µí•´ ìƒíƒœ í‘œí˜„
 
-- ¹Ú¶óÈñ
+   - ë°•ë¼í¬
 */
 #endregion
-
 public class WeaponSelect_Controller : MonoBehaviour
 {
-    #region ÀÎ½ºÆåÅÍ
-    [Header("½½·Ô ¸®½ºÆ®")]
-    [SerializeField] private List<GameObject> _weaponSlots;
+    #region ì¸ìŠ¤í™í„°
+    [Header("ì „ì²´ ë¬´ê¸° ìŠ¬ë¡¯")]
+    [SerializeField] private List<GameObject> _allWeaponSlots;
     #endregion
 
-    #region ³»ºÎ º¯¼ö
-    // ÇöÀç ¼±ÅÃµÈ ½½·Ô
+    #region ë‚´ë¶€ ë³€ìˆ˜
+    // í˜„ì¬ ì„ íƒëœ ìŠ¬ë¡¯
     private GameObject _currentSelectedSlot;
     #endregion
 
-    // Å¬¸¯ÇÑ ½½·Ô ¼±ÅÃ Ã³¸®
+    private void Start()
+    {
+        // ë°ì´í„° ë¡œë“œ ì´í›„ ì´ˆê¸°í™”
+        StartCoroutine(CoInitAfterLoad());
+    }
+
+    #region ë‚´ë¶€ ì½”ë£¨í‹´
+    // PlayerDataManager ì´ˆê¸°í™” ì´í›„ ì‹¤í–‰
+    private IEnumerator CoInitAfterLoad()
+    {
+        yield return new WaitUntil(() => CPlayerDataManager.Instance != null);
+
+        InitSelectedWeapon();
+    }
+    #endregion
+
+    #region ì™¸ë¶€ í˜¸ì¶œ í•¨ìˆ˜
+    // ìŠ¬ë¡¯ ì„ íƒ ì²˜ë¦¬
     public void SelectSlot(GameObject clickedSlot)
     {
+        // ìœ íš¨ì„± ê²€ì‚¬
         if (clickedSlot == null)
-        {
-            return;
-        }
-
-        Transform lockObj = clickedSlot.transform.Find("Lock");
-        Transform checkObj = clickedSlot.transform.Find("Check");
-
-        if (lockObj == null || checkObj == null)
             return;
 
-        // Àá°ÜÀÖÀ¸¸é ¼±ÅÃ ºÒ°¡
-        if (lockObj.gameObject.activeSelf)
+        Transform lockTr = clickedSlot.transform.Find("Lock");
+        Transform checkTr = clickedSlot.transform.Find("Check");
+
+        if (lockTr == null || checkTr == null)
+            return;
+
+        // ì ê¸´ ìŠ¬ë¡¯ì€ ì„ íƒ ë¶ˆê°€
+        if (lockTr.gameObject.activeSelf)
         {
-            Debug.Log("Àá±ä ¾ÆÀÌÅÛÀº ¼±ÅÃ ºÒ°¡");
+            Debug.Log("ì ê¸´ ì•„ì´í…œì€ ì„ íƒ ë¶ˆê°€");
             return;
         }
 
@@ -57,41 +71,72 @@ public class WeaponSelect_Controller : MonoBehaviour
 
         if (slotData != null)
         {
-            Debug.Log("¼±ÅÃµÈ Àåºñ ID: " + slotData.GetData().ID);
+            int id = slotData.GetData().ID;
+
+            // í”Œë ˆì´ì–´ ë°ì´í„°ì— ì„ íƒëœ ë¬´ê¸° ID ì €ì¥
+            CPlayerDataManager.Instance.CurrentWeaponID = id;
+
+            Debug.Log("ì„ íƒëœ ë¬´ê¸° ID: " + id);
         }
 
-        // ¸ğµç ½½·ÔÀÇ Ã¼Å© ÇØÁ¦
+        // ê¸°ì¡´ ì„ íƒ í•´ì œ
         ClearAllChecks();
 
-        // ÇöÀç ½½·Ô¸¸ Ã¼Å© È°¼ºÈ­
-        checkObj.gameObject.SetActive(true);
+        // í˜„ì¬ ì„ íƒ í‘œì‹œ
+        checkTr.gameObject.SetActive(true);
         _currentSelectedSlot = clickedSlot;
     }
+    #endregion
 
-    // ÇöÀç ¼±ÅÃµÈ ½½·Ô ¹İÈ¯
-    public GameObject GetSelectedSlot()
-    {
-        return _currentSelectedSlot;
-    }
-
-    // ¸ğµç ½½·ÔÀÇ Ã¼Å© ºñÈ°¼ºÈ­
+    #region ë‚´ë¶€ í•¨ìˆ˜
+    // ëª¨ë“  ìŠ¬ë¡¯ ì²´í¬ ìƒíƒœ ì´ˆê¸°í™”
     private void ClearAllChecks()
     {
-        foreach (GameObject slot in _weaponSlots)
+        foreach (GameObject slot in _allWeaponSlots)
         {
             if (slot == null)
-            {
                 continue;
-            }
 
-            Transform checkObj = slot.transform.Find("Check");
+            Transform checkTr = slot.transform.Find("Check");
 
-            if (checkObj == null)
-            {
-                continue;
-            }
-
-            checkObj.gameObject.SetActive(false);
+            if (checkTr != null)
+                checkTr.gameObject.SetActive(false);
         }
     }
+
+    // í˜„ì¬ ì¥ì°©ëœ ë¬´ê¸° ê¸°ì¤€ìœ¼ë¡œ ì´ˆê¸° ì„ íƒ ì ìš©
+    private void InitSelectedWeapon()
+    {
+        Debug.Log("InitSelectedWeapon ì‹¤í–‰ë¨");
+
+        int currentID = CPlayerDataManager.Instance.CurrentWeaponID;
+
+        foreach (GameObject slot in _allWeaponSlots)
+        {
+            if (slot == null) continue;
+
+            var data = slot.GetComponent<Equipment_Slot_Data>();
+            if (data == null) continue;
+            if (data.GetData() == null) continue;
+
+            // í˜„ì¬ ì¥ì°© ë¬´ê¸° ì°¾ê¸°
+            if (data.GetData().ID == currentID)
+            {
+                Transform lockTr = slot.transform.Find("Lock");
+                Transform openTr = slot.transform.Find("Open");
+                Transform checkTr = slot.transform.Find("Check");
+
+                // ì ê¸ˆ í•´ì œ ìƒíƒœ ì ìš©
+                if (lockTr != null) lockTr.gameObject.SetActive(false);
+                if (openTr != null) openTr.gameObject.SetActive(true);
+
+                // ì„ íƒ ìƒíƒœ ì ìš©
+                ClearAllChecks();
+                SelectSlot(slot);
+
+                break;
+            }
+        }
+    }
+    #endregion
 }
