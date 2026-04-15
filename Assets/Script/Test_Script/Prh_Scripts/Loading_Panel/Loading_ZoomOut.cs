@@ -57,6 +57,8 @@ public class Loading_ZoomOut : MonoBehaviour
         // 磊悼 角青 可记 眉农
         if (_playOnStart)
         {
+            Debug.Log("TimeScale: " + Time.timeScale);
+
             Play();
         }
     }
