@@ -22,7 +22,8 @@ using System; // 라희추가
 [System.Serializable]
 public class PlayerSaveData
 {
-    public int Gem;
+    public int MaxGem;
+    public int CurrentGem;
     public int Energy;
 
     public int CurrentWeaponID;
@@ -56,7 +57,8 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
 {
     #region 인스펙터
     [Header("저장될 정보")]
-    [SerializeField] private int _gem;
+    [SerializeField] private int _maxGem;
+    [SerializeField] private int _currentGem;
     [SerializeField] private int _energy;
 
     [SerializeField] private int _currentWeaponID;
@@ -104,26 +106,38 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
     #region 프로퍼티
     public static CPlayerDataManager Instance;
 
+    public int MaxGem
+    {
+        get { return _maxGem; }
+        set { _maxGem = value; }
+    }
+
     /// <summary>
-    /// set의 경우 그냥 TryUseGem를 호출해 사용하는걸 추천.
+    /// 음수 set의 경우 그냥 TryUseGem를 호출해 사용하는걸 추천.
     /// </summary>
-    public int Gem
+    public int CurrentGem
     {
         get
         {
-            return _gem;
+            return _currentGem;
         }
         set
         {
-            // 양수인 경우
-            // 천천히 증가하는 코드
-            // 음수인 경우
-            TryUseGem(value);
+            if (value > 0)
+            {
+                _currentGem += value;
+            }
+            else if (value < 0)
+            {
+                TryUseGem(value);
+            }
         }
     }
     /// <summary>
-    /// set의 경우 그냥 TryUseEnergy를 호출해 사용하는걸 추천.
+    /// 음수 set의 경우 그냥 TryUseEnergy를 호출해 사용하는걸 추천.
     /// </summary>
+
+    // 최대 에너지와 현재 에너지를 구분해야함.
     public int Energy
     {
         get
@@ -132,7 +146,14 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
         }
         set
         {
-            TryUseEnergy(value);
+            if (value > 0)
+            {
+                _energy += value;
+            }
+            else if (value < 0)
+            {
+                TryUseEnergy(value);
+            }
         }
     }
     public int CurrentWeaponID
@@ -400,7 +421,7 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
             }
 
             ratio += 0.005f * _unLockedClothesCount;
-            
+
             return (int)(result * ratio);
         }
     }
@@ -466,12 +487,12 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
             OnStatChanged?.Invoke(); // 라희 추가
         }
     }
-    public void UnLockEquipmentDic(int key)
+    public void UnLockEquipmentDic(int ID)
     {
-        if (_equipmentUnLockDic.ContainsKey(key))
+        if (_equipmentUnLockDic.ContainsKey(ID))
         {
-            _equipmentUnLockDic[key] = true;
-            if (key < 1000)
+            _equipmentUnLockDic[ID] = true;
+            if (ID < 1000)
             {
                 _unLockedWeaponCount++;
             }
@@ -482,7 +503,7 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
         }
         else
         {
-            Debug.LogWarning($"사전에 등록되지 않은 key값에 접근. key = {key}");
+            Debug.LogWarning($"사전에 등록되지 않은 key값에 접근. key = {ID}");
         }
     }
 
@@ -504,9 +525,9 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
 
     public bool TryUseGem(int gem)
     {
-        if (_gem >= gem)
+        if (_currentGem >= gem)
         {
-            _gem -= gem;
+            _currentGem -= gem;
             return true;
         }
         return false;
@@ -518,7 +539,8 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
         if (_data == null)
             _data = new PlayerSaveData();
 
-        _data.Gem = _gem;
+        _data.MaxGem = _maxGem;
+        _data.CurrentGem = _currentGem;
         _data.Energy = _energy;
 
         _data.CurrentWeaponID = _currentWeaponID;
@@ -537,7 +559,8 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
         if (_data.IsNull("_data"))
             return;
 
-        _gem = _data.Gem;
+        _maxGem = _data.MaxGem;
+        _currentGem = _data.CurrentGem;
         _energy = _data.Energy;
 
         CurrentWeaponID = _data.CurrentWeaponID;
