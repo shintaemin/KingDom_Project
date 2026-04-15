@@ -22,8 +22,10 @@ public class IngameManager : MonoBehaviour
     [SerializeField] private Map_Registry_SO _mapSO;
     [SerializeField] private FadeSystem _fadeSystem;
     [SerializeField] private Map_Stage _currentMap;
+    [SerializeField] private CInGameCanvas _ingameCanvas;
 
     [SerializeField] private int _mapIndex = 1;
+    [SerializeField] private int _currentStageCount;
     [SerializeField] private float _fadeTime = 0.5f;
     [SerializeField] private float _waitTime = 2.5f;
 
@@ -45,24 +47,26 @@ public class IngameManager : MonoBehaviour
             int playerStage = CPlayerDataManager.Instance.CurrentStage;
 
             _mapIndex = 1;
-            SetMap(playerStage, _mapIndex);
+            SetMap(playerStage, _mapIndex); 
+
+            if (_ingameCanvas != null)
+            {
+                _currentStageCount = _mapSO.GetStageCount(playerStage);
+                EMissionType type = _currentMap.GetMissionType;
+                _ingameCanvas.Init(_currentMap.GetPlayerSpawnPos, playerStage, _currentStageCount);
+                _ingameCanvas.Standby(_currentStageCount, type);
+            }
         }
-        // 여기서 UI 에 맵 정보등을 전달
     }
 
     public MissionBase GetMission => _msManager.GetMission;
     #endregion
 
-    public void Start()
-    {
-        GameStart();
-    }
-
     private void Awake()
     {
         if (_msManager == null)
         {
-            _msManager = FindAnyObjectByType<MissionManager>();
+            _msManager = FindFirstObjectByType<MissionManager>();
         }
         if (_mapSO == null)
         {
@@ -71,7 +75,7 @@ public class IngameManager : MonoBehaviour
         }
         if (_sm == null)
         {
-            _sm = FindAnyObjectByType<SpawnManager>();
+            _sm = FindFirstObjectByType<SpawnManager>();
         }
         if (_fadeSystem == null)
         {
@@ -84,8 +88,16 @@ public class IngameManager : MonoBehaviour
                 }
             }
         }
+        if (_ingameCanvas == null)
+        {
+            _ingameCanvas = FindFirstObjectByType<CInGameCanvas>();
+        }
 
         _enemys.Clear();
+    }
+    private void Start()
+    {
+        GameStart();
     }
 
     private void OnDestroy()
@@ -138,6 +150,12 @@ public class IngameManager : MonoBehaviour
 
         _sm.MapClear();
         SetMap(stageData, mapIndex);
+
+        if (_ingameCanvas != null)
+        {
+            EMissionType type = _currentMap.GetMissionType;
+            _ingameCanvas.Standby(_currentStageCount, type);
+        }
 
         yield return new WaitForSeconds(_waitTime);
 

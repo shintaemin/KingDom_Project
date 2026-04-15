@@ -28,8 +28,7 @@ public class MissionManager : MonoBehaviour
     [SerializeField] private MissionBase _currentMission;
     [SerializeField] private SpawnManager _sm;
     [SerializeField] private PlayerState _pState;
-
-    [SerializeField] private IngameUIManager _gameUIManger;
+    [SerializeField] private CInGameCanvas _gameCanvas;
     #endregion
 
     #region 내부 변수
@@ -43,10 +42,10 @@ public class MissionManager : MonoBehaviour
             _sm = FindAnyObjectByType<SpawnManager>();
         }
 
-        if (_gameUIManger == null)
+        if (_gameCanvas == null)
         {
-            _gameUIManger = FindAnyObjectByType<IngameUIManager>();
-            if (_gameUIManger == null)
+            _gameCanvas = FindAnyObjectByType<CInGameCanvas>();
+            if (_gameCanvas == null)
             {
                 Debug.LogWarning("[MissionManager] : 인게임 UI 매니저 캐싱 실패");
             }
@@ -114,12 +113,12 @@ public class MissionManager : MonoBehaviour
                 int killCount = map.GetEnemyCount;
                 _currentMission = new Kill_Mission(killCount);
                 // 지정한 미션 시작
-                _currentMission.StartMission(); 
-
+                _currentMission.StartMission();
+                
                 // UI 업데이트
-                if (_gameUIManger != null)
+                if (_gameCanvas != null)
                 {
-                    _gameUIManger.GetKillCountUI(0, killCount);
+                    _gameCanvas.SetGoalText($"0/{killCount}");
                 }
 
                 if (_currentMission == null)
@@ -141,9 +140,9 @@ public class MissionManager : MonoBehaviour
                 _currentMission.StartMission();
 
                 // UI 업데이트
-                if (_gameUIManger != null)
+                if (_gameCanvas != null)
                 {
-                    _gameUIManger.GetKillCountUI(0, 1);
+                    _gameCanvas.SetGoalText($"{0}/{1}");
                 }
                 if (_currentMission == null)
                 {
@@ -183,10 +182,10 @@ public class MissionManager : MonoBehaviour
 
     public void KillEvent()
     {
-        if (_gameUIManger == null)
+        if (_gameCanvas == null)
         {
-            _gameUIManger = FindAnyObjectByType<IngameUIManager>();
-            if (_gameUIManger == null)
+            _gameCanvas = FindAnyObjectByType<CInGameCanvas>();
+            if (_gameCanvas == null)
             {
                 Debug.LogWarning("[MissionManager] : 인게임 UI 매니저 캐싱 실패");
                 return;
@@ -200,7 +199,7 @@ public class MissionManager : MonoBehaviour
         _currentMission.CheckClear();
         int target = _currentMission.GetTargetCount();
         int remain = _currentMission.GetRemainCount();
-        _gameUIManger.GetKillCountUI(remain, target);
+        _gameCanvas.SetGoalText($"{remain}/{target}");
 
         if (remain >= target)
         {
@@ -217,7 +216,7 @@ public class MissionManager : MonoBehaviour
             // UI 업데이트 로직 추가
             int target = _currentMission.GetTargetCount();
             int remain = _currentMission.GetRemainCount();
-            _gameUIManger.GetKillCountUI(remain, target);
+            _gameCanvas.SetGoalText($"{remain}/{target}");
 
             if (remain >= target)
             {
