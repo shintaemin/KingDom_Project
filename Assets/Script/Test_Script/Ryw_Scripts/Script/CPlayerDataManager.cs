@@ -101,6 +101,7 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
     private CEquipmentDataSO _currentClothes;
 
     public event Action OnStatChanged; // 라희 추가
+    public event Action<int> OnEquipmentUnLock;
     #endregion
 
     #region 프로퍼티
@@ -474,6 +475,7 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
             _currentClothes = CSOManager.Instance[CDataArraySO.EDataType.EquipmentData][id] as CEquipmentDataSO;
 
             OnStatChanged?.Invoke();  // 라희 추가
+            //OnEquipmentUnLock?.Invoke(id); // 디버그용
         }
     }
 
@@ -485,6 +487,7 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
             _currentWeapon = CSOManager.Instance[CDataArraySO.EDataType.EquipmentData][id] as CEquipmentDataSO;
 
             OnStatChanged?.Invoke(); // 라희 추가
+            //OnEquipmentUnLock?.Invoke(id); // 디버그용
         }
     }
     public void UnLockEquipmentDic(int ID)
@@ -500,6 +503,7 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
             {
                 _unLockedClothesCount++;
             }
+            OnEquipmentUnLock?.Invoke(ID);
         }
         else
         {
