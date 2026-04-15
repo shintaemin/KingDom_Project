@@ -6,6 +6,10 @@ using UnityEngine;
   - 로딩 화면의 배경 이미지를 회전시킴.
   - RectTransform을 사용하여 UI 기준으로 회전 처리
 
+※ 참고사항
+  - Update에서 매 프레임 회전 수행
+  - 회전 속도는 _rotateSpeed 값으로 제어
+
   - 박라희
 */
 #endregion
@@ -38,11 +42,13 @@ public class Loading_BG_Rotate : MonoBehaviour
     // 배경 회전 처리
     private void RotateBackground()
     {
+        // 캐싱 실패 시 실행 중단
         if (_rectTransform == null)
         {
             return;
         }
 
+        // Z축 기준 회전 적용
         _rectTransform.Rotate(0f, 0f, _rotateSpeed * Time.deltaTime);
     }
 

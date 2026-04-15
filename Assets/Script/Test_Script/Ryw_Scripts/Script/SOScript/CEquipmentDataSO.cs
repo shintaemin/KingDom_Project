@@ -41,7 +41,7 @@ public class CEquipmentDataSO : ScriptableObject, ICSVData
     [SerializeField] private float _additionalHealthRatio = 0;
     [SerializeField] private float _additionalSpeedRatio = 3;
     [SerializeField] private Sprite _image;
-    // mesh
+    [SerializeField] private Mesh _charMesh;
     // pre...
     #endregion
 
@@ -89,6 +89,8 @@ public class CEquipmentDataSO : ScriptableObject, ICSVData
     public float AdditionalHealthRatio => _additionalHealthRatio;
     public float AdditionalSpeedRatio => _additionalSpeedRatio;
     public Sprite Image => _image;
+
+    public Mesh CharMesh => _charMesh;
     #endregion
 
 
@@ -103,6 +105,7 @@ public class CEquipmentDataSO : ScriptableObject, ICSVData
         _additionalHealthRatio = float.Parse(dataArr[4]);
         _additionalSpeedRatio = float.Parse(dataArr[5]);
         _image = _image.ParseData(dataArr[6]);
+        _charMesh = _charMesh.ParseData(dataArr[7]);
 
         bonuses = null;
         maxBonus = null;

@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1844438811337081715
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7323234603418894351}
+  - component: {fileID: 2465493101325046787}
+  - component: {fileID: 4252608316571205081}
+  m_Layer: 5
+  m_Name: CNumberPrefab
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &7323234603418894351
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1844438811337081715}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2465493101325046787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1844438811337081715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67648e04289528942b3584a26b68f689, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpawnDelay: 0.2
+  MoveOffeset: {x: 0, y: 10}
+  MoveDelay: 0.5
+  DestroyDelay: 0.2
+  Sprites:
+  - {fileID: -1009928292, guid: e941bd3c236616446bf9c230e363747c, type: 3}
+  - {fileID: -15285789, guid: e941bd3c236616446bf9c230e363747c, type: 3}
+  - {fileID: -1089347349, guid: e941bd3c236616446bf9c230e363747c, type: 3}
+  - {fileID: -1953466347, guid: e941bd3c236616446bf9c230e363747c, type: 3}
+  - {fileID: -1855902357, guid: e941bd3c236616446bf9c230e363747c, type: 3}
+  - {fileID: 2116637499, guid: e941bd3c236616446bf9c230e363747c, type: 3}
+  - {fileID: -816751052, guid: e941bd3c236616446bf9c230e363747c, type: 3}
+  - {fileID: -1960576528, guid: e941bd3c236616446bf9c230e363747c, type: 3}
+  - {fileID: -897021207, guid: e941bd3c236616446bf9c230e363747c, type: 3}
+  - {fileID: 156343158, guid: e941bd3c236616446bf9c230e363747c, type: 3}
+  _canvasGroup: {fileID: 4252608316571205081}
+--- !u!225 &4252608316571205081
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1844438811337081715}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
