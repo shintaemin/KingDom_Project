@@ -1,32 +1,37 @@
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 /*
-    ¤ı HpSystem
+    ã† HpSystem
 
-    ¤ı ÀÛ¼ºÀÚ : È²¿øÁØ
+    ã† ì‘ì„±ì : í™©ì›ì¤€
 
-    ¤ı ±â´É : IDamageable ÀÎÅÍÆäÀÌ½º¸¦ ±¸ÇöÇÏ¿©, ¹æ¾î·ÂÀÌ Àû¿ëµÈ ÃÖÁ¾ µ¥¹ÌÁö °è»ê ¹× °´Ã¼ÀÇ »ç¸Á »óÅÂ °ü¸®
+    ã† ê¸°ëŠ¥ : IDamageable ì¸í„°í˜ì´ìŠ¤ë¥¼ êµ¬í˜„í•˜ì—¬, ë°©ì–´ë ¥ì´ ì ìš©ëœ ìµœì¢… ë°ë¯¸ì§€ ê³„ì‚° ë° ê°ì²´ì˜ ì‚¬ë§ ìƒíƒœ ê´€ë¦¬
 */
 
-public class HpSystem : MonoBehaviour, IDamageable
+public class HpSystem : MonoBehaviour, IDamageable, IHPBar
 {
-    #region ÀÎ½ºÆåÅÍ
-    [Header("¹æÆĞº´ ¼³Á¤")]
+    #region ì¸ìŠ¤í™í„°
+    [Header("ë°©íŒ¨ë³‘ ì„¤ì •")]
     [SerializeField] private bool _isShielded = false;
+    [SerializeField] private CHPBar _hpbar;
     #endregion
 
-    #region ³»ºÎ º¯¼ö
+    #region ë‚´ë¶€ ë³€ìˆ˜
     public event System.Action OnDamaged;
     public event System.Action OnBlocked;
     public event System.Action<bool> IsBackAttackDead;
+    public event Action<float> OnHealthChanged;
+    public event Action<Vector3> OnPositionChanged;
+
     private BaseStatus _status;
     private float _currentHP;
     private bool _isDead = false;
     #endregion
 
-    #region ÇÁ·ÎÆÛÆ¼
+    #region í”„ë¡œí¼í‹°
     public bool IsDead => _isDead;
     #endregion
 
@@ -36,7 +41,7 @@ public class HpSystem : MonoBehaviour, IDamageable
 
         if (_status == null)
         {
-            Debug.LogError("HpSystem _status ÂüÁ¶ ½ÇÆĞ");
+            Debug.LogError("HpSystem _status ì°¸ì¡° ì‹¤íŒ¨");
             return;
         }
     }
@@ -47,6 +52,22 @@ public class HpSystem : MonoBehaviour, IDamageable
         {
             _currentHP = _status.MaxHP;
         }
+
+        if (_hpbar == null)
+        {
+            if (TryGetComponent<CHPBar>(out _hpbar))
+            {
+                Transform uiSpawnTr = CInGameCanvas.GetSpawnRootTransform();
+                _hpbar.InitSpawnPos(uiSpawnTr);
+                _hpbar.SetFillColor(Color.green);
+                OnHealthChanged?.Invoke(GetHPPercentage());
+            }
+        }
+    }
+
+    private void Update()
+    {
+        OnPositionChanged?.Invoke(gameObject.transform.position);
     }
 
     public void TakeDamage(float amount, Vector3 attackerPosition, bool isBackAttackDead = false)
@@ -70,7 +91,7 @@ public class HpSystem : MonoBehaviour, IDamageable
 
             if (dot > 0.5)
             {
-                Debug.Log("¹æÆĞ·Î ¸·¾ÒÀ½");
+                Debug.Log("ë°©íŒ¨ë¡œ ë§‰ì•˜ìŒ");
                 OnBlocked?.Invoke();
                 return;
             }
@@ -90,17 +111,20 @@ public class HpSystem : MonoBehaviour, IDamageable
         else
         {
             OnDamaged?.Invoke();
+            OnHealthChanged?.Invoke(GetHPPercentage());
         }
     }
 
-    #region ¿ÜºÎ È£Ãâ ÇÔ¼ö
+    #region ì™¸ë¶€ í˜¸ì¶œ í•¨ìˆ˜
     public float GetCurrentHP()
     {
+        OnHealthChanged?.Invoke(_currentHP);
         return _currentHP;
     }
 
     public float GetMaxHP()
     {
+        OnHealthChanged?.Invoke(_currentHP);
         return _status.MaxHP;
     }
 

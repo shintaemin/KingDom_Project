@@ -27,6 +27,7 @@ public class PlayerEffectController : MonoBehaviour
     private HpSystem _hpSystem;
     private BaseCombat _combat;
     private PlayerCombat _playerCombat;
+    private CInGameCanvas _uiCanvas;
     private float _lastClick;
     #endregion
 
@@ -38,6 +39,7 @@ public class PlayerEffectController : MonoBehaviour
         _hpSystem = GetComponent<HpSystem>();
         _combat = GetComponent<BaseCombat>();
         _playerCombat = GetComponent<PlayerCombat>();
+        _uiCanvas = FindFirstObjectByType<CInGameCanvas>();
     }
 
     private void OnEnable()
@@ -130,6 +132,7 @@ public class PlayerEffectController : MonoBehaviour
     {
         // 플레이어가 데미지를 입었을 때 이펙트 (피격 이펙트)
         EffectManager.Instance.SpawnEffect(EffectManager.EEffectType.PlayerDamaged, transform.position, transform.rotation);
+        _uiCanvas.CallFullscreenImpact(Color.red);
     }
 
     private void Attacked()

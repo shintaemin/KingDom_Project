@@ -119,9 +119,10 @@ public class SoundManager : MonoBehaviour
             return;
         }
 
+        // 타입 미등록 사운드 호출시 호출 될 수 있음
         if (!_sfxClips.TryGetValue(type , out List<AudioClip> clips))
         {
-            Debug.LogWarning($"[SoundManager] : {type} 이 미등록 이거나 클립이 없음");
+            Debug.Log($"[SoundManager] : {type} 이 미등록 이거나 클립이 없음");
             return;
         }
 

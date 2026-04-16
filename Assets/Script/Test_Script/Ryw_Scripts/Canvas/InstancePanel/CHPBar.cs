@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,6 +21,7 @@ public class CHPBar : MonoBehaviour
     [SerializeField] private bool _showOnlyOnChanged = false;
     [SerializeField] private Animator _animator;
     [SerializeField] private string _paramAnimation = "Animation";
+    [SerializeField] private Image _fillImage;
 
     [Header("그 외")]
     [SerializeField] private GameObject _hpSlierPrefab;
@@ -40,7 +42,6 @@ public class CHPBar : MonoBehaviour
             _spawnRoot.IsNull("_spawnRoot"))
         {
             Debug.LogWarning("캔버스의 인스턴스 패널의 스폰 루트를 추가");
-            return;
         }
 
         _target = GetComponent<IHPBar>();
@@ -51,6 +52,17 @@ public class CHPBar : MonoBehaviour
         }
 
         _hashAnimation = Animator.StringToHash(_paramAnimation);
+    }
+
+    public void InitSpawnPos(Transform tr)
+    {
+        if (_spawnRoot != null)
+        {
+            Debug.Log($"[CHPBar] : 스폰위치 이미 지정됨");
+            _spawnRoot = null;
+        }
+
+        _spawnRoot = tr;
 
         GameObject go = Instantiate(_hpSlierPrefab, _spawnRoot);
         if (go.IsNull("gameObject"))
@@ -65,6 +77,18 @@ public class CHPBar : MonoBehaviour
         {
             _hpSlider = prefab;
         }
+
+        _fillImage = go.transform.Find("Fill").GetComponentInChildren<Image>();
+    }
+
+    public void SetFillColor(Color col)
+    {
+        if (_hpSlierPrefab == null || _fillImage == null)
+        {
+            return;
+        }
+
+        _fillImage.color = col;
     }
 
     private void OnEnable()
@@ -87,6 +111,11 @@ public class CHPBar : MonoBehaviour
 
     private void UpdateSlider(float ratio)
     {
+        if (_hpSlider == null)
+        {
+            return;
+        }
+
         _hpSlider.value = ratio;
         if (_showOnlyOnChanged)
         {
@@ -97,6 +126,11 @@ public class CHPBar : MonoBehaviour
 
     private void UpdatePosition(Vector3 position)
     {
+        if (_hpSlider == null)
+        {
+            return;
+        }
+
         if (CInGameCanvas.WorldToUI(position, out Vector3 UIPos))
         {
             Vector3 pos = UIPos;

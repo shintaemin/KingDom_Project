@@ -111,10 +111,10 @@ public class SpawnManager : MonoBehaviour
     // 프리펩과 Transform 전달받아 생성
     private void Spawn(GameObject prefab, Transform pos)
     {
-        GameObject go = Instantiate(prefab);
         Transform tr = pos;
+        GameObject go = Instantiate(prefab);
         go.transform.position = tr.position;
-        go.transform.rotation = Quaternion.identity;
+        go.transform.rotation = tr.rotation;
         // 필요하다면 스케일까지
 
         OnSpawn?.Invoke(go);

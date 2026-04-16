@@ -268,4 +268,8 @@ public class CInGameCanvas : MonoBehaviour
         UIPos = screenPos;
         return true;
     }
+    public static Transform GetSpawnRootTransform()
+    {
+        return GameObject.Find("SpawnRoot").transform;
+    }
 }

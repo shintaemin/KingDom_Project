@@ -1393,12 +1393,12 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 0.2
+    value: 0.13
   color:
-    overrideState: 0
+    overrideState: 1
     value: {r: 0, g: 0, b: 0, a: 1}
   ambientOnly:
-    overrideState: 0
+    overrideState: 1
     value: 1
   noiseFilterTolerance:
     overrideState: 0
@@ -1411,7 +1411,7 @@ MonoBehaviour:
     value: -12
   thicknessModifier:
     overrideState: 1
-    value: 1.08
+    value: 1
   zBias:
     overrideState: 0
     value: 0.000236
@@ -1445,7 +1445,7 @@ MonoBehaviour:
     value: 0.5
   threshold:
     overrideState: 1
-    value: 0.8
+    value: 2.59
   softKnee:
     overrideState: 1
     value: 0.6
