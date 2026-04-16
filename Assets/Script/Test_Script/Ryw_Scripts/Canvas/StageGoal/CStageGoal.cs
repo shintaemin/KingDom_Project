@@ -145,7 +145,7 @@ public partial class CStageGoal : MonoBehaviour
         switch (missionType)
         {
             case EMissionType.Kill:
-                _killUI.SetActive(false);
+                _killUI.SetActive(true);
                 //_killText.gameObject.SetActive(false);
                 break;
             //case EMissionType.Rescue:
@@ -153,7 +153,7 @@ public partial class CStageGoal : MonoBehaviour
             //    //_rescueText.gameObject.SetActive(false);
             //    break;
             case EMissionType.Goal:
-                _GoalUI.SetActive(false);
+                _GoalUI.SetActive(true);
                 break;
         }
 

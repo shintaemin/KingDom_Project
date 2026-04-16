@@ -23,6 +23,7 @@ using UnityEngine;
 public class PlayerSaveData
 {
     public int Gem;
+    public int MaxEnergy;
     public int Energy;
 
     public int CurrentWeaponID;
@@ -57,7 +58,8 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
     #region 인스펙터
     [Header("저장될 정보")]
     [SerializeField] private int _gem;
-    [SerializeField] private int _energy;
+    [SerializeField] private int _maxEnergy;
+    [SerializeField] private int _currentEnergy;
 
     [SerializeField] private int _currentWeaponID;
     [SerializeField] private int _currentClothesID;
@@ -135,11 +137,14 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
 
     #endregion
 
+    public event Action<int> OnEquipmentUnLock;
+
     #region 프로퍼티
     public static CPlayerDataManager Instance;
 
+
     /// <summary>
-    /// set의 경우 그냥 TryUseGem를 호출해 사용하는걸 추천.
+    /// 음수 set의 경우 그냥 TryUseGem를 호출해 사용하는걸 추천.
     /// </summary>
     public int Gem
     {
@@ -149,24 +154,41 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
         }
         set
         {
-            // 양수인 경우
-            // 천천히 증가하는 코드
-            // 음수인 경우
-            TryUseGem(value);
+            if (value > 0)
+            {
+                _gem += value;
+            }
+            else if (value < 0)
+            {
+                TryUseGem(value);
+            }
         }
     }
     /// <summary>
-    /// set의 경우 그냥 TryUseEnergy를 호출해 사용하는걸 추천.
+    /// 음수 set의 경우 그냥 TryUseEnergy를 호출해 사용하는걸 추천.
     /// </summary>
+    public int MaxEnergy
+    {
+        get { return _maxEnergy; }
+        set { _maxEnergy = value; }
+    }
+    // 최대 에너지와 현재 에너지를 구분해야함.
     public int Energy
     {
         get
         {
-            return _energy;
+            return _currentEnergy;
         }
         set
         {
-            TryUseEnergy(value);
+            if (value > 0)
+            {
+                _currentEnergy += value;
+            }
+            else if (value < 0)
+            {
+                TryUseEnergy(value);
+            }
         }
     }
     public int CurrentWeaponID
@@ -363,7 +385,7 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
             // 기본
             int result = _defaultHp;
             // 업그레이드
-            result += (CSOManager.Instance[CDataArraySO.EDataType.AbilityData][1] as CAbilityDataSO).Val * _currentUpgradeLevel[0];
+            result += (CSOManager.Instance[CDataArraySO.EDataType.AbilityData][1] as CAbilityDataSO).Val * _currentUpgradeLevel[1];
             // 재능
             var talentAtt = CSOManager.Instance[CDataArraySO.EDataType.TalentData][5] as CTalentDataSO;
             int talentAttLevel = _currentTalentLevel[5];
@@ -412,7 +434,7 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
             // 기본
             float result = _defaultMoveSpeed;
             // 업그레이드
-            result += (CSOManager.Instance[CDataArraySO.EDataType.AbilityData][2] as CAbilityDataSO).Val * _currentUpgradeLevel[0];
+            result += (CSOManager.Instance[CDataArraySO.EDataType.AbilityData][2] as CAbilityDataSO).Val * _currentUpgradeLevel[2];
             // 재능
             var talentAtt = CSOManager.Instance[CDataArraySO.EDataType.TalentData][7] as CTalentDataSO;
             int talentAttLevel = _currentTalentLevel[7];
@@ -434,7 +456,7 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
             }
 
             ratio += 0.005f * _unLockedClothesCount;
-            
+
             return (int)(result * ratio);
         }
     }
@@ -487,6 +509,7 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
             _currentClothes = CSOManager.Instance[CDataArraySO.EDataType.EquipmentData][id] as CEquipmentDataSO;
 
             OnStatChanged?.Invoke();  // 라희 추가
+            //OnEquipmentUnLock?.Invoke(id); // 디버그용
         }
     }
 
@@ -498,14 +521,15 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
             _currentWeapon = CSOManager.Instance[CDataArraySO.EDataType.EquipmentData][id] as CEquipmentDataSO;
 
             OnStatChanged?.Invoke(); // 라희 추가
+            //OnEquipmentUnLock?.Invoke(id); // 디버그용
         }
     }
-    public void UnLockEquipmentDic(int key)
+    public void UnLockEquipmentDic(int ID)
     {
-        if (_equipmentUnLockDic.ContainsKey(key))
+        if (_equipmentUnLockDic.ContainsKey(ID))
         {
-            _equipmentUnLockDic[key] = true;
-            if (key < 1000)
+            _equipmentUnLockDic[ID] = true;
+            if (ID < 1000)
             {
                 _unLockedWeaponCount++;
             }
@@ -513,10 +537,11 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
             {
                 _unLockedClothesCount++;
             }
+            OnEquipmentUnLock?.Invoke(ID);
         }
         else
         {
-            Debug.LogWarning($"사전에 등록되지 않은 key값에 접근. key = {key}");
+            Debug.LogWarning($"사전에 등록되지 않은 key값에 접근. key = {ID}");
         }
     }
 
@@ -528,9 +553,9 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
 
     public bool TryUseEnergy(int energy)
     {
-        if (_energy >= energy)
+        if (_currentEnergy >= energy)
         {
-            _energy -= energy;
+            _currentEnergy -= energy;
             return true;
         }
         return false;
@@ -553,7 +578,8 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
             _data = new PlayerSaveData();
 
         _data.Gem = _gem;
-        _data.Energy = _energy;
+        _data.MaxEnergy = _maxEnergy;
+        _data.Energy = _currentEnergy;
 
         _data.CurrentWeaponID = _currentWeaponID;
         _data.CurrentClothesID = _currentClothesID;
@@ -572,7 +598,8 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
             return;
 
         _gem = _data.Gem;
-        _energy = _data.Energy;
+        _maxEnergy = _data.MaxEnergy;
+        _currentEnergy = _data.Energy;
 
         CurrentWeaponID = _data.CurrentWeaponID;
         CurrentClothesID = _data.CurrentClothesID;
