@@ -28,6 +28,7 @@ public class EffectManager : MonoBehaviour
         PlayerDamaged,
         PlayerHit,
         Block,
+        Block2,
 
 
     }
