@@ -43,6 +43,7 @@ public class ClothesSelect_Controller : MonoBehaviour
     {
         yield return new WaitUntil(() => CPlayerDataManager.Instance != null);
 
+        InitAlwaysOpenSlots();
         InitSelectedClothes();
     }
     #endregion
@@ -62,7 +63,9 @@ public class ClothesSelect_Controller : MonoBehaviour
             return;
 
         // 잠긴 슬롯은 선택 불가
-        if (lockTr.gameObject.activeSelf)
+        bool isAlwaysOpen = IsAlwaysOpenSlot(clickedSlot);
+
+        if (!isAlwaysOpen && lockTr.gameObject.activeSelf)
         {
             Debug.Log("잠긴 아이템은 선택 불가");
             return;
@@ -90,6 +93,35 @@ public class ClothesSelect_Controller : MonoBehaviour
     #endregion
 
     #region 내부 함수
+    private bool IsAlwaysOpenSlot(GameObject slot)
+    {
+        Transform parent = slot.transform.parent;
+
+        if (parent == null) return false;
+
+        return parent.name == "RewardClothes_Group" ||
+               parent.name == "Clothes_Purchased_Group";
+    }
+
+    private void InitAlwaysOpenSlots()
+    {
+        foreach (GameObject slot in _allClothesSlots)
+        {
+            if (slot == null) continue;
+
+            bool isAlwaysOpen = IsAlwaysOpenSlot(slot);
+
+            if (!isAlwaysOpen) continue;
+
+            Transform lockTr = slot.transform.Find("Lock");
+            Transform openTr = slot.transform.Find("Open");
+
+            if (lockTr != null) lockTr.gameObject.SetActive(false);
+            if (openTr != null) openTr.gameObject.SetActive(true);
+
+        }
+    }
+
     // 모든 슬롯 체크 상태 초기화
     private void ClearAllChecks()
     {
@@ -128,8 +160,13 @@ public class ClothesSelect_Controller : MonoBehaviour
                 Transform checkTr = slot.transform.Find("Check");
 
                 // 잠금 해제 상태로 설정
-                if (lockTr != null) lockTr.gameObject.SetActive(false);
-                if (openTr != null) openTr.gameObject.SetActive(true);
+                bool isAlwaysOpen = IsAlwaysOpenSlot(slot);
+
+                if (isAlwaysOpen)
+                {
+                    if (lockTr != null) lockTr.gameObject.SetActive(false);
+                    if (openTr != null) openTr.gameObject.SetActive(true);
+                }
 
                 // 선택 상태 적용
                 ClearAllChecks();
