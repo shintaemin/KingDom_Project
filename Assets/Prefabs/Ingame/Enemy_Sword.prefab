@@ -1256,6 +1256,7 @@ GameObject:
   - component: {fileID: 3333203296972934414}
   - component: {fileID: 5339104797373347621}
   - component: {fileID: 2571750941102381919}
+  - component: {fileID: 957729834203956820}
   m_Layer: 3
   m_Name: Enemy_Sword
   m_TagString: Untagged
@@ -1508,6 +1509,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &957729834203956820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7166652829329580452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b3139fdee9dc6409f316e7ffd5ccce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyType: 1
+  _yOffset: {x: 0, y: 2, z: 0}
 --- !u!1 &7309636619752275400
 GameObject:
   m_ObjectHideFlags: 0

@@ -1019,13 +1019,14 @@ GameObject:
   - component: {fileID: 928529183902027589}
   - component: {fileID: 1875713747052942490}
   - component: {fileID: 1437459566556147328}
+  - component: {fileID: 7391902446934894295}
   m_Layer: 3
   m_Name: Enemy_Shield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1254079899476310844
 Transform:
   m_ObjectHideFlags: 0
@@ -1271,6 +1272,20 @@ CapsuleCollider:
   m_Height: 0.02
   m_Direction: 1
   m_Center: {x: 0, y: 0.01, z: 0}
+--- !u!114 &7391902446934894295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4438144850111711005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b3139fdee9dc6409f316e7ffd5ccce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyType: 1
+  _yOffset: {x: 0, y: 2, z: 0}
 --- !u!1 &4561706765863436245
 GameObject:
   m_ObjectHideFlags: 0

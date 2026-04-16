@@ -338,13 +338,14 @@ GameObject:
   - component: {fileID: 5444289115906060157}
   - component: {fileID: 6270902449031588435}
   - component: {fileID: 4905250557225294940}
+  - component: {fileID: 8866621433977687847}
   m_Layer: 0
   m_Name: Zombie_GoalStage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4422730153491488375
 Transform:
   m_ObjectHideFlags: 0
@@ -493,6 +494,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isShielded: 0
+--- !u!114 &8866621433977687847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1832611243638400087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b3139fdee9dc6409f316e7ffd5ccce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyType: 0
+  _yOffset: {x: 0, y: 2, z: 0}
 --- !u!1 &1844420264432756908
 GameObject:
   m_ObjectHideFlags: 0

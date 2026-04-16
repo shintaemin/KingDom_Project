@@ -6022,6 +6022,7 @@ GameObject:
   - component: {fileID: 7650505583557528275}
   - component: {fileID: 176964542729387867}
   - component: {fileID: 7596863530588398733}
+  - component: {fileID: 2689663110929142216}
   m_Layer: 3
   m_Name: Enemy_Boss
   m_TagString: Untagged
@@ -6121,8 +6122,8 @@ MonoBehaviour:
   _playerTag: Player
   _detectMoveRange: 8
   _chaseDelay: 0.1
-  _jumpMinRange: 7
-  _jumpMaxRange: 10
+  _jumpMinRange: 8
+  _jumpMaxRange: 12
   _jumpDuration: 2.5
   _jumpHeight: 7
 --- !u!114 &4557523719641336284
@@ -6138,7 +6139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isBoss: 1
-  _bossRoarCooldown: 20
+  _bossRoarCooldown: 30
   IsNearDead: 0
   IsAtkRange: 0
   IsAttacking: 0
@@ -6275,6 +6276,20 @@ CapsuleCollider:
   m_Height: 0.02
   m_Direction: 1
   m_Center: {x: 0, y: 0.01, z: 0}
+--- !u!114 &2689663110929142216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6558586235737699857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b3139fdee9dc6409f316e7ffd5ccce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyType: 4
+  _yOffset: {x: 0, y: 2, z: 0}
 --- !u!1 &6729516108872719167
 GameObject:
   m_ObjectHideFlags: 0
