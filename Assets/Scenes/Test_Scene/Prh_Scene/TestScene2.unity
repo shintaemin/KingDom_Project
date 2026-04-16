@@ -1907,9 +1907,13 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4681453320123182366, guid: ca11f73376a2dfd4aba9840ae2ea5624, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4725039973933574024, guid: ca11f73376a2dfd4aba9840ae2ea5624, type: 3}
       propertyPath: currentStage
-      value: 7
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4755698387406951358, guid: ca11f73376a2dfd4aba9840ae2ea5624, type: 3}
       propertyPath: m_AnchorMax.y
@@ -2603,7 +2607,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gem: 0
-  _energy: 0
+  _maxEnergy: 0
+  _currentEnergy: 0
   _currentWeaponID: 0
   _currentClothesID: 0
   _currentStage: 0
