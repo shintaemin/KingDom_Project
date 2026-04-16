@@ -19,15 +19,14 @@ public class CMainPhase : IInGameCanvasPhaseFSM
     #endregion
     public void Enter(CInGameCanvas igc)
     {
-        igc.StagePanel.gameObject.SetActive(false);
-        //igc.StageGoal.gameObject.SetActive(true);
     }
 
-    public void Exit(CInGameCanvas igc)
+
+    public void Update(CInGameCanvas igc)
     {
     }
 
-    public void Update(CInGameCanvas igc)
+    public void Exit(CInGameCanvas igc)
     {
     }
 }
