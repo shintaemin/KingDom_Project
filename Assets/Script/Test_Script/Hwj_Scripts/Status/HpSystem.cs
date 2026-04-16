@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 /*
@@ -22,6 +23,7 @@ public class HpSystem : MonoBehaviour, IDamageable, IHPBar
     #region 내부 변수
     public event System.Action OnDamaged;
     public event System.Action OnBlocked;
+    public event System.Action OnDead;
     public event System.Action<bool> IsBackAttackDead;
     public event Action<float> OnHealthChanged;
     public event Action<Vector3> OnPositionChanged;
@@ -115,6 +117,7 @@ public class HpSystem : MonoBehaviour, IDamageable, IHPBar
         {
             _currentHP = 0;
             _isDead = true;
+            OnDead?.Invoke();
             IsBackAttackDead?.Invoke(isBackAttackDead);
         }
 

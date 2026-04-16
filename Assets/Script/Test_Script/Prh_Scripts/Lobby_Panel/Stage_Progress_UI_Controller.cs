@@ -49,8 +49,12 @@ public class Stage_Progress_UI_Controller : MonoBehaviour
 
     void Start()
     {
-        UpdateStageUI();
+        if (CPlayerDataManager.Instance != null)
+        {
+            currentStage = CPlayerDataManager.Instance.CurrentStage;
+        }
 
+        UpdateStageUI();
         startButton.SetStage(currentStage);
     }
 

@@ -28,19 +28,10 @@ public class PlayerStat_UI : MonoBehaviour
     #endregion
 
     #region 내부 변수
-    // 이전 값 캐싱 (필요 시 확장용)
-    private int _cachedAttack;
-    private int _cachedHp;
-    private float _cachedMoveSpeed;
     #endregion
 
     private void Start()
     {
-        // 초기값 설정 (강제 갱신 유도)
-        _cachedAttack = -1;
-        _cachedHp = -1;
-        _cachedMoveSpeed = -1f;
-
         // 초기 UI 갱신
         if (CPlayerDataManager.Instance != null)
             UpdateUI();
