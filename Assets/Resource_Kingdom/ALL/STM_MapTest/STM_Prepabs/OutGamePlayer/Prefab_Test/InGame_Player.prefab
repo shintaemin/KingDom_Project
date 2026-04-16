@@ -1153,6 +1153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isShielded: 0
+  _hpbar: {fileID: 0}
 --- !u!114 &7272450676673471330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1165,9 +1166,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d44f42baba995e4e90ab8ced526f389, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _showOnlyOnChanged: 0
+  _showOnlyOnChanged: 1
   _animator: {fileID: 2076291815587264328, guid: f4c5312f8351bef46a1f9f8cc1f32d50, type: 3}
   _paramAnimation: Animation
+  _fillImage: {fileID: 0}
   _hpSlierPrefab: {fileID: 7488609981081227603, guid: f4c5312f8351bef46a1f9f8cc1f32d50, type: 3}
   _spawnRoot: {fileID: 0}
   _UIOffset: {x: 0, y: 50, z: 0}
