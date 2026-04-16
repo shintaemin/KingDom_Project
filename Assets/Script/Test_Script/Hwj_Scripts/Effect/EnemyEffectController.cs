@@ -147,7 +147,7 @@ public class EnemyEffectController : MonoBehaviour
     private void Blocked()
     {
         EffectManager.Instance.SpawnEffect(EffectManager.EEffectType.Block, transform.position + _yOffset, transform.rotation, transform);
-        EffectManager.Instance.SpawnEffect(EffectManager.EEffectType.Block2, transform.position, transform.rotation, transform);
+        EffectManager.Instance.SpawnEffect(EffectManager.EEffectType.Block2, transform.position + Vector3.up, transform.rotation, transform);
     }
 
     private void Attacked()
