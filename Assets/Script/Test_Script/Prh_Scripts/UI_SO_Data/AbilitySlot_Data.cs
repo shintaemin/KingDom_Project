@@ -73,14 +73,14 @@ public class AbilitySlot_Data : MonoBehaviour
 
         int index = _data.ID;
 
-        int currentLevel = player.CurrentUpgradeLevel[index];
+        int currentLevel = player.GetCurrentUpgradeLevel(index);
 
         // 최대 레벨 체크
         if (currentLevel >= _data.Capacity)
             return;
 
         // 레벨 증가
-        player.CurrentUpgradeLevel[index]++;
+        player.IncreaseCurrentUpgradeLevel(index);
 
         // 이벤트 호출
         player.NotifyStatChanged();
@@ -110,7 +110,7 @@ public class AbilitySlot_Data : MonoBehaviour
     {
         var player = CPlayerDataManager.Instance;
 
-        int level = player.CurrentUpgradeLevel[_data.ID];
+        int level = player.GetCurrentUpgradeLevel(_data.ID);
 
         // 레벨
         levelText.text = "LV. " + level;

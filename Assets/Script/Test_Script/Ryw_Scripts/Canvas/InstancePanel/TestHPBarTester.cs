@@ -8,7 +8,7 @@ using UnityEngine;
 */
 #endregion
 
-public class TestHPBarTester : MonoBehaviour, IHPBar
+public class TestHPBarTester : MonoBehaviour
 {
     public event Action<float> OnHealthChanged;
     public event Action<Vector3> OnPositionChanged;
