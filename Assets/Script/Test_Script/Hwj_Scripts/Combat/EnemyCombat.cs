@@ -31,7 +31,7 @@ public class EnemyCombat : BaseCombat
 
     protected override void Update()
     {
-        if (_state.GetState() == EnemyState.EState.Chase || _state.GetState() == EnemyState.EState.Attack)
+        if (_state.GetState() == EnemyState.EState.Chase || _state.IsAttacking)
         {
             base.Update();
         }

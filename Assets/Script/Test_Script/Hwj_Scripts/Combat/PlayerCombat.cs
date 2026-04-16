@@ -13,6 +13,10 @@ using UnityEngine;
 
 public class PlayerCombat : BaseCombat
 {
+    #region 내부 변수
+    public event System.Action OnHit;
+    #endregion
+
     protected override void Update()
     {
         base.Update();
@@ -69,13 +73,16 @@ public class PlayerCombat : BaseCombat
 
             float backDot = Vector3.Dot(_rangeCheck.TargetTr.forward, dir);
 
+            bool isBackAttack = false;
+
             if (backDot < - 0.5f)
             {
                 finalAtkPower *= 2f;
-                Debug.Log($"백어택 적용 [{finalAtkPower}]");
+                isBackAttack = true;
             }
 
-            enemyHP.TakeDamage(finalAtkPower, transform.position);
+            enemyHP.TakeDamage(finalAtkPower, transform.position, isBackAttack);
+            OnHit?.Invoke();
         }
     }
     #endregion

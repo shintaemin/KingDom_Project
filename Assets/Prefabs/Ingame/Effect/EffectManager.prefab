@@ -1,0 +1,99 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &105454632067447467
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 64257876204530170}
+  - component: {fileID: 1819656555845443486}
+  m_Layer: 0
+  m_Name: EffectManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &64257876204530170
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 105454632067447467}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1819656555845443486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 105454632067447467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13a486112664cf74e800f6c84a1f8e54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _effectInfos:
+  - type: 1
+    sfxType: 4
+    prefab: {fileID: 7078484914833187885, guid: 7e1b811bc97b42441b2487946d156c38, type: 3}
+    prewarmCount: 10
+  - type: 2
+    sfxType: 14
+    prefab: {fileID: 7912718270130173809, guid: 3a772cd6652898448968c3810ec1afa3, type: 3}
+    prewarmCount: 30
+  - type: 3
+    sfxType: 0
+    prefab: {fileID: 2673861846314634039, guid: 0dd72703a0b484c4c9656b8c20a0fa57, type: 3}
+    prewarmCount: 10
+  - type: 4
+    sfxType: 0
+    prefab: {fileID: 4708245002499311810, guid: c1c0a0df5c3e11e4aa8b04d87b270f21, type: 3}
+    prewarmCount: 10
+  - type: 5
+    sfxType: 40
+    prefab: {fileID: 4372109581952245482, guid: 1570d049e20b70d4aa3b9d210c838703, type: 3}
+    prewarmCount: 1
+  - type: 7
+    sfxType: 3
+    prefab: {fileID: 1672156790133945330, guid: 6c3fcab2d960648459d9890f9b6bb4d6, type: 3}
+    prewarmCount: 1
+  - type: 6
+    sfxType: 32
+    prefab: {fileID: 4372109581952245482, guid: 432fb38bdd2b66141b95252e1ff38a6d, type: 3}
+    prewarmCount: 1
+  - type: 8
+    sfxType: 0
+    prefab: {fileID: 85452636677569482, guid: 227bf4726cac7e7408ba660ebda1c46c, type: 3}
+    prewarmCount: 7
+  - type: 9
+    sfxType: 0
+    prefab: {fileID: 5445049872416606146, guid: 912e394e1a013174b9f007c1f83a7482, type: 3}
+    prewarmCount: 7
+  - type: 10
+    sfxType: 0
+    prefab: {fileID: 8845055627725475382, guid: 16dc9a06af6ff0d45b0ecbb69fdfccf1, type: 3}
+    prewarmCount: 7
+  - type: 11
+    sfxType: 0
+    prefab: {fileID: 1344109700526817022, guid: e3ea2e6c4d8a3f04bbdc99a0346a6c70, type: 3}
+    prewarmCount: 7
+  - type: 12
+    sfxType: 36
+    prefab: {fileID: 4678346051086014970, guid: 4aae10d6c437b064baf15260eaf09e86, type: 3}
+    prewarmCount: 10
+  - type: 13
+    sfxType: 0
+    prefab: {fileID: 4708245002499311810, guid: 01d1b03e62749ba4790e3127bdd32a4a, type: 3}
+    prewarmCount: 5

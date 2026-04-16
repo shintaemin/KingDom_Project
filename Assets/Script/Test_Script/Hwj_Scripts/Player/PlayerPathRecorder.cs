@@ -23,6 +23,7 @@ public class PlayerPathRecorder : MonoBehaviour
     #endregion
 
     #region 내부 변수
+    public event System.Action OnClickEnemy;
     private List<Vector3> _wayPoints = new List<Vector3>();
     private InputReader _inputReader;
     private InputState _inputState;
@@ -65,6 +66,11 @@ public class PlayerPathRecorder : MonoBehaviour
 
     void Update()
     {
+        if (_playerState.GetState() == PlayerState.EState.Dead)
+        {
+            return;
+        }
+
         if (_inputState.GetState() == InputState.EState.Drawing)
         {
             DrawingRecordPath();
@@ -117,6 +123,11 @@ public class PlayerPathRecorder : MonoBehaviour
     #region 외부 호출 함수
     public void ClickRecordPath()
     {
+        if (_playerState.GetState() == PlayerState.EState.Dead)
+        {
+            return;
+        }
+
         Ray ray = _camera.ScreenPointToRay(_inputReader.GetInputPosition());
 
         if (Physics.Raycast(ray, out RaycastHit hitPlayer, Mathf.Infinity, _playerLayer) ||
@@ -136,6 +147,8 @@ public class PlayerPathRecorder : MonoBehaviour
             enemy.y = transform.position.y;
 
             _wayPoints.Add(enemy);
+
+            OnClickEnemy?.Invoke();
         }
 
         else if (Physics.Raycast(ray, out RaycastHit hitTerrain, Mathf.Infinity, _terrainLayer))
