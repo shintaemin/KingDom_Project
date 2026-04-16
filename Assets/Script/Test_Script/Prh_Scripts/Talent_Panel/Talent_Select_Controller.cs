@@ -198,6 +198,8 @@ public class Talent_Select_Controller : MonoBehaviour
     // 슬롯 해금 처리
     private void OpenSlot(int index)
     {
+        Debug.Log("열린 index: " + index);
+
         GameObject slot = _talentSlots[index];
         Transform slotTr = slot.transform;
 
@@ -207,6 +209,8 @@ public class Talent_Select_Controller : MonoBehaviour
         _unlockedStates[index] = true;
 
         _popups[index].Unlock();
+
+        CPlayerDataManager.Instance.AddTalentLevel(index);
     }
 
     // 모든 하이라이트 비활성화
