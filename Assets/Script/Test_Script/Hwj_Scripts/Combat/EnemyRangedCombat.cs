@@ -14,7 +14,7 @@ public class EnemyRangedCombat : BaseCombat
 {
     #region 인스펙터
     [Header("투사체 설정")]
-    [SerializeField] private ProjectileManager.ProjectileType _projectileType;
+    [SerializeField] private ProjectileManager.EProjectileType _projectileType;
     [SerializeField] private Transform _firePoint;
     [SerializeField] private float _forwardOffset = 0.2f;
     [SerializeField] private float _speed = 500f;
@@ -44,7 +44,7 @@ public class EnemyRangedCombat : BaseCombat
     {
         if (!_autoAttack)
         {
-            if (_state.GetState() == EnemyState.EState.Chase || _state.GetState() == EnemyState.EState.Attack)
+            if (_state.GetState() == EnemyState.EState.Chase || _state.IsAttacking)
             {
                 base.Update();
             }
@@ -57,11 +57,23 @@ public class EnemyRangedCombat : BaseCombat
 
         else
         {
-            if (CanAttack())
+            if (CanAutoAttack())
             {
                 Attack();
             }
         }
+    }
+
+    private bool CanAutoAttack()
+    {
+        float interval = 1f / _status.AtkSpeed;
+
+        if (Time.time - _lastAtkTime < interval)
+        {
+            return false;
+        }
+
+        return true;
     }
 
     protected override void Attack()
@@ -95,6 +107,8 @@ public class EnemyRangedCombat : BaseCombat
         {
             projectileTrigger.SetProjectile(_speed, _status.AtkPower, _firePoint.forward);
         }
+
+        EffectManager.Instance.SpawnEffect(EffectManager.EEffectType.RangedAttack, _firePoint.position, _firePoint.rotation);
     }
 
     public void EndAttack()

@@ -32,20 +32,8 @@ public class EnemyRangeCheck : BaseRangeCheck
             Debug.LogError("EnemyRangeCheck _state 참조 실패");
             return;
         }
-
-        var player = GameObject.FindWithTag(_playerTag);
-
-        if (player != null)
-        {
-            _targetTr = player.transform;
-
-            if (_targetTr == null)
-            {
-                Debug.LogError("EnemyDetectRange _playerTr 참조 실패 (태그 설정 필요)");
-                return;
-            }
-        }
     }
+
     protected override void Update()
     {
         base.Update();
@@ -68,16 +56,5 @@ public class EnemyRangeCheck : BaseRangeCheck
                 _targetTr = player.transform;
             }
         }
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        if (_status == null)
-        {
-            return;
-        }
-
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, _status.AtkRange);
     }
 }

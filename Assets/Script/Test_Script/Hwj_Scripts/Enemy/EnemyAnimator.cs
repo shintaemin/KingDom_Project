@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using static UnityEngine.CullingGroup;
 
 /*
     ㆍ EnemyAnimator
@@ -16,6 +17,11 @@ public class EnemyAnimator : MonoBehaviour
     [SerializeField] private string _paramAttack = "tAttack";
     [SerializeField] private string _paramOnHit = "tOnHit";
     [SerializeField] private string _paramOnHitIndex = "iOnHitIndex";
+    [SerializeField] private string _paramBossRoar = "tBossRoar";
+    [SerializeField] private string _paramBossJump = "tBossJump";
+
+    [Header("18 스테이지 전용")]
+    [SerializeField] private bool _autoAttack = false;
     #endregion
 
     #region 내부 변수
@@ -29,6 +35,8 @@ public class EnemyAnimator : MonoBehaviour
     private int _hashOnHit;
     private int _hashOnHitIndex;
     private int _onHitIndex = 0;
+    private int _hashBossRoar;
+    private int _hashBossJump;
     #endregion
 
     private void Awake()
@@ -39,9 +47,9 @@ public class EnemyAnimator : MonoBehaviour
         _anim = GetComponent<Animator>();
         _nav = GetComponent<NavMeshAgent>();
 
-        if (_state == null || _anim == null || _hpSystem  == null || _combat == null || _nav == null)
+        if (_state == null || _anim == null || _hpSystem  == null)
         {
-            Debug.LogError("EnemyAnimator _state _anim _hpSystem _combat _nav 참조 실패");
+            Debug.LogError("EnemyAnimator _state _anim _hpSystem 참조 실패");
             return;
         }
 
@@ -49,6 +57,8 @@ public class EnemyAnimator : MonoBehaviour
         _hashAttack = Animator.StringToHash(_paramAttack);
         _hashOnHit = Animator.StringToHash(_paramOnHit);
         _hashOnHitIndex = Animator.StringToHash(_paramOnHitIndex);
+        _hashBossRoar = Animator.StringToHash(_paramBossRoar);
+        _hashBossJump = Animator.StringToHash(_paramBossJump);
     }
 
     private void OnEnable()
@@ -61,6 +71,11 @@ public class EnemyAnimator : MonoBehaviour
         if (_hpSystem != null)
         {
             _hpSystem.OnDamaged += Damaged;
+        }
+
+        if (_state != null)
+        {
+            _state.OnStateChanged += StateChanged;
         }
     }
 
@@ -75,13 +90,37 @@ public class EnemyAnimator : MonoBehaviour
         {
             _hpSystem.OnDamaged -= Damaged;
         }
+
+        if (_state != null)
+        {
+            _state.OnStateChanged -= StateChanged;
+        }
     }
 
     void Update()
     {
+        if (_autoAttack)
+        {
+            return;
+        }
+
         float CurrentSpeed = _nav.velocity.magnitude;
 
         _anim.SetFloat(_hashSpeed, CurrentSpeed);
+    }
+
+    private void StateChanged(EnemyState.EState state)
+    {
+        switch (state)
+        {
+            case EnemyState.EState.BossRoar:
+                _anim.SetTrigger(_hashBossRoar);
+                break;
+
+            case EnemyState.EState.BossJump:
+                _anim.SetTrigger(_hashBossJump);
+                break;
+        }
     }
 
     private void Attacked()
@@ -92,6 +131,11 @@ public class EnemyAnimator : MonoBehaviour
     private void Damaged()
     {
         if (_state.IsAttacking)
+        {
+            return;
+        }
+
+        if (_state.GetState() == EnemyState.EState.BossRoar || _state.GetState() == EnemyState.EState.BossJump)
         {
             return;
         }

@@ -12,6 +12,12 @@ using UnityEngine;
 
 public abstract class BaseRangeCheck : MonoBehaviour
 {
+    #region 인스펙터
+    [Header("공격시 시야 체크 설정")]
+    [SerializeField] protected LayerMask _notTerrain;
+    [SerializeField] protected float _yOffset = 0.5f;
+    #endregion
+
     #region 내부 변수
     protected BaseStatus _status;
     protected Transform _targetTr;
@@ -50,7 +56,7 @@ public abstract class BaseRangeCheck : MonoBehaviour
 
         float distance = Vector3.Distance(transform.position, _targetTr.position);
 
-        if (distance <= _status.AtkRange)
+        if (distance <= _status.AtkRange && IsWallFront())
         {
             _isAtkRange = true;
         }
@@ -59,6 +65,27 @@ public abstract class BaseRangeCheck : MonoBehaviour
         {
             _isAtkRange = false;
         }
+    }
+
+    protected bool IsWallFront()
+    {
+        if (_targetTr == null)
+        {
+            return false;
+        }
+
+        Vector3 startPos = transform.position + Vector3.up * _yOffset;
+        Vector3 targetPos = _targetTr.position + Vector3.up * _yOffset;
+        Vector3 direction = (targetPos - startPos).normalized;
+
+        float distance = Vector3.Distance(startPos, targetPos);
+
+        if (Physics.Raycast(startPos, direction, out RaycastHit hit, distance, _notTerrain))
+        {
+            return false;
+        }
+
+        return true;
     }
 
     protected abstract void UpdateTarget();

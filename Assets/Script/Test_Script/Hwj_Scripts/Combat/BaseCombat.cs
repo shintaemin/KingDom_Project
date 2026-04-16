@@ -32,7 +32,7 @@ public abstract class BaseCombat : MonoBehaviour
         _rangeCheck = GetComponent<BaseRangeCheck>();
         _nav = GetComponent<NavMeshAgent>();
 
-        if (_status == null || _rangeCheck == null || _nav == null)
+        if (_status == null || _rangeCheck == null)
         {
             Debug.LogError("BaseCombat _status _rangeCheck 참조 실패");
             return;

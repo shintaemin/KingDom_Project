@@ -9,5 +9,5 @@
 
 public interface IDamageable
 {
-    void TakeDamage(float amount, UnityEngine.Vector3 attackerPosition);
+    void TakeDamage(float amount, UnityEngine.Vector3 attackerPosition, bool isBackAttack = false);
 }
