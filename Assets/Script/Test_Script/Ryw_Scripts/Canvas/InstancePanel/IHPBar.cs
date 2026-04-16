@@ -17,4 +17,6 @@ public interface IHPBar
 
     // 위치가 바뀔 때 인보크
     public event Action<Vector3> OnPositionChanged;
+
+    public event Action OnDead;
 }

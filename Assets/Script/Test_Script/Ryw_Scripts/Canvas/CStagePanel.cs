@@ -28,7 +28,11 @@ public class CStagePanel : MonoBehaviour
     public EMissionType? MissionType
     {
         get { return _missionType; }
-        set { _missionType = value; }
+        set
+        {
+            _missionType = value;
+            SetTextes(_missionType.Value);
+        }
     }
 
     void Awake()
@@ -41,11 +45,8 @@ public class CStagePanel : MonoBehaviour
 
     }
 
-    public void SetTextes(int level, EMissionType type)
+    public void SetTextes(EMissionType type)
     {
-        SetTextes(level);
-        _levelText.text = $"Level {level}";
-
         switch (type)
         {
             case EMissionType.Kill:
@@ -66,12 +67,6 @@ public class CStagePanel : MonoBehaviour
     // 필요할까?
     public void SetTextes(int level)
     {
-        if (_missionType == null)
-        {
-            Debug.LogWarning("_missionType == null");
-            return;   // 이건 그냥 이걸 빼자. 뒤에서도 오류를 잡는다. 이거 하면 에러뜬다.
-        }
-
-        SetTextes(level, _missionType.Value);
+        _levelText.text = $"Level {level}";
     }
 }

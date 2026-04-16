@@ -112,6 +112,7 @@ public class CHPBar : MonoBehaviour
         {
             _target.OnHealthChanged += UpdateSlider;
             _target.OnPositionChanged += UpdatePosition;
+            _target.OnDead += OnDead;
         }
     }
 
@@ -121,7 +122,16 @@ public class CHPBar : MonoBehaviour
         {
             _target.OnHealthChanged -= UpdateSlider;
             _target.OnPositionChanged -= UpdatePosition;
+            _target.OnDead -= OnDead;
         }
+    }
+
+    private void OnDead()
+    {
+        _target.OnHealthChanged -= UpdateSlider;
+        _target.OnPositionChanged -= UpdatePosition;
+        _target.OnDead -= OnDead;
+        Object.Destroy(_hpSlider.gameObject);
     }
 
     private void UpdateSlider(float ratio)

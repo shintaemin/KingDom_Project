@@ -10,11 +10,6 @@ using UnityEngine;
  - 에너지 비율을 이미지 fillAmount로 시각화
  - 다이아 사용 시 값 갱신 및 UI 반영
 
-※ 참고사항
- - 싱글톤(Instance)으로 외부에서 접근 가능
- - 에너지 fillAmount는 현재값 / 최대값 비율로 계산
- - 현재 값은 임시 데이터 (추후 데이터 매니저 연동 필요)
-
  - 박라희
 */
 #endregion
@@ -38,6 +33,7 @@ public class LTopBar_UI : MonoBehaviour
     {
         RefreshUI();
 
+        // 데이터 변경 이벤트 구독
         CPlayerDataManager.Instance.OnStatChanged += RefreshUI;
     }
 
@@ -61,23 +57,23 @@ public class LTopBar_UI : MonoBehaviour
         _energyFill.fillAmount = (float)data.Energy / 15f;
     }
 
-
+    #region 외부 호출 함수
     // 현재 보유 다이아 반환
     //public int GetCurrentGem()
     //{
     //    return CPlayerDataManager.Instance.Gem;
     //}
 
-    #region 외부 호출 함수
+    // 다이아 사용 시도
     public bool TryUseGem(int amount)
     {
+        // 데이터 매니저에 사용 요청
         bool result = CPlayerDataManager.Instance.TryUseGem(amount);
 
         if (result)
             RefreshUI();
 
         return result;
-
     }
     #endregion
 }
