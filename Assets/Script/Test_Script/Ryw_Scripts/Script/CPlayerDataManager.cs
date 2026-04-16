@@ -112,6 +112,7 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
     public void NotifyStatChanged()
     {
         OnStatChanged?.Invoke();
+        CJsonManager.Instance.SaveAll();
     }
 
     // ▶ 재능 레벨 증가 함수 (가챠 / 해금 시 사용)
@@ -132,6 +133,7 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
         // 스탯 변경 알림 (UI 및 능력치 자동 갱신)
         OnStatChanged?.Invoke();
 
+        CJsonManager.Instance.SaveAll();
         return true;
     }
 
@@ -157,6 +159,7 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
             if (value > 0)
             {
                 _gem += value;
+                CJsonManager.Instance.SaveAll();
             }
             else if (value < 0)
             {
@@ -170,7 +173,11 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
     public int MaxEnergy
     {
         get { return _maxEnergy; }
-        set { _maxEnergy = value; }
+        set
+        {
+            _maxEnergy = value;
+            CJsonManager.Instance.SaveAll();
+        }
     }
     // 최대 에너지와 현재 에너지를 구분해야함.
     public int Energy
@@ -184,6 +191,7 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
             if (value > 0)
             {
                 _currentEnergy += value;
+                CJsonManager.Instance.SaveAll();
             }
             else if (value < 0)
             {
@@ -238,11 +246,9 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
         {
             _currentStage++;
             // maxStage를 넘어가면 0으로 돌리거나, 랜덤 스테이지로 가거나.
+            CJsonManager.Instance.SaveAll();
         }
     }
-    public int[] CurrentUpgradeLevel => _currentUpgradeLevel;
-    public int[] CurrentTalentLevel => _currentTalentLevel;
-
     public int CurrentUpgradeSum
     {
         get
@@ -490,6 +496,27 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
 
     }
 
+    public int GetCurrentUpgradeLevel(int id)
+    {
+        return _currentUpgradeLevel[id];
+    }
+
+    public void IncreaseCurrentUpgradeLevel(int id)
+    {
+        _currentUpgradeLevel[id]++;
+        CJsonManager.Instance.SaveAll();
+    }
+    public int GetCurrentTalentLevel(int id)
+    {
+        return _currentTalentLevel[id];
+    }
+
+    public void IncreaseCurrentTalentLevel(int id)
+    {
+        _currentTalentLevel[id]++;
+        CJsonManager.Instance.SaveAll();
+    }
+
     public void ChangeCurrentEquipment(int id)
     {
         if (id < 1000)
@@ -500,6 +527,7 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
         {
             ChangeCurrentClothes(id);
         }
+        CJsonManager.Instance.SaveAll();
     }
     private void ChangeCurrentClothes(int id)
     {
@@ -543,6 +571,7 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
         {
             Debug.LogWarning($"사전에 등록되지 않은 key값에 접근. key = {ID}");
         }
+        CJsonManager.Instance.SaveAll();
     }
 
     private void OnDestroy()
@@ -556,6 +585,7 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
         if (_currentEnergy >= energy)
         {
             _currentEnergy -= energy;
+            CJsonManager.Instance.SaveAll();
             return true;
         }
         return false;
@@ -566,6 +596,7 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
         if (_gem >= gem)
         {
             _gem -= gem;
+            CJsonManager.Instance.SaveAll();
             return true;
         }
         return false;
