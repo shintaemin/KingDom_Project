@@ -22,8 +22,8 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerSaveData
 {
-    public int MaxGem;
-    public int CurrentGem;
+    public int Gem;
+    public int MaxEnergy;
     public int Energy;
 
     public int CurrentWeaponID;
@@ -57,9 +57,9 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
 {
     #region 인스펙터
     [Header("저장될 정보")]
-    [SerializeField] private int _maxGem;
-    [SerializeField] private int _currentGem;
-    [SerializeField] private int _energy;
+    [SerializeField] private int _gem;
+    [SerializeField] private int _maxEnergy;
+    [SerializeField] private int _currentEnergy;
 
     [SerializeField] private int _currentWeaponID;
     [SerializeField] private int _currentClothesID;
@@ -142,26 +142,21 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
     #region 프로퍼티
     public static CPlayerDataManager Instance;
 
-    public int MaxGem
-    {
-        get { return _maxGem; }
-        set { _maxGem = value; }
-    }
 
     /// <summary>
     /// 음수 set의 경우 그냥 TryUseGem를 호출해 사용하는걸 추천.
     /// </summary>
-    public int CurrentGem
+    public int Gem
     {
         get
         {
-            return _currentGem;
+            return _gem;
         }
         set
         {
             if (value > 0)
             {
-                _currentGem += value;
+                _gem += value;
             }
             else if (value < 0)
             {
@@ -172,19 +167,23 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
     /// <summary>
     /// 음수 set의 경우 그냥 TryUseEnergy를 호출해 사용하는걸 추천.
     /// </summary>
-
+    public int MaxEnergy
+    {
+        get { return _maxEnergy; }
+        set { _maxEnergy = value; }
+    }
     // 최대 에너지와 현재 에너지를 구분해야함.
     public int Energy
     {
         get
         {
-            return _energy;
+            return _currentEnergy;
         }
         set
         {
             if (value > 0)
             {
-                _energy += value;
+                _currentEnergy += value;
             }
             else if (value < 0)
             {
@@ -554,9 +553,9 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
 
     public bool TryUseEnergy(int energy)
     {
-        if (_energy >= energy)
+        if (_currentEnergy >= energy)
         {
-            _energy -= energy;
+            _currentEnergy -= energy;
             return true;
         }
         return false;
@@ -564,9 +563,9 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
 
     public bool TryUseGem(int gem)
     {
-        if (_currentGem >= gem)
+        if (_gem >= gem)
         {
-            _currentGem -= gem;
+            _gem -= gem;
             return true;
         }
         return false;
@@ -578,9 +577,9 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
         if (_data == null)
             _data = new PlayerSaveData();
 
-        _data.MaxGem = _maxGem;
-        _data.CurrentGem = _currentGem;
-        _data.Energy = _energy;
+        _data.Gem = _gem;
+        _data.MaxEnergy = _maxEnergy;
+        _data.Energy = _currentEnergy;
 
         _data.CurrentWeaponID = _currentWeaponID;
         _data.CurrentClothesID = _currentClothesID;
@@ -598,9 +597,9 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
         if (_data.IsNull("_data"))
             return;
 
-        _maxGem = _data.MaxGem;
-        _currentGem = _data.CurrentGem;
-        _energy = _data.Energy;
+        _gem = _data.Gem;
+        _maxEnergy = _data.MaxEnergy;
+        _currentEnergy = _data.Energy;
 
         CurrentWeaponID = _data.CurrentWeaponID;
         CurrentClothesID = _data.CurrentClothesID;
