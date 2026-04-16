@@ -12,7 +12,9 @@ using UnityEngine;
 
 public interface IHPBar
 {
+    // 체력이 바뀔 때 인보크
     public event Action<float> OnHealthChanged;
 
+    // 위치가 바뀔 때 인보크
     public event Action<Vector3> OnPositionChanged;
 }
