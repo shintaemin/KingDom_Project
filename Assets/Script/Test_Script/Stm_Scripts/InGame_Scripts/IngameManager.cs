@@ -45,7 +45,9 @@ public class IngameManager : MonoBehaviour
         if (CPlayerDataManager.Instance != null)
         {
             int playerStage = CPlayerDataManager.Instance.CurrentStage;
-
+            
+            playerStage = playerStage >= 21 ? UnityEngine.Random.Range(0,21) : playerStage;
+            
             _mapIndex = 1;
             SetMap(playerStage, _mapIndex); 
 
