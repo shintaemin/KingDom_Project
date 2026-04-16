@@ -140,7 +140,7 @@ public class PlayerEffectController : MonoBehaviour
     private void HitTarget()
     {
         Vector3 spawnPos = transform.position + (transform.forward * _hitOffset.z) + (transform.up * _hitOffset.y) + (transform.right * _hitOffset.x);
-
+        
         EffectManager.Instance.SpawnEffect(EffectManager.EEffectType.PlayerHit, spawnPos, transform.rotation);
     }
 }
