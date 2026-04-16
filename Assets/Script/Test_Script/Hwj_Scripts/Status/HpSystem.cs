@@ -60,8 +60,16 @@ public class HpSystem : MonoBehaviour, IDamageable, IHPBar
                 Transform uiSpawnTr = CInGameCanvas.GetSpawnRootTransform();
                 _hpbar.InitSpawnPos(uiSpawnTr);
                 _hpbar.SetFillColor(Color.green);
-                OnHealthChanged?.Invoke(GetHPPercentage());
+                OnHealthChanged?.Invoke(_currentHP);
             }
+            else
+            {
+                Debug.LogError("[HpSystem] : _hpBar 스크립트 캐싱 실패");
+            }
+        }
+        else
+        {
+            Debug.LogError("[HpSystem] : _hpbar 가 이미 있음");
         }
     }
 

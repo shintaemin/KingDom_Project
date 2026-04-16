@@ -56,7 +56,7 @@ public class IngameManager : MonoBehaviour
                 _currentStageCount = _mapSO.GetStageCount(playerStage);
                 EMissionType type = _currentMap.GetMissionType;
                 _ingameCanvas.Init(_currentMap.GetPlayerSpawnPos, playerStage, _currentStageCount);
-                _ingameCanvas.Standby(_currentStageCount, type);
+                _ingameCanvas.Standby(_mapIndex, type);
             }
         }
     }
@@ -156,7 +156,7 @@ public class IngameManager : MonoBehaviour
         if (_ingameCanvas != null)
         {
             EMissionType type = _currentMap.GetMissionType;
-            _ingameCanvas.Standby(_currentStageCount, type);
+            _ingameCanvas.Standby(_mapIndex, type);
         }
 
         yield return new WaitForSeconds(_waitTime);
@@ -232,6 +232,7 @@ public class IngameManager : MonoBehaviour
             if (doorOpen != null)
             {
                 // 여기서 GO UI 재생
+                _ingameCanvas.SetActiveGoImpact(true);
                 doorOpen.PlayOpenAnim();
                 Door_StageEnd_Col endCol = doorOpen.transform.GetComponentInChildren<Door_StageEnd_Col>();
                 
@@ -288,6 +289,9 @@ public class IngameManager : MonoBehaviour
     private void ChaingedNextMap(Door_StageEnd_Col endCol)
     {
         endCol.OnStageEnd -= ChaingedNextMap;
+
+        // GO UI 종료
+        _ingameCanvas.SetActiveGoImpact(false);
 
         Debug.Log("다음맵 찾는중");
 
