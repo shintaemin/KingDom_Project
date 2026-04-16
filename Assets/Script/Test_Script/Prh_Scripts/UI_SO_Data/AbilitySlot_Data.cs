@@ -36,28 +36,32 @@ public class AbilitySlot_Data : MonoBehaviour
     [SerializeField] public TMP_Text valueText;
     [SerializeField] public TMP_Text priceText;
     [SerializeField] public Animator effectAnimator;
+
+    [Header("슬롯")]
+    [SerializeField] private int upgradeIndex;
     #endregion
 
     #region 내부 변수
-    // 현재 레벨
-    private int _level = 1;
-
-    // 누적 능력값
-    private int _value;
-
     // 능력 데이터 (SO)
     private CAbilityDataSO _data;
     #endregion
+
+    void Start()
+    {
+        CPlayerDataManager.Instance.OnStatChanged += UpdateUI;
+    }
+
+    void OnDestroy()
+    {
+        if (CPlayerDataManager.Instance != null)
+            CPlayerDataManager.Instance.OnStatChanged -= UpdateUI;
+    }
 
     #region 초기화
     // 슬롯 초기화 (데이터 연결)
     public void Init(CAbilityDataSO so)
     {
         _data = so;
-
-        // 기본 상태 설정
-        _level = 1;
-        _value = 0;
 
         // UI 갱신
         UpdateUI();
@@ -68,15 +72,19 @@ public class AbilitySlot_Data : MonoBehaviour
     // 업그레이드 버튼 클릭 처리
     public void OnClickUpgrade()
     {
-        // 최대 레벨 도달 시 업그레이드 불가
-        if (_level >= _data.Capacity)
+        var player = CPlayerDataManager.Instance;
+
+        int currentLevel = player.CurrentUpgradeLevel[upgradeIndex];
+
+        // 최대 레벨 체크
+        if (currentLevel >= _data.Capacity)
             return;
 
         // 레벨 증가
-        _level++;
+        player.CurrentUpgradeLevel[upgradeIndex]++;
 
-        // 능력값 증가
-        _value += _data.Val;
+        // 이벤트 호출
+        player.NotifyStatChanged();
 
         // 업그레이드 애니메이션 실행
         if (effectAnimator != null)
@@ -98,28 +106,32 @@ public class AbilitySlot_Data : MonoBehaviour
         UpdateUI();
     }
     #endregion
-
+    
     #region 내부 함수
     // 현재 상태를 UI에 반영
     private void UpdateUI()
     {
-        // 레벨 표시
-        levelText.text = "LV. " + _level;
+        var player = CPlayerDataManager.Instance;
 
-        // 능력값 표시
-        valueText.text = "+" + _value;
+        int level = player.CurrentUpgradeLevel[upgradeIndex];
 
-        // 가격 표시 (레벨 기반 배열 참조)
-        if (_data.PriceArr != null && _level - 1 < _data.PriceArr.Length)
-            priceText.text = _data.PriceArr[_level - 1].ToString();
+        // 레벨
+        levelText.text = "LV. " + level;
+
+        // 능력값
+        valueText.text = "+" + (level * _data.Val);
+
+        // 가격
+        if (_data.PriceArr != null && level < _data.PriceArr.Length)
+            priceText.text = _data.PriceArr[level].ToString();
         else
             priceText.text = "-";
 
-        // 아이콘 변경 (레벨 구간별)
+        // 아이콘
         if (_data.IconArr != null && _data.IconArr.Length > 0)
         {
             // 10레벨 단위로 아이콘 변경
-            int iconIndex = (_level - 1) / 10;
+            int iconIndex = level / 10;
 
             // 배열 범위 보호
             iconIndex = Mathf.Clamp(iconIndex, 0, _data.IconArr.Length - 1);
@@ -127,5 +139,7 @@ public class AbilitySlot_Data : MonoBehaviour
             icon.sprite = _data.IconArr[iconIndex];
         }
     }
+
+
     #endregion
 }
