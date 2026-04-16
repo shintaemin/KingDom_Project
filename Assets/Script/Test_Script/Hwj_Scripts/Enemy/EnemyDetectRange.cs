@@ -54,10 +54,6 @@ public class EnemyDetectRange : MonoBehaviour
         StartCoroutine(CoBindPlayer());
     }
 
-    private void OnEnable()
-    {
-        StartCoroutine(CoBindPlayer());
-    }
     private IEnumerator CoBindPlayer()
     {
         while (_playerTr == null)
@@ -94,24 +90,6 @@ public class EnemyDetectRange : MonoBehaviour
 
         CheckDetect();
         UpdateVisual(_state.IsDetected);
-    }
-
-    private IEnumerator CoBindPlayer()
-    {
-        while (_playerTr == null)
-        {
-            var player = GameObject.FindWithTag(_playerTag);
-
-            if (player != null)
-            {
-                _playerTr = player.transform;
-            }
-
-            else
-            {
-                yield return null;
-            }
-        }
     }
 
     private void CheckDetect()
