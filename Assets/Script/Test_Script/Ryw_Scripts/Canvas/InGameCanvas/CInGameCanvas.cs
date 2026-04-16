@@ -52,8 +52,9 @@ public class CInGameCanvas : MonoBehaviour
     [SerializeField] private CFullscreenImpact _fullscreenImpact;
     [SerializeField] private CStageGoal _stageGoal;
     [SerializeField] private CInstancePanel _instancePanel;
-    //[SerializeField] private Victory_Panel_Controller _victoryPanel;
-    //[SerializeField] private Victory_Panel_Controller _FailurePanel;
+    [SerializeField] private GameObject _goImpact;
+    [SerializeField] private Victory_Panel_Controller _victoryPanel;
+    [SerializeField] private Victory_Panel_Controller _failurePanel;
 
     [Header("확인용. 직접 수정 비추")]
     [SerializeField] private EMissionType? _missionType = null;
@@ -74,6 +75,9 @@ public class CInGameCanvas : MonoBehaviour
     private IInGameCanvasPhaseFSM _fsm;
 
     private readonly Dictionary<EGamePhase, IInGameCanvasPhaseFSM> _phaseDic = new Dictionary<EGamePhase, IInGameCanvasPhaseFSM>();
+
+    private IngameManager _ingameManager;
+    private int _currentSubStage;
     #endregion
 
     #region 프로퍼티
@@ -81,6 +85,11 @@ public class CInGameCanvas : MonoBehaviour
     public CStagePanel StagePanel => _stagePanel;
     public CFullscreenImpact FullscreenImpact => _fullscreenImpact;
     public CStageGoal StageGoal => _stageGoal;
+    public GameObject GoImpact => _goImpact;
+    public Victory_Panel_Controller VictoryPanel => _victoryPanel;
+    public Victory_Panel_Controller FailurePanel => _failurePanel;
+
+    public int CurrentSubStage => _currentSubStage;
 
     // 이건 필요한가?
     public EMissionType? MissionType
@@ -99,15 +108,55 @@ public class CInGameCanvas : MonoBehaviour
         if (_stagePanel.IsNull("_stagePanel") ||
             _fullscreenImpact.IsNull("_fullscreenImpact") ||
             _stageGoal.IsNull("_stageGoal") ||
-            _instancePanel.IsNull("_instancePanel"))
+            _instancePanel.IsNull("_instancePanel") ||
+            _goImpact.IsNull("_goImpact") ||
+            _victoryPanel.IsNull("_victoryPanel") ||
+            _failurePanel.IsNull("_failurePanel"))
         {
             return;
         }
         // 외부로부터 받아와야하는데...
         // 외부에서 받아오도록 만들고 다 함수로 만든다.
         MakePhaseDic();
+
+        GameObject tgo = GameObject.Find("InGameManager");
+
+        if (tgo.TryGetComponent(out IngameManager IGM))
+        {
+            _ingameManager = IGM;
+        }
+    }
+    private void OnEnable()
+    {
+        _ingameManager.MissionEnd += _ingameManager_MissionEnd;
     }
 
+    private void OnDisable()
+    {
+        _ingameManager.MissionEnd -= _ingameManager_MissionEnd;
+    }
+    private void _ingameManager_MissionEnd(EMissionAnswer obj)
+    {
+        // 모든 판넬 비활성화
+        StagePanel.gameObject.SetActive(false);
+        StageGoal.gameObject.SetActive(false);
+        FullscreenImpact.gameObject.SetActive(false);
+        GoImpact.gameObject.SetActive(false);
+        // 조건분기
+        switch (obj)
+        {
+            case EMissionAnswer.Success:
+                VictoryPanel.gameObject.SetActive(true);
+                break;
+            case EMissionAnswer.Fail:
+                FailurePanel.gameObject.SetActive(true);
+                break;
+            case EMissionAnswer.None:
+                break;
+            default:
+                break;
+        }
+    }
     private void MakePhaseDic()
     {
         _phaseDic.Clear();
@@ -171,6 +220,7 @@ public class CInGameCanvas : MonoBehaviour
     }
     private void SetCurrentSubStage(int currentSubStage)
     {
+        _currentSubStage = currentSubStage;
         _stageGoal.CurrentSubStage = currentSubStage;
     }
     private void SetMissionType(EMissionType? type)
@@ -194,7 +244,7 @@ public class CInGameCanvas : MonoBehaviour
         if (_fsm != null)
         {
             Debug.Log($"{_currentGamePhase.ToString()} Exit");
-            _fsm.Exit(this); 
+            _fsm.Exit(this);
         }
 
         _currentGamePhase = phase;
@@ -205,7 +255,6 @@ public class CInGameCanvas : MonoBehaviour
 
         return true;
     }
-
     //========================================================================================================================
     // 외부 호출 함수
 
@@ -217,7 +266,7 @@ public class CInGameCanvas : MonoBehaviour
         SetLevel(level);
         // 서브스테이지 수
         SetMaxSubStage(subStage);
-        
+
     }
 
     // 서브스테이지 마다 불러줘야 한다.
@@ -246,11 +295,19 @@ public class CInGameCanvas : MonoBehaviour
     {
         _instancePanel.SpawnNumber(number, color, position);
     }
-    
+
     // 0/3 이런 값을 넣어주면 됩니다.
     public void SetGoalText(string goalText)
     {
         _stageGoal.SetText(goalText);
+    }
+
+    // Go!
+    public void SetActiveGoImpact(bool flag)
+    {
+        _goImpact.SetActive(flag);
+        if (flag)
+            CallFullscreenImpact(Color.white);
     }
 
     //========================================================================================================================

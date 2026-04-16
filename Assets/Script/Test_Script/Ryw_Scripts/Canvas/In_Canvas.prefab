@@ -4611,6 +4611,9 @@ MonoBehaviour:
   _fullscreenImpact: {fileID: 1173255453408334977}
   _stageGoal: {fileID: 6625581110539245848}
   _instancePanel: {fileID: 4870880550724335522}
+  _goImpact: {fileID: 8233254920844635074}
+  _victoryPanel: {fileID: 5190747020642502884}
+  _failurePanel: {fileID: 5846788462654271665}
   UseDebugKey: 1
   ImpactColor: {r: 1, g: 0, b: 0.15142918, a: 1}
   ImpactKey: 105
