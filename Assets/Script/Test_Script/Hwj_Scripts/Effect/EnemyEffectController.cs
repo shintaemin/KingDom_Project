@@ -141,13 +141,15 @@ public class EnemyEffectController : MonoBehaviour
 
     private void Damaged()
     {
-        // 데미지 받았을 때 (피격 이펙트)
+        EffectManager.Instance.SpawnEffect(EffectManager.EEffectType.PlayerHit, transform.position + Vector3.up, transform.rotation);
+        EffectManager.Instance.SpawnEffect(EffectManager.EEffectType.OnHitBlood, transform.position, transform.rotation);
     }
 
     private void Blocked()
     {
         EffectManager.Instance.SpawnEffect(EffectManager.EEffectType.Block, transform.position + _yOffset, transform.rotation, transform);
         EffectManager.Instance.SpawnEffect(EffectManager.EEffectType.Block2, transform.position + Vector3.up, transform.rotation, transform);
+        EffectManager.Instance.SpawnEffect(EffectManager.EEffectType.HitBlock, transform.position + Vector3.up, transform.rotation, transform);
     }
 
     private void Attacked()
