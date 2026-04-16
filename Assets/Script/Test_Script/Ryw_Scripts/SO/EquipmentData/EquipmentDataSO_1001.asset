@@ -19,4 +19,4 @@ MonoBehaviour:
   _additionalHealthRatio: 0
   _additionalSpeedRatio: 0
   _image: {fileID: 21300000, guid: 68db0c9f1e6e8dd41bc2ae65d63cef5e, type: 3}
-  _charMesh: {fileID: 4300000, guid: 78719e07ed31b4a44961a477a94ffd39, type: 2}
+  _objectName: 02_Cloth_CPI
