@@ -66,6 +66,11 @@ public class PlayerPathRecorder : MonoBehaviour
 
     void Update()
     {
+        if (_playerState.GetState() == PlayerState.EState.Dead)
+        {
+            return;
+        }
+
         if (_inputState.GetState() == InputState.EState.Drawing)
         {
             DrawingRecordPath();
@@ -118,6 +123,11 @@ public class PlayerPathRecorder : MonoBehaviour
     #region 외부 호출 함수
     public void ClickRecordPath()
     {
+        if (_playerState.GetState() == PlayerState.EState.Dead)
+        {
+            return;
+        }
+
         Ray ray = _camera.ScreenPointToRay(_inputReader.GetInputPosition());
 
         if (Physics.Raycast(ray, out RaycastHit hitPlayer, Mathf.Infinity, _playerLayer) ||

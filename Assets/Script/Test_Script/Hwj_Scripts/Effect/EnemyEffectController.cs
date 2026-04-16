@@ -135,7 +135,6 @@ public class EnemyEffectController : MonoBehaviour
 
     private void EnemyDead()
     {
-        // 적 죽었을때 이펙트들 (다이아 쏟아지기..?)
         EffectManager.Instance.SpawnEffect(EffectManager.EEffectType.DeadBlood, transform.position, transform.rotation);
         EffectManager.Instance.SpawnEffect(EffectManager.EEffectType.DeadCircle, transform.position, transform.rotation);
     }
@@ -147,12 +146,11 @@ public class EnemyEffectController : MonoBehaviour
 
     private void Blocked()
     {
-        // 방패로 막았을 떄 (방어막 이펙트)
+        EffectManager.Instance.SpawnEffect(EffectManager.EEffectType.Block, transform.position + _yOffset, transform.rotation, transform);
     }
 
     private void Attacked()
     {
-        // 공격했을 때, (타입별로 확인 필요)
         switch (_enemyType)
         {
             case EEnemyType.Sword:

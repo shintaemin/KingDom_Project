@@ -27,6 +27,7 @@ public class EffectManager : MonoBehaviour
         DeadCircle,
         PlayerDamaged,
         PlayerHit,
+        Block,
 
 
     }

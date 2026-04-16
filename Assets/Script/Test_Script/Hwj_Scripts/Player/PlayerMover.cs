@@ -86,6 +86,11 @@ public class PlayerMover : MonoBehaviour
 
     private void StartMove()
     {
+        if (_playerState.GetState() == PlayerState.EState.Dead)
+        {
+            return;
+        }
+        
         Transform enemy = _pathRecorder.GetEnemy();
 
         if (enemy != null)
