@@ -146,6 +146,18 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 758874211871829676, guid: 98aacd45f8d91b8489b6c19b802a4099, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 53e411865f495af4088d1cf33bbb6e6c, type: 3}
+    - target: {fileID: 1543543076968734594, guid: 98aacd45f8d91b8489b6c19b802a4099, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 800
+      objectReference: {fileID: 0}
+    - target: {fileID: 1912348602039784739, guid: 98aacd45f8d91b8489b6c19b802a4099, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 800
+      objectReference: {fileID: 0}
     - target: {fileID: 2480469845061077994, guid: 98aacd45f8d91b8489b6c19b802a4099, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -194,10 +206,26 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5430845889825335477, guid: 98aacd45f8d91b8489b6c19b802a4099, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5430845889825335477, guid: 98aacd45f8d91b8489b6c19b802a4099, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5430845889825335477, guid: 98aacd45f8d91b8489b6c19b802a4099, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5892533536094093466, guid: 98aacd45f8d91b8489b6c19b802a4099, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6765720199300464013, guid: 98aacd45f8d91b8489b6c19b802a4099, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 53e411865f495af4088d1cf33bbb6e6c, type: 3}
     - target: {fileID: 7505238185515142092, guid: 98aacd45f8d91b8489b6c19b802a4099, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -310,6 +338,14 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8728421225553937525, guid: 98aacd45f8d91b8489b6c19b802a4099, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 53e411865f495af4088d1cf33bbb6e6c, type: 3}
+    - target: {fileID: 8954457777200724109, guid: 98aacd45f8d91b8489b6c19b802a4099, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 800
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 8338335375756088065, guid: 98aacd45f8d91b8489b6c19b802a4099, type: 3}
@@ -346,7 +382,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gem: 0
-  _energy: 0
+  _maxEnergy: 0
+  _currentEnergy: 0
   _currentWeaponID: 0
   _currentClothesID: 0
   _currentStage: 1

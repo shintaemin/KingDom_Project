@@ -125,9 +125,9 @@ public partial class CStageGoal : MonoBehaviour
         if (_maxSubStage > 1)
         {
             _subStageUI.gameObject.SetActive(true);
-            // 여기서 UI를 만든다.
-            _subStageUI.MaxSubStage = _maxSubStage;
         }
+        // 여기서 UI를 만든다.
+        _subStageUI.MaxSubStage = _maxSubStage;
     }
     private void SetCurrentSubStage(int value)
     {

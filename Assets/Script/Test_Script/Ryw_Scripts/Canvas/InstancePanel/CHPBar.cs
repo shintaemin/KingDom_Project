@@ -78,16 +78,31 @@ public class CHPBar : MonoBehaviour
             _hpSlider = prefab;
         }
 
-        _fillImage = go.transform.Find("Fill").GetComponentInChildren<Image>();
+        _fillImage = go.transform.Find("Fill Area/Fill").GetComponent<Image>();
+        if (_fillImage == null)
+        {
+            Debug.Log($"[CHPBar] : _fillImage 캐싱 실패");
+        }
+        else
+        {
+            Debug.Log($"[CHPBar] : _fillImage 캐싱 성공");
+        }
     }
 
     public void SetFillColor(Color col)
     {
-        if (_hpSlierPrefab == null || _fillImage == null)
+        if (_hpSlierPrefab == null)
         {
+            Debug.Log($"[CHPBar] : _hpSlierPrefab 이 없음");
+            return;
+        }
+        if (_fillImage == null)
+        {
+            Debug.Log($"[CHPBar] : _fillImage 이 없음");
             return;
         }
 
+        Debug.Log($"[CHPBar] : _fillImage 색상 적용 성공");
         _fillImage.color = col;
     }
 

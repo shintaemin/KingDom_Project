@@ -56,6 +56,7 @@ public class CSubStage : MonoBehaviour
         }
 
         _maxSubStage = maxSubStage;
+
         if (MaxSubStage == 1)
         {
             return;
@@ -159,26 +160,34 @@ public class CSubStage : MonoBehaviour
         {
             Debug.LogWarning($"무언가 잘못되었다. {MaxSubStage == 0}");
         }
-
-        for (int i = 0; i < _bubbles.Length; i++)
+        else if (MaxSubStage == 1)
         {
-            // 이것도 이전 라운드부터 검사해도 문제 없다.
-            // _currentSubStage는 1부터 시작하지만 배열의 주소는 0부터 시작한다.
-            if (i < _currentSubStage - 1)
+            return;
+        }
+        else
+        {
+            Debug.LogWarning($"[CSubStage] : 최대 스테이지 갯수 {MaxSubStage} , 선택스테이지 {currentSubStage}");
+
+            for (int i = 0; i < _bubbles.Length; i++)
             {
-                _bubbles[i].SetImage(_clear);
-                _bubbles[i].SetText("V", Color.green);
-            }
-            else if (i == _currentSubStage - 1)
-            {
-                _bubbles[i].SetImage(_now);
-                _bubbles[i].SetText($"{i + 1}", Color.white);
-            }
-            // 이론상 여기는 없어도 된다.
-            else
-            {
-                _bubbles[i].SetImage(_non);
-                _bubbles[i].SetText($"{i + 1}", Color.white);
+                // 이것도 이전 라운드부터 검사해도 문제 없다.
+                // _currentSubStage는 1부터 시작하지만 배열의 주소는 0부터 시작한다.
+                if (i < _currentSubStage - 1)
+                {
+                    _bubbles[i].SetImage(_clear);
+                    _bubbles[i].SetText("V", Color.green);
+                }
+                else if (i == _currentSubStage - 1)
+                {
+                    _bubbles[i].SetImage(_now);
+                    _bubbles[i].SetText($"{i + 1}", Color.white);
+                }
+                // 이론상 여기는 없어도 된다.
+                else
+                {
+                    _bubbles[i].SetImage(_non);
+                    _bubbles[i].SetText($"{i + 1}", Color.white);
+                }
             }
         }
     }

@@ -57,9 +57,11 @@ public class HpSystem : MonoBehaviour, IDamageable, IHPBar
         {
             if (TryGetComponent<CHPBar>(out _hpbar))
             {
+                Debug.Log($"[HpSystem] : _hpbar 스크립트 캐싱 성공");
                 Transform uiSpawnTr = CInGameCanvas.GetSpawnRootTransform();
                 _hpbar.InitSpawnPos(uiSpawnTr);
-                _hpbar.SetFillColor(Color.green);
+                Color col = gameObject.CompareTag("Player") ? Color.green : Color.red;
+                _hpbar.SetFillColor(col);
                 OnHealthChanged?.Invoke(_currentHP);
             }
             else

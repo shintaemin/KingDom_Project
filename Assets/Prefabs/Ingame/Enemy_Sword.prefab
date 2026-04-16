@@ -1250,6 +1250,7 @@ GameObject:
   - component: {fileID: 8415507082218807654}
   - component: {fileID: 2733577760612070363}
   - component: {fileID: 4673151555739034488}
+  - component: {fileID: 6279252780808534413}
   - component: {fileID: 4910853095987480555}
   - component: {fileID: 2939391294963900109}
   - component: {fileID: 6498704391186613444}
@@ -1394,6 +1395,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isShielded: 0
+  _hpbar: {fileID: 0}
+--- !u!114 &6279252780808534413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7166652829329580452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d44f42baba995e4e90ab8ced526f389, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showOnlyOnChanged: 0
+  _animator: {fileID: 2076291815587264328, guid: f4c5312f8351bef46a1f9f8cc1f32d50, type: 3}
+  _paramAnimation: Animation
+  _fillImage: {fileID: 0}
+  _hpSlierPrefab: {fileID: 7488609981081227603, guid: f4c5312f8351bef46a1f9f8cc1f32d50, type: 3}
+  _spawnRoot: {fileID: 0}
+  _UIOffset: {x: 0, y: 50, z: 0}
 --- !u!114 &4910853095987480555
 MonoBehaviour:
   m_ObjectHideFlags: 0
