@@ -25,6 +25,8 @@ public class SoundManager : MonoBehaviour
     [SerializeField, Range(0,1)] private float _bgmVolum;
     [SerializeField] private List<ClipData> _bgmRegistry = new List<ClipData>();
     [SerializeField] private List<ClipData> _sfxRegistry = new List<ClipData>();
+    [SerializeField] private bool _bgmToggle = true;
+    [SerializeField] private bool _sfxToggle = true;
     #endregion
 
     #region 내부변수
@@ -181,9 +183,18 @@ public class SoundManager : MonoBehaviour
         _bgmAudio.Stop();
     }
 
-    public float GetSfxVolume => _sfxVolum;
-    public float GetBgmVolume => _bgmVolum;
-    public void SetBgmVolume(float volume) => _bgmVolum = Mathf.Clamp(volume, 0, 1);
-    public void SetSfxVolume(float volume) => _sfxVolum = Mathf.Clamp(volume, 0, 1);
+    public void SetBgmVolumeToggle()
+    {
+        _bgmToggle = !_bgmToggle;
+        _bgmAudio.mute = !_bgmToggle;
+    }
+    public void SetSfxVolumeToggle()
+    {
+        _sfxToggle = !_sfxToggle;
+        _sfxAudio.mute = !_sfxToggle;
+    }
+
+    public bool GetSfxToggle => _sfxToggle;
+    public bool GetBgmToggle => _bgmToggle;
     #endregion
 }

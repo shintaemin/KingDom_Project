@@ -781,6 +781,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1271970389509728570, guid: 441ae22862ba6f84a82aaa5404843660, type: 3}
+      propertyPath: _bgmVolum
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1271970389509728570, guid: 441ae22862ba6f84a82aaa5404843660, type: 3}
+      propertyPath: _sfxVolum
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1271970389509728570, guid: 441ae22862ba6f84a82aaa5404843660, type: 3}
+      propertyPath: _bgmToggle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1271970389509728570, guid: 441ae22862ba6f84a82aaa5404843660, type: 3}
+      propertyPath: _sfxToggle
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8389829852644659969, guid: 441ae22862ba6f84a82aaa5404843660, type: 3}
       propertyPath: m_Name
       value: SoundManager

@@ -1669,7 +1669,7 @@ GameObject:
   - component: {fileID: 3924267550501637638}
   m_Layer: 31
   m_Name: ZombieSpawnPos
-  m_TagString: EnemySpawnPos
+  m_TagString: ZombieSpawnPos
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -8714,7 +8714,7 @@ GameObject:
   - component: {fileID: 5538093966851289109}
   m_Layer: 31
   m_Name: ZombieSpawnPos
-  m_TagString: EnemySpawnPos
+  m_TagString: ZombieSpawnPos
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -9683,7 +9683,7 @@ GameObject:
   - component: {fileID: 3347984156283821664}
   m_Layer: 31
   m_Name: ZombieSpawnPos
-  m_TagString: EnemySpawnPos
+  m_TagString: ZombieSpawnPos
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -18052,7 +18052,8 @@ MonoBehaviour:
   _subStageNum: 1
   _missionType: 0
   _playerSpawnPos: {fileID: 6499011917148900047}
-  _enemySpawnPos:
+  _enemySpawnPos: []
+  _zombieSpawnPos:
   - {fileID: 237659497632633369}
   - {fileID: 3585282303311004601}
   - {fileID: 6197666233511173352}
@@ -18063,7 +18064,6 @@ MonoBehaviour:
   - {fileID: 354067115098773448}
   - {fileID: 7462756628679221488}
   - {fileID: 5538093966851289109}
-  _zombieSpawnPos: []
   _bowEnemySpawnPos: []
   _bossSpawnPos: []
   _shieldSpawnPos: []
@@ -22148,7 +22148,7 @@ GameObject:
   - component: {fileID: 3585282303311004601}
   m_Layer: 31
   m_Name: ZombieSpawnPos
-  m_TagString: EnemySpawnPos
+  m_TagString: ZombieSpawnPos
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -22619,7 +22619,7 @@ GameObject:
   - component: {fileID: 237659497632633369}
   m_Layer: 31
   m_Name: ZombieSpawnPos
-  m_TagString: EnemySpawnPos
+  m_TagString: ZombieSpawnPos
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -23183,7 +23183,7 @@ GameObject:
   - component: {fileID: 3174791871195575901}
   m_Layer: 31
   m_Name: ZombieSpawnPos
-  m_TagString: EnemySpawnPos
+  m_TagString: ZombieSpawnPos
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -23458,7 +23458,7 @@ GameObject:
   - component: {fileID: 354067115098773448}
   m_Layer: 31
   m_Name: ZombieSpawnPos
-  m_TagString: EnemySpawnPos
+  m_TagString: ZombieSpawnPos
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -25667,7 +25667,7 @@ GameObject:
   - component: {fileID: 6197666233511173352}
   m_Layer: 31
   m_Name: ZombieSpawnPos
-  m_TagString: EnemySpawnPos
+  m_TagString: ZombieSpawnPos
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -27535,7 +27535,7 @@ GameObject:
   - component: {fileID: 7462756628679221488}
   m_Layer: 31
   m_Name: ZombieSpawnPos
-  m_TagString: EnemySpawnPos
+  m_TagString: ZombieSpawnPos
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -33084,7 +33084,7 @@ GameObject:
   - component: {fileID: 7752871421512959537}
   m_Layer: 31
   m_Name: ZombieSpawnPos
-  m_TagString: EnemySpawnPos
+  m_TagString: ZombieSpawnPos
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647

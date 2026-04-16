@@ -47058,10 +47058,12 @@ MonoBehaviour:
   - {fileID: 6785252031982176486}
   - {fileID: 1136825687968310614}
   - {fileID: 3333290252997668888}
+  _zombieSpawnPos: []
+  _bowEnemySpawnPos: []
   _bossSpawnPos: []
-  _boxSpawnPos: []
-  _keySpawnPos: []
-  _citizenSpawnPos: []
+  _shieldSpawnPos: []
+  _goalZombieSpawnPos: []
+  _goalBowEnemySpawnPos: []
   _leftDownPos: {fileID: 371203474955917602}
   _rightUpPos: {fileID: 1071965516057329730}
 --- !u!114 &1925431369832429970
@@ -47093,7 +47095,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.1
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 64be8baa3dc0a564497094b10af8e5ab, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 0d9d5366704b55845aee6d2e68212d2e, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1 &7103198720489942553
 GameObject:

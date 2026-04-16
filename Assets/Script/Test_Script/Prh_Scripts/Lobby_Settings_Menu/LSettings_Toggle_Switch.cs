@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.VisionOS;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,8 +25,6 @@ using UnityEngine.UI;
 public class LSettings_Toggle_Switch : MonoBehaviour
 {
     #region 인스펙터
-    [SerializeField] private bool defaultOn = true;
-
     [SerializeField] private RectTransform _handle;
     [SerializeField] private Image _handleImage;
 
@@ -35,6 +34,7 @@ public class LSettings_Toggle_Switch : MonoBehaviour
 
     [Header("색상")]
     [SerializeField] private Color _onColor = Color.green;
+    [SerializeField] private Color _offColor = Color.gray;
 
     [Header("Icon")]
     [SerializeField] public GameObject _onIcon;
@@ -42,21 +42,13 @@ public class LSettings_Toggle_Switch : MonoBehaviour
     #endregion
 
     #region 내부 변수
-    // 기본(Off) 상태 색상 저장
-    private Color _originalColor;
-
     // 현재 토글 상태
     private bool _isOn = false;
 
     #endregion
 
-    private void Start()
+    private void Awake()
     {
-        // 초기 색상 저장 (Off 상태 기준)
-        _originalColor = _handleImage.color;
-
-        _isOn = defaultOn;
-
         // 초기 상태 UI 반영
         ApplyState();
     }
@@ -73,6 +65,11 @@ public class LSettings_Toggle_Switch : MonoBehaviour
         ApplyState();
     }
 
+    public void SetOn(bool value)
+    {
+        _isOn = value;
+        ApplyState();
+    }
     #endregion
 
     #region 내부 함수
@@ -84,7 +81,7 @@ public class LSettings_Toggle_Switch : MonoBehaviour
         _handle.anchoredPosition = _isOn ? _onPos : _offPos;
 
         // 색상 변경 (On 강조 / Off 기본)
-        _handleImage.color = _isOn ? _onColor : _originalColor;
+        _handleImage.color = _isOn ? _onColor : _offColor;
 
         // 아이콘 변경
         if (_onIcon != null) _onIcon.SetActive(_isOn);

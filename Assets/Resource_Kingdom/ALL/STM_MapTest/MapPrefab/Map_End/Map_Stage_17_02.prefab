@@ -34360,7 +34360,8 @@ MonoBehaviour:
   _subStageNum: 2
   _missionType: 0
   _playerSpawnPos: {fileID: 8560669302455375135}
-  _enemySpawnPos:
+  _enemySpawnPos: []
+  _zombieSpawnPos:
   - {fileID: 4345621364994411616}
   - {fileID: 7614196930257332893}
   - {fileID: 2622571918567077392}
@@ -34371,10 +34372,11 @@ MonoBehaviour:
   - {fileID: 3521210690925111526}
   - {fileID: 292274099370452161}
   - {fileID: 6343898170663688682}
+  _bowEnemySpawnPos: []
   _bossSpawnPos: []
-  _boxSpawnPos: []
-  _keySpawnPos: []
-  _citizenSpawnPos: []
+  _shieldSpawnPos: []
+  _goalZombieSpawnPos: []
+  _goalBowEnemySpawnPos: []
   _leftDownPos: {fileID: 8770402247534371620}
   _rightUpPos: {fileID: 9153878323769658576}
 --- !u!114 &1442552586887016045

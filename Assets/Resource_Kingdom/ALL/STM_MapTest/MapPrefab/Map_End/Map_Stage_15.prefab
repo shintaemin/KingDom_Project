@@ -6077,6 +6077,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6108369503297683031}
   - component: {fileID: 7416274819807545019}
+  - component: {fileID: 3314983180368249442}
   m_Layer: 28
   m_Name: Ceiling_1
   m_TagString: Untagged
@@ -6116,6 +6117,33 @@ MonoBehaviour:
   _ceilingRoot: {fileID: 3547647041080612806}
   _colTargetTag: Player
   _view: 1
+--- !u!54 &3314983180368249442
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 709847999430681394}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &712813300947877480
 GameObject:
   m_ObjectHideFlags: 0
@@ -18438,10 +18466,12 @@ MonoBehaviour:
   - {fileID: 872561339328325690}
   - {fileID: 1164751957268925244}
   - {fileID: 4918036451567943367}
+  _zombieSpawnPos: []
+  _bowEnemySpawnPos: []
   _bossSpawnPos: []
-  _boxSpawnPos: []
-  _keySpawnPos: []
-  _citizenSpawnPos: []
+  _shieldSpawnPos: []
+  _goalZombieSpawnPos: []
+  _goalBowEnemySpawnPos: []
   _leftDownPos: {fileID: 4359211207262428746}
   _rightUpPos: {fileID: 7127051488531212424}
 --- !u!114 &7370278522950043076
@@ -18473,7 +18503,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.1
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 447e67aa6a5137742916befe36f158cc, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 82b6894ed7cafc844a7d0f011e539b18, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1 &2599197114569504094
 GameObject:
@@ -40484,6 +40514,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2625020573931833961}
   - component: {fileID: 7783227161246488157}
+  - component: {fileID: 6506915076538795275}
   m_Layer: 28
   m_Name: Ceiling_1 (1)
   m_TagString: Untagged
@@ -40523,6 +40554,33 @@ MonoBehaviour:
   _ceilingRoot: {fileID: 7165410087960213319}
   _colTargetTag: Player
   _view: 1
+--- !u!54 &6506915076538795275
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5826872215963534171}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &5890571346896237648
 GameObject:
   m_ObjectHideFlags: 0
@@ -60804,6 +60862,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5861177866901452754}
   - component: {fileID: 7049149108943664322}
+  - component: {fileID: 6872987299377735060}
   m_Layer: 28
   m_Name: Ceiling_1
   m_TagString: Untagged
@@ -60843,6 +60902,33 @@ MonoBehaviour:
   _ceilingRoot: {fileID: 6257324729521644255}
   _colTargetTag: Player
   _view: 1
+--- !u!54 &6872987299377735060
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8487266987497111515}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &8494892616189109205
 GameObject:
   m_ObjectHideFlags: 0

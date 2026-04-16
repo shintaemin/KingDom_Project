@@ -45,7 +45,7 @@ NavMeshProjectSettings:
     cost: 1
   - name: 
     cost: 1
-  - name: 
+  - name: EnemyNotWalkable
     cost: 1
   - name: 
     cost: 1

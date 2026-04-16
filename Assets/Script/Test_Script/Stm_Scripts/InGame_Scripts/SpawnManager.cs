@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 #region 스폰 매니저
 /*
@@ -116,6 +117,21 @@ public class SpawnManager : MonoBehaviour
         go.transform.position = tr.position;
         go.transform.rotation = tr.rotation;
         // 필요하다면 스케일까지
+
+        // 간혹 스폰위치에 꼬임이 발생하는 경우가 생겨 구글링
+        if (go.TryGetComponent<NavMeshAgent>(out NavMeshAgent agent))
+        {
+            agent.enabled = false; // agent 비활성화
+
+            go.transform.position = pos.position; // 스폰 위치로 이동
+
+            agent.enabled = true; // agent 활성화
+
+            if (!agent.isOnNavMesh) // 만약 베이크된 위치가 아니라면 강제 warp
+            {
+                agent.Warp(pos.position);
+            }
+        }
 
         OnSpawn?.Invoke(go);
         Debug.Log($"[SpawnManager] : {go.name} 생성 완료");
