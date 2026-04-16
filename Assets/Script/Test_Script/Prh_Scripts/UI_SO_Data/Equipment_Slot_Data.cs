@@ -78,7 +78,17 @@ public class Equipment_Slot_Data : MonoBehaviour
         if (_lockIcon != null)
         {
             _lockIcon.sprite = _data.Image;
-            _lockIcon.color = Color.black;
+
+            bool isAlwaysOpen = IsAlwaysOpenSlot();
+
+            if (isAlwaysOpen)
+            {
+                _lockIcon.color = Color.white;   // ⭐ 컬러 유지
+            }
+            else
+            {
+                _lockIcon.color = Color.black;   // 기존 흑백
+            }
         }
 
         // 스탯 텍스트 적용
@@ -123,6 +133,18 @@ public class Equipment_Slot_Data : MonoBehaviour
             _checkStatText.fontSize = 36;
             _checkStatText.fontStyle = TMPro.FontStyles.Bold;
         }
+    }
+
+    private bool IsAlwaysOpenSlot()
+    {
+        Transform parent = transform.parent;
+
+        if (parent == null) return false;
+
+        return parent.name == "RewardWeapon_Group" ||
+               parent.name == "Weapon_Purchased_Group" ||
+               parent.name == "RewardClothes_Group" ||
+               parent.name == "Clothes_Purchased_Group";
     }
     #endregion
 

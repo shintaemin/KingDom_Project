@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -27,6 +28,8 @@ public class Stage_Progress_UI_Controller : MonoBehaviour
     [Header("스테이지 아이콘")]
     [SerializeField] private List<Image> stageIcons;
 
+    [SerializeField] private StartButton_Controller startButton;
+
     [SerializeField] private int currentStage = 1;
 
     [Header("스테이지 그룹")]
@@ -47,6 +50,8 @@ public class Stage_Progress_UI_Controller : MonoBehaviour
     void Start()
     {
         UpdateStageUI();
+
+        startButton.SetStage(currentStage);
     }
 
     #region 외부 호출 함수
@@ -54,6 +59,8 @@ public class Stage_Progress_UI_Controller : MonoBehaviour
     {
         currentStage = stage;
         UpdateStageUI();
+
+        startButton.SetStage(stage);
     }
 
     // 스테이지 UI 전체 갱신
