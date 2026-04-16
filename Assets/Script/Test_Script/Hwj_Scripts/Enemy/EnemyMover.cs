@@ -47,26 +47,19 @@ public class EnemyMover : MonoBehaviour
             Debug.LogError("EnemyMover _state _nav 참조 실패");
             return;
         }
-    }
 
-    private IEnumerator CoBindPlayer()
-    {
-        while (_playerTr == null)
-        {
-            var player = GameObject.FindWithTag(_playerTag);
-
-            if (player != null)
-            {
-                Debug.Log("플레이어 태그 지정 완료");
-                _playerTr = player.transform;
-                yield break;
-            }
-
-            else
-            {
-                yield return null;
-            }
-        }
+        //var player = GameObject.FindWithTag(_playerTag);
+        //
+        //if (player != null)
+        //{
+        //    _playerTr = player.transform;
+        //
+        //    if (_playerTr == null)
+        //    {
+        //        Debug.LogError("EnemyMover _playerTr 참조 실패 (태그 설정 필요)");
+        //        return;
+        //    }
+        //}
     }
 
     private void OnEnable()
@@ -87,6 +80,24 @@ public class EnemyMover : MonoBehaviour
         }
     }
 
+    private IEnumerator CoBindPlayer()
+    {
+        while (_playerTr == null)
+        {
+            var player = GameObject.FindWithTag(_playerTag);
+
+            if (player != null)
+            {
+                _playerTr = player.transform;
+            }
+
+            else
+            {
+                yield return null;
+            }
+        }
+    }
+
     private void StateChanged(EnemyState.EState state)
     {
         if (_moveRoutine != null)
@@ -101,13 +112,13 @@ public class EnemyMover : MonoBehaviour
         switch (state)
         {
             case EnemyState.EState.Patrol:
-                _nav.speed = 1.5f;
+                _nav.speed = 2.2f;
                 _nav.isStopped = false;
                 _moveRoutine = StartCoroutine(CoPatrol());
                 break;
 
             case EnemyState.EState.Chase:
-                _nav.speed = 2.2f;
+                _nav.speed = 3f;
                 _nav.isStopped = false;
                 _moveRoutine = StartCoroutine(CoChase());
                 break;
@@ -160,7 +171,7 @@ public class EnemyMover : MonoBehaviour
 
     private IEnumerator CoBossJump()
     {
-        Vector3 dir = Random.insideUnitSphere;
+        Vector3 dir = Random.onUnitSphere;
         dir.y = 0;
         dir.Normalize();
 
@@ -171,6 +182,8 @@ public class EnemyMover : MonoBehaviour
             Vector3 center = hit.position;
 
             center.y = transform.position.y;
+
+            transform.rotation = Quaternion.LookRotation(dir);
 
             Vector3 startPos = transform.position;
             float timer = 0;
@@ -196,6 +209,7 @@ public class EnemyMover : MonoBehaviour
             _nav.Warp(center);
             _nav.enabled = true;
             _state.IsGrounded = true;
+            EffectManager.Instance.SpawnEffect(EffectManager.EEffectType.BossJumpEnd, transform.position, transform.rotation);
         }
     }
 }

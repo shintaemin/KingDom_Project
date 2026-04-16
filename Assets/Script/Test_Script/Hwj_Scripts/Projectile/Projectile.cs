@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /*
-    ㆍ ProjectileTrigger
+    ㆍ Projectile
 
     ㆍ 작성자 : 황원준
 
@@ -18,7 +18,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] private bool _onlyOnce = true;
 
     [Header("타입 설정")]
-    [SerializeField] private ProjectileManager.ProjectileType _projectileType;
+    [SerializeField] private ProjectileManager.EProjectileType _projectileType;
 
     [Header("수명 설정")]
     [SerializeField] private float _lifeTime = 3f;
@@ -47,13 +47,13 @@ public class Projectile : MonoBehaviour
 
         if (_rb == null)
         {
-            Debug.LogError("ProjectileTrigger _rb 참조 실패");
+            Debug.LogError("Projectile _rb 참조 실패");
             return;
         }
 
-        if (_projectileType == ProjectileManager.ProjectileType.None)
+        if (_projectileType == ProjectileManager.EProjectileType.None)
         {
-            Debug.LogError("ProjectileTrigger _projectileType 인스펙터 확인");
+            Debug.LogError("Projectile _projectileType 인스펙터 확인");
             return;
         }
     }
@@ -67,6 +67,7 @@ public class Projectile : MonoBehaviour
 
         _onHit = true;
 
+        // 플레이어 맞았을 경우
         if (other.CompareTag(_playerTag))
         {
             var playerHp = other.GetComponent<HpSystem>();
@@ -75,22 +76,36 @@ public class Projectile : MonoBehaviour
             {
                 playerHp.TakeDamage(_damage, transform.position);
 
+                if (_projectileType == ProjectileManager.EProjectileType.Arrow)
+                {
+                    SoundManager.Instance.SFXPlay(ESfxType.ArrowHit);
+                }
+
+                else
+                {
+                    EffectManager.Instance.SpawnEffect(EffectManager.EEffectType.ZombieSmoke, this.transform.position, this.transform.rotation);
+                }
+
                 ReturnToPool();
             }
         }
 
+        // 벽에 맞았을 경우
         else if (((1 << other.gameObject.layer) & _notTerrainLayer) != 0)
         {
-            if (_projectileType == ProjectileManager.ProjectileType.Arrow)
+            if (_projectileType == ProjectileManager.EProjectileType.Arrow)
             {
                 _rb.velocity = Vector3.zero;
                 _rb.angularVelocity = Vector3.zero;
 
+                SoundManager.Instance.SFXPlay(ESfxType.ArrowHit);
                 //_rb.isKinematic = true; 테스트 후에 느낌이 없다면 적용
             }
 
             else
             {
+                EffectManager.Instance.SpawnEffect(EffectManager.EEffectType.ZombieSmoke, this.transform.position, this.transform.rotation);
+
                 ReturnToPool();
             }
         }
