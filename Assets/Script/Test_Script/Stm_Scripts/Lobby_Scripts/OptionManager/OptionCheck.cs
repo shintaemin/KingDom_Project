@@ -2,8 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-#region
-
+#region 옵션 체크
+/*
+ ▶ 할일
+   - Start 에서 현재 옵션 상태를 확인하여 각 버튼에 On Off 지정
+*/
 #endregion
 
 
