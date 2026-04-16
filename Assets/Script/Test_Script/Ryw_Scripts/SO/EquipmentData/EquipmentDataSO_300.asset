@@ -19,4 +19,4 @@ MonoBehaviour:
   _additionalHealthRatio: -1
   _additionalSpeedRatio: -1
   _image: {fileID: 21300000, guid: 1117e43e4c33e0041bce0a8dbb16061d, type: 3}
-  _charMesh: {fileID: 0}
+  _objectName: ShortSword13

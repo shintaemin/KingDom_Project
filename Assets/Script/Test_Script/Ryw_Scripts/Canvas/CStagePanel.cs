@@ -69,7 +69,7 @@ public class CStagePanel : MonoBehaviour
         if (_missionType == null)
         {
             Debug.LogWarning("_missionType == null");
-            return;
+            return;   // 이건 그냥 이걸 빼자. 뒤에서도 오류를 잡는다. 이거 하면 에러뜬다.
         }
 
         SetTextes(level, _missionType.Value);

@@ -19,4 +19,4 @@ MonoBehaviour:
   _additionalHealthRatio: 0
   _additionalSpeedRatio: 7
   _image: {fileID: 21300000, guid: 8285b484fc1651040a1325674b8b0a7b, type: 3}
-  _charMesh: {fileID: 0}
+  _objectName: Sword09

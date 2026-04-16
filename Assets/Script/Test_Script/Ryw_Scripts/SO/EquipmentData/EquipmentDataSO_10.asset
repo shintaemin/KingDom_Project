@@ -19,4 +19,4 @@ MonoBehaviour:
   _additionalHealthRatio: 5
   _additionalSpeedRatio: 0
   _image: {fileID: 21300000, guid: 17ef5d7eb28bfae46bc50981d68b4776, type: 3}
-  _charMesh: {fileID: 0}
+  _objectName: Spear07
