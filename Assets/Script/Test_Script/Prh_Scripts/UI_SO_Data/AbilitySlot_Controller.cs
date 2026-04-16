@@ -33,6 +33,7 @@ public class AbilitySlot_Controller : MonoBehaviour
     [SerializeField] private CAbilityDataSO _attackSO;
     [SerializeField] private CAbilityDataSO _healthSO;
     [SerializeField] private CAbilityDataSO _speedSO;
+
     #endregion
 
     private void Start()

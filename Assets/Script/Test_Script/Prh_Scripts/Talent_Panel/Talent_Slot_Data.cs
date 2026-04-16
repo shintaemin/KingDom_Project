@@ -26,9 +26,6 @@ using UnityEngine.UI;
 public class Talent_Slot_Data : MonoBehaviour
 {
     #region 인스펙터
-    [Header("잠금 전용 이미지")]
-    [SerializeField] private Sprite _lockSprite;
-
     [Header("아이콘")]
     [SerializeField] private Image _lockIcon;
     [SerializeField] private Image _openIcon;
@@ -88,8 +85,21 @@ public class Talent_Slot_Data : MonoBehaviour
         if (_data == null)
             return;
 
+        int level = CPlayerDataManager.Instance.CurrentTalentLevel[_id];
+
+        int value = 0;
+
+        if (level > 0)
+        {
+            value = _data.Basic + _data.Volume * (level - 1);
+        }
+
         // 문자열 포맷: "{}" → 실제 수치
-        string text = _data.Information.Replace("{}", _data.Volume.ToString());
+        // string text = _data.Information.Replace("{}", _data.Volume.ToString());
+        string text = _data.Information.Replace("{}", value.ToString());
+
+        // 전체 합
+        int sum = CPlayerDataManager.Instance.CurrentTalentSum;
 
         // 해금 상태 텍스트
         if (_openStatText1 != null)
@@ -112,6 +122,23 @@ public class Talent_Slot_Data : MonoBehaviour
     public CTalentDataSO GetData()
     {
         return _data;
+    }
+
+    private void OnEnable()
+    {
+        if (CPlayerDataManager.Instance != null)
+            CPlayerDataManager.Instance.OnStatChanged += UpdateUI;
+    }
+
+    private void OnDisable()
+    {
+        if (CPlayerDataManager.Instance != null)
+            CPlayerDataManager.Instance.OnStatChanged -= UpdateUI;
+    }
+
+    private void UpdateUI()
+    {
+        SetStatText();
     }
     #endregion
 }

@@ -1,7 +1,7 @@
+using System; // 라희추가
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System; // 라희추가
 
 
 #region CPlayerDataManager
@@ -97,8 +97,42 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
 
     private CEquipmentDataSO _currentWeapon;
     private CEquipmentDataSO _currentClothes;
+    #endregion
 
-    public event Action OnStatChanged; // 라희 추가
+    #region [라희 추가 (재능 - 이벤트 및 레벨 관리)]
+    // ▶ 이벤트
+    // 플레이어의 스탯(능력치)이 변경되었을 때 호출되는 이벤트
+    // UI, 스탯 표시 등에서 구독하여 자동 갱신 처리
+    public event Action OnStatChanged;
+
+    // ▶ 이벤트 호출 함수
+    // 외부에서 직접 Invoke하지 않고, 이 함수를 통해 안전하게 이벤트 실행
+    public void NotifyStatChanged()
+    {
+        OnStatChanged?.Invoke();
+    }
+
+    // ▶ 재능 레벨 증가 함수 (가챠 / 해금 시 사용)
+    // index : 증가시킬 재능 슬롯 번호
+    // return : 성공 여부 (총합 제한 초과 시 false)
+    public bool AddTalentLevel(int index)
+    {
+        // 레벨 총합
+        if (CurrentTalentSum >= 20)
+        {
+            Debug.Log("재능 총합 초과");
+            return false;
+        }
+
+        // 해당 재능 레벨 증가
+        _currentTalentLevel[index]++;
+
+        // 스탯 변경 알림 (UI 및 능력치 자동 갱신)
+        OnStatChanged?.Invoke();
+
+        return true;
+    }
+
     #endregion
 
     #region 프로퍼티

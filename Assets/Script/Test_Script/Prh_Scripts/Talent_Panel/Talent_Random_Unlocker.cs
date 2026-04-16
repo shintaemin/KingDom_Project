@@ -63,7 +63,11 @@ public class Talent_Random_Unlocker : MonoBehaviour
         // ΩΩ∑‘ ¿Œµ¶Ω∫ »Æ¿Œ
         int index = _talentSlots.IndexOf(selectedSlot);
 
+        Debug.Log("index: " + index);
+
         Debug.Log($"ø≠∏∞ ΩΩ∑‘: {selectedSlot.name}");
+
+        CPlayerDataManager.Instance.AddTalentLevel(index);
     }
     #endregion
 }
