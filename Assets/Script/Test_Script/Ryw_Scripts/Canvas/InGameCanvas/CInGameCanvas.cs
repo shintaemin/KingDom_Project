@@ -285,9 +285,12 @@ public class CInGameCanvas : MonoBehaviour
     }
 
     // 화면에 아이콘을 생성합니다. type에 따라 다르게 동작합니다.
-    public void SpwanIcon(CInstancePanel.EIconType type, Vector3 position)
+    public void SpwanIcon(CInstancePanel.EIconType type, Vector3 position, int count = 1)
     {
-        _instancePanel.SpawnIcon(type, position);
+        for (int i = 0; i < count; i++)
+        {
+            _instancePanel.SpawnIcon(type, position);
+        }
     }
 
     // 화면에 숫자를 생성합니다. 값, 색, 위치를 지정

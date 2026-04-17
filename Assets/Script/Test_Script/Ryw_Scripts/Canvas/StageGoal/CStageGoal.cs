@@ -162,6 +162,11 @@ public partial class CStageGoal : MonoBehaviour
 
     public void SetText(string text)
     {
+        bool activeKill = _killUI.activeInHierarchy;
+        if (!activeKill)
+        {
+            _killUI.SetActive(true);
+        }
         switch (_missionType)
         {
             case EMissionType.Kill:
@@ -173,6 +178,10 @@ public partial class CStageGoal : MonoBehaviour
             case EMissionType.Goal:
                 Debug.LogWarning("골 미션에는 텍스트가 없다.");
                 break;
+        }
+        if (!activeKill)
+        {
+            _killUI.SetActive(false);
         }
     }
 }

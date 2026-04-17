@@ -26,6 +26,9 @@ public class CInstancePanel : MonoBehaviour
     [SerializeField] private Transform _gemTargetTransform;
     [SerializeField] private Transform _spawnRoot;
 
+    [Header("스폰 최소 스케일")]
+    [SerializeField] private float _minScail = 0.5f;
+
     [Header("디버그 키")]
     [SerializeField] private bool _useDebugKey = false;
     [SerializeField] private KeyCode _SpawnIconKey = KeyCode.I;
@@ -115,6 +118,12 @@ public class CInstancePanel : MonoBehaviour
         {
             return;
         }
+        if (go.TryGetComponent<RectTransform>(out RectTransform rT))
+        {
+           float rand = Random.Range(_minScail, 0.7f);
+
+            rT.sizeDelta = rT.sizeDelta * rand;
+        }
         go.transform.position = spawnPosition;
         if (go.TryGetComponent(out CIconPrefab prefab))
         {
@@ -127,7 +136,7 @@ public class CInstancePanel : MonoBehaviour
                     prefab.Init(GemIcon, _gemTargetTransform, true);
                     break;
                 case EIconType.GemToPlayer:
-                    prefab.Init(GemIcon, PlayerTransform, true);    // 플레이어를 가져와야 한다.
+                    prefab.Init(GemIcon, PlayerTransform, true, true);    // 플레이어를 가져와야 한다.
                     break;
             }
         }

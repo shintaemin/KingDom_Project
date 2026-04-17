@@ -50,7 +50,7 @@ public class LTopBar_UI : MonoBehaviour
         var data = CPlayerDataManager.Instance;
 
         // 다이아 표시
-        //_gemText.text = data.Gem.ToString();
+        _gemText.text = data.Gem.ToString();
 
         // 에너지
         _energyText.text = $"{data.Energy} / 15";

@@ -526,6 +526,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b24e5ec20dd3a8c42af1463b70154e18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _waitTime: 0.8
+  _endWaitTime: 1
+  _uiCanvas: {fileID: 611896765}
+  _endButton: {fileID: 546028056}
+  _gemUI: {fileID: 1013584908}
 --- !u!225 &546028055
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -565,7 +570,7 @@ MonoBehaviour:
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
+    m_FadeDuration: 0.4
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 0}
@@ -720,6 +725,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1750125549876874585, guid: 0d595531076e68340a2fdd1d10b53562, type: 3}
+      propertyPath: m_text
+      value: null
+      objectReference: {fileID: 0}
+    - target: {fileID: 4870880550724335522, guid: 0d595531076e68340a2fdd1d10b53562, type: 3}
+      propertyPath: _minScail
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 5190747020642502884, guid: 0d595531076e68340a2fdd1d10b53562, type: 3}
       propertyPath: _button
       value: 
@@ -737,6 +750,10 @@ PrefabInstance:
       value: In_Canvas
       objectReference: {fileID: 0}
     - target: {fileID: 7883336912444967496, guid: 0d595531076e68340a2fdd1d10b53562, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8233254920844635074, guid: 0d595531076e68340a2fdd1d10b53562, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -772,6 +789,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9122979445410984987, guid: 0d595531076e68340a2fdd1d10b53562, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 520
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 3073153622309030041, guid: 0d595531076e68340a2fdd1d10b53562, type: 3}
@@ -788,6 +809,9 @@ PrefabInstance:
       insertIndex: 3
       addedObject: {fileID: 319610582}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1456831719350403933, guid: 0d595531076e68340a2fdd1d10b53562, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1013584908}
     - targetCorrespondingSourceObject: {fileID: 8072620288686530434, guid: 0d595531076e68340a2fdd1d10b53562, type: 3}
       insertIndex: -1
       addedObject: {fileID: 611896768}
@@ -830,6 +854,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b24e5ec20dd3a8c42af1463b70154e18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _waitTime: 1
+  _endWaitTime: 2
+  _uiCanvas: {fileID: 0}
+  _endButton: {fileID: 0}
+  _gemUI: {fileID: 0}
 --- !u!1 &742785173
 GameObject:
   m_ObjectHideFlags: 0
@@ -1817,7 +1846,7 @@ PrefabInstance:
     - target: {fileID: 1709218921332708418, guid: 640a58ce4a26bdf4a91d299b9be7ba3d, type: 3}
       propertyPath: _playerPrefab
       value: 
-      objectReference: {fileID: 1050013909949325014, guid: 77e4c6af476e4e84d8289a1fd060ef77, type: 3}
+      objectReference: {fileID: 4412569021385203448, guid: d5b3de8e65e573a4c8c67279efa71004, type: 3}
     - target: {fileID: 1709218921332708418, guid: 640a58ce4a26bdf4a91d299b9be7ba3d, type: 3}
       propertyPath: _shieldPrefab
       value: 
@@ -2062,6 +2091,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1008604420}
   m_CullTransparentMesh: 1
+--- !u!114 &1013584906 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8166325063959355253, guid: 0d595531076e68340a2fdd1d10b53562, type: 3}
+  m_PrefabInstance: {fileID: 611896763}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1013584907 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1456831719350403933, guid: 0d595531076e68340a2fdd1d10b53562, type: 3}
+  m_PrefabInstance: {fileID: 611896763}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1013584908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1013584907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 470c78d463bbd564480015243cadf9f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gemText: {fileID: 1013584906}
 --- !u!1 &1149634273
 GameObject:
   m_ObjectHideFlags: 0
@@ -2447,7 +2505,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cameraUpdateInterval: 0.5
   _height: 20
-  _fov: 40
+  _fov: 60
   _clampGap: 1
   _cameraType: 1
   _uesDelayedCheckEnemy: 1

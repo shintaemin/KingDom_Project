@@ -24,6 +24,7 @@ public class IngameManager : MonoBehaviour
     [SerializeField] private Map_Stage _currentMap;
     [SerializeField] private CInGameCanvas _ingameCanvas;
 
+    [SerializeField] private int _currentStage;
     [SerializeField] private int _mapIndex = 1;
     [SerializeField] private int _currentStageCount;
     [SerializeField] private float _fadeTime = 0.5f;
@@ -44,19 +45,24 @@ public class IngameManager : MonoBehaviour
     {
         if (CPlayerDataManager.Instance != null)
         {
-            int playerStage = CPlayerDataManager.Instance.CurrentStage;
-            
-            playerStage = playerStage >= 21 ? UnityEngine.Random.Range(0,21) : playerStage;
+            int playerCurrentStage = CPlayerDataManager.Instance.CurrentStage;
+
+            _currentStage = playerCurrentStage >= 21 ? UnityEngine.Random.Range(0,21) : playerCurrentStage;
             
             _mapIndex = 1;
-            SetMap(playerStage, _mapIndex); 
+            SetMap(_currentStage, _mapIndex); 
 
             if (_ingameCanvas != null)
             {
-                _currentStageCount = _mapSO.GetStageCount(playerStage);
+                // UI 맵 정보 에따른 시작 준비
+                _currentStageCount = _mapSO.GetStageCount(_currentStage);
                 EMissionType type = _currentMap.GetMissionType;
-                _ingameCanvas.Init(_currentMap.GetPlayerSpawnPos, playerStage, _currentStageCount);
+                _ingameCanvas.Init(_currentMap.GetPlayerSpawnPos, playerCurrentStage, _currentStageCount);
                 _ingameCanvas.Standby(_mapIndex, type);
+
+                // UI 킬 카운트 업데이트
+                int killCount = _currentMap.GetEnemyCount;
+                _ingameCanvas.SetGoalText($"{0}/{killCount}");
             }
         }
     }
@@ -300,12 +306,8 @@ public class IngameManager : MonoBehaviour
         // 미션 클리어하여 해당 미션 구독 취소
         MissionClear();
 
-        if (CPlayerDataManager.Instance != null)
-        {
-            int playerStage = CPlayerDataManager.Instance.CurrentStage;
-            _mapChanegeCo = StartCoroutine(CoChangeMap(playerStage, _mapIndex));
-            Destroy(_pState.gameObject);
-        }
+        _mapChanegeCo = StartCoroutine(CoChangeMap(_currentStage, _mapIndex));
+        Destroy(_pState.gameObject);
     }
     #endregion
 }

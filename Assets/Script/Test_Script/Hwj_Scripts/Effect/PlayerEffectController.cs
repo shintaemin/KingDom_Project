@@ -63,11 +63,6 @@ public class PlayerEffectController : MonoBehaviour
         {
             _combat.OnAttacked += Attacked;
         }
-
-        if (_playerCombat != null)
-        {
-            _playerCombat.OnHit += HitTarget;
-        }
     }
 
     private void OnDisable()
@@ -90,11 +85,6 @@ public class PlayerEffectController : MonoBehaviour
         if (_combat != null)
         {
             _combat.OnAttacked -= Attacked;
-        }
-
-        if (_playerCombat != null)
-        {
-            _playerCombat.OnHit -= HitTarget;
         }
     }
 
@@ -130,20 +120,16 @@ public class PlayerEffectController : MonoBehaviour
 
     private void Damaged()
     {
-        // 플레이어가 데미지를 입었을 때 이펙트 (피격 이펙트)
         EffectManager.Instance.SpawnEffect(EffectManager.EEffectType.PlayerDamaged, transform.position, transform.rotation);
-        _uiCanvas.CallFullscreenImpact(Color.red);
+        EffectManager.Instance.SpawnEffect(EffectManager.EEffectType.OnHitBlood, transform.position, transform.rotation);
+        if (_uiCanvas != null)
+        {
+            _uiCanvas.CallFullscreenImpact(Color.red);
+        }
     }
 
     private void Attacked()
     {
         // 플레이어가 공격 시 이펙트 (공격 이펙트)
-    }
-
-    private void HitTarget()
-    {
-        Vector3 spawnPos = transform.position + (transform.forward * _hitOffset.z) + (transform.up * _hitOffset.y) + (transform.right * _hitOffset.x);
-        
-        EffectManager.Instance.SpawnEffect(EffectManager.EEffectType.PlayerHit, spawnPos, transform.rotation);
     }
 }

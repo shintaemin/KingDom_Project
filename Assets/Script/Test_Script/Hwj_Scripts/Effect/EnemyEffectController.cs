@@ -30,6 +30,7 @@ public class EnemyEffectController : MonoBehaviour
     private EnemyState _enemyState;
     private HpSystem _hpSystem;
     private BaseCombat _combat;
+    private CInGameCanvas _uiCanvas;
     #endregion
 
     void Awake()
@@ -111,6 +112,14 @@ public class EnemyEffectController : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        if (_uiCanvas == null)
+        {
+            _uiCanvas = FindFirstObjectByType<CInGameCanvas>();
+        }
+    }
+
     private void StateChanged(EnemyState.EState state)
     {
         switch (state)
@@ -137,12 +146,18 @@ public class EnemyEffectController : MonoBehaviour
     {
         EffectManager.Instance.SpawnEffect(EffectManager.EEffectType.DeadBlood, transform.position, transform.rotation);
         EffectManager.Instance.SpawnEffect(EffectManager.EEffectType.DeadCircle, transform.position, transform.rotation);
+
+        if (_uiCanvas != null)
+        {
+            _uiCanvas.SpwanIcon(CInstancePanel.EIconType.Skull, transform.position);
+        }
     }
 
     private void Damaged()
     {
         EffectManager.Instance.SpawnEffect(EffectManager.EEffectType.PlayerHit, transform.position + Vector3.up, transform.rotation);
         EffectManager.Instance.SpawnEffect(EffectManager.EEffectType.OnHitBlood, transform.position, transform.rotation);
+
     }
 
     private void Blocked()

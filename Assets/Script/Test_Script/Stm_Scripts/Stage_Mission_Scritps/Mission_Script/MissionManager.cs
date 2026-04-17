@@ -114,12 +114,6 @@ public class MissionManager : MonoBehaviour
                 _currentMission = new Kill_Mission(killCount);
                 // 지정한 미션 시작
                 _currentMission.StartMission();
-                
-                // UI 업데이트
-                if (_gameCanvas != null)
-                {
-                    _gameCanvas.SetGoalText($"0/{killCount}");
-                }
 
                 if (_currentMission == null)
                 {
@@ -128,6 +122,7 @@ public class MissionManager : MonoBehaviour
                 else
                 {
                     Debug.Log($"[MissionManager] : 킬 미션 지정 성공");
+                    Debug.Log($"[MissionManager] : 이번 미션 타겟 수 : {killCount}");
                 }
 
                 // 구독진행
@@ -138,20 +133,6 @@ public class MissionManager : MonoBehaviour
 
                 _currentMission = new Goal_Mission(1);
                 _currentMission.StartMission();
-
-                // UI 업데이트
-                if (_gameCanvas != null)
-                {
-                    _gameCanvas.SetGoalText($"{0}/{1}");
-                }
-                if (_currentMission == null)
-                {
-                    Debug.Log($"[MissionManager] : 골 미션 지정 실패");
-                }
-                else
-                {
-                    Debug.Log($"[MissionManager] : 골 미션 지정 성공");
-                }
                 
                 // 구독 진행
                 Subscription();

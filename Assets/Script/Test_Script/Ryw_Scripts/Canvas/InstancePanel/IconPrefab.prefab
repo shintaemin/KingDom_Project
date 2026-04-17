@@ -88,8 +88,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f81fa93efc49dd469be5c6128e2b297, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 5000
+  MoveSpeed: 2500
   SpawnDelay: 0.3
   DestroyDelay: 0.1
   _image: {fileID: 5566786905238533478}
-  _explosionSpeed: 500
+  _explosionSpeed: 750

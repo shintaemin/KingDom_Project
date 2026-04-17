@@ -103,9 +103,12 @@ public class HpSystem : MonoBehaviour, IDamageable, IHPBar
 
             if (dot > 0.5)
             {
-                Debug.Log("방패로 막았음");
                 OnBlocked?.Invoke();
                 return;
+            }
+            else
+            {
+                OnDamaged?.Invoke();
             }
         }
 
@@ -118,6 +121,7 @@ public class HpSystem : MonoBehaviour, IDamageable, IHPBar
             _currentHP = 0;
             _isDead = true;
             OnDead?.Invoke();
+            OnDamaged?.Invoke();
             IsBackAttackDead?.Invoke(isBackAttackDead);
         }
 

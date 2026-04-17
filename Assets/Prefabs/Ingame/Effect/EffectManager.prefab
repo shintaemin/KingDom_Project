@@ -97,3 +97,15 @@ MonoBehaviour:
     sfxType: 0
     prefab: {fileID: 4708245002499311810, guid: 01d1b03e62749ba4790e3127bdd32a4a, type: 3}
     prewarmCount: 5
+  - type: 16
+    sfxType: 39
+    prefab: {fileID: 4678346051086014970, guid: 246aaa4e42ff0584bb4ba06eb6d96c20, type: 3}
+    prewarmCount: 5
+  - type: 14
+    sfxType: 0
+    prefab: {fileID: 6122581152425348490, guid: 27f0a71df0da9c44384ba0d2d4d6dc4b, type: 3}
+    prewarmCount: 5
+  - type: 15
+    sfxType: 0
+    prefab: {fileID: 7933320689532816269, guid: d605133f10313d94692e0cc6309a8513, type: 3}
+    prewarmCount: 7

@@ -36,6 +36,7 @@ public class CIconPrefab : MonoBehaviour
 
     private bool _isReady = false;
     private bool _explosionEffect = false;
+    private bool _isWolrdPos;
     private Vector3 _explosionDir;
     #endregion
 
@@ -81,7 +82,15 @@ public class CIconPrefab : MonoBehaviour
                 }
                 break;
             case EStep.Translate:
-                transform.position = Vector3.MoveTowards(transform.position, _targetTransform.position, MoveSpeed * Time.deltaTime);
+                if (_isWolrdPos)
+                {
+                    CInGameCanvas.WorldToUI(_targetTransform.position, out Vector3 uiPos);
+                    transform.position = Vector3.MoveTowards(transform.position, uiPos, MoveSpeed * Time.deltaTime);
+                }
+                else
+                {
+                    transform.position = Vector3.MoveTowards(transform.position, _targetTransform.position, MoveSpeed * Time.deltaTime);
+                }
                 if (transform.position == _targetTransform.position)
                 {
                     ChageStep(EStep.Destroy);
@@ -123,7 +132,7 @@ public class CIconPrefab : MonoBehaviour
 
 
 
-    public void Init(Sprite icon, Transform target, bool explosionEffect = false)
+    public void Init(Sprite icon, Transform target, bool explosionEffect = false, bool isWolrdPos = false)
     {
         SetIcon(icon);
         SetTargetTransform(target);
@@ -141,8 +150,9 @@ public class CIconPrefab : MonoBehaviour
         _image.sprite = icon;
 
     }
-    private void SetTargetTransform(Transform target)
+    private void SetTargetTransform(Transform target, bool isWolrdPos = false)
     {
+        _isWolrdPos = isWolrdPos;
         //Debug.Log("Set Transform");
         _targetTransform = target;
         _targetTransform.IsNull("_targetTransform");
