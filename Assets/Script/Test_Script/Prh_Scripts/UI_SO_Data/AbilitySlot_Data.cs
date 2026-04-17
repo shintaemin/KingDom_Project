@@ -36,9 +36,6 @@ public class AbilitySlot_Data : MonoBehaviour
     [SerializeField] public TMP_Text valueText;
     [SerializeField] public TMP_Text priceText;
     [SerializeField] public Animator effectAnimator;
-
-    [Header("슬롯")]
-    [SerializeField] private int upgradeIndex;
     #endregion
 
     #region 내부 변수
@@ -74,14 +71,16 @@ public class AbilitySlot_Data : MonoBehaviour
     {
         var player = CPlayerDataManager.Instance;
 
-        int currentLevel = player.CurrentUpgradeLevel[upgradeIndex];
+        int index = _data.ID;
+
+        int currentLevel = player.GetCurrentUpgradeLevel(index);
 
         // 최대 레벨 체크
         if (currentLevel >= _data.Capacity)
             return;
 
         // 레벨 증가
-        player.CurrentUpgradeLevel[upgradeIndex]++;
+        player.IncreaseCurrentUpgradeLevel(index);
 
         // 이벤트 호출
         player.NotifyStatChanged();
@@ -95,12 +94,10 @@ public class AbilitySlot_Data : MonoBehaviour
         // 파티클 사운드
         SoundManager.Instance.SFXPlay(ESfxType.Upgrade_Status);
 
-        // 파티클 연출 (월드 기준)
-        Instantiate(_particlePrefab, _spawnPoint.position, Quaternion.identity);
-
         // 파티클 연출 (UI 기준 - 자식으로 생성)
         GameObject obj = Instantiate(_particlePrefab, transform);
-        obj.transform.localPosition = _spawnPoint.localPosition;
+        // obj.transform.localPosition = _spawnPoint.localPosition;
+        Destroy(obj, 2f);
 
         // UI 갱신
         UpdateUI();
@@ -113,7 +110,7 @@ public class AbilitySlot_Data : MonoBehaviour
     {
         var player = CPlayerDataManager.Instance;
 
-        int level = player.CurrentUpgradeLevel[upgradeIndex];
+        int level = player.GetCurrentUpgradeLevel(_data.ID);
 
         // 레벨
         levelText.text = "LV. " + level;
@@ -139,7 +136,5 @@ public class AbilitySlot_Data : MonoBehaviour
             icon.sprite = _data.IconArr[iconIndex];
         }
     }
-
-
     #endregion
 }
