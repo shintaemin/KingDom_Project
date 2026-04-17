@@ -65,11 +65,11 @@ public class Projectile : MonoBehaviour
             return;
         }
 
-        _onHit = true;
-
         // 플레이어 맞았을 경우
         if (other.CompareTag(_playerTag))
         {
+            _onHit = true;
+
             var playerHp = other.GetComponent<HpSystem>();
 
             if (playerHp != null)
@@ -93,6 +93,8 @@ public class Projectile : MonoBehaviour
         // 벽에 맞았을 경우
         else if (((1 << other.gameObject.layer) & _notTerrainLayer) != 0)
         {
+            _onHit = true;
+
             if (_projectileType == ProjectileManager.EProjectileType.Arrow)
             {
                 _rb.velocity = Vector3.zero;
