@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: TalentDataSO_2
   m_EditorClassIdentifier: 
   _ID: 2
-  _name: "\uCE58\uBA85\uD0C0 \uD655\uB960"
-  _information: "\uCE58\uBA85\uD0C0 \uD655\uB960{}\uC0C1\uC2B9"
+  _name: CRITICAL CHANCE
+  _information: '{}% CRITICAL CHANCE INCREASE'
   _basic: 4
   _volume: 2
   _icon: {fileID: 21300000, guid: c25dd24b9e932ed41aeacf534ad53ae1, type: 3}
