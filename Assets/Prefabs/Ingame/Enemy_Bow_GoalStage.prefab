@@ -1701,7 +1701,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3516610565055684563
 Transform:
   m_ObjectHideFlags: 0
@@ -1835,7 +1835,6 @@ MonoBehaviour:
   _armor: 0
   _hpRatio: 1
   _atkRatio: 1
-  _diamondRatio: 1
   _diamond: 0
 --- !u!114 &8092602903358667191
 MonoBehaviour:

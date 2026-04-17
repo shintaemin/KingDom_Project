@@ -16,7 +16,9 @@ public class ProjectileManager : MonoBehaviour
     {
         None,
         Arrow,
-        Bullet
+        Bullet,
+        EnemyRagdoll,
+        BossRagdoll
     }
 
     [System.Serializable]

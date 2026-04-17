@@ -13,14 +13,11 @@ using UnityEngine;
 public class PlayerStatus : BaseStatus
 {
     #region 외부 호출 함수
-    public void SetStatus(float hp, float atkPower, float atkRange, float atkSpeed, float moveSpeed, float armor)
+    public void SetStatus(float hp, float atkPower, float moveSpeed)
     {
         _maxHP = hp;
         _atkPower = atkPower;
-        _atkRange = atkRange;
-        _atkSpeed = atkSpeed;
         _moveSpeed = moveSpeed;
-        _armor = armor;
     }
     #endregion
 }

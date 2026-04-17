@@ -1094,7 +1094,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _detectDistance: 3
-  _detectAngle: 60
+  _detectAngle: 70
   _obstacleLayer:
     serializedVersion: 2
     m_Bits: 536870912
@@ -1163,7 +1163,6 @@ MonoBehaviour:
   _armor: 0
   _hpRatio: 1.1
   _atkRatio: 1.1
-  _diamondRatio: 1.2
   _diamond: 150
 --- !u!114 &7897830388843022206
 MonoBehaviour:
@@ -1268,7 +1267,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.006
+  m_Radius: 0.008
   m_Height: 0.02
   m_Direction: 1
   m_Center: {x: 0, y: 0.01, z: 0}
@@ -1286,6 +1285,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyType: 1
   _yOffset: {x: 0, y: 2, z: 0}
+  _angleRangeX: 15
+  _angleY: 40
+  _forceAmount: 25
+  _rotateAmount: 60
+  _delayTime: 3
+  _speed: 1
+  _duration: 2
 --- !u!1 &4561706765863436245
 GameObject:
   m_ObjectHideFlags: 0

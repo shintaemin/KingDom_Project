@@ -1429,7 +1429,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf84e098b4261e40bce4a9729bb8d82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rotSpeed: 10
+  _rotSpeed: 15
   _backAtkSpeedMult: 1.5
 --- !u!114 &5881326999996672903
 MonoBehaviour:
@@ -1548,7 +1548,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.006
+  m_Radius: 0.007
   m_Height: 0.02
   m_Direction: 1
   m_Center: {x: 0, y: 0.01, z: 0}
@@ -1695,7 +1695,7 @@ MonoBehaviour:
   _lifeTime: 0.7
   _startAlpha: 0.2
   _endAlpha: 0
-  _color: {r: 1, g: 1, b: 1, a: 0.5882353}
+  _color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &4020584163450712824
 MonoBehaviour:
   m_ObjectHideFlags: 0

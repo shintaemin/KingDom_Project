@@ -1,0 +1,78 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class GemParticle : MonoBehaviour
+{
+    #region ³»ºÎ º¯¼ö
+    private ParticleSystem _ps;
+    private List<ParticleSystem.Particle> _enterGems = new List<ParticleSystem.Particle>();
+    private static Collider _playerCollider;
+    private int _perGem = 10;
+    public static System.Action<int> OnGemCollected;
+    #endregion
+
+    private void Awake()
+    {
+        _ps = GetComponent<ParticleSystem>();
+    }
+
+    private void OnEnable()
+    {
+        StartCoroutine(CoCollection(0.65f));
+    }
+
+    private void OnDisable()
+    {
+        
+        _enterGems.Clear();
+    }
+
+    private void OnParticleTrigger()
+    {
+        int gemCount = _ps.GetTriggerParticles(ParticleSystemTriggerEventType.Inside, _enterGems);
+
+        if (gemCount > 0)
+        {
+            for (int i = 0; i < gemCount; i++)
+            {
+                ParticleSystem.Particle p = _enterGems[i];
+                p.remainingLifetime = 0;
+                _enterGems[i] = p;
+            }
+
+            _ps.SetTriggerParticles(ParticleSystemTriggerEventType.Inside, _enterGems);
+
+            int rootGem = gemCount * _perGem;
+
+            Debug.Log($"Àë È¹µæ {rootGem}");
+            OnGemCollected?.Invoke(rootGem);
+        }
+    }
+
+    private IEnumerator CoCollection(float time)
+    {
+        yield return new WaitForSeconds(time);
+
+        if (_ps != null)
+        {
+            if (_playerCollider == null)
+            {
+                GameObject player = GameObject.FindWithTag("Player");
+
+                if (player != null)
+                {
+                    _playerCollider = player.GetComponent<Collider>();
+                }
+
+            }
+
+            if (_playerCollider != null)
+            {
+                var trigger = _ps.trigger;
+
+                trigger.SetCollider(0, _playerCollider);
+            }
+        }
+    }
+}

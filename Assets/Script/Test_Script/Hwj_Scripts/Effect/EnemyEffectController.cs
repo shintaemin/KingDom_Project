@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static ProjectileManager;
 
 /*
     ㆍ EnemyEffectController
@@ -24,6 +25,17 @@ public class EnemyEffectController : MonoBehaviour
     #region 인스펙터
     [SerializeField] private EEnemyType _enemyType;
     [SerializeField] private Vector3 _yOffset = new Vector3(0, 2, 0);
+
+    [Header("래그돌 스폰 설정 (양수)")]
+    [SerializeField] private float _angleRangeX = 30f;
+    [SerializeField] private float _angleY = 60f;
+    [SerializeField] private float _forceAmount = 10f;
+    [SerializeField] private float _rotateAmount = 10f;
+
+    [Header("래그돌 디스폰 설정")]
+    [SerializeField] private float _delayTime = 3f;
+    [SerializeField] private float _speed = 0.2f;
+    [SerializeField] private float _duration = 2f;
     #endregion
 
     #region 내부 변수
@@ -57,12 +69,12 @@ public class EnemyEffectController : MonoBehaviour
             _enemyState.OnDead += EnemyDead;
         }
 
-        if (_hpSystem != null )
+        if (_hpSystem != null)
         {
             _hpSystem.OnDamaged += Damaged;
         }
 
-        if ( _hpSystem != null )
+        if (_hpSystem != null)
         {
             _hpSystem.OnBlocked += Blocked;
         }
@@ -72,7 +84,7 @@ public class EnemyEffectController : MonoBehaviour
             _hpSystem.IsBackAttackDead += BackAttackDead;
         }
 
-        if (_combat != null )
+        if (_combat != null)
         {
             _combat.OnAttacked += Attacked;
         }
@@ -135,8 +147,20 @@ public class EnemyEffectController : MonoBehaviour
 
     private void EnemyDead()
     {
-        EffectManager.Instance.SpawnEffect(EffectManager.EEffectType.DeadBlood, transform.position, transform.rotation);
         EffectManager.Instance.SpawnEffect(EffectManager.EEffectType.DeadCircle, transform.position, transform.rotation);
+        EffectManager.Instance.SpawnEffect(EffectManager.EEffectType.Bone, transform.position, transform.rotation);
+        EffectManager.Instance.SpawnEffect(EffectManager.EEffectType.GemExplosion, transform.position, transform.rotation);
+        
+
+        if (_enemyType == EEnemyType.Zombie)
+        {
+            EffectManager.Instance.SpawnEffect(EffectManager.EEffectType.DeadZombie, transform.position, transform.rotation);
+        }
+
+        else
+        {
+            EffectManager.Instance.SpawnEffect(EffectManager.EEffectType.DeadBlood, transform.position, transform.rotation);
+        }
     }
 
     private void Damaged()
@@ -170,13 +194,88 @@ public class EnemyEffectController : MonoBehaviour
     {
         if (backAtkDead)
         {
-            // 레그돌 + 뼈
             EffectManager.Instance.SpawnEffect(EffectManager.EEffectType.PlayerDamaged, transform.position, transform.rotation);
+
+            // 레그돌
+            switch (_enemyType)
+            {
+                case EEnemyType.Sword:
+                case EEnemyType.Bow:
+                    GameObject enemyragdoll = ProjectileManager.Instance.SpawnProjectile(ProjectileManager.EProjectileType.EnemyRagdoll);
+
+                    if (enemyragdoll != null)
+                    {
+                        ShootRagdoll(enemyragdoll);
+                    }
+
+                    ProjectileManager.Instance.StartCoroutine(CoFallRagdoll(enemyragdoll, EProjectileType.EnemyRagdoll));
+                    break;
+
+                case EEnemyType.Boss:
+                    GameObject bossragdoll = ProjectileManager.Instance.SpawnProjectile(ProjectileManager.EProjectileType.BossRagdoll);
+
+                    if (bossragdoll != null)
+                    {
+                        ShootRagdoll(bossragdoll);
+                    }
+
+                    ProjectileManager.Instance.StartCoroutine(CoFallRagdoll(bossragdoll, EProjectileType.BossRagdoll));
+                    break;
+            }
+        }
+    }
+
+    private void ShootRagdoll(GameObject go)
+    {
+        go.transform.SetPositionAndRotation(transform.position, transform.rotation);
+
+        Rigidbody[] rbs = go.GetComponentsInChildren<Rigidbody>();
+
+        foreach (Rigidbody rb in rbs)
+        {
+            float randomX = Random.Range(-_angleRangeX, _angleRangeX);
+
+            Quaternion rot = Quaternion.Euler(-_angleY, randomX, 0);
+
+            Vector3 finalDir = transform.rotation * rot * Vector3.forward;
+
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+
+            float randForce = Random.Range(_forceAmount * 0.9f, _forceAmount * 1.1f);
+            float randRotate = Random.Range(_rotateAmount * 0.9f, _rotateAmount * 1.1f);
+
+            rb.AddForce(finalDir * randForce, ForceMode.Impulse);
+            rb.AddTorque(Random.insideUnitSphere * randRotate, ForceMode.Impulse);
+        }
+    }
+
+    private IEnumerator CoFallRagdoll(GameObject go, EProjectileType type)
+    {
+        yield return new WaitForSeconds(_delayTime);
+
+        Rigidbody[] rbs = go.GetComponentsInChildren<Rigidbody>();
+        Collider[] cols = go.GetComponentsInChildren<Collider>();
+
+        foreach (var rb in rbs)
+        {
+            rb.isKinematic = true;
         }
 
-        else
+        foreach (var col in cols)
         {
-            // 뼈
+            col.enabled = false;
         }
+
+        float timer = 0f;
+
+        while (timer < _duration)
+        {
+            timer += Time.deltaTime;
+            go.transform.Translate(Vector3.down * _speed * Time.deltaTime, Space.World);
+            yield return null;
+        }
+
+        ProjectileManager.Instance.DespawnProjectile(type, go);
     }
 }
