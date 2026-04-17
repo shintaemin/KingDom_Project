@@ -1,5 +1,4 @@
 using System; // 라희추가
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -39,17 +38,27 @@ public class PlayerSaveData
     public int[] EquipmentDicID = new int[64];
     public bool[] EquipmentDicValue = new bool[64];
 
+    public double StackedEnergyCoolTime;
+
+    //private IReadOnlyDictionary<int, ICSVData> EquipmentDataDic => _equipmentDataDic ??= CSOManager.Instance.DataArraySO.EquipmentDataDic;
     public PlayerSaveData()
     {
-        CurrentClothesID = 1000;
-        // 기본 무기
-        EquipmentDicID[0] = 0;
-        EquipmentDicValue[0] = true;
+        MaxEnergy = 15;
+        Energy = 15;
 
-        // 기본 스킨
-        // '배열의 index'가 중요한게 아니라 '해당 index에 저장된 값'이 중요하다.
-        EquipmentDicID[1] = 1000;
-        EquipmentDicValue[1] = true;
+        CurrentStage = 1;
+
+        CurrentClothesID = 1000;
+
+        int index = 0;
+        var equipmentDataDic = CSOManager.Instance.DataArraySO.EquipmentDataDic;
+        foreach (var (key, value) in equipmentDataDic)
+        {
+            EquipmentDicID[index] = key;
+            bool isDefualtEquipment = key == 0 || key == 1000;
+            EquipmentDicValue[index] = isDefualtEquipment;
+            index++;
+        }
     }
 }
 
@@ -58,8 +67,10 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
     #region 인스펙터
     [Header("저장될 정보")]
     [SerializeField] private int _gem;
+
     [SerializeField] private int _maxEnergy;
     [SerializeField] private int _currentEnergy;
+    [SerializeField] private double _stackedEnergyCoolTime;
 
     [SerializeField] private int _currentWeaponID;
     [SerializeField] private int _currentClothesID;
@@ -77,9 +88,11 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
     [SerializeField] private int _defaultDefence = 10;
     [SerializeField] private int _defaultHp = 100;
     [SerializeField] private int _defaultRecovery = 10;
-    [SerializeField] private float _defaultMoveSpeed = 1f;
+    [SerializeField] private float _defaultMoveSpeed = 4.5f;
+    [SerializeField] private float _defaultMoveSpeedRatio = 1f;
     [SerializeField] private float _defaultCriticalAttackRate = 0.5f;
     [SerializeField] private float _defaultBackAttackRate = 0.3f;
+    [SerializeField] private double _defaultEnergyCooltime = 900;
 
 
     //[Header("디버그용. 추후 [SerializeField]를 제거하고 내부변수쪽으로 옮긴다.")]
@@ -87,6 +100,8 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
     #endregion
 
     #region 내부 변수
+    private EnergyTimer _energyTimer;
+
     private readonly Dictionary<int, bool> _equipmentUnLockDic = new Dictionary<int, bool>();
 
     // 저장 고려
@@ -170,6 +185,7 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
     /// <summary>
     /// 음수 set의 경우 그냥 TryUseEnergy를 호출해 사용하는걸 추천.
     /// </summary>
+    // 최대 에너지와 현재 에너지를 구분해야함.
     public int MaxEnergy
     {
         get { return _maxEnergy; }
@@ -179,7 +195,6 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
             CJsonManager.Instance.SaveAll();
         }
     }
-    // 최대 에너지와 현재 에너지를 구분해야함.
     public int Energy
     {
         get
@@ -191,12 +206,24 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
             if (value > 0)
             {
                 _currentEnergy += value;
+                Debug.Log($"_currentEnergy : {_currentEnergy - value} -> {_currentEnergy}");
                 CJsonManager.Instance.SaveAll();
             }
             else if (value < 0)
             {
                 TryUseEnergy(value);
             }
+        }
+    }
+    public double EnergyCoolTime
+    {
+        get
+        {
+            double value = _defaultEnergyCooltime;
+            var talentEnergy = CSOManager.Instance[CDataArraySO.EDataType.TalentData][8] as CTalentDataSO;
+
+            value -= talentEnergy.Volume * GetCurrentTalentLevel(8);
+            return value;
         }
     }
     public int CurrentWeaponID
@@ -448,8 +475,15 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
             {
                 result += 0.01f * (talentAtt.Basic + talentAtt.Volume * (talentAttLevel - 1));
             }
-            // 배율
-            float ratio = 1f;
+            return (int)(result * MoveSpeedRatio);
+        }
+    }
+    // MoveSpeedRatio % 라고 표기하면 됨.
+    public float MoveSpeedRatio
+    {
+        get
+        {
+            float ratio = _defaultMoveSpeedRatio;
             if (_currentWeapon.BonusType == CEquipmentDataSO.EBonusType.MoveSpeed)
             {
                 ratio += 0.01f * (_currentWeapon.BonusAmount);
@@ -462,8 +496,7 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
             }
 
             ratio += 0.005f * _unLockedClothesCount;
-
-            return (int)(result * ratio);
+            return ratio;
         }
     }
     public object SaveData { get => _data; set => _data = (PlayerSaveData)value; }
@@ -479,9 +512,50 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
         }
         Instance = this;
 
+        GameObject go = GameObject.Find("EnergyTimer");
+
+        if (go.TryGetComponent(out EnergyTimer energyTimer))
+        {
+            _energyTimer = energyTimer;
+        }
+
+        if (_energyTimer.IsNull("_energyTimer"))
+        {
+            return;
+        }
+
         DontDestroyOnLoad(this.gameObject);
     }
 
+    private void OnEnable()
+    {
+        _energyTimer._elapsedTime += GetElapsedTime;
+    }
+
+    private void OnDisable()
+    {
+        _energyTimer._elapsedTime -= GetElapsedTime;
+    }
+
+    private void GetElapsedTime(double elapsedTime)
+    {
+        _stackedEnergyCoolTime += elapsedTime;
+        Debug.Log($"_stackedEnergyCoolTime : {_stackedEnergyCoolTime}");
+        CJsonManager.Instance.SaveAll();
+        while (true)
+        {
+            if (_stackedEnergyCoolTime > EnergyCoolTime)
+            {
+                Debug.Log($"EnergyCoolTime : {EnergyCoolTime}");
+                _stackedEnergyCoolTime -= EnergyCoolTime;
+                Energy = 1;
+                Debug.Log("시간경과에 따라 에너지 증가.");
+            }
+            else
+                break;
+
+        }
+    }
     void Start()
     {
         CJsonManager.Instance.Add("playerData", this, typeof(PlayerSaveData));
@@ -566,6 +640,11 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
     {
         if (_equipmentUnLockDic.ContainsKey(ID))
         {
+            if (_equipmentUnLockDic[ID])
+            {
+                Debug.LogWarning($"ID : {ID}는 이미 해금된 ID의 장비 입니다.");
+                return;
+            }
             _equipmentUnLockDic[ID] = true;
             if (ID < 1000)
             {
@@ -576,6 +655,7 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
                 _unLockedClothesCount++;
             }
             OnEquipmentUnLock?.Invoke(ID);
+            Debug.Log($"ID : {ID} 해금");
         }
         else
         {
@@ -639,6 +719,8 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
         _data.CurrentUpgradeLevel = _currentUpgradeLevel;
         _data.CurrentTalentLevel = _currentTalentLevel;
 
+        _data.StackedEnergyCoolTime = _stackedEnergyCoolTime;
+
         _equipmentUnLockDic.DicToArray(_data.EquipmentDicID, _data.EquipmentDicValue);
     }
 
@@ -658,6 +740,8 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
 
         _currentUpgradeLevel = _data.CurrentUpgradeLevel;
         _currentTalentLevel = _data.CurrentTalentLevel;
+
+        _stackedEnergyCoolTime = _data.StackedEnergyCoolTime;
 
         _equipmentUnLockDic.ArrayToDic(_data.EquipmentDicID, _data.EquipmentDicValue);
         _unLockedWeaponCount = 0;
