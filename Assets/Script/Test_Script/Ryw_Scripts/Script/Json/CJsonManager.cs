@@ -10,6 +10,7 @@ using UnityEngine;
 데이터를 저장하고 싶은 클래스에 IJsonData를 상속받고 해당 멤버들을 구현해주면 된다.
 그 후 CJsonManager.Instance.Add("test1", this, typeof(MyData)); 와 같은 코드를 start()에 넣어주면 된다.
 
+C:\Users\USER\AppData\LocalLow\DefaultCompany\KingDom_Project
 */
 #endregion
 
