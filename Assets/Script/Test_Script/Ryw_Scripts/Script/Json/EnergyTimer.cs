@@ -48,6 +48,7 @@ public class EnergyTimer : MonoBehaviour
 
             // 경과시간
             TimeSpan elapsed = now - _lastTime;
+            Debug.Log($"elapsed:{elapsed} = now:{now} - _lastTime:{_lastTime}");
             _elapsedTime?.Invoke(elapsed.TotalSeconds);
 
             // 마지막 시간 업데이트

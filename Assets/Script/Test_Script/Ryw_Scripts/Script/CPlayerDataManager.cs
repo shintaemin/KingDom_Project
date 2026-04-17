@@ -38,7 +38,7 @@ public class PlayerSaveData
     public int[] EquipmentDicID = new int[64];
     public bool[] EquipmentDicValue = new bool[64];
 
-
+    public double StackedEnergyCoolTime;
 
     //private IReadOnlyDictionary<int, ICSVData> EquipmentDataDic => _equipmentDataDic ??= CSOManager.Instance.DataArraySO.EquipmentDataDic;
     public PlayerSaveData()
@@ -52,7 +52,7 @@ public class PlayerSaveData
 
         int index = 0;
         var equipmentDataDic = CSOManager.Instance.DataArraySO.EquipmentDataDic;
-        foreach(var (key, value) in equipmentDataDic )
+        foreach (var (key, value) in equipmentDataDic)
         {
             EquipmentDicID[index] = key;
             bool isDefualtEquipment = key == 0 || key == 1000;
@@ -67,8 +67,10 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
     #region 인스펙터
     [Header("저장될 정보")]
     [SerializeField] private int _gem;
+
     [SerializeField] private int _maxEnergy;
     [SerializeField] private int _currentEnergy;
+    [SerializeField] private double _stackedEnergyCoolTime;
 
     [SerializeField] private int _currentWeaponID;
     [SerializeField] private int _currentClothesID;
@@ -90,6 +92,7 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
     [SerializeField] private float _defaultMoveSpeedRatio = 1f;
     [SerializeField] private float _defaultCriticalAttackRate = 0.5f;
     [SerializeField] private float _defaultBackAttackRate = 0.3f;
+    [SerializeField] private double _defaultEnergyCooltime = 900;
 
 
     //[Header("디버그용. 추후 [SerializeField]를 제거하고 내부변수쪽으로 옮긴다.")]
@@ -97,6 +100,8 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
     #endregion
 
     #region 내부 변수
+    private EnergyTimer _energyTimer;
+
     private readonly Dictionary<int, bool> _equipmentUnLockDic = new Dictionary<int, bool>();
 
     // 저장 고려
@@ -180,6 +185,7 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
     /// <summary>
     /// 음수 set의 경우 그냥 TryUseEnergy를 호출해 사용하는걸 추천.
     /// </summary>
+    // 최대 에너지와 현재 에너지를 구분해야함.
     public int MaxEnergy
     {
         get { return _maxEnergy; }
@@ -189,7 +195,6 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
             CJsonManager.Instance.SaveAll();
         }
     }
-    // 최대 에너지와 현재 에너지를 구분해야함.
     public int Energy
     {
         get
@@ -201,12 +206,24 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
             if (value > 0)
             {
                 _currentEnergy += value;
+                Debug.Log($"_currentEnergy : {_currentEnergy - value} -> {_currentEnergy}");
                 CJsonManager.Instance.SaveAll();
             }
             else if (value < 0)
             {
                 TryUseEnergy(value);
             }
+        }
+    }
+    public double EnergyCoolTime
+    {
+        get
+        {
+            double value = _defaultEnergyCooltime;
+            var talentEnergy = CSOManager.Instance[CDataArraySO.EDataType.TalentData][8] as CTalentDataSO;
+
+            value -= talentEnergy.Volume * GetCurrentTalentLevel(8);
+            return value;
         }
     }
     public int CurrentWeaponID
@@ -495,9 +512,50 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
         }
         Instance = this;
 
+        GameObject go = GameObject.Find("EnergyTimer");
+
+        if (go.TryGetComponent(out EnergyTimer energyTimer))
+        {
+            _energyTimer = energyTimer;
+        }
+
+        if (_energyTimer.IsNull("_energyTimer"))
+        {
+            return;
+        }
+
         DontDestroyOnLoad(this.gameObject);
     }
 
+    private void OnEnable()
+    {
+        _energyTimer._elapsedTime += GetElapsedTime;
+    }
+
+    private void OnDisable()
+    {
+        _energyTimer._elapsedTime -= GetElapsedTime;
+    }
+
+    private void GetElapsedTime(double elapsedTime)
+    {
+        _stackedEnergyCoolTime += elapsedTime;
+        Debug.Log($"_stackedEnergyCoolTime : {_stackedEnergyCoolTime}");
+        CJsonManager.Instance.SaveAll();
+        while (true)
+        {
+            if (_stackedEnergyCoolTime > EnergyCoolTime)
+            {
+                Debug.Log($"EnergyCoolTime : {EnergyCoolTime}");
+                _stackedEnergyCoolTime -= EnergyCoolTime;
+                Energy = 1;
+                Debug.Log("시간경과에 따라 에너지 증가.");
+            }
+            else
+                break;
+
+        }
+    }
     void Start()
     {
         CJsonManager.Instance.Add("playerData", this, typeof(PlayerSaveData));
@@ -642,6 +700,8 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
         _data.CurrentUpgradeLevel = _currentUpgradeLevel;
         _data.CurrentTalentLevel = _currentTalentLevel;
 
+        _data.StackedEnergyCoolTime = _stackedEnergyCoolTime;
+
         _equipmentUnLockDic.DicToArray(_data.EquipmentDicID, _data.EquipmentDicValue);
     }
 
@@ -661,6 +721,8 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
 
         _currentUpgradeLevel = _data.CurrentUpgradeLevel;
         _currentTalentLevel = _data.CurrentTalentLevel;
+
+        _stackedEnergyCoolTime = _data.StackedEnergyCoolTime;
 
         _equipmentUnLockDic.ArrayToDic(_data.EquipmentDicID, _data.EquipmentDicValue);
         _unLockedWeaponCount = 0;
