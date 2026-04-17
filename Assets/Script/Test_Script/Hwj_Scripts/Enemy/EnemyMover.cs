@@ -35,14 +35,16 @@ public class EnemyMover : MonoBehaviour
     private NavMeshAgent _nav;
     private Transform _playerTr;
     private Coroutine _moveRoutine;
+    private BaseStatus _baseStatus;
     #endregion
 
     private void Awake()
     {
         _state = GetComponent<EnemyState>();
         _nav = GetComponent<NavMeshAgent>();
+        _baseStatus = GetComponent<BaseStatus>();
 
-        if (_state == null || _nav == null)
+        if (_state == null || _nav == null || _baseStatus == null)
         {
             Debug.LogError("EnemyMover _state _nav 참조 실패");
             return;
@@ -112,13 +114,13 @@ public class EnemyMover : MonoBehaviour
         switch (state)
         {
             case EnemyState.EState.Patrol:
-                _nav.speed = 2.2f;
+                _nav.speed = _baseStatus.MoveSpeed;
                 _nav.isStopped = false;
                 _moveRoutine = StartCoroutine(CoPatrol());
                 break;
 
             case EnemyState.EState.Chase:
-                _nav.speed = 3f;
+                _nav.speed = _baseStatus.MoveSpeed * 1.5f;
                 _nav.isStopped = false;
                 _moveRoutine = StartCoroutine(CoChase());
                 break;
