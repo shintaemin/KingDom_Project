@@ -34,12 +34,39 @@ public class RandomWeapon_Unlocker : MonoBehaviour
 
     [SerializeField] private float _startDelay = 0.05f;
     [SerializeField] private float _endDelay = 0.3f;
+
+    [SerializeField] private TMPro.TextMeshProUGUI _priceText;
+
+    [SerializeField] private GameObject _openButton;
+    [SerializeField] private GameObject _lockButton;
     #endregion
 
     #region 내부 변수
     // 연출 진행 여부
     private bool _isRolling = false;
     #endregion
+
+    void Start()
+    {
+        UpdatePrice();
+    }
+
+    private void OnEnable()
+    {
+        UpdatePrice();
+        UpdateButtonState();
+    }
+
+    void UpdateButtonState()
+    {
+        int price = Mathf.Max(1000, CPlayerDataManager.Instance.UnLockedWeaponCount * 1000);
+        int gem = CPlayerDataManager.Instance.Gem;
+
+        bool canBuy = gem >= price;
+
+        _openButton.SetActive(canBuy);
+        _lockButton.SetActive(!canBuy);
+    }
 
     #region 외부 호출 함수
     // 랜덤 해금 시작 요청
@@ -48,9 +75,27 @@ public class RandomWeapon_Unlocker : MonoBehaviour
         if (_isRolling)
             return;
 
+        // 가격 계산
+        int price = CPlayerDataManager.Instance.UnLockedWeaponCount * 1000;
+
+        // 다이아 체크
+        if (!CPlayerDataManager.Instance.TryUseGem(price))
+        {
+            Debug.Log("다이아 부족");
+            return;
+        }
+
         StartCoroutine(CoRandomUnlock());
     }
     #endregion
+
+    void UpdatePrice()
+    {
+        int price = Mathf.Max(1000, CPlayerDataManager.Instance.UnLockedWeaponCount * 1000);
+        _priceText.text = price.ToString();
+
+        UpdateButtonState(); //다이아 버튼
+    }
 
     #region 내부 코루틴
     // 랜덤 해금 연출 처리
@@ -124,6 +169,9 @@ public class RandomWeapon_Unlocker : MonoBehaviour
         yield return new WaitForSeconds(_endDelay * 1.5f);
 
         GameObject finalSlot = _weaponSlots[targetIndex];
+
+        UpdatePrice();
+
 
         SetUnlock(finalSlot);
         SelectByController(finalSlot);

@@ -80,10 +80,11 @@ public class Equipment_Slot_Data : MonoBehaviour
             _lockIcon.sprite = _data.Image;
 
             bool isAlwaysOpen = IsAlwaysOpenSlot();
+            bool isColorLock = IsColorLockSlot();
 
-            if (isAlwaysOpen)
+            if (isAlwaysOpen || isColorLock)
             {
-                _lockIcon.color = Color.white;   // ⭐ 컬러 유지
+                _lockIcon.color = Color.white;   // 컬러 유지
             }
             else
             {
@@ -98,6 +99,13 @@ public class Equipment_Slot_Data : MonoBehaviour
 
     #region 내부 함수
     // 장비 스탯 텍스트 생성 및 UI 반영
+
+    private bool IsColorLockSlot()
+    {
+        return _id == 1106 || _id == 1107; // Slot7,8 ID
+    }
+
+
     private void SetStatText()
     {
         if (_data == null)
@@ -116,7 +124,7 @@ public class Equipment_Slot_Data : MonoBehaviour
         // 표시할 값 없으면 종료
         if (string.IsNullOrEmpty(text))
             return;
-
+        
         // Open 상태 텍스트 스타일 적용
         if (_openStatText != null)
         {
@@ -133,19 +141,20 @@ public class Equipment_Slot_Data : MonoBehaviour
             _checkStatText.fontSize = 36;
             _checkStatText.fontStyle = TMPro.FontStyles.Bold;
         }
+        
     }
 
+    // 컬러
     private bool IsAlwaysOpenSlot()
     {
         Transform parent = transform.parent;
 
         if (parent == null) return false;
 
-        return parent.name == "RewardWeapon_Group" ||
-               parent.name == "Weapon_Purchased_Group" ||
-               parent.name == "RewardClothes_Group" ||
-               parent.name == "Clothes_Purchased_Group";
+        return parent.name.Contains("Reward") ||
+       parent.name.Contains("Purchased");
     }
+
     #endregion
 
     #region 외부 호출 함수

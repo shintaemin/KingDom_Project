@@ -29,6 +29,8 @@ public class Talent_Random_Unlocker : MonoBehaviour
     // 랜덤 재능 해금
     public void UnlockRandomTalent()
     {
+        var player = CPlayerDataManager.Instance;
+
         List<GameObject> lockedSlots = new List<GameObject>();
 
         // 잠긴 슬롯 수집
@@ -48,6 +50,17 @@ public class Talent_Random_Unlocker : MonoBehaviour
         if (lockedSlots.Count == 0)
         {
             Debug.Log("열 수 있는 슬롯 없음");
+            return;
+        }
+
+
+        // 다이아 계산
+        int price = player.CurrentTalentSum * 1000;
+
+        // 다이아 체크
+        if (!player.TryUseGem(price))
+        {
+            Debug.Log("다이아 부족");
             return;
         }
 

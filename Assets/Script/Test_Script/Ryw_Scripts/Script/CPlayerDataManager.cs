@@ -489,6 +489,16 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
         // 저장된 무기,의상 ID로 실제 무기 데이터(SO) 가져와서 연결 (라희 추가)
         _currentWeapon = CSOManager.Instance[CDataArraySO.EDataType.EquipmentData][_currentWeaponID] as CEquipmentDataSO;
         _currentClothes = CSOManager.Instance[CDataArraySO.EDataType.EquipmentData][_currentClothesID] as CEquipmentDataSO;
+
+        // 라희테스트
+        _gem = 9999;
+        _currentEnergy = 15;
+        _maxEnergy = 15;
+        _unLockedWeaponCount = 1;
+        _unLockedClothesCount = 2;
+
+        OnStatChanged?.Invoke();
+        // 여기까지 삭제해야함.
     }
 
     void Update()
@@ -571,6 +581,9 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
         {
             Debug.LogWarning($"사전에 등록되지 않은 key값에 접근. key = {ID}");
         }
+
+        OnStatChanged?.Invoke();    // 라희 추가 
+
         CJsonManager.Instance.SaveAll();
     }
 
@@ -585,6 +598,9 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
         if (_currentEnergy >= energy)
         {
             _currentEnergy -= energy;
+
+            OnStatChanged?.Invoke();    // 라희 추가 에너지바 게이지 
+
             CJsonManager.Instance.SaveAll();
             return true;
         }
@@ -596,6 +612,9 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
         if (_gem >= gem)
         {
             _gem -= gem;
+
+            OnStatChanged?.Invoke(); // 라희 추가 다이아 UI변경
+
             CJsonManager.Instance.SaveAll();
             return true;
         }

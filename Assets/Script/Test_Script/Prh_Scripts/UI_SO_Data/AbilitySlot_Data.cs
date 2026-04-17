@@ -36,6 +36,9 @@ public class AbilitySlot_Data : MonoBehaviour
     [SerializeField] public TMP_Text valueText;
     [SerializeField] public TMP_Text priceText;
     [SerializeField] public Animator effectAnimator;
+
+    [SerializeField] private GameObject _openButton;
+    [SerializeField] private GameObject _lockButton;
     #endregion
 
     #region 내부 변수
@@ -77,7 +80,28 @@ public class AbilitySlot_Data : MonoBehaviour
 
         // 최대 레벨 체크
         if (currentLevel >= _data.Capacity)
+        {
+            levelText.text = "MAX";
+            priceText.text = "MAX";
+
+            _openButton.SetActive(false);
+            _lockButton.SetActive(false);
+
             return;
+        }
+
+        // 다이아 가격
+        int price = 0;
+
+        if (_data.PriceArr != null && currentLevel < _data.PriceArr.Length)
+            price = _data.PriceArr[currentLevel];
+
+        // 다이아 체크
+        if (!player.TryUseGem(price))
+        {
+            Debug.Log("다이아 부족");
+            return;
+        }
 
         // 레벨 증가
         player.IncreaseCurrentUpgradeLevel(index);
@@ -99,8 +123,6 @@ public class AbilitySlot_Data : MonoBehaviour
         // obj.transform.localPosition = _spawnPoint.localPosition;
         Destroy(obj, 2f);
 
-        // UI 갱신
-        UpdateUI();
     }
     #endregion
     
@@ -124,6 +146,10 @@ public class AbilitySlot_Data : MonoBehaviour
         else
             priceText.text = "-";
 
+
+        UpdateButtonState();
+
+
         // 아이콘
         if (_data.IconArr != null && _data.IconArr.Length > 0)
         {
@@ -137,4 +163,32 @@ public class AbilitySlot_Data : MonoBehaviour
         }
     }
     #endregion
+
+    void UpdateButtonState()
+    {
+        var player = CPlayerDataManager.Instance;
+
+        int level = player.GetCurrentUpgradeLevel(_data.ID);
+
+        int price = 0;
+
+        if (_data.PriceArr != null && level < _data.PriceArr.Length)
+            price = _data.PriceArr[level];
+
+        int gem = player.Gem;
+
+        bool canBuy = gem >= price;
+
+        _openButton.SetActive(canBuy);
+        _lockButton.SetActive(!canBuy);
+    }
+
+    private void OnEnable()
+    {
+        if (_data == null)
+            return;
+
+        UpdateButtonState();
+    }
+
 }

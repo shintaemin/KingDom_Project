@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 #region 업그레이드 버튼 처리
@@ -29,15 +30,48 @@ using UnityEngine;
 public class Upgrade_Button : MonoBehaviour
 {
     #region 인스펙터
-    [SerializeField] private int _cost = 3000;
+    [SerializeField] private GameObject _openButton;
+    [SerializeField] private GameObject _lockButton;
+
+    [SerializeField] private TMP_Text _priceText;
     #endregion
+    void UpdateButtonState()
+    {
+        var player = CPlayerDataManager.Instance;
+
+        int price = Mathf.Max(1000, player.CurrentTalentSum * 1000);
+        int gem = player.Gem;
+
+        _priceText.text = price.ToString();
+
+        bool canBuy = gem >= price;
+
+        _openButton.SetActive(canBuy);
+        _lockButton.SetActive(!canBuy);
+    }
+
+    void OnEnable()
+    {
+        CPlayerDataManager.Instance.OnStatChanged += UpdateButtonState;
+        UpdateButtonState();
+    }
+
+    void OnDisable()
+    {
+        if (CPlayerDataManager.Instance != null)
+            CPlayerDataManager.Instance.OnStatChanged -= UpdateButtonState;
+    }
 
     #region 외부 호출 함수
     // 업그레이드 버튼 클릭 처리
     public void OnClickUpgrade()
     {
+        var player = CPlayerDataManager.Instance;
+
+        int price = Mathf.Max(1000, player.CurrentTalentSum * 1000);
+
         // 다이아 사용 시도
-        bool success = LTopBar_UI.Instance.TryUseGem(_cost);
+        bool success = player.TryUseGem(price);
 
         // 다이아 부족 시 중단
         if (!success)
