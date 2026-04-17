@@ -149,7 +149,8 @@ public class EnemyEffectController : MonoBehaviour
 
         if (_uiCanvas != null)
         {
-            _uiCanvas.SpwanIcon(CInstancePanel.EIconType.Skull, transform.position);
+            CInGameCanvas.WorldToUI(transform.position, out Vector3 upPos);
+            _uiCanvas.SpwanIcon(CInstancePanel.EIconType.Skull, upPos);
         }
     }
 

@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -55,9 +56,11 @@ public class CInGameCanvas : MonoBehaviour
     [SerializeField] private GameObject _goImpact;
     [SerializeField] private Victory_Panel_Controller _victoryPanel;
     [SerializeField] private Victory_Panel_Controller _failurePanel;
+    [SerializeField] private GameObject _spawnRoot;
 
     [Header("확인용. 직접 수정 비추")]
     [SerializeField] private EMissionType? _missionType = null;
+    [SerializeField] private float _missionEndWaitTime = 0.5f;
 
     [Header("디버그")]
     [SerializeField] private bool UseDebugKey = false;
@@ -135,8 +138,23 @@ public class CInGameCanvas : MonoBehaviour
     {
         _ingameManager.MissionEnd -= _ingameManager_MissionEnd;
     }
-    private void _ingameManager_MissionEnd(EMissionAnswer obj)
+
+    private IEnumerator MissionEndCo(EMissionAnswer obj)
     {
+        while(true)
+        {
+            yield return new WaitForSeconds(_missionEndWaitTime);
+
+            if (_spawnRoot != null)
+            {
+                if (_spawnRoot.transform.childCount < 2)
+                {
+                    break;
+                }
+            }
+        }
+        
+
         // 모든 판넬 비활성화
         StagePanel.gameObject.SetActive(false);
         StageGoal.gameObject.SetActive(false);
@@ -156,6 +174,10 @@ public class CInGameCanvas : MonoBehaviour
             default:
                 break;
         }
+    }
+    private void _ingameManager_MissionEnd(EMissionAnswer obj)
+    {
+        StartCoroutine(MissionEndCo(obj));
     }
     private void MakePhaseDic()
     {

@@ -332,6 +332,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 319610581}
   m_CullTransparentMesh: 1
+--- !u!1 &332706206 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6771829367606530785, guid: 0d595531076e68340a2fdd1d10b53562, type: 3}
+  m_PrefabInstance: {fileID: 611896763}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &429236647
 GameObject:
   m_ObjectHideFlags: 0
@@ -728,6 +733,22 @@ PrefabInstance:
     - target: {fileID: 1750125549876874585, guid: 0d595531076e68340a2fdd1d10b53562, type: 3}
       propertyPath: m_text
       value: null
+      objectReference: {fileID: 0}
+    - target: {fileID: 3139441950256724227, guid: 0d595531076e68340a2fdd1d10b53562, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 266.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3139441950256724227, guid: 0d595531076e68340a2fdd1d10b53562, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 807.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4197663518047788631, guid: 0d595531076e68340a2fdd1d10b53562, type: 3}
+      propertyPath: _spawnRoot
+      value: 
+      objectReference: {fileID: 332706206}
+    - target: {fileID: 4197663518047788631, guid: 0d595531076e68340a2fdd1d10b53562, type: 3}
+      propertyPath: _missionEndWaitTime
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 4870880550724335522, guid: 0d595531076e68340a2fdd1d10b53562, type: 3}
       propertyPath: _minScail
