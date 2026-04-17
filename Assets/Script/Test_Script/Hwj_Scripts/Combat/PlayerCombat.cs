@@ -13,6 +13,11 @@ using UnityEngine;
 
 public class PlayerCombat : BaseCombat
 {
+    #region 인스펙터
+    [Header("백어택 공격속도 증가")]
+    [SerializeField] private float _backAtkSpeedMult = 1.5f;
+    #endregion
+
     protected override void Update()
     {
         base.Update();
@@ -73,6 +78,7 @@ public class PlayerCombat : BaseCombat
 
             if (backDot < - 0.5f)
             {
+                
                 finalAtkPower *= 2f;
                 isBackAttack = true;
             }
