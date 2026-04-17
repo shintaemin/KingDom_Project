@@ -500,6 +500,8 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
         }
     }
     public object SaveData { get => _data; set => _data = (PlayerSaveData)value; }
+
+    public EnergyTimer Energetimer { get => _energyTimer; set => _energyTimer = value; }
     #endregion
 
     void Awake()
@@ -512,27 +514,18 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
         }
         Instance = this;
 
-        GameObject go = GameObject.Find("EnergyTimer");
-
-        if (go.TryGetComponent(out EnergyTimer energyTimer))
-        {
-            _energyTimer = energyTimer;
-        }
-
-        if (_energyTimer.IsNull("_energyTimer"))
-        {
-            return;
-        }
-
         DontDestroyOnLoad(this.gameObject);
     }
 
-    private void OnEnable()
+    public void EnergeTimerSub()
     {
-        _energyTimer._elapsedTime += GetElapsedTime;
+        if (_energyTimer != null)
+        {
+            _energyTimer._elapsedTime += GetElapsedTime;
+        }
     }
 
-    private void OnDisable()
+    public void EnergeTimerDis()
     {
         _energyTimer._elapsedTime -= GetElapsedTime;
     }

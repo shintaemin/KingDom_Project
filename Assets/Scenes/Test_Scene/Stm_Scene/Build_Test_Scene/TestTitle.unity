@@ -384,6 +384,7 @@ MonoBehaviour:
   _gem: 0
   _maxEnergy: 0
   _currentEnergy: 0
+  _stackedEnergyCoolTime: 0
   _currentWeaponID: 0
   _currentClothesID: 0
   _currentStage: 1
@@ -395,8 +396,10 @@ MonoBehaviour:
   _defaultHp: 100
   _defaultRecovery: 10
   _defaultMoveSpeed: 1
+  _defaultMoveSpeedRatio: 1
   _defaultCriticalAttackRate: 0.5
   _defaultBackAttackRate: 0.3
+  _defaultEnergyCooltime: 900
 --- !u!4 &578306659
 Transform:
   m_ObjectHideFlags: 0
@@ -718,6 +721,7 @@ MonoBehaviour:
   _useDebugKey: 0
   _saveKey: 115
   _loadKey: 108
+  _ResetKey: 114
 --- !u!4 &957096382
 Transform:
   m_ObjectHideFlags: 0

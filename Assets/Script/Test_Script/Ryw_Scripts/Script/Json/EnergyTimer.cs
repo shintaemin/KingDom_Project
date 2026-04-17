@@ -25,6 +25,12 @@ public class EnergyTimer : MonoBehaviour
         {
             _lastTime = new DateTime();
         }
+
+        if (CPlayerDataManager.Instance != null)
+        {
+            CPlayerDataManager.Instance.Energetimer = this;
+            CPlayerDataManager.Instance.EnergeTimerSub();
+        }
     }
 
     private void Start()
@@ -37,6 +43,11 @@ public class EnergyTimer : MonoBehaviour
         // 다른 구독자들이 메시지를 받지 못한다.
         // == 시간을 저장만 한다.
         Timeelapsed();
+
+        if (CPlayerDataManager.Instance != null)
+        {
+            CPlayerDataManager.Instance.EnergeTimerDis();
+        }
     }
 
     public void Timeelapsed()
