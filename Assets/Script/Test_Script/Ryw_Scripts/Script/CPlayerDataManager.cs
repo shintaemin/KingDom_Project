@@ -1,5 +1,4 @@
 using System; // 라희추가
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -38,6 +37,8 @@ public class PlayerSaveData
     // 2026-04-02 기준 장비의 총 개수는 64개임. 데이터 시트 참고.
     public int[] EquipmentDicID = new int[64];
     public bool[] EquipmentDicValue = new bool[64];
+
+
 
     //private IReadOnlyDictionary<int, ICSVData> EquipmentDataDic => _equipmentDataDic ??= CSOManager.Instance.DataArraySO.EquipmentDataDic;
     public PlayerSaveData()
@@ -85,7 +86,8 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
     [SerializeField] private int _defaultDefence = 10;
     [SerializeField] private int _defaultHp = 100;
     [SerializeField] private int _defaultRecovery = 10;
-    [SerializeField] private float _defaultMoveSpeed = 1f;
+    [SerializeField] private float _defaultMoveSpeed = 4.5f;
+    [SerializeField] private float _defaultMoveSpeedRatio = 1f;
     [SerializeField] private float _defaultCriticalAttackRate = 0.5f;
     [SerializeField] private float _defaultBackAttackRate = 0.3f;
 
@@ -456,8 +458,15 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
             {
                 result += 0.01f * (talentAtt.Basic + talentAtt.Volume * (talentAttLevel - 1));
             }
-            // 배율
-            float ratio = 1f;
+            return (int)(result * MoveSpeedRatio);
+        }
+    }
+    // MoveSpeedRatio % 라고 표기하면 됨.
+    public float MoveSpeedRatio
+    {
+        get
+        {
+            float ratio = _defaultMoveSpeedRatio;
             if (_currentWeapon.BonusType == CEquipmentDataSO.EBonusType.MoveSpeed)
             {
                 ratio += 0.01f * (_currentWeapon.BonusAmount);
@@ -470,8 +479,7 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
             }
 
             ratio += 0.005f * _unLockedClothesCount;
-
-            return (int)(result * ratio);
+            return ratio;
         }
     }
     public object SaveData { get => _data; set => _data = (PlayerSaveData)value; }
