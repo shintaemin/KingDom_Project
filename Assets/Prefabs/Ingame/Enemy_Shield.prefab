@@ -798,7 +798,7 @@ SkinnedMeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 21dc290a2e588834a80900dd5146c745, type: 2}
-  - {fileID: 2100000, guid: fed2f7e768375de44942f6caa7711801, type: 2}
+  - {fileID: 2100000, guid: 6106cadd372d2b14688594db0c8b267e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1026,7 +1026,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1254079899476310844
 Transform:
   m_ObjectHideFlags: 0
@@ -1037,7 +1037,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.4480443, y: 0, z: 5.919664}
-  m_LocalScale: {x: 70, y: 70, z: 70}
+  m_LocalScale: {x: 80, y: 80, z: 80}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5823346116208436504}
@@ -1159,7 +1159,7 @@ MonoBehaviour:
   _atkPower: 50
   _atkRange: 1.5
   _atkSpeed: 0.5
-  _moveSpeed: 3
+  _moveSpeed: 2.6
   _armor: 0
   _hpRatio: 1.1
   _atkRatio: 1.1

@@ -1274,7 +1274,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5.078837, y: 0.5, z: 6.3793793}
-  m_LocalScale: {x: 70, y: 70, z: 70}
+  m_LocalScale: {x: 80, y: 80, z: 80}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7946729777219137493}
@@ -1375,7 +1375,7 @@ MonoBehaviour:
   _atkPower: 50
   _atkRange: 1.5
   _atkSpeed: 0.5
-  _moveSpeed: 3
+  _moveSpeed: 2.6
   _armor: 0
   _hpRatio: 1.1
   _atkRatio: 1.1
