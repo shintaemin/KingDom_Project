@@ -21,6 +21,7 @@ public class CJsonManager : MonoBehaviour
     [SerializeField] private bool _useDebugKey = false;
     [SerializeField] private KeyCode _saveKey = KeyCode.S;
     [SerializeField] private KeyCode _loadKey = KeyCode.L;
+    [SerializeField] private KeyCode _ResetKey = KeyCode.R;
     #endregion
 
     #region 내부 변수
@@ -57,6 +58,11 @@ public class CJsonManager : MonoBehaviour
             }
             if (Input.GetKeyDown(_loadKey))
             {
+                LoadAll();
+            }
+            if (Input.GetKeyDown(_ResetKey))
+            {
+                SaveAll(true);
                 LoadAll();
             }
         }
@@ -102,7 +108,7 @@ public class CJsonManager : MonoBehaviour
         }
     }
 
-    public void SaveAll()
+    public void SaveAll(bool reset = false)
     {
         if (SavaDataDictionary.IsNull("SavaDataDictionary"))
         {
@@ -110,7 +116,7 @@ public class CJsonManager : MonoBehaviour
             return;
         }
 
-        Debug.Log("Save all");
+        Debug.Log(reset ? "Reset all" : "Save all");
 
         foreach (var data in SavaDataDictionary)
         {
@@ -118,15 +124,24 @@ public class CJsonManager : MonoBehaviour
             var value = data.Value;
             // 파일 이름
             var key = data.Key;
-            SaveData(value.Item1, key);
+            SaveData(value.Item1, key, true, reset);
         }
     }
 
-    private void SaveData(IJsonData data, string pileName, bool makeSaveData = true)
+    private void SaveData(IJsonData data, string pileName, bool makeSaveData = true, bool reset = false)
     {
-        if(makeSaveData)
+        if (reset)
         {
-            data.MakeSaveData();
+            Debug.Log($"Call {pileName}.InitSaveData");
+            data.InitSaveData();
+        }
+        else
+        {
+            if (makeSaveData)
+            {
+                Debug.Log($"Call {pileName}.MakeSaveData");
+                data.MakeSaveData();
+            }
         }
         string json = JsonUtility.ToJson(data.SaveData, true);
         string path = Path.Combine(Application.persistentDataPath, $"{pileName}.json");

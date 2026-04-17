@@ -39,17 +39,25 @@ public class PlayerSaveData
     public int[] EquipmentDicID = new int[64];
     public bool[] EquipmentDicValue = new bool[64];
 
+    //private IReadOnlyDictionary<int, ICSVData> EquipmentDataDic => _equipmentDataDic ??= CSOManager.Instance.DataArraySO.EquipmentDataDic;
     public PlayerSaveData()
     {
-        CurrentClothesID = 1000;
-        // 기본 무기
-        EquipmentDicID[0] = 0;
-        EquipmentDicValue[0] = true;
+        MaxEnergy = 15;
+        Energy = 15;
 
-        // 기본 스킨
-        // '배열의 index'가 중요한게 아니라 '해당 index에 저장된 값'이 중요하다.
-        EquipmentDicID[1] = 1000;
-        EquipmentDicValue[1] = true;
+        CurrentStage = 1;
+
+        CurrentClothesID = 1000;
+
+        int index = 0;
+        var equipmentDataDic = CSOManager.Instance.DataArraySO.EquipmentDataDic;
+        foreach(var (key, value) in equipmentDataDic )
+        {
+            EquipmentDicID[index] = key;
+            bool isDefualtEquipment = key == 0 || key == 1000;
+            EquipmentDicValue[index] = isDefualtEquipment;
+            index++;
+        }
     }
 }
 
@@ -556,6 +564,11 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
     {
         if (_equipmentUnLockDic.ContainsKey(ID))
         {
+            if (_equipmentUnLockDic[ID])
+            {
+                Debug.LogWarning($"ID : {ID}는 이미 해금된 ID의 장비 입니다.");
+                return;
+            }
             _equipmentUnLockDic[ID] = true;
             if (ID < 1000)
             {
@@ -566,6 +579,7 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
                 _unLockedClothesCount++;
             }
             OnEquipmentUnLock?.Invoke(ID);
+            Debug.Log($"ID : {ID} 해금");
         }
         else
         {
