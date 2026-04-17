@@ -51,13 +51,16 @@ public class PlayerSaveData
         CurrentClothesID = 1000;
 
         int index = 0;
-        var equipmentDataDic = CSOManager.Instance.DataArraySO.EquipmentDataDic;
-        foreach (var (key, value) in equipmentDataDic)
+        if (CSOManager.Instance != null)
         {
-            EquipmentDicID[index] = key;
-            bool isDefualtEquipment = key == 0 || key == 1000;
-            EquipmentDicValue[index] = isDefualtEquipment;
-            index++;
+            var equipmentDataDic = CSOManager.Instance.DataArraySO.EquipmentDataDic;
+            foreach (var (key, value) in equipmentDataDic)
+            {
+                EquipmentDicID[index] = key;
+                bool isDefualtEquipment = key == 0 || key == 1000;
+                EquipmentDicValue[index] = isDefualtEquipment;
+                index++;
+            }
         }
     }
 }
@@ -529,12 +532,12 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
 
     private void OnEnable()
     {
-        _energyTimer._elapsedTime += GetElapsedTime;
+       // _energyTimer._elapsedTime += GetElapsedTime;
     }
 
     private void OnDisable()
     {
-        _energyTimer._elapsedTime -= GetElapsedTime;
+        //_energyTimer._elapsedTime -= GetElapsedTime;
     }
 
     private void GetElapsedTime(double elapsedTime)
