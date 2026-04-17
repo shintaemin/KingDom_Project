@@ -77,6 +77,10 @@ public class CHPBar : MonoBehaviour
         {
             _hpSlider = prefab;
         }
+        if (go.TryGetComponent<Animator>(out Animator animator))
+        {
+            _animator = animator;
+        }
 
         _fillImage = go.transform.Find("Fill Area/Fill").GetComponent<Image>();
         if (_fillImage == null)
