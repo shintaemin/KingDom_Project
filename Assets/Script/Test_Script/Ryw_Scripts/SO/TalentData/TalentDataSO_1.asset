@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: TalentDataSO_1
   m_EditorClassIdentifier: 
   _ID: 1
-  _name: "\uD68C\uBCF5"
-  _information: "\uCD08\uB2F9 \uCCB4\uB825{}\uD68C\uBCF5"
+  _name: RECOVERY
+  _information: RECOVER {}% OF HP PER SECOND
   _basic: 50
   _volume: 15
   _icon: {fileID: 21300000, guid: c4b0e4deee39eb9428544cd0cd0ed85b, type: 3}
