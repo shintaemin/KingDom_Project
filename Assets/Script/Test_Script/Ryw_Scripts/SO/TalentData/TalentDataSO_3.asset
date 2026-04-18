@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: TalentDataSO_3
   m_EditorClassIdentifier: 
   _ID: 3
-  _name: BACKATTACK DAMAE
-  _information: INCREASE ATTACK POWER BY {} WHEN BACKATTACK
+  _name: "\uBC31\uC5B4\uD0DD \uACF5\uACA9\uB825"
+  _information: "\uBC31\uC5B4\uD0DD \uACF5\uACA9\uB825 {}\uC0C1\uC2B9"
   _basic: 100
   _volume: 50
   _icon: {fileID: 21300000, guid: cfd794cfd47f27e4bb8a691d866ba5d1, type: 3}

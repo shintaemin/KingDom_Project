@@ -138,8 +138,13 @@ public class RandomWeapon_Unlocker : MonoBehaviour
 
             SetUnlock(selectedSlot);
             SelectByController(selectedSlot);
-
-            ShowReward();
+            if (selectedSlot.TryGetComponent<Equipment_Slot_Data>(out var selectedSlotData))
+            {
+                Sprite image = selectedSlotData.GetOpenIcon;
+                Sprite option = selectedSlotData.GetOptionIcon;
+                string optionText = selectedSlotData.GetStatText;
+                ShowReward(image, option, optionText);
+            }
 
             SetAllHighlightOff();
             _isRolling = false;
@@ -179,11 +184,16 @@ public class RandomWeapon_Unlocker : MonoBehaviour
 
         UpdatePrice();
 
-
         SetUnlock(finalSlot);
         SelectByController(finalSlot);
 
-        ShowReward();
+        if (finalSlot.TryGetComponent<Equipment_Slot_Data>(out var finalSlotData))
+        {
+            Sprite image = finalSlotData.GetOpenIcon;
+            Sprite option = finalSlotData.GetOptionIcon;
+            string optionText = finalSlotData.GetStatText;
+            ShowReward(image, option, optionText);
+        }
 
         SetAllHighlightOff();
         _isRolling = false;
@@ -203,10 +213,16 @@ public class RandomWeapon_Unlocker : MonoBehaviour
     }
 
     // 보상 UI 및 사운드 출력
-    private void ShowReward()
+    private void ShowReward(Sprite image, Sprite option, string text)
     {
         if (_rewardPopup != null)
+        {
             _rewardPopup.SetActive(true);
+            if (_rewardPopup.TryGetComponent<RewardPopup_Controller>(out var rewardPopup))
+            {
+                rewardPopup.SetPopup(image, option, text);
+            }
+        }
 
         if (SoundManager.Instance != null)
             SoundManager.Instance.SFXPlay(ESfxType.Item_Unlock);

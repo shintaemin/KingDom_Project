@@ -338,7 +338,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PrintData: 1
-  CreateFlag: 0
+  CreateFlag: -1
+  UseMakeDataArraySO: 1
 --- !u!4 &2147474507
 Transform:
   m_ObjectHideFlags: 0

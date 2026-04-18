@@ -29,6 +29,7 @@ public class Equipment_Slot_Data : MonoBehaviour
     [SerializeField] private Image _lockIcon;
     [SerializeField] private Image _openIcon;
     [SerializeField] private Image _checkIcon;
+    [SerializeField] private Image _optionIcon;
 
     [Header("텍스트")]
     [SerializeField] private TextMeshProUGUI _openStatText;
@@ -230,5 +231,8 @@ public class Equipment_Slot_Data : MonoBehaviour
 
     public int ID => _id;
 
+    public Sprite GetOpenIcon => _openIcon.sprite;
+    public Sprite GetOptionIcon => _optionIcon.sprite;
+    public string GetStatText => _openStatText.text;
     #endregion
 }
