@@ -43,7 +43,13 @@ public class LTopBar_UI : MonoBehaviour
             CPlayerDataManager.Instance.OnStatChanged -= RefreshUI;
     }
 
-    
+
+    public bool TryUseEnergy(int amount)
+    {
+        return CPlayerDataManager.Instance.TryUseEnergy(amount);
+    }
+
+
     // UI 전체 갱신
     public void RefreshUI()
     {
@@ -53,8 +59,8 @@ public class LTopBar_UI : MonoBehaviour
         _gemText.text = data.Gem.ToString();
 
         // 에너지
-        _energyText.text = $"{data.Energy} / 15";
-        _energyFill.fillAmount = (float)data.Energy / 15f;
+        _energyText.text = $"{data.Energy} / {data.MaxEnergy}";
+        _energyFill.fillAmount = (float)data.Energy / data.MaxEnergy;
     }
 
     #region 외부 호출 함수
