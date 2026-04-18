@@ -169,6 +169,13 @@ public class RandomWeapon_Unlocker : MonoBehaviour
         yield return new WaitForSeconds(_endDelay * 1.5f);
 
         GameObject finalSlot = _weaponSlots[targetIndex];
+        
+        if (finalSlot.TryGetComponent(out Equipment_Slot_Data esd))
+        {
+            var data = esd.GetData();
+            int unlockedID = data.ID;
+            CPlayerDataManager.Instance.UnLockEquipmentDic(unlockedID);
+        }
 
         UpdatePrice();
 

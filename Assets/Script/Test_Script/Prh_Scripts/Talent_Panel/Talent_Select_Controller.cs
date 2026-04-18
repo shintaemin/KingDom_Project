@@ -38,15 +38,10 @@ public class Talent_Select_Controller : MonoBehaviour
     [SerializeField] private List<GameObject> _talentSlots = new List<GameObject>();
     #endregion
 
-    #region 내부 변수
-    // 슬롯 해금 상태 관리 배열
-    private bool[] _unlockedStates;
-    #endregion
+    
 
     private void Start()
     {
-        _unlockedStates = new bool[_talentSlots.Count];
-
         InitSlots();
     }
 
@@ -54,6 +49,15 @@ public class Talent_Select_Controller : MonoBehaviour
     // 슬롯 초기 상태 설정
     private void InitSlots()
     {
+        var player = CPlayerDataManager.Instance;
+
+        // 기본 해금 슬롯 
+        if (player.GetCurrentTalentLevel(4) == 0)
+        {
+            player.AddTalentLevel(4);
+            _popups[4].Unlock();
+        }
+
         for (int i = 0; i < _talentSlots.Count; i++)
         {
             Transform slotTr = _talentSlots[i].transform;
@@ -62,7 +66,11 @@ public class Talent_Select_Controller : MonoBehaviour
             GameObject openObj = slotTr.Find("Open").gameObject;
             GameObject checkObj = slotTr.Find("Check").gameObject;
 
-            if (_unlockedStates[i])
+            // PlayerData 기준으로 판단
+            bool unlocked = player.GetCurrentTalentLevel(i) > 0;
+            
+
+            if (unlocked)
             {
                 lockObj.SetActive(false);
                 openObj.SetActive(true);
@@ -76,17 +84,6 @@ public class Talent_Select_Controller : MonoBehaviour
             checkObj.SetActive(false);
         }
 
-        // 가운데 슬롯 기본 해금
-        if (!_unlockedStates[4])
-        {
-            _unlockedStates[4] = true;
-
-            Transform centerTr = _talentSlots[4].transform;
-            centerTr.Find("Lock").gameObject.SetActive(false);
-            centerTr.Find("Open").gameObject.SetActive(true);
-
-            _popups[4].Unlock();
-        }
     }
     #endregion
 
@@ -94,11 +91,13 @@ public class Talent_Select_Controller : MonoBehaviour
     // 랜덤 슬롯 해금 요청
     public void UnlockRandomSlot()
     {
+        var player = CPlayerDataManager.Instance;
+
         List<int> lockedIndices = new List<int>();
 
         for (int i = 0; i < _talentSlots.Count; i++)
         {
-            if (!_unlockedStates[i])
+            if (player.GetCurrentTalentLevel(i) == 0)
                 lockedIndices.Add(i);
         }
 
@@ -137,11 +136,13 @@ public class Talent_Select_Controller : MonoBehaviour
     // 룰렛 하이라이트 연출
     private IEnumerator CoRandomHighlightEffect()
     {
+        var player = CPlayerDataManager.Instance;
+
         List<int> lockedIndices = new List<int>();
 
         for (int i = 0; i < _talentSlots.Count; i++)
         {
-            if (!_unlockedStates[i])
+            if (player.GetCurrentTalentLevel(i) == 0)
                 lockedIndices.Add(i);
         }
 
@@ -206,7 +207,6 @@ public class Talent_Select_Controller : MonoBehaviour
         slotTr.Find("Lock").gameObject.SetActive(false);
         slotTr.Find("Open").gameObject.SetActive(true);
 
-        _unlockedStates[index] = true;
 
         _popups[index].Unlock();
 

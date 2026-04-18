@@ -40,6 +40,7 @@ public class AbilitySlot_Data : MonoBehaviour
 
     [SerializeField] private GameObject _openButton;
     [SerializeField] private GameObject _lockButton;
+
     #endregion
 
     #region 내부 변수
@@ -122,6 +123,8 @@ public class AbilitySlot_Data : MonoBehaviour
         // 파티클 연출 (UI 기준 - 자식으로 생성)
         GameObject obj = Instantiate(_particlePrefab, transform);
         // obj.transform.localPosition = _spawnPoint.localPosition;
+        
+        
         Destroy(obj, 2f);
 
     }

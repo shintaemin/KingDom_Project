@@ -49,7 +49,7 @@ public class ClothesSelect_Controller : MonoBehaviour
 
     #region 외부 호출 함수
     // 슬롯 선택 처리
-    public void SelectSlot(GameObject clickedSlot)
+    public void SelectSlot(GameObject clickedSlot, bool ignoreLock = false)
     {
         // 유효성 검사
         if (clickedSlot == null)
@@ -61,31 +61,22 @@ public class ClothesSelect_Controller : MonoBehaviour
         if (lockTr == null || checkTr == null)
             return;
 
-        // 잠긴 슬롯은 선택 불가
-        bool isAlwaysOpen = IsAlwaysOpenSlot(clickedSlot);
-        bool isColorLock = IsColorLockSlot(clickedSlot);
-
-        if (isColorLock)
+        if (!ignoreLock && lockTr.gameObject.activeSelf)
         {
-            Debug.Log("컬러 잠금 의상 선택 불가");
+            Debug.Log("잠긴 의상은 선택 불가");
             return;
         }
-
-
-        if (!isAlwaysOpen && lockTr.gameObject.activeSelf)
-        {
-            Debug.Log("잠긴 아이템은 선택 불가");
-            return;
-        }
-
+        
         var slotData = clickedSlot.GetComponent<Equipment_Slot_Data>();
 
         if (slotData != null)
         {
-            int id = slotData.GetData().ID;
+            int id = slotData.ID;
 
             // 플레이어 데이터에 선택된 의상 ID 저장
             CPlayerDataManager.Instance.CurrentClothesID = id;
+
+            CJsonManager.Instance.SaveAll();
 
             Debug.Log("선택된 옷 ID: " + id);
         }
@@ -100,24 +91,7 @@ public class ClothesSelect_Controller : MonoBehaviour
     #endregion
 
     #region 내부 함수
-    private bool IsAlwaysOpenSlot(GameObject slot)
-    {
-        return false;
-    }
-
-    private bool IsColorLockSlot(GameObject slot)
-    {
-        var data = slot.GetComponent<Equipment_Slot_Data>();
-        if (data == null) return false;
-
-        var equipData = data.GetData();
-        if (equipData == null) return false;
-
-        int id = equipData.ID;
-
-        return id == 1106 || id == 1107; // Slot7,8
-    }
-
+    
     // 모든 슬롯 체크 상태 초기화
     private void ClearAllChecks()
     {
@@ -146,34 +120,25 @@ public class ClothesSelect_Controller : MonoBehaviour
 
             var data = slot.GetComponent<Equipment_Slot_Data>();
             if (data == null) continue;
-            if (data.GetData() == null) continue;
 
-            // 현재 착용 의상 찾기
-            if (data.GetData().ID == currentID)
+            // ID로 비교
+            if (data.ID == currentID)
             {
-                Transform lockTr = slot.transform.Find("Lock");
-                Transform openTr = slot.transform.Find("Open");
-                Transform checkTr = slot.transform.Find("Check");
+                data.SetData(currentID);
 
-                // 잠금 해제 상태로 설정
-                bool isAlwaysOpen = IsAlwaysOpenSlot(slot);
-                bool isColorLock = IsColorLockSlot(slot);
-
-                if (isColorLock) continue;
-
-                if (isAlwaysOpen)
-                {
-                    if (lockTr != null) lockTr.gameObject.SetActive(false);
-                    if (openTr != null) openTr.gameObject.SetActive(true);
-                }
-
-                // 선택 상태 적용
-                ClearAllChecks();
-                SelectSlot(slot);
-
+                // 한 프레임 뒤 선택 적용
+                StartCoroutine(CoApplySelectionNextFrame(slot));
                 break;
             }
+
         }
     }
     #endregion
+
+    private IEnumerator CoApplySelectionNextFrame(GameObject slot)
+    {
+        yield return null;
+
+        SelectSlot(slot, true);
+    }
 }

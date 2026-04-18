@@ -53,13 +53,11 @@ public class UParticle_Spawner : MonoBehaviour
             ps.Play();
         }
 
-        // 대기
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
 
-        // 정지
         foreach (var ps in _psList)
         {
-            ps.Stop();
+            ps.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
         }
 
     }
