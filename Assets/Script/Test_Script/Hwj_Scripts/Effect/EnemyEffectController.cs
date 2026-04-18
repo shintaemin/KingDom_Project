@@ -195,6 +195,7 @@ public class EnemyEffectController : MonoBehaviour
         if (backAtkDead)
         {
             EffectManager.Instance.SpawnEffect(EffectManager.EEffectType.PlayerDamaged, transform.position, transform.rotation);
+            EffectManager.Instance.SpawnEffect(EffectManager.EEffectType.BackAttack, transform.position, transform.rotation);
 
             // ·¹±×µ¹
             switch (_enemyType)

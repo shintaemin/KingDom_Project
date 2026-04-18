@@ -34,6 +34,7 @@ public class EffectManager : MonoBehaviour
         Bone,
         DeadZombie,
         GemExplosion,
+        BackAttack,
 
     }
 
