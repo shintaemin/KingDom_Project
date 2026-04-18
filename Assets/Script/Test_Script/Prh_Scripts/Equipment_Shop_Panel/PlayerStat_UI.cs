@@ -56,7 +56,7 @@ public class PlayerStat_UI : MonoBehaviour
             _hpText.text = player.HP.ToString();
 
             // 이동속도 퍼센트 변환
-            _speedText.text = (player.MoveSpeed * 100f).ToString("F0") + "%";
+            _speedText.text = (player.MoveSpeedRatio * 100f).ToString("F0") + "%";
         }
         catch
         {
