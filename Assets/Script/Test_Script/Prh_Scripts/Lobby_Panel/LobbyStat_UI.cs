@@ -54,13 +54,13 @@ public class LobbyStat_UI : MonoBehaviour
         // 값 변화 없으면 갱신 스킵
         if (player.Attack == _cachedAttack &&
             player.HP == _cachedHp &&
-            player.MoveSpeed == _cachedMoveSpeed)
+            player.MoveSpeedRatio == _cachedMoveSpeed)
             return;
 
         // 캐싱 값 갱신
         _cachedAttack = player.Attack;
         _cachedHp = player.HP;
-        _cachedMoveSpeed = player.MoveSpeed;
+        _cachedMoveSpeed = player.MoveSpeedRatio;
 
         // UI 갱신
         UpdateUI();
@@ -85,7 +85,7 @@ public class LobbyStat_UI : MonoBehaviour
             _hpText.text = player.HP.ToString();
 
             // 이동속도 퍼센트 변환 후 표시
-            _speedText.text = (player.MoveSpeed * 100f).ToString("F0") + "%";
+            _speedText.text = (player.MoveSpeedRatio * 100f).ToString("F0") + "%";
         }
         catch
         {
