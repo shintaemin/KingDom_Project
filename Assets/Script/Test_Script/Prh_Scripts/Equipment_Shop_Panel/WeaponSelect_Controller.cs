@@ -47,17 +47,7 @@ public class WeaponSelect_Controller : MonoBehaviour
     #endregion
 
     #region 내부 함수
-    // Reward / Purchased 슬롯은 항상 열림
-    private bool IsAlwaysOpenSlot(GameObject slot)
-    {
-        Transform parent = slot.transform.parent;
-
-        if (parent == null) return false;
-
-        return parent.name == "RewardWeapon_Group" ||
-               parent.name == "Weapon_Purchased_Group";
-    }
-
+    
     // 모든 슬롯 체크 상태 초기화
     private void ClearAllChecks()
     {
@@ -86,37 +76,26 @@ public class WeaponSelect_Controller : MonoBehaviour
 
             var data = slot.GetComponent<Equipment_Slot_Data>();
             if (data == null) continue;
-            if (data.GetData() == null) continue;
 
-            // 현재 장착 무기 찾기
-            if (data.GetData().ID == currentID)
+            if (data.ID == currentID)
             {
-                Transform lockTr = slot.transform.Find("Lock");
-                Transform openTr = slot.transform.Find("Open");
-                Transform checkTr = slot.transform.Find("Check");
-
-                bool isAlwaysOpen = IsAlwaysOpenSlot(slot);
-
-                // 잠금 해제 상태 적용
-                if (isAlwaysOpen)
-                {
-                    if (lockTr != null) lockTr.gameObject.SetActive(false);
-                    if (openTr != null) openTr.gameObject.SetActive(true);
-                }
-
-                // 선택 상태 적용
-                ClearAllChecks();
-                SelectSlot(slot);
-
+                data.SetData(currentID);   // UI 갱신
+                StartCoroutine(CoApplySelectionNextFrame(slot));
                 break;
             }
+
         }
     }
     #endregion
+    private IEnumerator CoApplySelectionNextFrame(GameObject slot)
+    {
+        yield return null; // 한 프레임 대기
 
+        SelectSlot(slot, true);
+    }
     #region 외부 호출 함수
     // 슬롯 선택 처리
-    public void SelectSlot(GameObject clickedSlot)
+    public void SelectSlot(GameObject clickedSlot, bool ignoreLock = false)
     {
         // 유효성 검사
         if (clickedSlot == null)
@@ -128,11 +107,8 @@ public class WeaponSelect_Controller : MonoBehaviour
         if (lockTr == null || checkTr == null)
             return;
 
-        // 예외 그룹 체크
-        bool isAlwaysOpen = IsAlwaysOpenSlot(clickedSlot);
 
-        // 잠긴 슬롯은 선택 불가 (예외 그룹 제외)
-        if (!isAlwaysOpen && lockTr.gameObject.activeSelf)
+        if (!ignoreLock && lockTr.gameObject.activeSelf)
         {
             Debug.Log("잠긴 아이템은 선택 불가");
             return;
@@ -142,10 +118,12 @@ public class WeaponSelect_Controller : MonoBehaviour
 
         if (slotData != null)
         {
-            int id = slotData.GetData().ID;
+            int id = slotData.ID;
 
             // 플레이어 데이터에 선택된 무기 ID 저장
             CPlayerDataManager.Instance.CurrentWeaponID = id;
+
+            CJsonManager.Instance.SaveAll();
 
             Debug.Log("선택된 무기 ID: " + id);
         }

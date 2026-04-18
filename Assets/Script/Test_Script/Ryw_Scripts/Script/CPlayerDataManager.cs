@@ -177,6 +177,10 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
             if (value > 0)
             {
                 _gem += value;
+
+                OnStatChanged?.Invoke();    // 라희 추가 UI 갱신 이벤트
+
+
                 CJsonManager.Instance.SaveAll();
             }
             else if (value < 0)
@@ -516,18 +520,22 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
         Instance = this;
 
         GameObject go = GameObject.Find("EnergyTimer");
-
-        if (go.TryGetComponent(out EnergyTimer energyTimer))
+        if (go != null)
         {
-            _energyTimer = energyTimer;
+            if (go.TryGetComponent(out EnergyTimer energyTimer))
+            {
+                _energyTimer = energyTimer;
+            }
+
+            if (_energyTimer.IsNull("_energyTimer"))
+            {
+                return;
+            }
+
+            DontDestroyOnLoad(this.gameObject);
+
         }
 
-        if (_energyTimer.IsNull("_energyTimer"))
-        {
-            return;
-        }
-
-        DontDestroyOnLoad(this.gameObject);
     }
 
     private void OnEnable()
@@ -567,15 +575,7 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
         _currentWeapon = CSOManager.Instance[CDataArraySO.EDataType.EquipmentData][_currentWeaponID] as CEquipmentDataSO;
         _currentClothes = CSOManager.Instance[CDataArraySO.EDataType.EquipmentData][_currentClothesID] as CEquipmentDataSO;
 
-        // 라희테스트
-        _gem = 9999;
-        _currentEnergy = 15;
-        _maxEnergy = 15;
-        _unLockedWeaponCount = 1;
-        _unLockedClothesCount = 2;
-
-        OnStatChanged?.Invoke();
-        // 여기까지 삭제해야함.
+        OnStatChanged?.Invoke(); // 라희 추가 UI 이벤트
     }
 
     void Update()
@@ -763,6 +763,8 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
                 }
             }
         }
+
+        OnStatChanged?.Invoke(); // 라희 추가 UI갱신 이벤트
     }
 
     public void InitSaveData()
@@ -772,5 +774,13 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
             _data = null;
         }
         _data = new PlayerSaveData();
+    }
+
+
+
+    // 라희 추가 이벤트 UI 갱신 
+    void OnValidate()
+    {
+        OnStatChanged?.Invoke();
     }
 }
