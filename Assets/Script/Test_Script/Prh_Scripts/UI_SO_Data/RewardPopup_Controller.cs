@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 #region 보상 팝업 UI 제어
 /*
@@ -23,6 +25,9 @@ public class RewardPopup_Controller : MonoBehaviour
 {
     #region 인스펙터
     [SerializeField] private GameObject _popup;
+    [SerializeField] private Image _popUpImage;
+    [SerializeField] private Image _statImage;
+    [SerializeField] private TextMeshProUGUI _statText;
     #endregion
 
     #region 외부 호출 함수
@@ -34,6 +39,16 @@ public class RewardPopup_Controller : MonoBehaviour
         {
             _popup.SetActive(false);
         }
+    }
+
+    public void SetPopup(Sprite image, Sprite option, string text)
+    {
+        _popUpImage.sprite = image;
+        _statImage.sprite = option;
+        _statText.text = text;
+        _statText.fontSize = 60;
+        _statText.fontStyle = FontStyles.Bold;
+        _statText.color = Color.white;
     }
     #endregion
 }

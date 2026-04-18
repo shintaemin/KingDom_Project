@@ -144,8 +144,13 @@ public class RandomClothes_Unlocker : MonoBehaviour
             UpdatePrice();
 
             SelectByController(selectedSlot);
-
-            ShowReward();
+            if (selectedSlot.TryGetComponent<Equipment_Slot_Data>(out var selselectedSlotData))
+            {
+                Sprite image = selselectedSlotData.GetOpenIcon;
+                Sprite option = selselectedSlotData.GetOptionIcon;
+                string optionText = selselectedSlotData.GetStatText;
+                ShowReward(image, option, optionText);
+            }
 
             SetAllHighlightOff();
             _isRolling = false;
@@ -175,14 +180,19 @@ public class RandomClothes_Unlocker : MonoBehaviour
         yield return new WaitForSeconds(_endDelay * 1.5f);
 
         GameObject finalSlot = _clothesSlots[targetIndex];
-
+        
         SetUnlock(finalSlot);
 
         UpdatePrice();
-
+        
         SelectByController(finalSlot);
-
-        ShowReward();
+        if (finalSlot.TryGetComponent<Equipment_Slot_Data>(out var finalSlotData))
+        {
+            Sprite image = finalSlotData.GetOpenIcon;
+            Sprite option = finalSlotData.GetOptionIcon;
+            string optionText = finalSlotData.GetStatText;
+            ShowReward(image, option, optionText);
+        }
 
         SetAllHighlightOff();
         _isRolling = false;
@@ -218,10 +228,16 @@ public class RandomClothes_Unlocker : MonoBehaviour
     }
 
     // 보상 UI 및 사운드 출력
-    private void ShowReward()
+    private void ShowReward(Sprite image, Sprite option, string text)
     {
         if (_rewardPopup != null)
+        {
             _rewardPopup.SetActive(true);
+            if(_rewardPopup.TryGetComponent<RewardPopup_Controller>(out var rewardPopup))
+            {
+                rewardPopup.SetPopup(image, option, text);
+            }
+        }
 
         if (SoundManager.Instance != null)
             SoundManager.Instance.SFXPlay(ESfxType.Item_Unlock);
