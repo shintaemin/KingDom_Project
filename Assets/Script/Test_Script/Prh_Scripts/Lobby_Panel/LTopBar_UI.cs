@@ -29,20 +29,20 @@ public class LTopBar_UI : MonoBehaviour
         Instance = this;
     }
 
-    private void Start()
+    private void OnEnable()
     {
-        RefreshUI();
-
-        // 데이터 변경 이벤트 구독
-        CPlayerDataManager.Instance.OnStatChanged += RefreshUI;
+        if (CPlayerDataManager.Instance != null)
+        {
+            RefreshUI();
+            CPlayerDataManager.Instance.OnStatChanged += RefreshUI;
+        }
     }
-
-    private void OnDestroy()
+    
+    private void OnDisable()
     {
         if (CPlayerDataManager.Instance != null)
             CPlayerDataManager.Instance.OnStatChanged -= RefreshUI;
     }
-
 
     public bool TryUseEnergy(int amount)
     {
