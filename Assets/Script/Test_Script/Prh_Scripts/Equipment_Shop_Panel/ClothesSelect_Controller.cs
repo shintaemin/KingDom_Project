@@ -43,7 +43,6 @@ public class ClothesSelect_Controller : MonoBehaviour
     {
         yield return new WaitUntil(() => CPlayerDataManager.Instance != null);
 
-        InitAlwaysOpenSlots();
         InitSelectedClothes();
     }
     #endregion
@@ -64,6 +63,14 @@ public class ClothesSelect_Controller : MonoBehaviour
 
         // 잠긴 슬롯은 선택 불가
         bool isAlwaysOpen = IsAlwaysOpenSlot(clickedSlot);
+        bool isColorLock = IsColorLockSlot(clickedSlot);
+
+        if (isColorLock)
+        {
+            Debug.Log("컬러 잠금 의상 선택 불가");
+            return;
+        }
+
 
         if (!isAlwaysOpen && lockTr.gameObject.activeSelf)
         {
@@ -95,31 +102,20 @@ public class ClothesSelect_Controller : MonoBehaviour
     #region 내부 함수
     private bool IsAlwaysOpenSlot(GameObject slot)
     {
-        Transform parent = slot.transform.parent;
-
-        if (parent == null) return false;
-
-        return parent.name == "RewardClothes_Group" ||
-               parent.name == "Clothes_Purchased_Group";
+        return false;
     }
 
-    private void InitAlwaysOpenSlots()
+    private bool IsColorLockSlot(GameObject slot)
     {
-        foreach (GameObject slot in _allClothesSlots)
-        {
-            if (slot == null) continue;
+        var data = slot.GetComponent<Equipment_Slot_Data>();
+        if (data == null) return false;
 
-            bool isAlwaysOpen = IsAlwaysOpenSlot(slot);
+        var equipData = data.GetData();
+        if (equipData == null) return false;
 
-            if (!isAlwaysOpen) continue;
+        int id = equipData.ID;
 
-            Transform lockTr = slot.transform.Find("Lock");
-            Transform openTr = slot.transform.Find("Open");
-
-            if (lockTr != null) lockTr.gameObject.SetActive(false);
-            if (openTr != null) openTr.gameObject.SetActive(true);
-
-        }
+        return id == 1106 || id == 1107; // Slot7,8
     }
 
     // 모든 슬롯 체크 상태 초기화
@@ -161,6 +157,9 @@ public class ClothesSelect_Controller : MonoBehaviour
 
                 // 잠금 해제 상태로 설정
                 bool isAlwaysOpen = IsAlwaysOpenSlot(slot);
+                bool isColorLock = IsColorLockSlot(slot);
+
+                if (isColorLock) continue;
 
                 if (isAlwaysOpen)
                 {

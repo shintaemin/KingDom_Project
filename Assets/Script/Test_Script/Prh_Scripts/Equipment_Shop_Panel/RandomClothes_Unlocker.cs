@@ -28,6 +28,11 @@ public class RandomClothes_Unlocker : MonoBehaviour
 
     [SerializeField] private float _startDelay = 0.05f;
     [SerializeField] private float _endDelay = 0.3f;
+
+    [SerializeField] private TMPro.TextMeshProUGUI _priceText;
+
+    [SerializeField] private GameObject _openButton;
+    [SerializeField] private GameObject _lockButton;
     #endregion
 
     #region 내부 변수
@@ -35,12 +40,56 @@ public class RandomClothes_Unlocker : MonoBehaviour
     private bool _isRolling = false;
     #endregion
 
+    void Start()
+    {
+        UpdatePrice();
+        UpdateButtonState();
+    }
+
+    private void OnEnable()
+    {
+        UpdatePrice();
+        UpdateButtonState();
+    }
+
+    void UpdateButtonState()
+    {
+        int price = Mathf.Max(1000, CPlayerDataManager.Instance.UnLockedClothesCount * 1000);
+        int gem = CPlayerDataManager.Instance.Gem;
+
+        bool canBuy = gem >= price;
+
+        _openButton.SetActive(canBuy);
+        _lockButton.SetActive(!canBuy);
+    }
+
+    void UpdatePrice()
+    {
+        // 다이아 계산
+        int price = Mathf.Max(1000, CPlayerDataManager.Instance.UnLockedClothesCount * 1000);
+        _priceText.text = price.ToString();
+
+        UpdateButtonState();
+
+    }
+
+
     #region 외부 호출 함수
     // 랜덤 해금 시작 요청
     public void StartRandomUnlock()
     {
         if (_isRolling)
             return;
+        
+        // 다이아 가격 계산
+        int price = Mathf.Max(1000, CPlayerDataManager.Instance.UnLockedClothesCount * 1000);
+
+        // 다이아 체크
+        if (!CPlayerDataManager.Instance.TryUseGem(price))
+        {
+            Debug.Log("다이아 부족");
+            return;
+        }
 
         StartCoroutine(CoRandomUnlock());
     }
@@ -63,7 +112,12 @@ public class RandomClothes_Unlocker : MonoBehaviour
             Transform lockTr = slot.transform.Find("Lock");
 
             if (lockTr != null && lockTr.gameObject.activeSelf)
+            {
+                if (IsColorLockSlot(slot))
+                    continue;
+
                 lockedIndices.Add(i);
+            }
         }
 
         // 해금 가능한 슬롯이 없으면 종료
@@ -86,6 +140,9 @@ public class RandomClothes_Unlocker : MonoBehaviour
             GameObject selectedSlot = _clothesSlots[lastIndex];
 
             SetUnlock(selectedSlot);
+
+            UpdatePrice();
+
             SelectByController(selectedSlot);
 
             ShowReward();
@@ -120,6 +177,9 @@ public class RandomClothes_Unlocker : MonoBehaviour
         GameObject finalSlot = _clothesSlots[targetIndex];
 
         SetUnlock(finalSlot);
+
+        UpdatePrice();
+
         SelectByController(finalSlot);
 
         ShowReward();
@@ -130,6 +190,22 @@ public class RandomClothes_Unlocker : MonoBehaviour
     #endregion
 
     #region 내부 함수
+
+
+    private bool IsColorLockSlot(GameObject slot)
+    {
+        var data = slot.GetComponent<Equipment_Slot_Data>();
+        if (data == null) return false;
+
+        var equipData = data.GetData();
+        if (equipData == null) return false;
+
+        int id = equipData.ID;
+
+        return id == 1106 || id == 1107;
+    }
+
+
     // 컨트롤러를 통해 슬롯 선택 처리
     private void SelectByController(GameObject slot)
     {
