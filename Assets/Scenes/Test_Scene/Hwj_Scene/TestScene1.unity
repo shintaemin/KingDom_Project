@@ -967,18 +967,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: IngameUiEffect
       objectReference: {fileID: 0}
-    - target: {fileID: 8274554006991517589, guid: fc083b14e9afc9543bbb42bc96905d62, type: 3}
-      propertyPath: _xOffset
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8274554006991517589, guid: fc083b14e9afc9543bbb42bc96905d62, type: 3}
-      propertyPath: _zOffset
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8274554006991517589, guid: fc083b14e9afc9543bbb42bc96905d62, type: 3}
-      propertyPath: _gemDuration
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1300,6 +1288,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1758542887627808087, guid: 9a1b09012212f66429b7e2ba2d1be52b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2734490229604626312, guid: 9a1b09012212f66429b7e2ba2d1be52b, type: 3}
+      propertyPath: m_Parameters.m_Shape
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

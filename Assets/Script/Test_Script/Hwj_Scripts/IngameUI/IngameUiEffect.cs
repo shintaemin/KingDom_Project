@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
 
 public class IngameUiEffect : MonoBehaviour
 {
@@ -84,7 +83,10 @@ public class IngameUiEffect : MonoBehaviour
 
         else
         {
-            _activeGemText.transform.position = _playerTr.position + new Vector3(_xOffset, _yOffset, _zOffset);
+            if (_playerTr != null)
+            {
+                _activeGemText.transform.position = _playerTr.position + new Vector3(_xOffset, _yOffset, _zOffset);
+            }
         }
     }
 
@@ -105,6 +107,10 @@ public class IngameUiEffect : MonoBehaviour
 
             gemText.text = $"+{_totalGem}";
 
+            float scale = Mathf.Lerp(0f, 0.01f, timer);
+
+            _activeGemText.transform.localScale = Vector3.one * scale;
+
             _activeGemText.transform.position = _playerTr.position + new Vector3(_xOffset, _yOffset, _zOffset);
 
             _activeGemText.transform.forward = Camera.main.transform.forward;
@@ -118,7 +124,7 @@ public class IngameUiEffect : MonoBehaviour
 
         if (go != null)
         {
-            ProjectileManager.Instance.DespawnProjectile(ProjectileManager.EProjectileType.DamageText, go);
+            ProjectileManager.Instance.DespawnProjectile(ProjectileManager.EProjectileType.GemText, go);
         }
     }
 
