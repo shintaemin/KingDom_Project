@@ -699,6 +699,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Zombie_GoalStage
       objectReference: {fileID: 0}
+    - target: {fileID: 1832611243638400087, guid: aa24250c33312fb4d8dc180b5b5edb35, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4422730153491488375, guid: aa24250c33312fb4d8dc180b5b5edb35, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.82
@@ -796,6 +800,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_Bow
       objectReference: {fileID: 0}
+    - target: {fileID: 2676153228827259053, guid: 8e87aec9c8c8ad04b904daff68bed5e0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -853,6 +861,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_Bow_GoalStage
       objectReference: {fileID: 0}
+    - target: {fileID: 7568051985320367187, guid: cfdb0d16730874848ba9bff48e28860d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -869,6 +881,10 @@ PrefabInstance:
     - target: {fileID: 6558586235737699857, guid: 7fb69a9116bfac446b28a8e5915fcff1, type: 3}
       propertyPath: m_Name
       value: Enemy_Boss
+      objectReference: {fileID: 0}
+    - target: {fileID: 6558586235737699857, guid: 7fb69a9116bfac446b28a8e5915fcff1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9151230642890354584, guid: 7fb69a9116bfac446b28a8e5915fcff1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1346,6 +1362,10 @@ PrefabInstance:
     - target: {fileID: 4438144850111711005, guid: bc9cffe252c51a640a57cb9e739c2294, type: 3}
       propertyPath: m_Name
       value: Enemy_Shield
+      objectReference: {fileID: 0}
+    - target: {fileID: 4438144850111711005, guid: bc9cffe252c51a640a57cb9e739c2294, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
