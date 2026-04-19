@@ -344,6 +344,7 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
             }
             // 배율
             float ratio = 1f;
+            // 무기 배율
             if (_currentWeapon.BonusType == CEquipmentDataSO.EBonusType.Attak)
             {
                 ratio += 0.01f * (_currentWeapon.BonusAmount);
@@ -353,9 +354,9 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
             {
                 ratio += 0.01f * _currentClothes.BonusAmount;
             }
-
-
+            // 해금 배율
             ratio += 0.005f * _unLockedWeaponCount;
+
             return (int)(result * ratio);
         }
     }
@@ -476,18 +477,7 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
     {
         get
         {
-            // 기본
-            float result = _defaultMoveSpeed;
-            // 업그레이드
-            result += (CSOManager.Instance[CDataArraySO.EDataType.AbilityData][2] as CAbilityDataSO).Val * _currentUpgradeLevel[2];
-            // 재능
-            var talentAtt = CSOManager.Instance[CDataArraySO.EDataType.TalentData][7] as CTalentDataSO;
-            int talentAttLevel = _currentTalentLevel[7];
-            if (talentAttLevel > 0)
-            {
-                result += 0.01f * (talentAtt.Basic + talentAtt.Volume * (talentAttLevel - 1));
-            }
-            return (int)(result * MoveSpeedRatio);
+            return (int)(_defaultMoveSpeed * MoveSpeedRatio);
         }
     }
     // MoveSpeedRatio % 라고 표기하면 됨.
@@ -496,18 +486,28 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
         get
         {
             float ratio = _defaultMoveSpeedRatio;
+            // 무기
             if (_currentWeapon.BonusType == CEquipmentDataSO.EBonusType.MoveSpeed)
             {
                 ratio += 0.01f * (_currentWeapon.BonusAmount);
             }
-
             // 의상 배율 (라희 추가)
             if (_currentClothes.BonusType == CEquipmentDataSO.EBonusType.MoveSpeed)
             {
                 ratio += 0.01f * _currentClothes.BonusAmount;
             }
-
+            // 장비 해금
             ratio += 0.005f * _unLockedClothesCount;
+            // 업그레이드
+            ratio += 0.01f * (CSOManager.Instance[CDataArraySO.EDataType.AbilityData][2] as CAbilityDataSO).Val * _currentUpgradeLevel[2];
+            //탈렌트
+            var talentSpeed = CSOManager.Instance[CDataArraySO.EDataType.TalentData][7] as CTalentDataSO;
+            int talentSpeedLevel = _currentTalentLevel[7];
+            if (talentSpeedLevel > 0)
+            {
+                ratio += 0.01f * (talentSpeed.Basic + talentSpeed.Volume * (talentSpeedLevel - 1));
+            }
+
             return ratio;
         }
     }
