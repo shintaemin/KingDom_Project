@@ -106,10 +106,6 @@ public class HpSystem : MonoBehaviour, IDamageable, IHPBar
                 OnBlocked?.Invoke();
                 return;
             }
-            else
-            {
-                OnDamaged?.Invoke();
-            }
         }
 
         float finalDmg = Mathf.Max(0, amount - _status.Armor);

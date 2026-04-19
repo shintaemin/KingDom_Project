@@ -49,19 +49,6 @@ public class EnemyMover : MonoBehaviour
             Debug.LogError("EnemyMover _state _nav 참조 실패");
             return;
         }
-
-        //var player = GameObject.FindWithTag(_playerTag);
-        //
-        //if (player != null)
-        //{
-        //    _playerTr = player.transform;
-        //
-        //    if (_playerTr == null)
-        //    {
-        //        Debug.LogError("EnemyMover _playerTr 참조 실패 (태그 설정 필요)");
-        //        return;
-        //    }
-        //}
     }
 
     private void OnEnable()

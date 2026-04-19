@@ -16,7 +16,11 @@ public class ProjectileManager : MonoBehaviour
     {
         None,
         Arrow,
-        Bullet
+        Bullet,
+        EnemyRagdoll,
+        BossRagdoll,
+        GemText,
+        DamageText
     }
 
     [System.Serializable]
