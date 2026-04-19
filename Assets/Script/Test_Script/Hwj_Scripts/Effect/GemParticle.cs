@@ -24,7 +24,7 @@ public class GemParticle : MonoBehaviour
 
     private void OnDisable()
     {
-        
+
         _enterGems.Clear();
     }
 
@@ -45,7 +45,11 @@ public class GemParticle : MonoBehaviour
 
             int rootGem = gemCount * _perGem;
 
-            Debug.Log($"¿Î »πµÊ {rootGem}");
+            if (CPlayerDataManager.Instance != null)
+            {
+                CPlayerDataManager.Instance.Gem = rootGem;
+            }
+
             OnGemCollected?.Invoke(rootGem);
         }
     }

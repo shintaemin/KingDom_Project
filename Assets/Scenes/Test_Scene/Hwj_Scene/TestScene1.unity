@@ -967,6 +967,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: IngameUiEffect
       objectReference: {fileID: 0}
+    - target: {fileID: 8274554006991517589, guid: fc083b14e9afc9543bbb42bc96905d62, type: 3}
+      propertyPath: _xOffset
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8274554006991517589, guid: fc083b14e9afc9543bbb42bc96905d62, type: 3}
+      propertyPath: _zOffset
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8274554006991517589, guid: fc083b14e9afc9543bbb42bc96905d62, type: 3}
+      propertyPath: _gemDuration
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

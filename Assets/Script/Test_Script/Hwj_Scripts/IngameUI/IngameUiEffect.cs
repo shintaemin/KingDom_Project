@@ -1,16 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 public class IngameUiEffect : MonoBehaviour
 {
     #region 인스펙터
     [Header("플레이어 태그")]
     [SerializeField] private string _playerTag = "Player";
-
-    [Header("텍스트 공용 y보정값")]
-    [SerializeField] private float _yOffset = 4f;
 
     [Header("대미지 텍스트 설정")]
     [SerializeField] private float _dmgDuration = 1f;
@@ -19,11 +17,15 @@ public class IngameUiEffect : MonoBehaviour
 
     [Header("잼 텍스트 설정")]
     [SerializeField] private float _gemDuration = 2f;
+    [SerializeField] private float _xOffset = 1f;
+    [SerializeField] private float _yOffset = 1f;
+    [SerializeField] private float _zOffset = 1f;
     #endregion
 
     #region 내부 변수
     private Transform _playerTr;
     private int _totalGem = 0;
+    private GameObject _activeGemText = null;
     #endregion
 
     private void OnEnable()
@@ -31,7 +33,10 @@ public class IngameUiEffect : MonoBehaviour
         GemParticle.OnGemCollected += GemCollected;
         PlayerCombat.OnPlayerHitTarget += PlayerHitTarget;
 
-        StartCoroutine(CoBindPlayer());
+        if (_playerTr == null)
+        {
+            StartCoroutine(CoBindPlayer());
+        }
     }
 
     private void OnDisable()
@@ -60,17 +65,60 @@ public class IngameUiEffect : MonoBehaviour
 
     private void GemCollected(int amount)
     {
-        GameObject go = ProjectileManager.Instance.SpawnProjectile(ProjectileManager.EProjectileType.GemText);
+        if (_playerTr == null)
+        {
+            StartCoroutine(CoBindPlayer());
+        }
+
+        _totalGem += amount;
+
+        if (_activeGemText == null)
+        {
+            _activeGemText = ProjectileManager.Instance.SpawnProjectile(ProjectileManager.EProjectileType.GemText);
+
+            if (_activeGemText != null)
+            {
+                StartCoroutine(CoGemTextRoutine());
+            }
+        }
+
+        else
+        {
+            _activeGemText.transform.position = _playerTr.position + new Vector3(_xOffset, _yOffset, _zOffset);
+        }
+    }
+
+    private IEnumerator CoGemTextRoutine()
+    {
+        var gemText = _activeGemText.GetComponentInChildren<TextMeshProUGUI>();
+
+        float timer = 0f;
+
+        while (timer < _gemDuration)
+        {
+            if (_playerTr == null)
+            {
+                break;
+            }
+
+            timer += Time.deltaTime;
+
+            gemText.text = $"+{_totalGem}";
+
+            _activeGemText.transform.position = _playerTr.position + new Vector3(_xOffset, _yOffset, _zOffset);
+
+            _activeGemText.transform.forward = Camera.main.transform.forward;
+
+            yield return null;
+        }
+
+        GameObject go = _activeGemText;
+
+        _activeGemText = null;
 
         if (go != null)
         {
-            go.transform.position = _playerTr.position + Vector3.up * _yOffset;
-
-            var gemText = go.GetComponentInChildren<TextMeshProUGUI>();
-
-            _totalGem += amount;
-
-            gemText.text = $"+{_totalGem}";
+            ProjectileManager.Instance.DespawnProjectile(ProjectileManager.EProjectileType.DamageText, go);
         }
     }
 
@@ -126,6 +174,8 @@ public class IngameUiEffect : MonoBehaviour
             Color nc = c;
             nc.a = Mathf.Lerp(1f, 0f, timer);
             dmgtext.color = nc;
+
+            go.transform.forward = Camera.main.transform.forward;
 
             yield return null;
         }
