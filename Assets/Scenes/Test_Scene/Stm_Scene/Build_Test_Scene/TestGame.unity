@@ -2160,7 +2160,7 @@ PrefabInstance:
     - target: {fileID: 1709218921332708418, guid: 640a58ce4a26bdf4a91d299b9be7ba3d, type: 3}
       propertyPath: _playerPrefab
       value: 
-      objectReference: {fileID: 1050013909949325014, guid: 9a1b09012212f66429b7e2ba2d1be52b, type: 3}
+      objectReference: {fileID: 402323165915543218, guid: 49674987da2f8714cbf8ef52713f753d, type: 3}
     - target: {fileID: 1709218921332708418, guid: 640a58ce4a26bdf4a91d299b9be7ba3d, type: 3}
       propertyPath: _shieldPrefab
       value: 

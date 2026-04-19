@@ -31,7 +31,7 @@ public class IngameManager : MonoBehaviour
     [SerializeField] private float _waitTime = 2.5f;
 
     [SerializeField] private List<EnemyState> _enemys = new List<EnemyState>();
-    [SerializeField] private PlayerState _pState;
+    [SerializeField] private PlayerStatus _pState;
     #endregion
 
     #region 내부 변수
@@ -286,9 +286,17 @@ public class IngameManager : MonoBehaviour
             Debug.Log($"[IngameManager] : {_enemys.Count} 구독 완료");
         }
 
-        if (go.TryGetComponent<PlayerState>(out _pState))
+        if (go.TryGetComponent<PlayerStatus>(out _pState))
         {
-            Debug.Log($"[IngameManager] : {_pState.gameObject.name} 구독 완료");
+            if (CPlayerDataManager.Instance != null)
+            {
+                CPlayerDataManager pm = CPlayerDataManager.Instance;
+                float hp = pm.HP;
+                float attack = pm.Attack;
+                float speed = pm.MoveSpeed;
+                _pState.SetStatus(hp, attack, speed);
+                Debug.Log($"[IngameManager] : {_pState.gameObject.name} 스탯 지정 완료");
+            }
         }
     }
 
