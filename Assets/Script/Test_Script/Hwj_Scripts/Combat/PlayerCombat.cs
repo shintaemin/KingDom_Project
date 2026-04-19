@@ -83,6 +83,11 @@ public class PlayerCombat : BaseCombat
 
             enemyHP.TakeDamage(finalAtkPower, transform.position, isBackAttack);
 
+            if (enemyHP.AttackBlocked)
+            {
+                finalAtkPower = 0;
+            }
+
             Vector3 targetPos = _rangeCheck.TargetTr.position;
             OnPlayerHitTarget?.Invoke(targetPos, finalAtkPower, isBackAttack);
         }

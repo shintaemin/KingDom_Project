@@ -16,9 +16,6 @@ public class IngameUiEffect : MonoBehaviour
 
     [Header("잼 텍스트 설정")]
     [SerializeField] private float _gemDuration = 2f;
-    [SerializeField] private float _xOffset = 1f;
-    [SerializeField] private float _yOffset = 1f;
-    [SerializeField] private float _zOffset = 1f;
     #endregion
 
     #region 내부 변수
@@ -85,7 +82,14 @@ public class IngameUiEffect : MonoBehaviour
         {
             if (_playerTr != null)
             {
-                _activeGemText.transform.position = _playerTr.position + new Vector3(_xOffset, _yOffset, _zOffset);
+                var gemText = _activeGemText.GetComponentInChildren<TextMeshProUGUI>();
+
+                var rect = gemText.GetComponent<RectTransform>();
+
+                Vector3 worldPos = _playerTr.position;
+                Vector3 screenPos = Camera.main.WorldToScreenPoint(worldPos);
+
+                rect.position = screenPos;
             }
         }
     }
@@ -93,6 +97,8 @@ public class IngameUiEffect : MonoBehaviour
     private IEnumerator CoGemTextRoutine()
     {
         var gemText = _activeGemText.GetComponentInChildren<TextMeshProUGUI>();
+
+        var rect = gemText.GetComponent<RectTransform>();
 
         float timer = 0f;
 
@@ -107,13 +113,14 @@ public class IngameUiEffect : MonoBehaviour
 
             gemText.text = $"+{_totalGem}";
 
-            float scale = Mathf.Lerp(0f, 0.01f, timer);
+            float scale = Mathf.Lerp(0f, 1f, timer / 0.2f);
 
-            _activeGemText.transform.localScale = Vector3.one * scale;
+            rect.localScale = Vector3.one * scale;
 
-            _activeGemText.transform.position = _playerTr.position + new Vector3(_xOffset, _yOffset, _zOffset);
+            Vector3 worldPos = _playerTr.position;
+            Vector3 screenPos = Camera.main.WorldToScreenPoint(worldPos);
 
-            _activeGemText.transform.forward = Camera.main.transform.forward;
+            rect.position = screenPos;
 
             yield return null;
         }

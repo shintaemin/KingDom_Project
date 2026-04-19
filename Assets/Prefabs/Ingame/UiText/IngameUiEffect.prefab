@@ -49,6 +49,3 @@ MonoBehaviour:
   _randX: 0.5
   _randZ: 0.5
   _gemDuration: 2
-  _xOffset: -1
-  _yOffset: 4
-  _zOffset: 2

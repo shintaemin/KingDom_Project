@@ -27,6 +27,7 @@ public class HpSystem : MonoBehaviour, IDamageable, IHPBar
     public event System.Action<bool> IsBackAttackDead;
     public event Action<float> OnHealthChanged;
     public event Action<Vector3> OnPositionChanged;
+    public bool AttackBlocked { get; private set; }
 
     private BaseStatus _status;
     private float _currentHP;
@@ -89,6 +90,8 @@ public class HpSystem : MonoBehaviour, IDamageable, IHPBar
             return;
         }
 
+        AttackBlocked = false;
+
         if (_isShielded)
         {
             Vector3 attackerPos = attackerPosition;
@@ -103,6 +106,7 @@ public class HpSystem : MonoBehaviour, IDamageable, IHPBar
 
             if (dot > 0.5)
             {
+                AttackBlocked = true;
                 OnBlocked?.Invoke();
                 return;
             }
