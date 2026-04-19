@@ -74,6 +74,16 @@ public class CJsonManager : MonoBehaviour
             Instance = null;
     }
 
+    public void RessetStartInput()
+    {
+        SaveAll(true);
+        LoadAll();
+        if (SceneLoadManager.Instance != null)
+        {
+            SceneLoadManager.Instance.LoadScene(ESceneLoadType.TestLobby);
+        }
+    }
+
     public void Add(string fileName, IJsonData data, System.Type type)
     {
         if (SavaDataDictionary == null)

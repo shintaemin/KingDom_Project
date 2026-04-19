@@ -146,6 +146,11 @@ public class CInGameCanvas : MonoBehaviour
         {
             yield return new WaitForSeconds(_missionEndWaitTime);
 
+            if (obj == EMissionAnswer.Fail)
+            {
+                break;
+            }
+
             if (_spawnRoot != null)
             {
                 if (_spawnRoot.transform.childCount < 2)

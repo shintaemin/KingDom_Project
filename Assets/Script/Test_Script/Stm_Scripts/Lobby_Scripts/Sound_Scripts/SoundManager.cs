@@ -124,7 +124,6 @@ public class SoundManager : MonoBehaviour
         // 타입 미등록 사운드 호출시 호출 될 수 있음
         if (!_sfxClips.TryGetValue(type , out List<AudioClip> clips))
         {
-            Debug.Log($"[SoundManager] : {type} 이 미등록 이거나 클립이 없음");
             return;
         }
 

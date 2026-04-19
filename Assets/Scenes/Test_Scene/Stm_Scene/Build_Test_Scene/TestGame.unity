@@ -132,7 +132,7 @@ GameObject:
   m_Component:
   - component: {fileID: 33255042}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: OutGamePlayer_Group
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -419,6 +419,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ig: {fileID: 1907182211}
   _anim: {fileID: 86643426}
+  _waitTime: 2
 --- !u!1001 &491332787
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -594,7 +595,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 546028054}
         m_TargetAssemblyTypeName: GameEndButton, Assembly-CSharp
-        m_MethodName: GameToLobbyButton
+        m_MethodName: GameToLobbySuccess
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1085,7 +1086,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8453696485417796868, guid: 0d595531076e68340a2fdd1d10b53562, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GameToLobbyButton
+      value: GameToLobbyFail
       objectReference: {fileID: 0}
     - target: {fileID: 8453696485417796868, guid: 0d595531076e68340a2fdd1d10b53562, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -1094,6 +1095,10 @@ PrefabInstance:
     - target: {fileID: 8453696485417796868, guid: 0d595531076e68340a2fdd1d10b53562, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8505916691137719913, guid: 0d595531076e68340a2fdd1d10b53562, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9106530472090768688, guid: 0d595531076e68340a2fdd1d10b53562, type: 3}
       propertyPath: m_IsActive
@@ -1170,9 +1175,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _waitTime: 1
   _endWaitTime: 2
-  _uiCanvas: {fileID: 0}
-  _endButton: {fileID: 0}
+  _uiCanvas: {fileID: 611896765}
+  _endButton: {fileID: 667021794}
   _gemUI: {fileID: 0}
+--- !u!114 &667021794 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8453696485417796868, guid: 0d595531076e68340a2fdd1d10b53562, type: 3}
+  m_PrefabInstance: {fileID: 611896763}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 611896767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &742785173
 GameObject:
   m_ObjectHideFlags: 0

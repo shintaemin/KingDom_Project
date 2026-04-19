@@ -85,6 +85,9 @@ public class Talent_Slot_Data : MonoBehaviour
         if (_data == null)
             return;
 
+        if (CPlayerDataManager.Instance == null)
+            return;
+
         int level = CPlayerDataManager.Instance.GetCurrentTalentLevel(_id);
 
         int value = 0;

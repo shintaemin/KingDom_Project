@@ -15,6 +15,7 @@ public class OutGame_Result : MonoBehaviour
     #region ¿ŒΩ∫∆Â≈Õ
     [SerializeField] private IngameManager _ig;
     [SerializeField] private OutGame_Anim _anim;
+    [SerializeField] private float _waitTime = 2f;
     #endregion
 
     #region
@@ -37,12 +38,19 @@ public class OutGame_Result : MonoBehaviour
         }
     }
 
+    private IEnumerator WaitAnim(OutGame_Anim.EOutGameAnimType type)
+    {
+        yield return new WaitForSeconds(_waitTime);
+
+        _anim.SetTriggerAnim(type);
+    }
+
     private void SetMissionAnswerAnim(EMissionAnswer answer)
     {
         OutGame_Anim.EOutGameAnimType type = OutGame_Anim.EOutGameAnimType.None;
 
         type = answer == EMissionAnswer.Success ? OutGame_Anim.EOutGameAnimType.Walk : OutGame_Anim.EOutGameAnimType.Dead;
 
-        _anim.SetTriggerAnim(type);
+        StartCoroutine(WaitAnim(type));
     }
 }
