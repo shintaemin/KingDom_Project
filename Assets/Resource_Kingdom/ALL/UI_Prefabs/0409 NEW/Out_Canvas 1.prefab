@@ -4684,9 +4684,9 @@ Transform:
   - {fileID: 1541686400141266417}
   - {fileID: 3749046598965426597}
   - {fileID: 4898480541890094699}
-  - {fileID: 3358250489918776015}
   - {fileID: 3673943740700184635}
   - {fileID: 3167336414381398001}
+  - {fileID: 3358250489918776015}
   m_Father: {fileID: 2031850235138927371}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &335346920124080948
@@ -4867,6 +4867,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 0}
   _openIcon: {fileID: 0}
   _checkIcon: {fileID: 0}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 0}
   _checkStatText: {fileID: 0}
   _id: 13
@@ -7300,6 +7301,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 809048414179500277}
   _openIcon: {fileID: 8842434164640104948}
   _checkIcon: {fileID: 5820535361262037101}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 7013253098056133606}
   _checkStatText: {fileID: 8754927587540695633}
   _id: 14
@@ -7628,6 +7630,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 6891342186018628}
   _openIcon: {fileID: 3083563126883633922}
   _checkIcon: {fileID: 7812299147025375225}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 4245028241422711115}
   _checkStatText: {fileID: 848145270627063097}
   _id: 105
@@ -8876,6 +8879,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 3329273062207330927}
   _openIcon: {fileID: 3329273062207330927}
   _checkIcon: {fileID: 1965201649352282592}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 0}
   _checkStatText: {fileID: 0}
   _id: 301
@@ -9889,6 +9893,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 7599667159736795353}
   _openIcon: {fileID: 7599667159736795353}
   _checkIcon: {fileID: 6512035705888816354}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 0}
   _checkStatText: {fileID: 0}
   _id: 302
@@ -10427,6 +10432,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 5154310828772216931}
   _openIcon: {fileID: 5090217050884643056}
   _checkIcon: {fileID: 5039658500014816328}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 4162254171275565126}
   _checkStatText: {fileID: 2809054316123364745}
   _id: 1001
@@ -11949,6 +11955,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 6882543746748316461}
   _openIcon: {fileID: 7161056515095539616}
   _checkIcon: {fileID: 7211734591021351636}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 180304379146347775}
   _checkStatText: {fileID: 8217175818450088556}
   _id: 1007
@@ -14037,6 +14044,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 1885179984335836148}
   _openIcon: {fileID: 1699548235271382078}
   _checkIcon: {fileID: 7581235179000108317}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 6721027438156027676}
   _checkStatText: {fileID: 34606891859896872}
   _id: 1003
@@ -18935,6 +18943,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 0}
   _openIcon: {fileID: 0}
   _checkIcon: {fileID: 0}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 0}
   _checkStatText: {fileID: 0}
   _id: 14
@@ -19529,6 +19538,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 7156278175741798019}
   _openIcon: {fileID: 7156278175741798019}
   _checkIcon: {fileID: 2426982107764505882}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 0}
   _checkStatText: {fileID: 0}
   _id: 303
@@ -21386,6 +21396,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 0}
   _openIcon: {fileID: 0}
   _checkIcon: {fileID: 0}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 0}
   _checkStatText: {fileID: 0}
   _id: 10
@@ -22206,6 +22217,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 5301289713222500938}
   _openIcon: {fileID: 1361303622404794167}
   _checkIcon: {fileID: 7565467639129615383}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 6791390536475686429}
   _checkStatText: {fileID: 3566833105648335721}
   _id: 0
@@ -26643,6 +26655,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 5861384419314027581}
   _openIcon: {fileID: 5861384419314027581}
   _checkIcon: {fileID: 2592423118044451030}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 0}
   _checkStatText: {fileID: 0}
   _id: 1302
@@ -28244,6 +28257,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 941790030047379139}
   _openIcon: {fileID: 44057222119137740}
   _checkIcon: {fileID: 2470027168244176201}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 7671642142643073437}
   _checkStatText: {fileID: 716443505143250412}
   _id: 15
@@ -31620,6 +31634,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 8555360318937777399}
   _openIcon: {fileID: 4981649653778422716}
   _checkIcon: {fileID: 7055531989059130437}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 7020019018488602362}
   _checkStatText: {fileID: 256526069651067407}
   _id: 106
@@ -31813,6 +31828,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 0}
   _openIcon: {fileID: 0}
   _checkIcon: {fileID: 0}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 0}
   _checkStatText: {fileID: 0}
   _id: 9
@@ -34384,6 +34400,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 7768852849692083172}
   _openIcon: {fileID: 7768852849692083172}
   _checkIcon: {fileID: 3131126694323463556}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 0}
   _checkStatText: {fileID: 0}
   _id: 1300
@@ -34577,6 +34594,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 6690201146877810152}
   _openIcon: {fileID: 6690201146877810152}
   _checkIcon: {fileID: 3882074906513337346}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 0}
   _checkStatText: {fileID: 0}
   _id: 1201
@@ -36674,12 +36692,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4242fff6f4a457f41979331e9a6a328f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultOn: 1
   _handle: {fileID: 1657342320368392523}
   _handleImage: {fileID: 2344550176436018029}
   _onPos: {x: -70, y: 0}
   _offPos: {x: 70, y: 0}
   _onColor: {r: 0.21176472, g: 0.90196085, b: 0.3803922, a: 1}
+  _offColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   _onIcon: {fileID: 231599725278199362}
   _offIcon: {fileID: 7969060998622424125}
 --- !u!1 &2145205161386190076
@@ -37725,6 +37743,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 1969090226440602163}
   _openIcon: {fileID: 9065107788351582210}
   _checkIcon: {fileID: 1204194691228979128}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 2080927916127668998}
   _checkStatText: {fileID: 6495659049562569225}
   _id: 16
@@ -38891,6 +38910,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 4693270882215701078}
   _openIcon: {fileID: 7610459127531149951}
   _checkIcon: {fileID: 3427796241921945750}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 2567135504082581999}
   _checkStatText: {fileID: 7660498329879186825}
   _id: 16
@@ -40781,6 +40801,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 4719840284598573940}
   _openIcon: {fileID: 3549425128692066896}
   _checkIcon: {fileID: 6683601042382154081}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 6593931768877090099}
   _checkStatText: {fileID: 3615721414232232141}
   _id: 1000
@@ -42259,6 +42280,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 2477117126631942869}
   _openIcon: {fileID: 2234870808876693587}
   _checkIcon: {fileID: 3616026273967755331}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 5917667673612666449}
   _checkStatText: {fileID: 947911218455989793}
   _id: 1104
@@ -44178,6 +44200,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 0}
   _openIcon: {fileID: 0}
   _checkIcon: {fileID: 0}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 0}
   _checkStatText: {fileID: 0}
   _id: 23
@@ -44791,6 +44814,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 3373326624159743831}
   _openIcon: {fileID: 5235129354808206577}
   _checkIcon: {fileID: 6130569890537852618}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 413575511547624908}
   _checkStatText: {fileID: 7410299151103456564}
   _id: 3
@@ -49782,6 +49806,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 0}
   _openIcon: {fileID: 0}
   _checkIcon: {fileID: 0}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 0}
   _checkStatText: {fileID: 0}
   _id: 21
@@ -50816,6 +50841,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 1288314694796639148}
   _openIcon: {fileID: 1588912610076022586}
   _checkIcon: {fileID: 1588912610076022586}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 0}
   _checkStatText: {fileID: 0}
   _id: 1202
@@ -56899,6 +56925,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 761815023577234973}
   _openIcon: {fileID: 415512782016104815}
   _checkIcon: {fileID: 698265818419142829}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 1066072711686347153}
   _checkStatText: {fileID: 2720722710659536748}
   _id: 1102
@@ -57092,6 +57119,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 8317586453672601281}
   _openIcon: {fileID: 5184938424426835098}
   _checkIcon: {fileID: 327530497210721891}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 0}
   _checkStatText: {fileID: 0}
   _id: 1205
@@ -57972,6 +58000,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 2754101440860651559}
   _openIcon: {fileID: 1746934607549568005}
   _checkIcon: {fileID: 6882542432730757609}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 8693639735200594167}
   _checkStatText: {fileID: 3697628347350680487}
   _id: 1002
@@ -58974,6 +59003,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 2164945196042668669}
   _openIcon: {fileID: 1903168047032336029}
   _checkIcon: {fileID: 4804703516606141804}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 3362076307086929572}
   _checkStatText: {fileID: 4364874017884283915}
   _id: 1005
@@ -64486,6 +64516,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 1927590152964301035}
   _openIcon: {fileID: 8117494301821965088}
   _checkIcon: {fileID: 782254681267327749}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 4022594199511832267}
   _checkStatText: {fileID: 8713104982363592076}
   _id: 6
@@ -65492,6 +65523,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 0}
   _openIcon: {fileID: 0}
   _checkIcon: {fileID: 0}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 0}
   _checkStatText: {fileID: 0}
   _id: 19
@@ -67786,6 +67818,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 5929536420603070202}
   _openIcon: {fileID: 5929536420603070202}
   _checkIcon: {fileID: 7707375920164363778}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 0}
   _checkStatText: {fileID: 0}
   _id: 300
@@ -71577,6 +71610,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 1393633477150376228}
   _openIcon: {fileID: 2066730592077562512}
   _checkIcon: {fileID: 8660369705643695669}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 6138880017207761221}
   _checkStatText: {fileID: 3621126108713886228}
   _id: 7
@@ -71770,6 +71804,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 0}
   _openIcon: {fileID: 0}
   _checkIcon: {fileID: 0}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 0}
   _checkStatText: {fileID: 0}
   _id: 20
@@ -72395,6 +72430,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 0}
   _openIcon: {fileID: 0}
   _checkIcon: {fileID: 0}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 0}
   _checkStatText: {fileID: 0}
   _id: 22
@@ -74100,6 +74136,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 8982447068026994029}
   _openIcon: {fileID: 7219030066646740059}
   _checkIcon: {fileID: 1592132974928999432}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 2890419566508230554}
   _checkStatText: {fileID: 6680526435718077950}
   _id: 1
@@ -74489,6 +74526,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 8070963407099226759}
   _openIcon: {fileID: 8070963407099226759}
   _checkIcon: {fileID: 3717571811836697675}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 0}
   _checkStatText: {fileID: 0}
   _id: 1200
@@ -75633,6 +75671,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 2095655346628331540}
   _openIcon: {fileID: 2095655346628331540}
   _checkIcon: {fileID: 7488677995063303759}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 0}
   _checkStatText: {fileID: 0}
   _id: 200
@@ -76873,6 +76912,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 8812820467749092536}
   _openIcon: {fileID: 8812820467749092536}
   _checkIcon: {fileID: 5114568272222984814}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 0}
   _checkStatText: {fileID: 0}
   _id: 1203
@@ -77624,6 +77664,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 2030061141475534223}
   _openIcon: {fileID: 7779748864331158016}
   _checkIcon: {fileID: 7746332252392618224}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 5105117463557925296}
   _checkStatText: {fileID: 3076577408345670506}
   _id: 4
@@ -80205,6 +80246,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 1547589412523262867}
   _openIcon: {fileID: 1547589412523262867}
   _checkIcon: {fileID: 728107319332943207}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 0}
   _checkStatText: {fileID: 0}
   _id: 1206
@@ -80704,12 +80746,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4242fff6f4a457f41979331e9a6a328f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultOn: 1
   _handle: {fileID: 1947551604133520352}
   _handleImage: {fileID: 5918921627144868763}
   _onPos: {x: -70, y: 0}
   _offPos: {x: 70, y: 0}
   _onColor: {r: 0.21176472, g: 0.90196085, b: 0.3803922, a: 1}
+  _offColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   _onIcon: {fileID: 2770857442988910615}
   _offIcon: {fileID: 8584090433092427382}
 --- !u!1 &4317806410347607035
@@ -82579,6 +82621,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 2789892172788452343}
   _openIcon: {fileID: 9017026416335639762}
   _checkIcon: {fileID: 912074670512058870}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 5540460228324620404}
   _checkStatText: {fileID: 9077739256422273478}
   _id: 1004
@@ -85447,6 +85490,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 8397540455972288074}
   _openIcon: {fileID: 2872317261942992659}
   _checkIcon: {fileID: 7182434583462578339}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 8900889566890763907}
   _checkStatText: {fileID: 3668886906282587090}
   _id: 1105
@@ -87332,6 +87376,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 699141082372280330}
   _openIcon: {fileID: 4053153553451066879}
   _checkIcon: {fileID: 7971001090922490295}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 2949243189456349500}
   _checkStatText: {fileID: 1487932053324725490}
   _id: 103
@@ -93893,6 +93938,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 4017891755818174762}
   _openIcon: {fileID: 2688951193952553925}
   _checkIcon: {fileID: 2071510545028133972}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 1139708208568542666}
   _checkStatText: {fileID: 4892322928290556525}
   _id: 1106
@@ -102217,6 +102263,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 1151636644993870445}
   _openIcon: {fileID: 962314176534350996}
   _checkIcon: {fileID: 2166512486087863439}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 3949901732020223880}
   _checkStatText: {fileID: 1673283400192512213}
   _id: 101
@@ -105179,6 +105226,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 0}
   _openIcon: {fileID: 0}
   _checkIcon: {fileID: 0}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 0}
   _checkStatText: {fileID: 0}
   _id: 18
@@ -111711,6 +111759,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 7707427763004389675}
   _openIcon: {fileID: 2041995825842222846}
   _checkIcon: {fileID: 8640569724295732793}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 3710774669934311534}
   _checkStatText: {fileID: 7883082949402047352}
   _id: 1006
@@ -113616,6 +113665,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 3789351763366416015}
   _openIcon: {fileID: 1801897858093337470}
   _checkIcon: {fileID: 2372831993433325146}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 351832684506972841}
   _checkStatText: {fileID: 6637951041804101437}
   _id: 100
@@ -118256,6 +118306,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 8487151958671614611}
   _openIcon: {fileID: 6680271553572201089}
   _checkIcon: {fileID: 4105197941940954982}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 5542372557944388121}
   _checkStatText: {fileID: 7372161295197200395}
   _id: 13
@@ -120564,6 +120615,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _popup: {fileID: 6747261901428311665}
+  _popUpImage: {fileID: 0}
+  _statImage: {fileID: 0}
+  _statText: {fileID: 0}
 --- !u!1 &6749238669096980294
 GameObject:
   m_ObjectHideFlags: 0
@@ -124725,6 +124779,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 0}
   _openIcon: {fileID: 0}
   _checkIcon: {fileID: 0}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 0}
   _checkStatText: {fileID: 0}
   _id: 12
@@ -131938,6 +131993,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 4551650569625242621}
   _openIcon: {fileID: 4551650569625242621}
   _checkIcon: {fileID: 8481429448950481234}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 0}
   _checkStatText: {fileID: 0}
   _id: 1301
@@ -135000,6 +135056,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 2558166869447437567}
   _openIcon: {fileID: 2784111408481600713}
   _checkIcon: {fileID: 3170201804474373589}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 4525311287309714792}
   _checkStatText: {fileID: 6725813498613163746}
   _id: 1101
@@ -136821,6 +136878,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 0}
   _openIcon: {fileID: 0}
   _checkIcon: {fileID: 0}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 0}
   _checkStatText: {fileID: 0}
   _id: 11
@@ -137520,6 +137578,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 930088147119400278}
   _openIcon: {fileID: 2062169314659030104}
   _checkIcon: {fileID: 6369222027847431162}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 7854554986493911546}
   _checkStatText: {fileID: 5151878328914801629}
   _id: 1107
@@ -140048,6 +140107,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 4998085656803589045}
   _openIcon: {fileID: 4998085656803589045}
   _checkIcon: {fileID: 3539058358191617132}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 0}
   _checkStatText: {fileID: 0}
   _id: 1204
@@ -146029,6 +146089,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 2166398234194425101}
   _openIcon: {fileID: 7394617479345779589}
   _checkIcon: {fileID: 6869584692186707010}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 4838803661036013391}
   _checkStatText: {fileID: 7950094661830832442}
   _id: 1103
@@ -149370,6 +149431,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 4548227947110390481}
   _openIcon: {fileID: 6832784657290006235}
   _checkIcon: {fileID: 1499360081479345969}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 5617484035555970687}
   _checkStatText: {fileID: 8619338711139526875}
   _id: 11
@@ -149563,6 +149625,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 0}
   _openIcon: {fileID: 0}
   _checkIcon: {fileID: 0}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 0}
   _checkStatText: {fileID: 0}
   _id: 8
@@ -154199,6 +154262,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 2391157284608290357}
   _openIcon: {fileID: 979561151897433360}
   _checkIcon: {fileID: 4271176392848717633}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 3487896712973387749}
   _checkStatText: {fileID: 680622761339335808}
   _id: 1100
@@ -156151,6 +156215,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 0}
   _openIcon: {fileID: 0}
   _checkIcon: {fileID: 0}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 0}
   _checkStatText: {fileID: 0}
   _id: 17
@@ -158444,12 +158509,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4242fff6f4a457f41979331e9a6a328f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultOn: 1
   _handle: {fileID: 3108912919451531541}
   _handleImage: {fileID: 1710325492148950858}
   _onPos: {x: -70, y: 0}
   _offPos: {x: 70, y: 0}
   _onColor: {r: 0.21176472, g: 0.90196085, b: 0.3803922, a: 1}
+  _offColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   _onIcon: {fileID: 2684138924829537710}
   _offIcon: {fileID: 4750350369226113033}
 --- !u!1 &8965525378129809872
@@ -159585,6 +159650,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 7154261187519939335}
   _openIcon: {fileID: 7154261187519939335}
   _checkIcon: {fileID: 8974951740325705807}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 0}
   _checkStatText: {fileID: 0}
   _id: 1303
@@ -161551,6 +161617,7 @@ MonoBehaviour:
   _lockIcon: {fileID: 0}
   _openIcon: {fileID: 0}
   _checkIcon: {fileID: 0}
+  _optionIcon: {fileID: 0}
   _openStatText: {fileID: 0}
   _checkStatText: {fileID: 0}
   _id: 15
