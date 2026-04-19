@@ -5887,6 +5887,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 83d3f6dcbaedcaf478655c9a5e1183f1, type: 3}
     - target: {fileID: 3426153956725772461, guid: ca11f73376a2dfd4aba9840ae2ea5624, type: 3}
+      propertyPath: m_text
+      value: "\uBB34\uB8CC \uD68D\uB4DD"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3426153956725772461, guid: ca11f73376a2dfd4aba9840ae2ea5624, type: 3}
       propertyPath: m_fontAsset
       value: 
       objectReference: {fileID: 11400000, guid: 0096edd6485b4094494222612f04df51, type: 2}
@@ -8058,6 +8062,34 @@ PrefabInstance:
       propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6385577979821093029, guid: ca11f73376a2dfd4aba9840ae2ea5624, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6385577979821093029, guid: ca11f73376a2dfd4aba9840ae2ea5624, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6385577979821093029, guid: ca11f73376a2dfd4aba9840ae2ea5624, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 2125164088}
+    - target: {fileID: 6385577979821093029, guid: ca11f73376a2dfd4aba9840ae2ea5624, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6385577979821093029, guid: ca11f73376a2dfd4aba9840ae2ea5624, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: RestorationInput
+      objectReference: {fileID: 0}
+    - target: {fileID: 6385577979821093029, guid: ca11f73376a2dfd4aba9840ae2ea5624, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: RestorationButtonInput, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6385577979821093029, guid: ca11f73376a2dfd4aba9840ae2ea5624, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6389402202865001628, guid: ca11f73376a2dfd4aba9840ae2ea5624, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -10053,6 +10085,9 @@ PrefabInstance:
       insertIndex: 1
       addedObject: {fileID: 799186819}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4198632406170404415, guid: ca11f73376a2dfd4aba9840ae2ea5624, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2125164088}
     - targetCorrespondingSourceObject: {fileID: 5931036272529700429, guid: ca11f73376a2dfd4aba9840ae2ea5624, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1619777631}
@@ -10241,6 +10276,23 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f73ce31239c95f940a514de7dc21dac1, type: 3}
+--- !u!1 &2125164087 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4198632406170404415, guid: ca11f73376a2dfd4aba9840ae2ea5624, type: 3}
+  m_PrefabInstance: {fileID: 1583202647}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2125164088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2125164087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32afe94fb6b2216489cafd461ea7f2d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &2145799336 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8103485339232269160, guid: 45f69a420cbf83c44a2754688e1eec20, type: 3}
