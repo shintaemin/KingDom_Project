@@ -8,8 +8,8 @@ public class GemParticle : MonoBehaviour
     private ParticleSystem _ps;
     private List<ParticleSystem.Particle> _enterGems = new List<ParticleSystem.Particle>();
     private static Collider _playerCollider;
-    private int _perGem = 10;
     public static System.Action<int> OnGemCollected;
+    private int _perGem = 10;
     #endregion
 
     private void Awake()

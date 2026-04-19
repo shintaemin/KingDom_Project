@@ -18,7 +18,9 @@ public class ProjectileManager : MonoBehaviour
         Arrow,
         Bullet,
         EnemyRagdoll,
-        BossRagdoll
+        BossRagdoll,
+        GemText,
+        DamageText
     }
 
     [System.Serializable]
