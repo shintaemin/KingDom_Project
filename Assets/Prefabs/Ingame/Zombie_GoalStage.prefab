@@ -345,7 +345,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4422730153491488375
 Transform:
   m_ObjectHideFlags: 0
@@ -400,7 +400,7 @@ MonoBehaviour:
   _projectileType: 2
   _firePoint: {fileID: 8574514179416795144}
   _forwardOffset: 0.3
-  _speed: 6
+  _speed: 9
   _autoAttack: 1
 --- !u!114 &1854276514347047159
 MonoBehaviour:
@@ -474,7 +474,7 @@ MonoBehaviour:
   _maxHP: 500
   _atkPower: 100
   _atkRange: 1
-  _atkSpeed: 0.3
+  _atkSpeed: 0.5
   _moveSpeed: 0
   _armor: 0
   _hpRatio: 1

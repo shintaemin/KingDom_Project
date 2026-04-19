@@ -6161,7 +6161,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHP: 2000
   _atkPower: 150
-  _atkRange: 1.5
+  _atkRange: 2.5
   _atkSpeed: 0.5
   _moveSpeed: 2.6
   _armor: 0
@@ -6289,10 +6289,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyType: 4
   _yOffset: {x: 0, y: 2, z: 0}
-  _angleRangeX: 15
-  _angleY: 40
+  _angleRangeX: 30
+  _angleY: 50
   _forceAmount: 25
-  _rotateAmount: 60
+  _rotateAmount: 100
   _delayTime: 3
   _speed: 1
   _duration: 2

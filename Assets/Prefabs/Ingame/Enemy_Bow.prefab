@@ -904,8 +904,8 @@ MonoBehaviour:
   _rotSpeed: 5
   _projectileType: 1
   _firePoint: {fileID: 6742873117427486132}
-  _forwardOffset: 0.7
-  _speed: 6
+  _forwardOffset: 0.5
+  _speed: 8
   _autoAttack: 0
 --- !u!114 &781956499702020298
 MonoBehaviour:
@@ -1023,10 +1023,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyType: 2
   _yOffset: {x: 0, y: 2, z: 0}
-  _angleRangeX: 15
-  _angleY: 40
+  _angleRangeX: 30
+  _angleY: 50
   _forceAmount: 25
-  _rotateAmount: 60
+  _rotateAmount: 100
   _delayTime: 3
   _speed: 1
   _duration: 2
