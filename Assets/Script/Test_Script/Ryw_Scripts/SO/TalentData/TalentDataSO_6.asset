@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: TalentDataSO_6
   m_EditorClassIdentifier: 
   _ID: 6
-  _name: "\uCE58\uBA85\uD0C0 \uD53C\uD574\uB7C9"
-  _information: "\uCE58\uBA85\uD0C0 \uD53C\uD574\uB7C9 {}\uC0C1\uC2B9"
+  _name: CRITICAL ATTACK DAMAGE
+  _information: INCREASE ATTACK POWER BY {} WHEN CRITICAL ATTACK
   _basic: 100
   _volume: 50
   _icon: {fileID: 21300000, guid: 10aef4dd89e73114a89410948b53b9cf, type: 3}

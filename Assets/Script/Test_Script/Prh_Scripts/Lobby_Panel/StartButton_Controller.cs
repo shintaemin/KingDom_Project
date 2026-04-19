@@ -51,6 +51,25 @@ public class StartButton_Controller : MonoBehaviour
     #region 외부 호출 함수
     public void OnClickStart()
     {
+        // 에너지 1 사용 시도
+        if (LTopBar_UI.Instance.TryUseEnergy(1))
+        {
+            // 성공하면 게임 시작
+            if (SceneLoadManager.Instance != null)
+            {
+                SceneLoadManager.Instance.LoadScene(ESceneLoadType.TestGame);
+            }
+            else
+            {
+                Debug.LogWarning("SceneLoadManager가 없음");
+            }
+        }
+        else
+        {
+            // 실패 (에너지 부족)
+            Debug.Log("에너지 부족");
+        }
+
         /*
         if (SceneLoadManager.Instance != null)
         {

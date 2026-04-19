@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: TalentDataSO_8
   m_EditorClassIdentifier: 
   _ID: 8
-  _name: "\uC2A4\uD14C\uBBF8\uB098 \uD68C\uBCF5"
-  _information: "\uC2A4\uD14C\uBBF8\uB098 \uD68C\uBCF5 {}\uC0C1\uC2B9"
+  _name: ENERGY RECOVERY
+  _information: ENERGY RECOVER 1 / {}SEC
   _basic: 900
   _volume: 10
   _icon: {fileID: 21300000, guid: 0216f665a787f054089041cf5a31bbdb, type: 3}

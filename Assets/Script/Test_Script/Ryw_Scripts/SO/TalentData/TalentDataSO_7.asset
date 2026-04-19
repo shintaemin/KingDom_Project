@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: TalentDataSO_7
   m_EditorClassIdentifier: 
   _ID: 7
-  _name: "\uC774\uB3D9 \uC18D\uB3C4"
-  _information: "\uC774\uB3D9 \uC18D\uB3C4 {}\uC0C1\uC2B9"
+  _name: MOVE SPEED
+  _information: MOVE SPEED {}%INCREASE
   _basic: 3
   _volume: 1
   _icon: {fileID: 21300000, guid: e1ba5acbd256a31458a1deefbd6a9606, type: 3}

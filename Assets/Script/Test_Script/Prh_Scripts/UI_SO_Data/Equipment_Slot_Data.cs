@@ -74,30 +74,113 @@ public class Equipment_Slot_Data : MonoBehaviour
         if (_checkIcon != null)
             _checkIcon.sprite = _data.Image;
 
+        ApplyUnlockState(id);
+
         // Lock 상태는 시각적으로 구분 (흑백 처리)
         if (_lockIcon != null)
         {
             _lockIcon.sprite = _data.Image;
 
-            bool isAlwaysOpen = IsAlwaysOpenSlot();
+            Transform lockTr = transform.Find("Lock");
 
-            if (isAlwaysOpen)
+            bool isLocked = lockTr != null && lockTr.gameObject.activeSelf;
+            bool isColorLock = IsColorLockSlot();
+
+            if (!isLocked || isColorLock)
             {
-                _lockIcon.color = Color.white;   // ⭐ 컬러 유지
+                _lockIcon.color = Color.white;   // 해금 or 컬러 유지
             }
             else
             {
-                _lockIcon.color = Color.black;   // 기존 흑백
+                _lockIcon.color = Color.black;   // 잠금
             }
         }
 
         // 스탯 텍스트 적용
         SetStatText();
+
+        ApplySelectedState(id);
+
     }
     #endregion
+    private void ApplySelectedState(int id)
+    {
+        if (CPlayerDataManager.Instance == null)
+            return;
 
+        Transform checkTr = transform.Find("Check");
+        if (checkTr == null)
+            return;
+
+        int currentID;
+
+        bool isWeapon = false;
+
+        Transform current = transform;
+
+        while (current != null)
+        {
+            if (current.name.Contains("Weapon"))
+            {
+                isWeapon = true;
+                break;
+            }
+
+            current = current.parent;
+        }
+
+        if (isWeapon)
+        {
+            currentID = CPlayerDataManager.Instance.CurrentWeaponID;
+        }
+        else
+        {
+            currentID = CPlayerDataManager.Instance.CurrentClothesID;
+        }
+
+        // 선택된 슬롯이면 체크 ON
+        if (id == currentID)
+        {
+            checkTr.gameObject.SetActive(true);
+        }
+        else
+        {
+            checkTr.gameObject.SetActive(false);
+        }
+    }
     #region 내부 함수
+
+
     // 장비 스탯 텍스트 생성 및 UI 반영
+
+    private bool IsColorLockSlot()
+    {
+        return _id == 1106 || _id == 1107; // Slot7,8 ID
+    }
+
+    private void ApplyUnlockState(int id)
+    {
+        if (CPlayerDataManager.Instance == null)
+            return;
+
+        if (CPlayerDataManager.Instance.EquipmentUnLockDic.TryGetValue(id, out bool isUnlocked))
+        {
+            Transform lockTr = transform.Find("Lock");
+            Transform openTr = transform.Find("Open");
+
+            if (isUnlocked)
+            {
+                if (lockTr != null) lockTr.gameObject.SetActive(false);
+                if (openTr != null) openTr.gameObject.SetActive(true);
+            }
+            else
+            {
+                if (lockTr != null) lockTr.gameObject.SetActive(true);
+                if (openTr != null) openTr.gameObject.SetActive(false);
+            }
+        }
+    }
+
     private void SetStatText()
     {
         if (_data == null)
@@ -116,7 +199,7 @@ public class Equipment_Slot_Data : MonoBehaviour
         // 표시할 값 없으면 종료
         if (string.IsNullOrEmpty(text))
             return;
-
+        
         // Open 상태 텍스트 스타일 적용
         if (_openStatText != null)
         {
@@ -133,19 +216,9 @@ public class Equipment_Slot_Data : MonoBehaviour
             _checkStatText.fontSize = 36;
             _checkStatText.fontStyle = TMPro.FontStyles.Bold;
         }
+        
     }
 
-    private bool IsAlwaysOpenSlot()
-    {
-        Transform parent = transform.parent;
-
-        if (parent == null) return false;
-
-        return parent.name == "RewardWeapon_Group" ||
-               parent.name == "Weapon_Purchased_Group" ||
-               parent.name == "RewardClothes_Group" ||
-               parent.name == "Clothes_Purchased_Group";
-    }
     #endregion
 
     #region 외부 호출 함수
@@ -154,5 +227,8 @@ public class Equipment_Slot_Data : MonoBehaviour
     {
         return _data;
     }
+
+    public int ID => _id;
+
     #endregion
 }
