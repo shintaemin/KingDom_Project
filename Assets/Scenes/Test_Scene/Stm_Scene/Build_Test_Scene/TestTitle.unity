@@ -395,7 +395,7 @@ MonoBehaviour:
   _defaultDefence: 10
   _defaultHp: 100
   _defaultRecovery: 10
-  _defaultMoveSpeed: 1
+  _defaultMoveSpeed: 6
   _defaultMoveSpeedRatio: 1
   _defaultCriticalAttackRate: 0.5
   _defaultBackAttackRate: 0.3
