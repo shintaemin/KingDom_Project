@@ -45,8 +45,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerTag: Player
-  _yOffset: 4
   _dmgDuration: 1
   _randX: 0.5
   _randZ: 0.5
-  _gemDuration: 1
+  _gemDuration: 2
+  _xOffset: -1
+  _yOffset: 4
+  _zOffset: 2

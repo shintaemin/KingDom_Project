@@ -76,6 +76,10 @@ public class GemParticle : MonoBehaviour
                 var trigger = _ps.trigger;
 
                 trigger.SetCollider(0, _playerCollider);
+
+                var collision = _ps.collision;
+
+                collision.collidesWith = LayerMask.GetMask("NotTerrain");
             }
         }
     }
