@@ -163,6 +163,10 @@ public class IngameManager : MonoBehaviour
         {
             EMissionType type = _currentMap.GetMissionType;
             _ingameCanvas.Standby(_mapIndex, type);
+
+            // UI 킬 카운트 업데이트
+            int killCount = _currentMap.GetEnemyCount;
+            _ingameCanvas.SetGoalText($"{0}/{killCount}");
         }
 
         yield return new WaitForSeconds(_waitTime);

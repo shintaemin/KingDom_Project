@@ -141,6 +141,7 @@ public class CInGameCanvas : MonoBehaviour
 
     private IEnumerator MissionEndCo(EMissionAnswer obj)
     {
+        Debug.LogWarning($"[CInGameCanvas] : 미션 종료 확인 완료");
         while(true)
         {
             yield return new WaitForSeconds(_missionEndWaitTime);
@@ -295,6 +296,13 @@ public class CInGameCanvas : MonoBehaviour
     public void Standby(int currentSubStage, EMissionType type)
     {
         // 미션 타입
+        if (_spawnRoot != null && _spawnRoot.transform.childCount > 0)
+        {
+            if (_spawnRoot.transform.GetChild(0).gameObject != null)
+            {
+                Destroy(_spawnRoot.transform.GetChild(0).gameObject);
+            }
+        }
         MissionType = type;
         SetCurrentSubStage(currentSubStage);
         ChangeGamePhase(EGamePhase.StandbyPhase);   // 이건 어디로?
