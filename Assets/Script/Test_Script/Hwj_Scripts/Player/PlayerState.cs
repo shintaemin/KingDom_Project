@@ -66,6 +66,7 @@ public class PlayerState : MonoBehaviour
                 break;
 
             case EState.Dead:
+                Debug.LogWarning($"[PlayerState] : 플레이어 사망");
                 OnDead?.Invoke();
                 break;
         }

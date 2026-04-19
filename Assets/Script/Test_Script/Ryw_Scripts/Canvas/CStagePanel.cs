@@ -50,13 +50,13 @@ public class CStagePanel : MonoBehaviour
         switch (type)
         {
             case EMissionType.Kill:
-                _explanationText.text = "Eliminate all the officers.";
+                _explanationText.text = "무관을 모두 처치하시오.";
                 break;
             //case EMissionType.Rescue:
             //    _explanationText.text = "Save everyone.";
             //    break; 
             case EMissionType.Goal:
-                _explanationText.text = "Reach the target point.";
+                _explanationText.text = "목표 지점으로 이동하시오.";
                 break;
             default:
                 _explanationText.text = "Error : Something is wrong.";
@@ -67,6 +67,6 @@ public class CStagePanel : MonoBehaviour
     // 필요할까?
     public void SetTextes(int level)
     {
-        _levelText.text = $"Level {level}";
+        _levelText.text = $"레벨 {level}";
     }
 }

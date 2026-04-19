@@ -50,10 +50,11 @@ public class MissionManager : MonoBehaviour
                 Debug.LogWarning("[MissionManager] : 인게임 UI 매니저 캐싱 실패");
             }
         }
+
         _sm.OnSpawn += SpawnCheck;
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
         ResetMission();
     }
@@ -75,14 +76,12 @@ public class MissionManager : MonoBehaviour
         Debug.Log($"[MissionManager] : MissionClear Success 너 들어오냐?");
         // 미션 클리어시 바로 해당 미션 클리어 구독 취소
         OnMissionClearAnswer?.Invoke(EMissionAnswer.Success);
-        ResetMission();
     }
 
     private void MissionFail()
     {
         Debug.Log($"[MissionManager] : MissionClear Fail 너 들어오냐?");
         OnMissionClearAnswer?.Invoke(EMissionAnswer.Fail);
-        ResetMission();
     }
 
     private void SpawnCheck(GameObject go)

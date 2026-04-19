@@ -16,7 +16,7 @@ public class GameEndButton : MonoBehaviour
     #region 내부 변수
     private Coroutine _gemAnimCo;
     #endregion
-    public void GameToLobbyButton()
+    public void GameToLobbySuccess()
     {
         if (_gemAnimCo != null)
         {
@@ -25,6 +25,14 @@ public class GameEndButton : MonoBehaviour
 
         _endButton.interactable = false;
         _gemAnimCo = StartCoroutine(CoGemMoveAnim());
+    }
+    
+    public void GameToLobbyFail()
+    {
+        if (SceneLoadManager.Instance != null)
+        {
+            SceneLoadManager.Instance.LoadScene(ESceneLoadType.TestLobby);
+        }
     }
     
     private IEnumerator CoGemMoveAnim()
