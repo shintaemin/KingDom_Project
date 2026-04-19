@@ -18,7 +18,7 @@ public class IngameUiEffect : MonoBehaviour
     [SerializeField] private float _randZ = 0.5f;
 
     [Header("잼 텍스트 설정")]
-    [SerializeField] private float _gemDuration = 1f;
+    [SerializeField] private float _gemDuration = 2f;
     #endregion
 
     #region 내부 변수
