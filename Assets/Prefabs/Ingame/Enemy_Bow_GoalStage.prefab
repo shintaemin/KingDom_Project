@@ -53,7 +53,7 @@ SkinnedMeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 21dc290a2e588834a80900dd5146c745, type: 2}
-  - {fileID: 2100000, guid: fed2f7e768375de44942f6caa7711801, type: 2}
+  - {fileID: 2100000, guid: 6106cadd372d2b14688594db0c8b267e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1701,7 +1701,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3516610565055684563
 Transform:
   m_ObjectHideFlags: 0
@@ -1712,7 +1712,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.397011, y: 0.5, z: 3.2942338}
-  m_LocalScale: {x: 70, y: 70, z: 70}
+  m_LocalScale: {x: 80, y: 80, z: 80}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2612735177470130355}
@@ -1756,7 +1756,7 @@ MonoBehaviour:
   _projectileType: 1
   _firePoint: {fileID: 308290214958184992}
   _forwardOffset: 0.3
-  _speed: 6
+  _speed: 8
   _autoAttack: 1
 --- !u!114 &3150420167681773219
 MonoBehaviour:
@@ -1835,7 +1835,6 @@ MonoBehaviour:
   _armor: 0
   _hpRatio: 1
   _atkRatio: 1
-  _diamondRatio: 1
   _diamond: 0
 --- !u!114 &8092602903358667191
 MonoBehaviour:

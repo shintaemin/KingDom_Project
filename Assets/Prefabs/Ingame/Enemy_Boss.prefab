@@ -6040,7 +6040,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.5523117, y: -0.00000047683716, z: 7.77445}
-  m_LocalScale: {x: 70, y: 70, z: 70}
+  m_LocalScale: {x: 80, y: 80, z: 80}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3030844157779293516}
@@ -6161,13 +6161,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHP: 2000
   _atkPower: 150
-  _atkRange: 1.5
+  _atkRange: 2.5
   _atkSpeed: 0.5
-  _moveSpeed: 3
+  _moveSpeed: 2.6
   _armor: 0
   _hpRatio: 1.1
   _atkRatio: 1.1
-  _diamondRatio: 1.2
   _diamond: 150
 --- !u!114 &80841251015008294
 MonoBehaviour:
@@ -6272,7 +6271,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.006
+  m_Radius: 0.008
   m_Height: 0.02
   m_Direction: 1
   m_Center: {x: 0, y: 0.01, z: 0}
@@ -6290,6 +6289,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyType: 4
   _yOffset: {x: 0, y: 2, z: 0}
+  _angleRangeX: 30
+  _angleY: 50
+  _forceAmount: 25
+  _rotateAmount: 100
+  _delayTime: 3
+  _speed: 1
+  _duration: 2
 --- !u!1 &6729516108872719167
 GameObject:
   m_ObjectHideFlags: 0

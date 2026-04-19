@@ -16,7 +16,6 @@ public class EnemyStatus : BaseStatus
 	[Header("스테이지별 체력 공격력 비율")]
 	[SerializeField] private float _hpRatio = 1.1f;
 	[SerializeField] private float _atkRatio = 1.1f;
-	[SerializeField] private float _diamondRatio = 1.2f;
 
     [Header("적 처치시 재화 양")]
 	[SerializeField] private float _diamond = 200f;
@@ -25,7 +24,6 @@ public class EnemyStatus : BaseStatus
     #region 내부 변수
     private float _baseMaxHP;
     private float _baseAtkPower;
-    private float _baseDiamond;
     #endregion
 
     #region 프로퍼티
@@ -36,7 +34,6 @@ public class EnemyStatus : BaseStatus
     {
         _baseMaxHP = _maxHP;
         _baseAtkPower = _atkPower;
-        _baseDiamond = _diamond;
     }
 
     #region 외부 호출 함수
@@ -46,7 +43,6 @@ public class EnemyStatus : BaseStatus
 
         _maxHP = _baseMaxHP * Mathf.Pow(_hpRatio, increase);
         _atkPower = _baseAtkPower * Mathf.Pow(_atkRatio, increase);
-        _diamond = _baseDiamond * Mathf.Pow(_diamondRatio, increase);
     }
     #endregion
 }

@@ -926,7 +926,7 @@ Transform:
   m_GameObject: {fileID: 3655637619924074497}
   serializedVersion: 2
   m_LocalRotation: {x: 0.89574385, y: -0.13888286, z: 0.035504244, w: 0.42082533}
-  m_LocalPosition: {x: 0.00063, y: 0.0052, z: 0.00268}
+  m_LocalPosition: {x: 0.00038, y: 0.00465, z: 0.00335}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1186,7 +1186,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.1
+      scalar: 0.3
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -1875,7 +1875,7 @@ ParticleSystem:
     m_BurstCount: 0
     m_Bursts: []
   SizeModule:
-    enabled: 0
+    enabled: 1
     curve:
       serializedVersion: 2
       minMaxState: 1
@@ -1886,22 +1886,22 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 0
-          inSlope: 0
-          outSlope: 1
-          tangentMode: 0
+          value: 1
+          inSlope: -1
+          outSlope: -1
+          tangentMode: 34
           weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.33333334
+          inWeight: 0
+          outWeight: 0
         - serializedVersion: 3
           time: 1
-          value: 1
-          inSlope: 1
-          outSlope: 0
-          tangentMode: 0
+          value: 0
+          inSlope: -1
+          outSlope: -1
+          tangentMode: 34
           weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.33333334
+          inWeight: 0
+          outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
@@ -6415,13 +6415,14 @@ GameObject:
   - component: {fileID: 3946555593778714930}
   - component: {fileID: 1263823351579349512}
   - component: {fileID: 8662044532888952550}
+  - component: {fileID: 6773497170442210871}
   m_Layer: 3
   m_Name: Zombie_BonusStage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &608120546547090612
 Transform:
   m_ObjectHideFlags: 0
@@ -6432,7 +6433,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.45612127, y: 0, z: 6.6012}
-  m_LocalScale: {x: 70, y: 70, z: 70}
+  m_LocalScale: {x: 80, y: 80, z: 80}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2237260558455577190}
@@ -6575,7 +6576,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.006
+  m_Radius: 0.008
   m_Height: 0.02
   m_Direction: 1
   m_Center: {x: 0, y: 0.01, z: 0}
@@ -6608,12 +6609,32 @@ MonoBehaviour:
   _atkPower: 0
   _atkRange: 0
   _atkSpeed: 0
-  _moveSpeed: 3
+  _moveSpeed: 2.6
   _armor: 0
   _hpRatio: 1
   _atkRatio: 1
-  _diamondRatio: 1
   _diamond: 150
+--- !u!114 &6773497170442210871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7152819125296903771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b3139fdee9dc6409f316e7ffd5ccce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyType: 3
+  _yOffset: {x: 0, y: 2, z: 0}
+  _angleRangeX: 30
+  _angleY: 60
+  _forceAmount: 10
+  _rotateAmount: 10
+  _delayTime: 3
+  _speed: 0.2
+  _duration: 2
 --- !u!1 &7189265118143343488
 GameObject:
   m_ObjectHideFlags: 0

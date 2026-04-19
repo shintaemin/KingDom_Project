@@ -31,7 +31,10 @@ public class EffectManager : MonoBehaviour
         Block2,
         OnHitBlood,
         HitBlock,
-
+        Bone,
+        DeadZombie,
+        GemExplosion,
+        BackAttack,
 
     }
 
@@ -143,11 +146,6 @@ public class EffectManager : MonoBehaviour
                 {
                     SoundManager.Instance.SFXPlay(ei.sfxType, true);
                 }
-
-                //else
-                //{
-                //    Debug.LogWarning("사운드 매니저 인스턴스 = Null");
-                //}
             }
 
             return effect;
@@ -164,11 +162,6 @@ public class EffectManager : MonoBehaviour
             {
                 SoundManager.Instance.SFXPlay(info.sfxType, true);
             }
-
-            //else
-            //{
-            //    Debug.LogWarning("사운드 매니저 인스턴스 = Null");
-            //}
 
             return extra;
         }
