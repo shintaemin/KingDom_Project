@@ -512,6 +512,7 @@ GameObject:
   - component: {fileID: 5679820866656929357}
   - component: {fileID: 4555972845956518322}
   - component: {fileID: 7614905660594398540}
+  - component: {fileID: -6302079064762995800}
   - component: {fileID: 4506938968958637759}
   - component: {fileID: 625820051395245337}
   - component: {fileID: 16236654193590640}
@@ -619,6 +620,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isShielded: 0
   _hpbar: {fileID: 0}
+--- !u!114 &-6302079064762995800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 402323165915543218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d44f42baba995e4e90ab8ced526f389, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showOnlyOnChanged: 1
+  _animator: {fileID: 2076291815587264328, guid: f4c5312f8351bef46a1f9f8cc1f32d50, type: 3}
+  _paramAnimation: Animation
+  _fillImage: {fileID: 0}
+  _hpSlierPrefab: {fileID: 7488609981081227603, guid: f4c5312f8351bef46a1f9f8cc1f32d50, type: 3}
+  _spawnRoot: {fileID: 0}
+  _UIOffset: {x: 0, y: 50, z: 0}
 --- !u!114 &4506938968958637759
 MonoBehaviour:
   m_ObjectHideFlags: 0

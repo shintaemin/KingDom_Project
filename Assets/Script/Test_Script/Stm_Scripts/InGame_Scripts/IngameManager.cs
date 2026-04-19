@@ -286,6 +286,12 @@ public class IngameManager : MonoBehaviour
             Debug.Log($"[IngameManager] : {_enemys.Count} 구독 완료");
         }
 
+        if (go.TryGetComponent<EnemyStatus>(out EnemyStatus eStatus))
+        {
+            eStatus.SetStatus(_currentStage);
+            Debug.Log($"[IngameManager] : {go.name} 스탯 설정 완료");
+        }
+
         if (go.TryGetComponent<PlayerStatus>(out _pState))
         {
             if (CPlayerDataManager.Instance != null)
@@ -295,7 +301,7 @@ public class IngameManager : MonoBehaviour
                 float attack = pm.Attack;
                 float speed = pm.MoveSpeed;
                 _pState.SetStatus(hp, attack, speed);
-                Debug.Log($"[IngameManager] : {_pState.gameObject.name} 스탯 지정 완료");
+                Debug.Log($"[IngameManager] : 플레이어 스탯 지정 완료 [Attack : {(int)attack}, HP : {(int)hp}, MoveSpeed : {(int)speed}] ");
             }
         }
     }
