@@ -48,10 +48,6 @@ public class Victory_Panel_Controller : MonoBehaviour
 
     private IEnumerator PlayIntro()
     {
-        if (SoundManager.Instance != null)
-        {
-            SoundManager.Instance.SFXPlay(ESfxType.Level_Clear);
-        }
         // 1. 캐릭터만 보여주는 시간
         yield return new WaitForSeconds(_characterWaitTime);
 

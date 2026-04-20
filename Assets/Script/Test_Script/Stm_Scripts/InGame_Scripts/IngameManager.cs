@@ -47,7 +47,7 @@ public class IngameManager : MonoBehaviour
         {
             int playerCurrentStage = CPlayerDataManager.Instance.CurrentStage;
 
-            _currentStage = playerCurrentStage >= 21 ? UnityEngine.Random.Range(0,21) : playerCurrentStage;
+            _currentStage = playerCurrentStage >= 21 ? UnityEngine.Random.Range(1,21) : playerCurrentStage;
             
             _mapIndex = 1;
             SetMap(_currentStage, _mapIndex); 
@@ -264,11 +264,6 @@ public class IngameManager : MonoBehaviour
                 MissionClear();
 
                 MissionEnd?.Invoke(EMissionAnswer.Success);
-                
-                if (CPlayerDataManager.Instance != null)
-                {
-                    CPlayerDataManager.Instance.CurrentStage += 1;
-                }
             }
             
             return;
@@ -297,8 +292,12 @@ public class IngameManager : MonoBehaviour
 
         if (go.TryGetComponent<EnemyStatus>(out EnemyStatus eStatus))
         {
-            eStatus.SetStatus(_currentStage);
-            Debug.Log($"[IngameManager] : {go.name} 스탯 설정 완료");
+            if (CPlayerDataManager.Instance != null)
+            {
+                int state = CPlayerDataManager.Instance.CurrentStage;
+                eStatus.SetStatus(state);
+                Debug.Log($"[IngameManager] : {go.name} 스탯 설정 완료");
+            }
         }
 
         if (go.TryGetComponent<PlayerStatus>(out _pState))

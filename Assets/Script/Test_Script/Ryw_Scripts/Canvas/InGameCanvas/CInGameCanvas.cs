@@ -142,7 +142,8 @@ public class CInGameCanvas : MonoBehaviour
     private IEnumerator MissionEndCo(EMissionAnswer obj)
     {
         Debug.LogWarning($"[CInGameCanvas] : 미션 종료 확인 완료");
-        while(true)
+
+        while (true)
         {
             yield return new WaitForSeconds(_missionEndWaitTime);
 
@@ -171,6 +172,11 @@ public class CInGameCanvas : MonoBehaviour
         {
             case EMissionAnswer.Success:
                 VictoryPanel.gameObject.SetActive(true);
+                if (SoundManager.Instance != null && CPlayerDataManager.Instance != null)
+                {
+                    SoundManager.Instance.SFXPlay(ESfxType.Level_Clear);
+                    CPlayerDataManager.Instance.CurrentStage += 1;
+                }
                 break;
             case EMissionAnswer.Fail:
                 FailurePanel.gameObject.SetActive(true);
