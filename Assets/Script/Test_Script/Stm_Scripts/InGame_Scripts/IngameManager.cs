@@ -238,14 +238,19 @@ public class IngameManager : MonoBehaviour
         {
             // 여기서 문을 연다
             DoorOpenAnim doorOpen = FindFirstObjectByType<DoorOpenAnim>();
-
+            
             if (doorOpen != null)
             {
                 // 여기서 GO UI 재생
                 _ingameCanvas.SetActiveGoImpact(true);
+                _ingameCanvas.CallFullscreenImpact(Color.white);
                 doorOpen.PlayOpenAnim();
+                if (SoundManager.Instance != null)
+                {
+                    SoundManager.Instance.SFXPlay(ESfxType.Chant);
+                }
+
                 Door_StageEnd_Col endCol = doorOpen.transform.GetComponentInChildren<Door_StageEnd_Col>();
-                
                 // 스테이지 종료 충돌 시점 구독
                 if (endCol != null)
                 {
@@ -259,7 +264,7 @@ public class IngameManager : MonoBehaviour
                 MissionClear();
 
                 MissionEnd?.Invoke(EMissionAnswer.Success);
-
+                
                 if (CPlayerDataManager.Instance != null)
                 {
                     CPlayerDataManager.Instance.CurrentStage += 1;
