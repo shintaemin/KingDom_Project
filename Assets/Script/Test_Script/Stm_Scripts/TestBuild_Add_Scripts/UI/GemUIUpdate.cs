@@ -29,7 +29,7 @@ public class GemUIUpdate : MonoBehaviour
         if (CPlayerDataManager.Instance != null)
         {
             int gem = CPlayerDataManager.Instance.Gem;
-            _gemText.text = $"{gem}";
+            _gemText.text = gem >= 100000 ? "99999" : $"{gem}";
         }
     }
     #endregion

@@ -9223,6 +9223,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4612572258682615387, guid: ca11f73376a2dfd4aba9840ae2ea5624, type: 3}
+      propertyPath: m_text
+      value: 1150
+      objectReference: {fileID: 0}
+    - target: {fileID: 4612572258682615387, guid: ca11f73376a2dfd4aba9840ae2ea5624, type: 3}
+      propertyPath: m_margin.z
+      value: -14.805359
+      objectReference: {fileID: 0}
+    - target: {fileID: 4612572258682615387, guid: ca11f73376a2dfd4aba9840ae2ea5624, type: 3}
       propertyPath: m_fontAsset
       value: 
       objectReference: {fileID: 11400000, guid: 0096edd6485b4094494222612f04df51, type: 2}
