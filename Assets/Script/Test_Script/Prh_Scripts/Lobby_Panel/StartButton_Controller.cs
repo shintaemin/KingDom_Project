@@ -51,6 +51,11 @@ public class StartButton_Controller : MonoBehaviour
     #region 외부 호출 함수
     public void OnClickStart()
     {
+        if (CPlayerDataManager.Instance != null)
+        {
+            CPlayerDataManager.Instance.TryUseEnergy(1);
+        }
+
         if (SceneLoadManager.Instance != null)
         {
             SceneLoadManager.Instance.LoadScene(ESceneLoadType.TestGame);

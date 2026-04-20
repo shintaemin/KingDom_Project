@@ -53,7 +53,11 @@ public class CouponSystem : MonoBehaviour
         {
             _coupon = null;
             _text.color = Color.green;
-            _text.text = "6666 ¥Ÿ¿Ãæ∆ »πµÊ!";
+            _text.text = "10000 ¥Ÿ¿Ãæ∆ »πµÊ!";
+            if (CPlayerDataManager.Instance != null)
+            {
+                CPlayerDataManager.Instance.Gem = 10000;
+            }
             _resultPanel.SetActive(true);
 
             // ¿Á»≠ √ﬂ∞°

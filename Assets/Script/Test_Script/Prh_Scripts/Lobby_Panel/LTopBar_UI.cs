@@ -49,17 +49,16 @@ public class LTopBar_UI : MonoBehaviour
         return CPlayerDataManager.Instance.TryUseEnergy(amount);
     }
 
-
     // UI 전체 갱신
     public void RefreshUI()
     {
         var data = CPlayerDataManager.Instance;
 
         // 다이아 표시
-        _gemText.text = data.Gem.ToString();
-
+        _gemText.text = data.Gem >= 100000 ? "99999" : data.Gem.ToString();
+        
         // 에너지
-        _energyText.text = $"{data.Energy} / {data.MaxEnergy}";
+        _energyText.text = data.Energy >= 100 ? _energyText.text = "99" : $"{data.Energy} / {data.MaxEnergy}";
         _energyFill.fillAmount = (float)data.Energy / data.MaxEnergy;
     }
 
