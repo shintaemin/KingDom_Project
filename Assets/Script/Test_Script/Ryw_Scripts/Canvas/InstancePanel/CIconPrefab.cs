@@ -25,6 +25,7 @@ public class CIconPrefab : MonoBehaviour
     public float DestroyDelay = 1f;
     [SerializeField] private Image _image;
     [SerializeField] private float _explosionSpeed = 5f;
+    [SerializeField] private float _epsilon = float.Epsilon;
     #endregion
 
     #region 내부 변수
@@ -42,7 +43,7 @@ public class CIconPrefab : MonoBehaviour
 
     void Awake()
     {
-        if(_image.IsNull("_image"))
+        if (_image.IsNull("_image"))
         {
             return;
         }
@@ -63,20 +64,20 @@ public class CIconPrefab : MonoBehaviour
         {
             // 준비
             case EStep.Ready:
-                if(_isReady)
+                if (_isReady)
                     ChageStep(EStep.Spawn);
                 break;
             // 스폰 애니메이션
             case EStep.Spawn:
                 transform.localScale = Vector3.MoveTowards(transform.localScale, _scale, (_scaleMag / SpawnDelay) * Time.deltaTime);
-                if(_explosionEffect)
+                if (_explosionEffect)
                 {
                     // 폭발하는 효과를 준다.
                     // 랜덤한 방향으로
                     // 랜덤한 거리를 이동한다.
                     transform.Translate(_explosionDir * _explosionSpeed * Time.deltaTime);
                 }
-                if (transform.localScale == _scale)
+                if (Vector3.Distance(transform.localScale, _scale) < _epsilon)
                 {
                     ChageStep(EStep.Translate);
                 }
@@ -91,7 +92,7 @@ public class CIconPrefab : MonoBehaviour
                 {
                     transform.position = Vector3.MoveTowards(transform.position, _targetTransform.position, MoveSpeed * Time.deltaTime);
                 }
-                if (transform.position == _targetTransform.position)
+                if (Vector3.Distance(transform.position, _targetTransform.position) < _epsilon)
                 {
                     ChageStep(EStep.Destroy);
                 }
@@ -137,7 +138,7 @@ public class CIconPrefab : MonoBehaviour
         SetIcon(icon);
         SetTargetTransform(target);
         _explosionEffect = explosionEffect;
-        if(_explosionEffect)
+        if (_explosionEffect)
         {
             _explosionDir = Random.onUnitSphere;
         }

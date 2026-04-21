@@ -86,6 +86,7 @@ public class CJsonManager : MonoBehaviour
 
     public void Add(string fileName, IJsonData data, System.Type type)
     {
+        Debug.Log($"Add {fileName}");
         if (SavaDataDictionary == null)
             SavaDataDictionary = new Dictionary<string, (IJsonData, System.Type)>();
 

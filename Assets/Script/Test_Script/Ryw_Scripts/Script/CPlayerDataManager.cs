@@ -53,7 +53,7 @@ public class PlayerSaveData
         int index = 0;
         if (CSOManager.Instance != null)
         {
-            var equipmentDataDic = CSOManager.Instance.DataArraySO.EquipmentDataDic; 
+            var equipmentDataDic = CSOManager.Instance.DataArraySO.EquipmentDataDic;
 
             foreach (var (key, value) in equipmentDataDic)
             {
@@ -63,7 +63,17 @@ public class PlayerSaveData
                 index++;
             }
         }
-        
+        else
+        {
+            Debug.LogWarning("CSOManager.Instance == null");
+            index = 0;
+            EquipmentDicID[index] = 0;
+            EquipmentDicValue[index] = true;
+            index++;
+            EquipmentDicID[index] = 1000;
+            EquipmentDicValue[index] = true;
+        }
+
     }
 }
 
@@ -115,7 +125,7 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
 
     // 저장 직전 자신의 데이터를 덮어씌우는 부분이 있긴 하지만
     // 실제 저장 / 불러오기는 이 객체를 기준으로 이루어 진다.
-    private PlayerSaveData _data;
+    private PlayerSaveData _data = null;
 
     private CEquipmentDataSO _currentWeapon;
     private CEquipmentDataSO _currentClothes;
@@ -231,7 +241,7 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
             double value = _defaultEnergyCooltime;
             if (CSOManager.Instance != null)
             {
-                var talentEnergy = CSOManager.Instance[CDataArraySO.EDataType.TalentData][8] as CTalentDataSO; 
+                var talentEnergy = CSOManager.Instance[CDataArraySO.EDataType.TalentData][8] as CTalentDataSO;
                 value -= talentEnergy.Volume * GetCurrentTalentLevel(8);
             }
 
@@ -692,8 +702,11 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
 
     public void MakeSaveData()
     {
+        Debug.Log("MakeSaveData");
         if (_data == null)
+        {
             _data = new PlayerSaveData();
+        }
 
         _data.Gem = _gem;
         _data.MaxEnergy = _maxEnergy;
@@ -714,6 +727,7 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
 
     public void LoadSaveData()
     {
+        Debug.Log("LoadSaveData");
         if (_data.IsNull("_data"))
             return;
 
@@ -754,6 +768,7 @@ public class CPlayerDataManager : MonoBehaviour, IJsonData
 
     public void InitSaveData()
     {
+        Debug.Log("InitSaveData");
         if (_data != null)
         {
             _data = null;
